@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    background-color: #FAF8F5;
+    color: #111111;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+}
+.link-luxury {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    padding-bottom: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+.link-luxury:hover { opacity: 0.7; border-color: rgba(0,0,0,0.7); }
+.btn-luxury {
+    display: inline-block;
+    padding: 14px 24px;
+    border: 1px solid rgba(0,0,0,0.25);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    background: transparent;
+    cursor: pointer;
+}
+.btn-luxury:hover { border-color: rgba(0,0,0,0.6); background: rgba(0,0,0,0.04); }
+.kicker { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.65; }
+.title-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
