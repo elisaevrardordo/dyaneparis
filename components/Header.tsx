@@ -22,7 +22,7 @@ export default function Header() {
             <div style={{ padding: '8px 24px 4px', display: 'flex', justifyContent: 'flex-end' }}>
                 <button
                     onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-                    style={{ ...fontNav, color: '#fff', fontSize: '10px', letterSpacing: '0.26em', opacity: 0.6, textTransform: 'uppercase', background: 'none', border: 'none', cursor: 'pointer' }}
+                    style={{ ...fontNav, color: '#fff', fontSize: '13px', letterSpacing: '0.26em', opacity: 0.6, textTransform: 'uppercase', background: 'none', border: 'none', cursor: 'pointer' }}
                 >
                     {lang === 'fr' ? 'FRANÇAIS' : 'ENGLISH'}
                 </button>
