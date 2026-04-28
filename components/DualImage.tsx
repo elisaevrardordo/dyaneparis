@@ -6,7 +6,7 @@ export default function DualImage() {
         <>
             {/* Image pleine page */}
             <section style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
-                <Image src="/hero.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section texte + images */}
