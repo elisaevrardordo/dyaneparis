@@ -16,9 +16,9 @@ export default function Header() {
     return (
         <header style={{ background: '#0d0d0d', position: 'relative', zIndex: 50 }}>
             <div style={{ padding: '8px 24px 4px' }}>
-                <span style={{ color: '#fff', fontSize: '10px', letterSpacing: '0.26em', opacity: 0.6, textTransform: 'uppercase' }}>
-                    FRANCAIS
-                </span>
+                <span style={{ color: '#fff', fontSize: '10px', letterSpacing: '0.26em', opacity: 0.6, textTransform: 'uppercase', fontFamily: 'Playfair Display, serif' }}>
+    FRANCAIS
+</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 24px' }}>
                 <Link href="/" style={{ textDecoration: 'none' }}>
