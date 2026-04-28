@@ -10,18 +10,18 @@ export const products: Product[] = [
         name: 'Dyane No.1 — Pornstar Martini',
         slug: 'dyane-paris-pornstar-martini-70-cl',
         subtitle: 'Chapitre I',
-        image: '/images/dyane-no1.jpg',
+        image: '/dyane-no1.png',
     },
     {
         name: 'Dyane No.2 — Moscow Mule',
         slug: 'dyane-no2-moscow-mule',
         subtitle: 'Chapitre II',
-        image: '/images/dyane-no2.jpg',
+        image: '/dyane-no2.png',
     },
     {
         name: 'Teo for Dyane Paris',
         slug: 'bouteille-signee-teokaykay',
         subtitle: 'Edition Limitée',
-        image: '/images/dyane-teo.jpg',
+        image: '/dyane-teo.png',
     },
 ]
