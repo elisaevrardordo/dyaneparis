@@ -60,8 +60,8 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image pleine largeur artisan — edge to edge, cover, 75vh */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
+            {/* Image pleine largeur artisan — edge to edge, cover, 100vh */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447558/Capture_d_ecran_2026-04-02_a_14.59.51_ko7wku.png" alt="Artisan Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
@@ -80,8 +80,8 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image finale pleine largeur — edge to edge, cover, 80vh */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
+            {/* Image finale pleine largeur — edge to edge, cover, 100vh */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777448070/DSC00561_nfjdeh.jpg" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
