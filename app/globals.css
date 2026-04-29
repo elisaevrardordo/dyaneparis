@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -43,12 +43,12 @@ body {
 }
 .btn-luxury:hover { border-color: rgba(0,0,0,0.6); background: rgba(0,0,0,0.04); }
 
-.kicker { 
+.kicker {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 11px; 
-    letter-spacing: 0.28em; 
-    text-transform: uppercase; 
-    opacity: 0.65; 
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.65;
 }
 
 .title-display {
@@ -58,25 +58,34 @@ body {
     line-height: 1.05;
     text-transform: uppercase;
 }
+
+/* Reset global inputs */
 input, textarea, select {
     border: none !important;
     border-radius: 0 !important;
-    background-color: #ffffff !important;
 }
 
-input::placeholder, textarea::placeholder {
+/* Inputs normaux — fond blanc, texte noir */
+input:not(.newsletter-input),
+textarea:not(.newsletter-input),
+select:not(.newsletter-input) {
+    background-color: #ffffff !important;
+    color: #111 !important;
+}
+
+input:not(.newsletter-input)::placeholder,
+textarea:not(.newsletter-input)::placeholder {
     color: #111 !important;
     opacity: 1 !important;
 }
-.newsletter-input::placeholder {
+
+/* Input newsletter — fond transparent, texte blanc */
+.newsletter-input {
+    background: none !important;
+    background-color: transparent !important;
     color: #fff !important;
-    opacity: 1 !important;
 }
-.newsletter-input::placeholder {
-    color: #fff !important;
-    opacity: 1 !important;
-}
-.newsletter-input,
+
 .newsletter-input::placeholder {
     color: #fff !important;
     opacity: 1 !important;
