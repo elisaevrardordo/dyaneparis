@@ -6,6 +6,7 @@ const font = { fontFamily: 'Playfair Display, serif' }
 const oeuvres = [
     {
         id: 'no1',
+        href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
         titre: 'DYANE NO.1',
         sous_titre: 'UNE CRÉATION S\'INSPIRANT DU GOURMAND PORNSTAR MARTINI.',
         images: [
@@ -17,6 +18,7 @@ const oeuvres = [
     },
     {
         id: 'no2',
+        href: '/oeuvres/dyane-no2-moscow-mule',
         titre: 'DYANE NO.2',
         sous_titre: 'UNE CRÉATION S\'INSPIRANT DU COMPLEXE MOSCOW MULE.',
         images: [
@@ -28,6 +30,7 @@ const oeuvres = [
     },
     {
         id: 'teo',
+        href: '/oeuvres/bouteille-signee-teokaykay',
         titre: 'TEO FOR DYANE',
         sous_titre: 'EN COLLABORATION AVEC LE PEINTRE MATTEO MENGACCI, PLUS CONNU SOUS LE NOM DE TEO KAYKAY.',
         images: [
@@ -42,7 +45,6 @@ const oeuvres = [
 export default function OeuvresPage() {
     return (
         <main style={{ background: '#fff' }}>
-            {/* Hero */}
             <section style={{ position: 'relative', width: '100%', height: '50vh', overflow: 'hidden' }}>
                 <Image src="/2.png" alt="Dyane Paris Oeuvres" fill style={{ objectFit: 'cover' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }} />
@@ -51,24 +53,21 @@ export default function OeuvresPage() {
                 </div>
             </section>
 
-            {/* Liste des oeuvres */}
-            {oeuvres.map((oeuvre, index) => (
+            {oeuvres.map((oeuvre) => (
                 <section key={oeuvre.id} style={{ padding: '60px 24px', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
-                        {/* Texte gauche */}
                         <div>
                             <h2 style={{ ...font, fontSize: '22px', fontWeight: 600, letterSpacing: '0.04em', margin: '0 0 12px', textTransform: 'uppercase' }}>{oeuvre.titre}</h2>
                             <p style={{ ...font, fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.7, lineHeight: 1.6, margin: '0 0 24px' }}>{oeuvre.sous_titre}</p>
-                            <Link href="/contact" style={{ ...font, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
+                            <Link href={oeuvre.href} style={{ ...font, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
                                 DÉCOUVRIR
                             </Link>
                         </div>
-                        {/* 4 images droite */}
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                             {oeuvre.images.map((src, i) => (
-                                <div key={i} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
+                                <Link key={i} href={oeuvre.href} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', display: 'block' }}>
                                     <Image src={src} alt={`${oeuvre.titre} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>
