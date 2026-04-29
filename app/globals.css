@@ -76,3 +76,8 @@ input::placeholder, textarea::placeholder {
     color: #fff !important;
     opacity: 1 !important;
 }
+.newsletter-input,
+.newsletter-input::placeholder {
+    color: #fff !important;
+    opacity: 1 !important;
+}
