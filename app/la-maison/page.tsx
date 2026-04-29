@@ -15,13 +15,13 @@ export default function LaMaisonPage() {
 
             {/* Image pleine largeur 1 */}
             <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill style={{ objectFit: 'cover' }} />
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill style={{ objectFit: 'contain' }} />
             </section>
 
             {/* Section Le nom Dyane — image gauche, texte droite, alignement bas */}
             <section style={{ padding: '0 80px', paddingTop: '100px', paddingBottom: '120px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '640px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447494/Capture_d_ecran_2026-03-07_a_10.28.26_nfqwck.png" alt="Diane chasseresse" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447494/Capture_d_ecran_2026-03-07_a_10.28.26_nfqwck.png" alt="Diane chasseresse" fill style={{ objectFit: 'contain' }} />
                 </div>
                 <div>
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '14px' }}>GENÈSE</p>
@@ -35,10 +35,10 @@ export default function LaMaisonPage() {
             {/* Duo images atelier — petite gauche / grande droite, alignement bas */}
             <section style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 120px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '420px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier Dyane" fill style={{ objectFit: 'contain' }} />
                 </div>
                 <div style={{ position: 'relative', height: '620px' }}>
-                    <video autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+                    <video autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
                         <source src="https://res.cloudinary.com/dazhkrimv/video/upload/v1777448171/download_8_1_qv3jyo.mp4" type="video/mp4" />
                     </video>
                 </div>
