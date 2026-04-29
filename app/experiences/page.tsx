@@ -9,13 +9,13 @@ export default function ExperiencesPage() {
         <div style={{ background: BG }}>
 
             {/* Intro */}
-            <section style={{ padding: '120px 24px 80px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '40px' }}>EXPÉRIENCES</h1>
-                <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '20px' }}>Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.</p>
-                <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Sa vocation est claire : préserver la maîtrise du goût, du geste et du temps dans un univers dominé par l'industrialisation. Chaque création est issue d'une production volontairement contenue, conduite avec méthode et discernement.</p>
+            <section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+                <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>EXPÉRIENCES</h1>
+                <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.</p>
+                <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>Sa vocation est claire : préserver la maîtrise du goût, du geste et du temps dans un univers dominé par l'industrialisation. Chaque création est issue d'une production volontairement contenue, conduite avec méthode et discernement.</p>
             </section>
 
-            {/* Image pleine largeur 1 — edge to edge, cover */}
+            {/* Image pleine largeur 1 — edge to edge, cover, 100vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
@@ -85,7 +85,7 @@ export default function ExperiencesPage() {
                 </div>
             </section>
 
-            {/* Image finale pleine largeur — edge to edge, cover */}
+            {/* Image finale pleine largeur — edge to edge, cover, 100vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
