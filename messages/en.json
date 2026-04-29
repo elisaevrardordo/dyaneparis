@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "oeuvres": "COLLECTIONS",
+    "distillation": "DISTILLATION",
+    "experiences": "EXPERIENCES",
+    "maison": "THE HOUSE",
+    "journal": "THE JOURNAL",
+    "contact": "CONTACT THE CONCIERGE"
+  },
+  "home": {
+    "kicker": "LIQUID ART HOUSE — PARIS",
+    "titre": "ART YOU CAN DRINK.",
+    "cta": "DISCOVER THE COLLECTIONS"
+  }
+}
