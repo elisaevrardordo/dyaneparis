@@ -3,14 +3,6 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
-}
-
-module.exports = nextConfig
-
-const nextConfig = {
-  images: {
-    domains: ['res.cloudinary.com'],
-  },
   async redirects() {
     return [
       { source: '/products/:path*', destination: '/oeuvres', permanent: true },
