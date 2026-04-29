@@ -37,9 +37,10 @@ export default function ServiceAidePage() {
     const [subscribed, setSubscribed] = useState(false)
 
     return (
-        <main style={{ background: '#FAF8F5' }}>
-            {/* Hero image */}
-            <section style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
+        <div style={{ background: '#FAF8F5' }}>
+
+            {/* Hero image — edge to edge, 100vh */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
                     alt="Dyane Paris FAQ"
@@ -49,8 +50,8 @@ export default function ServiceAidePage() {
             </section>
 
             {/* FAQ */}
-            <section style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 24px' }}>
-                <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, textAlign: 'center', marginBottom: '48px' }}>
+            <section style={{ maxWidth: '900px', margin: '0 auto', padding: '80px 24px' }}>
+                <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, textAlign: 'center', marginBottom: '64px' }}>
                     RETROUVEZ RÉPONSES À VOS QUESTIONS JUSTE ICI.
                 </p>
 
@@ -58,15 +59,15 @@ export default function ServiceAidePage() {
                     <div key={i} style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
                         <button
                             onClick={() => setOpen(open === i ? null : i)}
-                            style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                            style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                         >
                             <span style={{ fontSize: '13px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 400 }}>{faq.question}</span>
-                            <span style={{ fontSize: '20px', opacity: 0.5, transition: 'transform 0.2s', transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)' }}>∨</span>
+                            <span style={{ fontSize: '18px', opacity: 0.4, transition: 'transform 0.2s', transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0, marginLeft: '24px' }}>∨</span>
                         </button>
                         {open === i && (
-                            <div style={{ paddingBottom: '24px' }}>
+                            <div style={{ paddingBottom: '28px' }}>
                                 {faq.reponse.split('\n\n').map((para, j) => (
-                                    <p key={j} style={{ ...font, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginBottom: '12px' }}>{para}</p>
+                                    <p key={j} style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '12px' }}>{para}</p>
                                 ))}
                             </div>
                         )}
@@ -76,11 +77,11 @@ export default function ServiceAidePage() {
             </section>
 
             {/* Newsletter */}
-            <section style={{ background: '#0d0d0d', padding: '80px 24px' }}>
+            <section style={{ background: '#0d0d0d', padding: '100px 24px' }}>
                 <div style={{ maxWidth: '600px' }}>
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '16px' }}>NEWSLETTER</p>
                     <h2 style={{ ...font, fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 400, color: '#fff', marginBottom: '16px' }}>S'ABONNER À NOS E-MAILS</h2>
-                    <p style={{ ...font, fontSize: '13px', lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: '40px' }}>
+                    <p style={{ ...font, fontSize: '13px', lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: '48px' }}>
                         Faites partie des premières personnes à être informées des nouvelles collections et des offres exclusives.
                     </p>
                     {subscribed ? (
@@ -92,7 +93,8 @@ export default function ServiceAidePage() {
                                 placeholder="Votre adresse e-mail"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                style={{ ...font, width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '13px', padding: '8px 0', outline: 'none', marginBottom: '24px' }}
+                                className="newsletter-input"
+                                style={{ ...font, width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '13px', padding: '8px 0', outline: 'none', marginBottom: '32px' }}
                             />
                             <button
                                 onClick={() => email && setSubscribed(true)}
@@ -104,6 +106,7 @@ export default function ServiceAidePage() {
                     )}
                 </div>
             </section>
-        </main>
+
+        </div>
     )
 }
