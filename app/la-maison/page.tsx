@@ -8,20 +8,20 @@ export default function LaMaisonPage() {
         <main style={{ background: BG }}>
 
             {/* Intro */}
-            <section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '36px' }}>L'HISTOIRE DE LA MAISON</h1>
+            <section style={{ padding: '120px 24px 80px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
+                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '40px' }}>L'HISTOIRE DE LA MAISON</h1>
                 <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.</p>
             </section>
 
-            {/* Image pleine largeur 1 */}
-            <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill style={{ objectFit: 'contain' }} />
+            {/* Image pleine largeur 1 — edge to edge, cover */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section Le nom Dyane — image gauche, texte droite, alignement bas */}
-            <section style={{ padding: '0 80px', paddingTop: '100px', paddingBottom: '120px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
+            <section style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '640px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447494/Capture_d_ecran_2026-03-07_a_10.28.26_nfqwck.png" alt="Diane chasseresse" fill style={{ objectFit: 'contain' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447494/Capture_d_ecran_2026-03-07_a_10.28.26_nfqwck.png" alt="Diane chasseresse" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
                 <div>
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '14px' }}>GENÈSE</p>
@@ -33,9 +33,9 @@ export default function LaMaisonPage() {
             </section>
 
             {/* Duo images atelier — petite gauche / grande droite, alignement bas */}
-            <section style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 120px', alignItems: 'end' }}>
+            <section style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '420px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier Dyane" fill style={{ objectFit: 'contain' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
                 <div style={{ position: 'relative', height: '620px' }}>
                     <video autoPlay muted loop playsInline style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
@@ -45,7 +45,7 @@ export default function LaMaisonPage() {
             </section>
 
             {/* Section Art Liquide — 3 colonnes */}
-            <section style={{ padding: '100px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
+            <section style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
                 <div>
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '14px' }}>ART & SPIRITS</p>
                     <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', lineHeight: 1.4 }}>LA NAISSANCE D'UNE MAISON D'ART LIQUIDE</h2>
@@ -60,15 +60,15 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image pleine largeur artisan */}
-            <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
+            {/* Image pleine largeur artisan — edge to edge, cover */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447558/Capture_d_ecran_2026-04-02_a_14.59.51_ko7wku.png" alt="Artisan Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section Le temps et la main — image gauche, texte droite, alignement bas */}
-            <section style={{ padding: '0 80px', paddingTop: '100px', paddingBottom: '120px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
+            <section style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '560px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png" alt="Dyane Paris" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
                 <div>
                     <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '28px' }}>LE TEMPS ET LA MAIN</h2>
@@ -80,8 +80,8 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image finale pleine largeur */}
-            <section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
+            {/* Image finale pleine largeur — edge to edge, cover */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777448070/DSC00561_nfjdeh.jpg" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
