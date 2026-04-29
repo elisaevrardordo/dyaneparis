@@ -35,7 +35,7 @@ export default function Header() {
                     <img
                         src="/LogoDYANE_blanc.png"
                         alt="Dyane Paris"
-                        style={{ height: '64px', width: 'auto', display: 'block' }}
+                        style={{ height: '70px', width: 'auto', display: 'block' }}
                     />
                 </Link>
             </div>
