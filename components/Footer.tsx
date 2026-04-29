@@ -42,7 +42,7 @@ export default function Footer() {
                         <p style={{ ...font, fontSize: '13px', fontWeight: '600', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#000', margin: '0 0 16px' }}>
                             BESOIN D&apos;AIDE ?
                         </p>
-                        <Link href="/contact" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
+                        <Link href="/faq" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
                             SERVICE D&apos;AIDE
                         </Link>
                         <Link href="/contact" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.7 }}>
