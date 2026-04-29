@@ -9,19 +9,19 @@ export default function ExperiencesPage() {
         <main style={{ background: BG }}>
 
             {/* Intro */}
-            <section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '36px' }}>EXPÉRIENCES</h1>
-                <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.</p>
+            <section style={{ padding: '120px 24px 80px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
+                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '40px' }}>EXPÉRIENCES</h1>
+                <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '20px' }}>Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.</p>
                 <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Sa vocation est claire : préserver la maîtrise du goût, du geste et du temps dans un univers dominé par l'industrialisation. Chaque création est issue d'une production volontairement contenue, conduite avec méthode et discernement.</p>
             </section>
 
-            {/* Image pleine largeur 1 */}
-            <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'contain' }} />
+            {/* Image pleine largeur 1 — edge to edge, cover */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section Le choix de la mesure */}
-            <section style={{ padding: '100px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
+            <section style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
                 <div>
                     <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4 }}>LE CHOIX DE LA MESURE</h2>
                 </div>
@@ -34,18 +34,18 @@ export default function ExperiencesPage() {
                 </div>
             </section>
 
-            {/* Duo images — gauche plus petite/basse, droite pleine hauteur */}
-            <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 100px', alignItems: 'end' }}>
+            {/* Duo images — contain, alignement bas */}
+            <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '500px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
                 <div style={{ position: 'relative', height: '680px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
-            {/* Section personnalisation — texte gauche, image droite, alignement bas */}
-            <section style={{ padding: '0 80px 120px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
+            {/* Section personnalisation */}
+            <section style={{ padding: '0 80px 140px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
                 <div>
                     <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4, marginBottom: '28px' }}>LA PERSONNALISATION DES BOUTEILLES DYANE.</h2>
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>La personnalisation constitue l'une des expressions les plus abouties du savoir-faire de la Maison. Chaque projet fait l'objet d'une étude attentive, afin d'assurer une parfaite cohérence entre contenu et le contenant.</p>
@@ -56,12 +56,12 @@ export default function ExperiencesPage() {
                     </div>
                 </div>
                 <div style={{ position: 'relative', height: '720px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill style={{ objectFit: 'contain' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
-            {/* Section deux ancrages — texte gauche, image droite, alignement bas */}
-            <section style={{ padding: '0 80px 120px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
+            {/* Section deux ancrages */}
+            <section style={{ padding: '0 80px 140px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
                 <div>
                     <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4, marginBottom: '28px' }}>DEUX ANCRAGES, UNE MÊME EXIGENCE</h2>
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>La Maison opère sur deux sites de production en France.</p>
@@ -69,24 +69,24 @@ export default function ExperiencesPage() {
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Deux implantations complémentaires, guidées par une même discipline.</p>
                 </div>
                 <div style={{ position: 'relative', height: '620px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Dyane Paris" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
             {/* Citation */}
-            <section style={{ padding: '80px 24px', textAlign: 'center', borderTop: '1px solid rgba(0,0,0,0.08)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
+            <section style={{ padding: '100px 24px', textAlign: 'center', borderTop: '1px solid rgba(0,0,0,0.08)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                    <p style={{ ...font, fontSize: 'clamp(12px, 1.3vw, 16px)', letterSpacing: '0.05em', textTransform: 'uppercase', lineHeight: 1.7, marginBottom: '32px' }}>"MA COLLABORATION AVEC DYANE EST NÉE D'UN RESPECT MUTUEL ET D'UNE AMBITION PARTAGÉE : PROPOSER DES COCKTAILS PREMIUM QUI ALLIENT AUTHENTICITÉ, ÉLÉGANCE ET MODERNITÉ. CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES."</p>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '6px' }}>JULIEN DUCRUET</p>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '40px' }}>NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS</p>
+                    <p style={{ ...font, fontSize: 'clamp(12px, 1.3vw, 16px)', letterSpacing: '0.05em', textTransform: 'uppercase', lineHeight: 1.7, marginBottom: '36px' }}>"MA COLLABORATION AVEC DYANE EST NÉE D'UN RESPECT MUTUEL ET D'UNE AMBITION PARTAGÉE : PROPOSER DES COCKTAILS PREMIUM QUI ALLIENT AUTHENTICITÉ, ÉLÉGANCE ET MODERNITÉ. CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES."</p>
+                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '8px' }}>JULIEN DUCRUET</p>
+                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '48px' }}>NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS</p>
                     <Link href="/contact" style={{ ...font, fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
                         CONTACTER LA CONCIERGERIE
                     </Link>
                 </div>
             </section>
 
-            {/* Image finale pleine largeur */}
-            <section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
+            {/* Image finale pleine largeur — edge to edge, cover */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
                 <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
