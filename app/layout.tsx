@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <AgeGate />
                 <Header />
-                <main>{children}</main>
+                {children}
                 <Footer />
             </body>
         </html>
