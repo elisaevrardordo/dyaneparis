@@ -41,7 +41,7 @@ export default function ServiceAidePage() {
             {/* Hero image */}
             <section style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
                 <Image
-                    src="src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg""
+                    src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
                     alt="Dyane Paris FAQ"
                     fill
                     style={{ objectFit: 'cover' }}
