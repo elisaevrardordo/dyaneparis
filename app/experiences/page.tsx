@@ -6,7 +6,7 @@ const BG = 'rgb(252, 250, 247)'
 
 export default function ExperiencesPage() {
     return (
-        <main style={{ background: BG }}>
+        <div style={{ background: BG }}>
 
             {/* Intro */}
             <section style={{ padding: '120px 24px 80px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
@@ -16,7 +16,7 @@ export default function ExperiencesPage() {
             </section>
 
             {/* Image pleine largeur 1 — edge to edge, cover */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
@@ -86,10 +86,10 @@ export default function ExperiencesPage() {
             </section>
 
             {/* Image finale pleine largeur — edge to edge, cover */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
-        </main>
+        </div>
     )
 }
