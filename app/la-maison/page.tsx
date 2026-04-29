@@ -13,8 +13,8 @@ export default function LaMaisonPage() {
                 <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.</p>
             </section>
 
-            {/* Image pleine largeur 1 — edge to edge, cover */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
+            {/* Image pleine largeur 1 — edge to edge, cover, 100vh */}
+            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
 
@@ -60,7 +60,7 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image pleine largeur artisan — edge to edge, cover */}
+            {/* Image pleine largeur artisan — edge to edge, cover, 75vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '75vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447558/Capture_d_ecran_2026-04-02_a_14.59.51_ko7wku.png" alt="Artisan Dyane" fill style={{ objectFit: 'cover' }} />
             </section>
@@ -80,7 +80,7 @@ export default function LaMaisonPage() {
                 </div>
             </section>
 
-            {/* Image finale pleine largeur — edge to edge, cover */}
+            {/* Image finale pleine largeur — edge to edge, cover, 80vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777448070/DSC00561_nfjdeh.jpg" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
