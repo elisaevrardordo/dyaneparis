@@ -5,12 +5,12 @@ const BG = 'rgb(252, 250, 247)'
 
 export default function LaMaisonPage() {
     return (
-        <main style={{ background: BG }}>
+        <div style={{ background: BG }}>
 
             {/* Intro */}
-            <section style={{ padding: '120px 24px 80px', textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-                <h1 style={{ ...font, fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '40px' }}>L'HISTOIRE DE LA MAISON</h1>
-                <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.</p>
+            <section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+                <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>L'HISTOIRE DE LA MAISON</h1>
+                <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.</p>
             </section>
 
             {/* Image pleine largeur 1 — edge to edge, cover, 100vh */}
@@ -85,6 +85,6 @@ export default function LaMaisonPage() {
                 <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777448070/DSC00561_nfjdeh.jpg" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
             </section>
 
-        </main>
+        </div>
     )
 }
