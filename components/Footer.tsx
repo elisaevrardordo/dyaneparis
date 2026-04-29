@@ -20,10 +20,10 @@ export default function Footer() {
                         <Link href="/oeuvres" style={{ ...font, display: 'block', fontSize: '13px', fontWeight: '600', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '16px' }}>
                             COLLECTIONS
                         </Link>
-                        <Link href="/oeuvres" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
+                        <Link href="/oeuvres/dyane-paris-pornstar-martini-70-cl" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
                             CHAPITRE I
                         </Link>
-                        <Link href="/oeuvres" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.7 }}>
+                        <Link href="/oeuvres/bouteille-signee-teokaykay" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.7 }}>
                             TEO FOR DYANE
                         </Link>
                     </div>
