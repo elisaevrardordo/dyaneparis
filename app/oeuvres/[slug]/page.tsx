@@ -66,13 +66,13 @@ function Accordion({ titre, contenu }: { titre: string, contenu: string }) {
         <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
             <button
                 onClick={() => setOpen(!open)}
-                style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
             >
                 <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>{titre}</span>
                 <span style={{ fontSize: '16px', opacity: 0.5 }}>{open ? '∧' : '›'}</span>
             </button>
             {open && (
-                <div style={{ paddingBottom: '20px' }}>
+                <div style={{ paddingBottom: '16px' }}>
                     {contenu.split('\n').map((ligne, i) => (
                         <p key={i} style={{ ...font, fontSize: '12px', letterSpacing: '0.08em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase' }}>{ligne}</p>
                     ))}
@@ -94,7 +94,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
     )
 
     return (
-        <main style={{ background: '#FAF8F5' }}>
+        <div style={{ background: '#FAF8F5' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
                 {/* Galerie gauche */}
@@ -124,7 +124,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
                         </div>
                     )}
 
-                    <Link href="/contact" style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '24px' }}>
+                    <Link href="/contact" style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
                         CONTACTER LA CONCIERGERIE
                     </Link>
 
@@ -137,7 +137,8 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
                     <Accordion titre="NOUS CONTACTER" contenu={'REJOIGNEZ LA LISTE D\'ATTENTE\n\nE-MAIL : CONTACT@DYANEPARIS.COM\nINSTAGRAM : @DYANEPARIS_'} />
                     <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }} />
                 </div>
+
             </div>
-        </main>
+        </div>
     )
 }
