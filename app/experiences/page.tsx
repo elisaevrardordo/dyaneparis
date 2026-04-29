@@ -17,7 +17,7 @@ export default function ExperiencesPage() {
 
             {/* Image pleine largeur 1 */}
             <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'cover' }} />
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'contain' }} />
             </section>
 
             {/* Section Le choix de la mesure */}
@@ -37,10 +37,10 @@ export default function ExperiencesPage() {
             {/* Duo images — gauche plus petite/basse, droite pleine hauteur */}
             <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 100px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '500px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain' }} />
                 </div>
                 <div style={{ position: 'relative', height: '680px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain' }} />
                 </div>
             </section>
 
@@ -56,7 +56,7 @@ export default function ExperiencesPage() {
                     </div>
                 </div>
                 <div style={{ position: 'relative', height: '720px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill style={{ objectFit: 'contain' }} />
                 </div>
             </section>
 
