@@ -87,22 +87,25 @@ export default function ServiceAidePage() {
                     {subscribed ? (
                         <p style={{ ...font, fontSize: '13px', color: 'rgba(255,255,255,0.8)', letterSpacing: '0.1em' }}>Merci pour votre inscription.</p>
                     ) : (
-                        <div>
-                            <input
-                                type="email"
-                                placeholder="Votre adresse e-mail"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                className="newsletter-input"
-                                style={{ ...font, width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '13px', padding: '8px 0', outline: 'none', marginBottom: '32px' }}
-                            />
+                        <form onSubmit={e => { e.preventDefault(); setSubscribed(true) }} style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.3)', marginBottom: '32px' }}>
+                                <input
+                                    type="email"
+                                    placeholder="VOTRE ADRESSE E-MAIL *"
+                                    required
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    className="newsletter-input"
+                                    style={{ ...font, flex: 1, background: 'none', border: 'none', color: '#fff', fontSize: '11px', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '12px 0', outline: 'none' }}
+                                />
+                            </div>
                             <button
-                                onClick={() => email && setSubscribed(true)}
-                                style={{ ...font, background: 'none', border: 'none', color: '#fff', fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.5)', paddingBottom: '4px' }}
+                                type="submit"
+                                style={{ ...font, background: 'none', border: 'none', color: '#fff', fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.5)', paddingBottom: '4px', alignSelf: 'flex-start' }}
                             >
                                 S'INSCRIRE À LA NEWSLETTER
                             </button>
-                        </div>
+                        </form>
                     )}
                 </div>
             </section>
