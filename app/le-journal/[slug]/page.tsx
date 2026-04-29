@@ -12,7 +12,7 @@ const articles: Record<string, {
     'commanderie-ambassadeurs-rungis': {
         titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis',
         date: '24 MARS 2026',
-        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777448997/IMG_9605_3_nbgdw9.heic',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png',
         contenu: [
             'Dans l\'écrin majestueux du Café de l\'Homme, face à la Tour Eiffel, Dyane Paris a eu l\'honneur de participer à un moment d\'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.',
             'Cet événement, réunissant des figures emblématiques du monde gastronomique et des acteurs majeurs de l\'excellence française, s\'inscrit dans une tradition où savoir-faire, transmission et passion sont célébrés avec exigence et élégance.',
@@ -24,7 +24,7 @@ const articles: Record<string, {
     'ritz-paris-fashion-week': {
         titre: 'Dyane Paris au Ritz Paris — Une Fashion Week',
         date: '12 MARS 2026',
-        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449054/IMG_0285_1_nwec6u.heic',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png',
         contenu: [
             'À l\'occasion de la Fashion Week de Paris, Dyane Paris a investi les salons dorés du Ritz pour une soirée d\'exception mêlant art, mode et cocktail.',
             'Dans ce palace emblématique de la Place Vendôme, les créations Dyane ont côtoyé les plus grands noms de la mode internationale, affirmant la place de la Maison dans l\'univers du luxe contemporain.',
