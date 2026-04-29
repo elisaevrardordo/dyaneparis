@@ -58,3 +58,13 @@ body {
     line-height: 1.05;
     text-transform: uppercase;
 }
+input, textarea, select {
+    border: 1px solid #111 !important;
+    border-radius: 0 !important;
+    background-color: rgb(252, 250, 247) !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #111 !important;
+    opacity: 1 !important;
+}
