@@ -46,8 +46,8 @@ export default function ContactForm() {
                 .dyane-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; }
             `}</style>
             <div style={{ background: BG }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100vh' }}>
-
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh' }}>
+                    
                     {/* Colonne gauche */}
                     <div style={{ padding: '80px 64px 80px 80px' }}>
                         <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 64px)', fontWeight: 500, textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '24px' }}>CONTACTER LA MAISON.</h1>
