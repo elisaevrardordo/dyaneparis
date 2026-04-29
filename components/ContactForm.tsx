@@ -24,9 +24,8 @@ export default function ContactForm() {
     const field: React.CSSProperties = {
         width: '100%',
         padding: '18px 16px',
-        border: '1px solid #000',
         borderRadius: 0,
-        background: BG,
+        background: '#fff',
         fontSize: '11px',
         letterSpacing: '0.16em',
         textTransform: 'uppercase',
@@ -42,84 +41,82 @@ export default function ContactForm() {
         <>
             <style>{`
                 .dyane-input::placeholder { color: #111; opacity: 1; }
-                .dyane-input:focus { border-color: #000 !important; }
-                .dyane-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; }
+                .dyane-input:focus { outline: none; }
+                .dyane-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; background-color: #fff !important; }
             `}</style>
-            <div style={{ background: BG }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh' }}>
-                    
-                    {/* Colonne gauche */}
-                    <div style={{ padding: '80px 64px 80px 80px' }}>
-                        <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 64px)', fontWeight: 500, textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '24px' }}>CONTACTER LA MAISON.</h1>
-                        <p style={{ fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', lineHeight: 1.8, opacity: 0.7, marginBottom: '56px' }}>
-                            POUR TOUTE DEMANDE, NOS ÉQUIPES SONT À VOTRE DISPOSITION DU LUNDI AU VENDREDI, 10H00–18H00 (HEURE DE PARIS).
+            <div style={{ background: BG, display: 'flex', minHeight: '100vh' }}>
+
+                {/* Colonne gauche — formulaire */}
+                <div style={{ flex: '0 0 42%', padding: '80px 60px 80px 80px', overflowY: 'auto' }}>
+                    <h1 style={{ ...font, fontSize: 'clamp(32px, 3.5vw, 56px)', fontWeight: 500, textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '24px' }}>CONTACTER LA MAISON.</h1>
+                    <p style={{ fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', lineHeight: 1.8, opacity: 0.7, marginBottom: '48px' }}>
+                        POUR TOUTE DEMANDE, NOS ÉQUIPES SONT À VOTRE DISPOSITION DU LUNDI AU VENDREDI, 10H00–18H00 (HEURE DE PARIS).
+                    </p>
+
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                            <input className="dyane-input" type="text" placeholder="PRÉNOM NOM *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} style={field} />
+                            <input className="dyane-input" type="email" placeholder="E-MAIL *" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={field} />
+                        </div>
+
+                        <select className="dyane-input dyane-select" required value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} style={field}>
+                            <option value="" disabled>PAYS / RÉGION *</option>
+                            <option value="FR">France</option>
+                            <option value="BE">Belgique</option>
+                            <option value="CH">Suisse</option>
+                            <option value="LU">Luxembourg</option>
+                            <option value="MC">Monaco</option>
+                            <option value="OTHER">Autre</option>
+                        </select>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                            <input className="dyane-input" type="text" placeholder="CODE POSTAL *" required value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} style={field} />
+                            <input className="dyane-input" type="text" placeholder="VILLE *" required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} style={field} />
+                        </div>
+
+                        <select className="dyane-input dyane-select" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} style={field}>
+                            <option value="">INFORMATIONS SUR NOS COCKTAILS</option>
+                            <option value="commande">Commande personnalisée</option>
+                            <option value="evenement">Événement / Privatisation</option>
+                            <option value="partenariat">Partenariat</option>
+                            <option value="presse">Presse</option>
+                            <option value="autre">Autre</option>
+                        </select>
+
+                        <textarea className="dyane-input" placeholder="VOTRE MESSAGE *" required rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} style={{ ...field, resize: 'none' }} />
+
+                        <p style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.5, fontStyle: 'italic' }}>
+                            LES CHAMPS AVEC UNE * SONT OBLIGATOIRES.
+                        </p>
+                        <p style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1.7, opacity: 0.7 }}>
+                            VOS DONNÉES PERSONNELLES SONT TRAITÉES PAR DYANE PARIS AFIN DE RÉPONDRE À VOTRE DEMANDE.{' '}
+                            <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>POLITIQUE DE CONFIDENTIALITÉ</span>.
                         </p>
 
-                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
+                            <input type="checkbox" checked={form.newsletter} onChange={(e) => setForm({ ...form, newsletter: e.target.checked })} style={{ marginTop: '2px', width: '14px', height: '14px', accentColor: '#111', flexShrink: 0 }} />
+                            <span style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1.7, opacity: 0.7 }}>
+                                OUI, JE SOUHAITE RECEVOIR DES COMMUNICATIONS PERSONNALISÉES ET INVITATIONS. DÉSINSCRIPTION À TOUT MOMENT.
+                            </span>
+                        </label>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                <input className="dyane-input" type="text" placeholder="PRÉNOM NOM *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} style={field} />
-                                <input className="dyane-input" type="email" placeholder="E-MAIL *" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={field} />
-                            </div>
+                        <button type="submit" style={{ width: '100%', padding: '20px', background: '#111', color: '#fff', border: 'none', fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', cursor: 'pointer', marginTop: '8px', fontFamily: 'Playfair Display, serif' }}>
+                            ENVOYER
+                        </button>
 
-                            <select className="dyane-input dyane-select" required value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} style={{ ...field, backgroundColor: BG }}>
-                                <option value="" disabled>PAYS / RÉGION *</option>
-                                <option value="FR">France</option>
-                                <option value="BE">Belgique</option>
-                                <option value="CH">Suisse</option>
-                                <option value="LU">Luxembourg</option>
-                                <option value="MC">Monaco</option>
-                                <option value="OTHER">Autre</option>
-                            </select>
-
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                <input className="dyane-input" type="text" placeholder="CODE POSTAL *" required value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} style={field} />
-                                <input className="dyane-input" type="text" placeholder="VILLE *" required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} style={field} />
-                            </div>
-
-                            <select className="dyane-input dyane-select" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} style={{ ...field, backgroundColor: BG }}>
-                                <option value="">INFORMATIONS SUR NOS COCKTAILS</option>
-                                <option value="commande">Commande personnalisée</option>
-                                <option value="evenement">Événement / Privatisation</option>
-                                <option value="partenariat">Partenariat</option>
-                                <option value="presse">Presse</option>
-                                <option value="autre">Autre</option>
-                            </select>
-
-                            <textarea className="dyane-input" placeholder="VOTRE MESSAGE *" required rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} style={{ ...field, resize: 'none' }} />
-
-                            <p style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.5, fontStyle: 'italic' }}>
-                                LES CHAMPS AVEC UNE * SONT OBLIGATOIRES.
-                            </p>
-                            <p style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1.7, opacity: 0.7 }}>
-                                VOS DONNÉES PERSONNELLES SONT TRAITÉES PAR DYANE PARIS AFIN DE RÉPONDRE À VOTRE DEMANDE.{' '}
-                                <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>POLITIQUE DE CONFIDENTIALITÉ</span>.
-                            </p>
-
-                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
-                                <input type="checkbox" checked={form.newsletter} onChange={(e) => setForm({ ...form, newsletter: e.target.checked })} style={{ marginTop: '2px', width: '14px', height: '14px', accentColor: '#111', flexShrink: 0 }} />
-                                <span style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1.7, opacity: 0.7 }}>
-                                    OUI, JE SOUHAITE RECEVOIR DES COMMUNICATIONS PERSONNALISÉES ET INVITATIONS. DÉSINSCRIPTION À TOUT MOMENT.
-                                </span>
-                            </label>
-
-                            <button type="submit" style={{ width: '100%', padding: '20px', background: '#111', color: '#fff', border: 'none', fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', cursor: 'pointer', marginTop: '8px', fontFamily: 'Playfair Display, serif' }}>
-                                ENVOYER
-                            </button>
-
-                        </form>
-                    </div>
-
-                    {/* Colonne droite — image sticky */}
-                    <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
-                        <img
-                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png"
-                            alt="Dyane Paris"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                    </div>
-
+                    </form>
                 </div>
+
+                {/* Colonne droite — image fixe */}
+                <div style={{ flex: '0 0 58%', position: 'sticky', top: 0, height: '100vh' }}>
+                    <img
+                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png"
+                        alt="Dyane Paris"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                </div>
+
             </div>
         </>
     )
