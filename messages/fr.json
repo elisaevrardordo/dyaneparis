@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "oeuvres": "ŒUVRES",
+    "distillation": "DISTILLATION",
+    "experiences": "EXPÉRIENCES",
+    "maison": "LA MAISON",
+    "journal": "LE JOURNAL",
+    "contact": "CONTACTER LA CONCIERGERIE"
+  },
+  "home": {
+    "kicker": "MAISON D'ART LIQUIDE — PARIS",
+    "titre": "L'ART SE BOIT.",
+    "cta": "DÉCOUVRIR LES CRÉATIONS"
+  }
+}
