@@ -12,15 +12,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="fr">
-            <head>
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-PWMTG11R5L"></script>
-                <script dangerouslySetInnerHTML={{ __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-PWMTG11R5L');
-                `}} />
-            </head>
             <body>
                 <AgeGate />
                 <Header />
