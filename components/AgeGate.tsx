@@ -1,6 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 
+const cormorant = 'Cormorant Garamond, Garamond, serif'
+const lora = 'Lora, serif'
+
 export default function AgeGate() {
     const [visible, setVisible] = useState(false)
     const [hovering, setHovering] = useState<string | null>(null)
@@ -43,7 +46,7 @@ export default function AgeGate() {
                     <img
                         src="/LogoDYANE_noir.png"
                         alt="Dyane Paris"
-                        style={{ height: '52px', width: 'auto', display: 'inline-block' }}
+                        style={{ height: '60px', width: 'auto', display: 'inline-block' }}
                         onError={(e) => {
                             const img = e.target as HTMLImageElement
                             img.src = '/LogoDYANE_blanc.png'
@@ -53,7 +56,7 @@ export default function AgeGate() {
                 </div>
 
                 <p style={{
-                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontFamily: lora,
                     fontSize: '10px',
                     letterSpacing: '0.3em',
                     textTransform: 'uppercase',
@@ -64,7 +67,7 @@ export default function AgeGate() {
                 </p>
 
                 <h1 style={{
-                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontFamily: cormorant,
                     fontSize: 'clamp(22px, 3.5vw, 28px)',
                     fontWeight: 400,
                     lineHeight: 1.45,
@@ -76,8 +79,8 @@ export default function AgeGate() {
                 </h1>
 
                 <p style={{
-                    fontFamily: 'Cormorant Garamond, Garamond, serif',
-                    fontSize: '14px',
+                    fontFamily: lora,
+                    fontSize: '13px',
                     fontStyle: 'italic',
                     color: '#888',
                     marginBottom: '32px',
@@ -98,7 +101,7 @@ export default function AgeGate() {
                         onMouseEnter={() => setHovering('yes')}
                         onMouseLeave={() => setHovering(null)}
                         style={{
-                            fontFamily: 'Cormorant Garamond, Garamond, serif',
+                            fontFamily: lora,
                             background: hovering === 'yes' ? '#111' : 'transparent',
                             color: hovering === 'yes' ? '#fff' : '#111',
                             border: '1px solid #111',
@@ -119,7 +122,7 @@ export default function AgeGate() {
                         onMouseEnter={() => setHovering('no')}
                         onMouseLeave={() => setHovering(null)}
                         style={{
-                            fontFamily: 'Cormorant Garamond, Garamond, serif',
+                            fontFamily: lora,
                             background: 'transparent',
                             color: hovering === 'no' ? '#555' : '#aaa',
                             border: '1px solid #e0e0e0',
@@ -137,7 +140,7 @@ export default function AgeGate() {
                 </div>
 
                 <p style={{
-                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontFamily: lora,
                     color: '#bbb',
                     fontSize: '11px',
                     lineHeight: 1.8,
