@@ -35,22 +35,15 @@ export default function AgeGate() {
                 background: '#fff',
                 width: '100%',
                 maxWidth: '480px',
-                padding: '56px 48px 44px',
+                padding: '40px 40px 32px',
                 textAlign: 'center',
                 boxShadow: '0 32px 80px rgba(0,0,0,0.25)',
             }}>
-                <div style={{
-                    position: 'absolute', top: 0, left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '40px', height: '1px',
-                    background: '#c8a96e'
-                }} />
-
-                <div style={{ marginBottom: '36px' }}>
+                <div style={{ marginBottom: '24px' }}>
                     <img
                         src="/LogoDYANE_noir.png"
                         alt="Dyane Paris"
-                        style={{ height: '64px', width: 'auto', display: 'inline-block' }}
+                        style={{ height: '52px', width: 'auto', display: 'inline-block' }}
                         onError={(e) => {
                             const img = e.target as HTMLImageElement
                             img.src = '/LogoDYANE_blanc.png'
@@ -87,7 +80,7 @@ export default function AgeGate() {
                     fontSize: '14px',
                     fontStyle: 'italic',
                     color: '#888',
-                    marginBottom: '40px',
+                    marginBottom: '32px',
                     lineHeight: 1.6,
                 }}>
                     Please confirm to continue.
@@ -96,7 +89,7 @@ export default function AgeGate() {
                 <div style={{
                     width: '32px', height: '1px',
                     background: '#ddd',
-                    margin: '0 auto 36px'
+                    margin: '0 auto 28px'
                 }} />
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -148,7 +141,7 @@ export default function AgeGate() {
                     color: '#bbb',
                     fontSize: '11px',
                     lineHeight: 1.8,
-                    marginTop: '32px',
+                    marginTop: '28px',
                 }}>
                     By entering, you confirm you are of legal drinking age<br />
                     and agree to our{' '}
@@ -156,13 +149,6 @@ export default function AgeGate() {
                         Terms of Use and Privacy Policy
                     </a>.
                 </p>
-
-                <div style={{
-                    position: 'absolute', bottom: 0, left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '40px', height: '1px',
-                    background: '#111'
-                }} />
             </div>
         </div>
     )
