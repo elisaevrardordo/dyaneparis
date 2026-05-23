@@ -58,7 +58,7 @@ export default function Footer() {
                     {[
                         { label: t('legal'), href: '/mentions-legales' },
                         { label: t('cgv'), href: '/cgv' },
-                        { label: t('confidentialite'), href: '/confidentialite' },
+                        { label: t('confidentialite'), href: `/${locale}/confidentialite` },
                         { label: t('cookies'), href: '/cookies' },
                     ].map(({ label, href }) => (
                         <Link key={label} href={href} style={{ ...font, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.6 }}>
