@@ -107,5 +107,49 @@
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS",
     "citation_cta": "CONTACTER LA CONCIERGERIE"
+},
+  "maison": {
+    "kicker": "L'ART SE BOIT.",
+    "titre": "L'HISTOIRE DE LA MAISON",
+    "intro": "Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.",
+    "genese_kicker": "GENÈSE",
+    "genese_titre": "LE NOM, DYANE.",
+    "genese_p1": "Dyane puise son inspiration dans la figure mythologique de Diane, déesse chasseresse. Figure libre, indépendante et souveraine.",
+    "genese_p2": "Gardienne des forêts et des cycles naturels. La Maison retient de cette symbolique la maîtrise, la précision du geste ainsi que l'exigence silencieuse.",
+    "genese_p3": "La chasse n'est pas ici prédation mais devient quête. Quête de justesse, Quête d'équilibre, Quête de beauté.",
+    "art_kicker": "ART & SPIRITS",
+    "art_titre": "LA NAISSANCE D'UNE MAISON D'ART LIQUIDE",
+    "art_p1": "Dyane ne se définit ni comme une marque de spiritueux, ni comme une simple catégorie Ready-To-Drink.",
+    "art_p2": "La Maison revendique une identité propre : l'Art Liquide. Chaque création associe un cocktail signature, élaboré avec exigence, à un contenant artistique conçu pour être conservé. Boire devient un geste. Conserver devient une mémoire.",
+    "art_p3": "La rupture est volontaire. Dyane abandonne la bouteille de verre traditionnelle pour la porcelaine. Une matière noble, pérenne, sculpturale. La forme évoque une présence.",
+    "art_p4": "Elle s'inscrit dans un espace comme une œuvre autonome. Une fois le cocktail dégusté, l'objet demeure. Il traverse le temps et s'inscrit dans un intérieur.",
+    "temps_titre": "LE TEMPS ET LA MAIN",
+    "temps_p1": "La Maison s'appuie sur un processus artisanal exigeant réparti entre le Vaucluse et l'Île-de-France. La porcelaine naît d'un travail minéral, transformée, moulée, cuite selon un cycle long.",
+    "temps_p2": "Les cocktails sont élaborés à partir d'alcool vinique français, produit après les vendanges puis travaillés par infusion. Chaque création Dyane mobilise plus de 70 mains de la poudre de kaolin à la dégustation finale. La production est volontairement limitée.",
+    "temps_p3": "La lenteur est assumée.",
+    "contemporaine_titre": "UNE MAISON CONTEMPORAINE",
+    "contemporaine_p": "Dyane s'inscrit dans une évolution du luxe. Un luxe plus rare que démonstratif. Plus durable que consommable."
+},
+"journal": {
+    "titre": "RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE"
+},
+"oeuvres": {
+    "titre": "DYANE. Découvrez les créations.",
+    "decouvrir": "DÉCOUVRIR",
+    "no1_sous_titre": "UNE CRÉATION S'INSPIRANT DU GOURMAND PORNSTAR MARTINI.",
+    "no2_sous_titre": "UNE CRÉATION S'INSPIRANT DU COMPLEXE MOSCOW MULE.",
+    "teo_sous_titre": "EN COLLABORATION AVEC LE PEINTRE MATTEO MENGACCI, PLUS CONNU SOUS LE NOM DE TEO KAYKAY."
+},
+"contact": {
+    "kicker": "CONCIERGERIE DYANE",
+    "titre": "CONTACTER LA MAISON",
+    "intro": "Pour toute demande de collaboration, commande privée, partenariat ou presse, notre conciergerie vous répondra dans les meilleurs délais.",
+    "nom": "Nom",
+    "email": "Adresse e-mail",
+    "sujet": "Sujet",
+    "message": "Votre message",
+    "envoyer": "ENVOYER",
+    "merci": "Votre message a bien été envoyé. Nous vous répondrons sous 48h.",
+    "options": ["Commande privée", "Partenariat hôtelier", "Collaboration artistique", "Presse & médias", "Autre"]
 }
 }
