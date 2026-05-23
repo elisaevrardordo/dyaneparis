@@ -7,16 +7,51 @@
     "journal": "THE JOURNAL",
     "contact": "CONTACT THE CONCIERGE"
   },
+
   "home": {
-    "kicker": "LIQUID ART HOUSE — PARIS",
-    "titre": "ART YOU CAN DRINK.",
+    "kicker": "LIQUID ART MAISON — PARIS",
+    "titre": "ART YOU DRINK.",
     "cta": "DISCOVER THE COLLECTIONS"
   },
+
   "manifeste": {
     "label": "DYANE PARIS",
-    "titre": "LIQUID ART HOUSE",
-    "ligne1": "THE COCKTAIL ELEVATED TO AN ART FORM.",
+    "titre": "LIQUID ART MAISON",
+    "ligne1": "THE COCKTAIL ELEVATED TO ART.",
     "ligne2": "EACH BOTTLE IS AN EXPERIENCE TO LIVE, THEN TO KEEP.",
     "cta": "DISCOVER THE HOUSE"
+  },
+
+  "dualimage": {
+    "label": "DYANE CUVÉE PRESTIGE",
+    "titre": "FRENCH ARTISANAL DISTILLATION",
+    "texte": "Our distillation in France embodies the Maison's standards: precision, purity, consistency.",
+    "cta": "READ MORE"
+  },
+
+  "header": {
+    "collections": "COLLECTIONS",
+    "distillation": "DISTILLATION",
+    "experiences": "EXPERIENCES",
+    "maison": "THE HOUSE",
+    "journal": "THE JOURNAL",
+    "contact": "CONTACT THE CONCIERGE",
+    "menu": "MENU",
+    "close": "CLOSE"
+  },
+
+  "footer": {
+    "collections": "COLLECTIONS",
+    "maison": "THE HOUSE",
+    "journal": "THE JOURNAL",
+    "experiences": "EXPERIENCES",
+    "aide_titre": "NEED HELP?",
+    "aide_faq": "HELP CENTER",
+    "aide_contact": "CONTACT THE HOUSE",
+    "legal": "LEGAL NOTICE",
+    "cgv": "T&C",
+    "confidentialite": "PRIVACY",
+    "cookies": "COOKIES",
+    "alcool": "ALCOHOL ABUSE IS DANGEROUS FOR YOUR HEALTH. PLEASE DRINK RESPONSIBLY."
   }
 }
