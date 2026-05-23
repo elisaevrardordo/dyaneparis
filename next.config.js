@@ -1,5 +1,4 @@
 const createNextIntlPlugin = require('next-intl/plugin')
-
 const withNextIntl = createNextIntlPlugin()
 
 /** @type {import('next').NextConfig} */
@@ -14,6 +13,7 @@ const nextConfig = {
       { source: '/blogs/:path*', destination: '/le-journal', permanent: true },
       { source: '/pages/la-maison', destination: '/la-maison', permanent: true },
       { source: '/pages/experiences', destination: '/experiences', permanent: true },
+      { source: '/contact', destination: '/fr/contact', permanent: false },
     ]
   },
 }
