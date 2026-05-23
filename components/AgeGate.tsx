@@ -42,7 +42,6 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     if (!visible) return null
 
     const t = {
-        eyebrow: lang === 'fr' ? 'Réservé aux Initiés' : 'Private Reserve',
         headline: lang === 'fr'
             ? <span>Cette Maison est réservée<br />aux personnes majeures.</span>
             : <span>This Maison is reserved<br />for those of legal age.</span>,
@@ -74,11 +73,12 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 textAlign: 'center',
                 boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
             }}>
+                {/* Logo */}
                 <div style={{ marginBottom: '28px' }}>
                     <img
                         src="/LogoDYANE_noir.png"
                         alt="Dyane Paris"
-                        style={{ height: '58px', width: 'auto', display: 'inline-block' }}
+                        style={{ height: '80px', width: 'auto', display: 'inline-block' }}
                         onError={(e) => {
                             const img = e.target as HTMLImageElement
                             img.src = '/LogoDYANE_blanc.png'
@@ -87,6 +87,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     />
                 </div>
 
+                {/* Language selector */}
                 <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
                     <div style={{ position: 'relative', width: '200px' }}>
                         <button
@@ -177,18 +178,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     </div>
                 </div>
 
-                <div style={{ width: '28px', height: '1px', background: '#e0e0e0', margin: '0 auto 28px' }} />
-
-                <p style={{
-                    fontFamily: lora,
-                    fontSize: '9px',
-                    letterSpacing: '0.32em',
-                    textTransform: 'uppercase',
-                    color: '#bbb',
-                    marginBottom: '18px',
-                }}
-                </p>
-
+                {/* Headline */}
                 <h1 style={{
                     fontFamily: cormorant,
                     fontSize: 'clamp(22px, 3.5vw, 28px)',
@@ -201,10 +191,10 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     {t.headline}
                 </h1>
 
+                {/* Subline */}
                 <p style={{
                     fontFamily: lora,
                     fontSize: '12px',
-                    fontStyle: 'italic',
                     color: '#aaa',
                     marginBottom: '32px',
                     lineHeight: 1.6,
@@ -212,6 +202,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     {t.sub}
                 </p>
 
+                {/* Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <button
                         onClick={confirm}
@@ -256,6 +247,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     </button>
                 </div>
 
+                {/* Legal */}
                 <p style={{
                     fontFamily: lora,
                     color: '#ccc',
