@@ -9,7 +9,14 @@
   },
   "home": {
     "kicker": "MAISON D'ART LIQUIDE — PARIS",
-    "titre": "L'ART SE BOIT.",
-    "cta": "DÉCOUVRIR LES CRÉATIONS"
+    "titre": "L'ART QUE L'ON BOIT.",
+    "cta": "DÉCOUVRIR LES ŒUVRES"
+  },
+  "manifeste": {
+    "label": "DYANE PARIS",
+    "titre": "MAISON D'ART LIQUIDE",
+    "ligne1": "LE COCKTAIL ÉLEVÉ AU RANG D'ŒUVRE.",
+    "ligne2": "CHAQUE BOUTEILLE EST UNE EXPÉRIENCE À VIVRE, PUIS À CONSERVER.",
+    "cta": "DÉCOUVRIR LA MAISON"
   }
 }
