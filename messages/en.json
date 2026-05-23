@@ -102,5 +102,49 @@
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "NOSE, DISTILLER, FRENCH PRODUCER",
     "citation_cta": "CONTACT THE CONCIERGE"
+},
+  "maison": {
+    "kicker": "ART IS DRUNK.",
+    "titre": "THE STORY OF THE HOUSE",
+    "intro": "Dyane Paris was born in Paris in 2025 from a founding intuition: to elevate the cocktail to a work of art in its own right. The Maison was built around a precise idea. To reconcile gesture, matter and taste. To transform the moment of tasting into a lasting aesthetic experience.",
+    "genese_kicker": "GENESIS",
+    "genese_titre": "THE NAME, DYANE.",
+    "genese_p1": "Dyane draws its inspiration from the mythological figure of Diana, goddess of the hunt. A free, independent and sovereign figure.",
+    "genese_p2": "Guardian of forests and natural cycles. The Maison retains from this symbolism the mastery, the precision of gesture and the silent exigence.",
+    "genese_p3": "The hunt here is not predation but a quest. A quest for rightness, a quest for balance, a quest for beauty.",
+    "art_kicker": "ART & SPIRITS",
+    "art_titre": "THE BIRTH OF A LIQUID ART HOUSE",
+    "art_p1": "Dyane defines itself neither as a spirits brand, nor as a simple Ready-To-Drink category.",
+    "art_p2": "The Maison claims its own identity: Liquid Art. Each creation combines a signature cocktail, crafted with exigence, with an artistic container designed to be kept. Drinking becomes a gesture. Keeping becomes a memory.",
+    "art_p3": "The break is deliberate. Dyane abandons the traditional glass bottle for porcelain. A noble, enduring, sculptural material. The form evokes a presence.",
+    "art_p4": "It exists in a space as an autonomous work. Once the cocktail is savoured, the object remains. It transcends time and becomes part of an interior.",
+    "temps_titre": "TIME AND THE HAND",
+    "temps_p1": "The Maison relies on a demanding artisanal process divided between Vaucluse and Île-de-France. The porcelain is born from mineral work, transformed, moulded, fired through a long cycle.",
+    "temps_p2": "The cocktails are crafted from French wine alcohol, produced after the harvest and worked through infusion. Each Dyane creation mobilises more than 70 pairs of hands from kaolin powder to final tasting. Production is deliberately limited.",
+    "temps_p3": "Slowness is embraced.",
+    "contemporaine_titre": "A CONTEMPORARY HOUSE",
+    "contemporaine_p": "Dyane is part of an evolution of luxury. A luxury that is rarer than demonstrative. More enduring than consumable."
+},
+"journal": {
+    "titre": "ALL THE NEWS FROM MAISON DYANE"
+},
+"oeuvres": {
+    "titre": "DYANE. Discover the collections.",
+    "decouvrir": "DISCOVER",
+    "no1_sous_titre": "A CREATION INSPIRED BY THE INDULGENT PORNSTAR MARTINI.",
+    "no2_sous_titre": "A CREATION INSPIRED BY THE COMPLEX MOSCOW MULE.",
+    "teo_sous_titre": "IN COLLABORATION WITH PAINTER MATTEO MENGACCI, BETTER KNOWN AS TEO KAYKAY."
+},
+"contact": {
+    "kicker": "DYANE CONCIERGE",
+    "titre": "CONTACT THE HOUSE",
+    "intro": "For any collaboration request, private order, partnership or press enquiry, our concierge team will respond as soon as possible.",
+    "nom": "Name",
+    "email": "Email address",
+    "sujet": "Subject",
+    "message": "Your message",
+    "envoyer": "SEND",
+    "merci": "Your message has been sent. We will get back to you within 48 hours.",
+    "options": ["Private order", "Hotel partnership", "Artistic collaboration", "Press & media", "Other"]
 }
 }
