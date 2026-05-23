@@ -16,7 +16,9 @@ export default function AgeGate() {
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
         if (!confirmed) setVisible(true)
-        setLang(pathname.startsWith('/en') ? 'en' : 'fr')
+        const segments = pathname.split('/')
+        const localeSegment = segments[1]
+        setLang(localeSegment === 'en' ? 'en' : 'fr')
     }, [pathname])
 
     function confirm() {
@@ -24,7 +26,7 @@ export default function AgeGate() {
         if (lang === 'en') {
             router.push('/en')
         } else {
-            router.push('/')
+            router.push('/fr')
         }
         setVisible(false)
     }
