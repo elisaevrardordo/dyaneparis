@@ -186,8 +186,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     textTransform: 'uppercase',
                     color: '#bbb',
                     marginBottom: '18px',
-                }}>
-                    {t.eyebrow}
+                }}
                 </p>
 
                 <h1 style={{
