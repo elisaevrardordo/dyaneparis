@@ -167,9 +167,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                                         onMouseEnter={e => (e.currentTarget.style.color = '#111')}
                                         onMouseLeave={e => (e.currentTarget.style.color = lang === l ? '#111' : '#aaa')}
                                     >
-                                        <span style={{ fontSize: '10px', width: '14px', color: '#111' }}>
-                                            {lang === l ? '✓' : ''}
-                                        </span>
+                                        <span style={{ width: '14px', display: 'inline-block' }} />
                                         {l === 'fr' ? 'Français' : 'English'}
                                     </button>
                                 ))}
@@ -205,46 +203,48 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 {/* Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <button
-                        onClick={confirm}
-                        onMouseEnter={() => setHovering('yes')}
-                        onMouseLeave={() => setHovering(null)}
-                        style={{
-                            fontFamily: lora,
-                            background: hovering === 'yes' ? '#111' : 'transparent',
-                            color: hovering === 'yes' ? '#fff' : '#111',
-                            border: '1px solid #111',
-                            padding: '15px 24px',
-                            fontSize: '10px',
-                            letterSpacing: '0.28em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            transition: 'all 0.25s ease',
-                            width: '100%',
-                        }}
-                    >
-                        {t.yes}
-                    </button>
+    onClick={confirm}
+    onMouseEnter={() => setHovering('yes')}
+    onMouseLeave={() => setHovering(null)}
+    style={{
+        fontFamily: 'Playfair Display, serif',
+        background: hovering === 'yes' ? '#6B1A2A' : 'transparent',
+        color: hovering === 'yes' ? '#fff' : '#6B1A2A',
+        border: '1px solid #6B1A2A',
+        padding: '15px 24px',
+        fontSize: '11px',
+        letterSpacing: '0.2em',
+        textTransform: 'uppercase',
+        cursor: 'pointer',
+        transition: 'all 0.25s ease',
+        width: '100%',
+        fontStyle: 'italic',
+    }}
+>
+    {t.yes}
+</button>
 
-                    <button
-                        onClick={deny}
-                        onMouseEnter={() => setHovering('no')}
-                        onMouseLeave={() => setHovering(null)}
-                        style={{
-                            fontFamily: lora,
-                            background: 'transparent',
-                            color: hovering === 'no' ? '#555' : '#ccc',
-                            border: '1px solid #eee',
-                            padding: '15px 24px',
-                            fontSize: '10px',
-                            letterSpacing: '0.28em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            transition: 'all 0.25s ease',
-                            width: '100%',
-                        }}
-                    >
-                        {t.no}
-                    </button>
+<button
+    onClick={deny}
+    onMouseEnter={() => setHovering('no')}
+    onMouseLeave={() => setHovering(null)}
+    style={{
+        fontFamily: 'Playfair Display, serif',
+        background: 'transparent',
+        color: hovering === 'no' ? '#6B1A2A' : '#ccc',
+        border: '1px solid #eee',
+        padding: '15px 24px',
+        fontSize: '11px',
+        letterSpacing: '0.2em',
+        textTransform: 'uppercase',
+        cursor: 'pointer',
+        transition: 'all 0.25s ease',
+        width: '100%',
+        fontStyle: 'italic',
+    }}
+>
+    {t.no}
+</button>
                 </div>
 
                 {/* Legal */}
