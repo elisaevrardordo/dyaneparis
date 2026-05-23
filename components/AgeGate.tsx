@@ -75,7 +75,7 @@ export default function AgeGate() {
                     marginBottom: '10px',
                     letterSpacing: '0.02em',
                 }}>
-                    This Maison is reserved<br />for those of legal age.
+                    The Maison is reserved<br />for those of legal age.
                 </h1>
 
                 <p style={{
