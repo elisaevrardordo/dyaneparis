@@ -18,10 +18,10 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     }, [])
 
     function confirm() {
-        sessionStorage.setItem('age-confirmed', 'true')
-        router.push('/' + lang)
-        setVisible(false)
-    }
+    sessionStorage.setItem('age-confirmed', 'true')
+    setVisible(false)
+    window.location.href = '/' + lang
+}
 
     function deny() {
         window.location.href = 'https://www.google.com'
