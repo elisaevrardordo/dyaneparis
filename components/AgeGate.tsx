@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 export default function AgeGate() {
     const [visible, setVisible] = useState(false)
-    const [hovering, setHovering] = useState(null)
+    const [hovering, setHovering] = useState<string | null>(null)
 
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
@@ -30,7 +30,6 @@ export default function AgeGate() {
         }}>
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
 
-            {/* White card */}
             <div style={{
                 position: 'relative',
                 background: '#fff',
@@ -40,7 +39,6 @@ export default function AgeGate() {
                 textAlign: 'center',
                 boxShadow: '0 32px 80px rgba(0,0,0,0.25)',
             }}>
-                {/* Thin top gold line */}
                 <div style={{
                     position: 'absolute', top: 0, left: '50%',
                     transform: 'translateX(-50%)',
@@ -48,21 +46,19 @@ export default function AgeGate() {
                     background: '#c8a96e'
                 }} />
 
-                {/* Logo */}
                 <div style={{ marginBottom: '36px' }}>
                     <img
                         src="/LogoDYANE_noir.png"
                         alt="Dyane Paris"
                         style={{ height: '64px', width: 'auto', display: 'inline-block' }}
                         onError={(e) => {
-                            // Fallback to white logo if black version doesn't exist
-                            e.target.src = '/LogoDYANE_blanc.png'
-                            e.target.style.filter = 'invert(1)'
+                            const img = e.target as HTMLImageElement
+                            img.src = '/LogoDYANE_blanc.png'
+                            img.style.filter = 'invert(1)'
                         }}
                     />
                 </div>
 
-                {/* Eyebrow */}
                 <p style={{
                     fontFamily: 'Cormorant Garamond, Garamond, serif',
                     fontSize: '10px',
@@ -74,7 +70,6 @@ export default function AgeGate() {
                     Private Reserve
                 </p>
 
-                {/* Headline */}
                 <h1 style={{
                     fontFamily: 'Cormorant Garamond, Garamond, serif',
                     fontSize: 'clamp(22px, 3.5vw, 28px)',
@@ -87,7 +82,6 @@ export default function AgeGate() {
                     This Maison is reserved<br />for those of legal age.
                 </h1>
 
-                {/* Subline */}
                 <p style={{
                     fontFamily: 'Cormorant Garamond, Garamond, serif',
                     fontSize: '14px',
@@ -99,14 +93,12 @@ export default function AgeGate() {
                     Please confirm to continue.
                 </p>
 
-                {/* Divider */}
                 <div style={{
                     width: '32px', height: '1px',
                     background: '#ddd',
                     margin: '0 auto 36px'
                 }} />
 
-                {/* Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <button
                         onClick={confirm}
@@ -151,7 +143,6 @@ export default function AgeGate() {
                     </button>
                 </div>
 
-                {/* Legal */}
                 <p style={{
                     fontFamily: 'Cormorant Garamond, Garamond, serif',
                     color: '#bbb',
@@ -166,7 +157,6 @@ export default function AgeGate() {
                     </a>.
                 </p>
 
-                {/* Bottom gold line */}
                 <div style={{
                     position: 'absolute', bottom: 0, left: '50%',
                     transform: 'translateX(-50%)',
