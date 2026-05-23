@@ -41,8 +41,8 @@ export default function AgeGate() {
         yes: lang === 'fr' ? "J'ai l'âge légal" : 'I Am of Legal Age',
         no: lang === 'fr' ? "Je n'ai pas l'âge légal" : 'I Am Not of Legal Age',
         legal: lang === 'fr'
-            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href="/confidentialite" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
-            : <>By entering, you confirm you are of legal drinking age and agree to our <a href="/confidentialite" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
+            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href="/confidentialite" style={{ color: '#999', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
+            : <>By entering, you confirm you are of legal drinking age and agree to our <a href="/confidentialite" style={{ color: '#999', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
         langLabel: lang === 'fr' ? 'Langue' : 'Language',
         langName: lang === 'fr' ? 'Français' : 'English',
     }
@@ -50,87 +50,63 @@ export default function AgeGate() {
     return (
         <div style={{
             position: 'fixed', inset: 0, zIndex: 9999,
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
             backgroundImage: 'url(/hero.png)',
             backgroundSize: 'cover', backgroundPosition: 'center',
         }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
 
-            {/* Logo */}
-            <div style={{ position: 'relative', marginBottom: '48px', textAlign: 'center' }}>
-                <img
-                    src="/LogoDYANE_blanc.png"
-                    alt="Dyane Paris"
-                    style={{ height: '72px', width: 'auto', display: 'inline-block' }}
-                />
-            </div>
-
-            {/* Center content */}
-            <div style={{ position: 'relative', textAlign: 'center', maxWidth: '560px', padding: '0 24px' }}>
-
-                <p style={{
-                    fontFamily: lora,
-                    fontSize: '9px',
-                    letterSpacing: '0.35em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginBottom: '20px',
-                }}>
-                    {t.eyebrow}
-                </p>
-
-                <h1 style={{
-                    fontFamily: cormorant,
-                    fontSize: 'clamp(28px, 4vw, 44px)',
-                    fontWeight: 400,
-                    lineHeight: 1.35,
-                    color: '#fff',
-                    marginBottom: '16px',
-                    letterSpacing: '0.02em',
-                }}>
-                    {t.headline}
-                </h1>
-
-                <p style={{
-                    fontFamily: lora,
-                    fontSize: '13px',
-                    fontStyle: 'italic',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginBottom: '48px',
-                    lineHeight: 1.6,
-                }}>
-                    {t.sub}
-                </p>
+            <div style={{
+                position: 'relative',
+                background: '#fff',
+                width: '100%',
+                maxWidth: '460px',
+                padding: '48px 44px 36px',
+                textAlign: 'center',
+                boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
+            }}>
+                {/* Logo */}
+                <div style={{ marginBottom: '28px' }}>
+                    <img
+                        src="/LogoDYANE_noir.png"
+                        alt="Dyane Paris"
+                        style={{ height: '58px', width: 'auto', display: 'inline-block' }}
+                        onError={(e) => {
+                            const img = e.target as HTMLImageElement
+                            img.src = '/LogoDYANE_blanc.png'
+                            img.style.filter = 'invert(1)'
+                        }}
+                    />
+                </div>
 
                 {/* Language selector */}
                 <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ position: 'relative', width: '240px' }}>
+                    <div style={{ position: 'relative', width: '200px' }}>
                         <button
                             onClick={() => setLangOpen(!langOpen)}
                             style={{
                                 width: '100%',
                                 fontFamily: lora,
-                                fontSize: '11px',
-                                letterSpacing: '0.2em',
+                                fontSize: '9px',
+                                letterSpacing: '0.28em',
                                 textTransform: 'uppercase',
-                                color: '#fff',
-                                background: 'rgba(255,255,255,0.08)',
-                                border: '1px solid rgba(255,255,255,0.2)',
-                                padding: '14px 40px 14px 16px',
+                                color: '#111',
+                                background: 'transparent',
+                                border: '1px solid #ddd',
+                                padding: '11px 36px 11px 14px',
                                 cursor: 'pointer',
                                 textAlign: 'left',
                                 position: 'relative',
-                                transition: 'background 0.2s ease',
+                                transition: 'border-color 0.2s ease',
                             }}
                         >
                             <span style={{
                                 fontFamily: lora,
-                                fontSize: '9px',
-                                letterSpacing: '0.25em',
-                                color: 'rgba(255,255,255,0.4)',
+                                fontSize: '8px',
+                                letterSpacing: '0.2em',
+                                color: '#bbb',
                                 display: 'block',
-                                marginBottom: '4px',
+                                marginBottom: '3px',
                                 textTransform: 'uppercase',
                             }}>
                                 {t.langLabel}
@@ -138,12 +114,12 @@ export default function AgeGate() {
                             {t.langName}
                             <span style={{
                                 position: 'absolute',
-                                right: '16px',
+                                right: '14px',
                                 top: '50%',
                                 transform: langOpen ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)',
                                 transition: 'transform 0.2s ease',
-                                fontSize: '10px',
-                                color: 'rgba(255,255,255,0.5)',
+                                fontSize: '9px',
+                                color: '#bbb',
                             }}>▾</span>
                         </button>
 
@@ -153,10 +129,11 @@ export default function AgeGate() {
                                 top: '100%',
                                 left: 0,
                                 width: '100%',
-                                background: '#1a1a1a',
-                                border: '1px solid rgba(255,255,255,0.15)',
+                                background: '#fff',
+                                border: '1px solid #ddd',
                                 borderTop: 'none',
                                 zIndex: 10,
+                                boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
                             }}>
                                 {(['fr', 'en'] as const).map((l) => (
                                     <button
@@ -165,24 +142,24 @@ export default function AgeGate() {
                                         style={{
                                             width: '100%',
                                             fontFamily: lora,
-                                            fontSize: '11px',
-                                            letterSpacing: '0.2em',
+                                            fontSize: '9px',
+                                            letterSpacing: '0.25em',
                                             textTransform: 'uppercase',
-                                            color: lang === l ? '#fff' : 'rgba(255,255,255,0.5)',
-                                            background: lang === l ? 'rgba(255,255,255,0.1)' : 'transparent',
+                                            color: lang === l ? '#111' : '#aaa',
+                                            background: 'transparent',
                                             border: 'none',
-                                            padding: '14px 16px',
+                                            padding: '12px 14px',
                                             cursor: 'pointer',
                                             textAlign: 'left',
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: '10px',
-                                            transition: 'background 0.15s ease',
+                                            transition: 'color 0.15s ease',
                                         }}
-                                        onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
-                                        onMouseLeave={e => (e.currentTarget.style.background = lang === l ? 'rgba(255,255,255,0.1)' : 'transparent')}
+                                        onMouseEnter={e => (e.currentTarget.style.color = '#111')}
+                                        onMouseLeave={e => (e.currentTarget.style.color = lang === l ? '#111' : '#aaa')}
                                     >
-                                        <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', width: '16px' }}>
+                                        <span style={{ fontSize: '10px', width: '14px', color: '#111' }}>
                                             {lang === l ? '✓' : ''}
                                         </span>
                                         {l === 'fr' ? 'Français' : 'English'}
@@ -193,19 +170,59 @@ export default function AgeGate() {
                     </div>
                 </div>
 
+                {/* Divider */}
+                <div style={{ width: '28px', height: '1px', background: '#e0e0e0', margin: '0 auto 28px' }} />
+
+                {/* Eyebrow */}
+                <p style={{
+                    fontFamily: lora,
+                    fontSize: '9px',
+                    letterSpacing: '0.32em',
+                    textTransform: 'uppercase',
+                    color: '#bbb',
+                    marginBottom: '18px',
+                }}>
+                    {t.eyebrow}
+                </p>
+
+                {/* Headline */}
+                <h1 style={{
+                    fontFamily: cormorant,
+                    fontSize: 'clamp(22px, 3.5vw, 28px)',
+                    fontWeight: 400,
+                    lineHeight: 1.45,
+                    color: '#111',
+                    marginBottom: '10px',
+                    letterSpacing: '0.02em',
+                }}>
+                    {t.headline}
+                </h1>
+
+                {/* Subline */}
+                <p style={{
+                    fontFamily: lora,
+                    fontSize: '12px',
+                    fontStyle: 'italic',
+                    color: '#aaa',
+                    marginBottom: '32px',
+                    lineHeight: 1.6,
+                }}>
+                    {t.sub}
+                </p>
+
                 {/* Buttons */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '360px', margin: '0 auto' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <button
                         onClick={confirm}
                         onMouseEnter={() => setHovering('yes')}
                         onMouseLeave={() => setHovering(null)}
                         style={{
                             fontFamily: lora,
-                            background: hovering === 'yes' ? '#fff' : 'transparent',
-                            color: hovering === 'yes' ? '#111' : '#fff',
-                            border: '1px solid rgba(255,255,255,0.7)',
-                            padding: '16px 24px',
-                            fontSize: '11px',
+                            background: hovering === 'yes' ? '#111' : 'transparent',
+                            color: hovering === 'yes' ? '#fff' : '#111',
+                            border: '1px solid #111',
+                            padding: '15px 24px',
+                            fontSize: '10px',
                             letterSpacing: '0.28em',
                             textTransform: 'uppercase',
                             cursor: 'pointer',
@@ -223,10 +240,10 @@ export default function AgeGate() {
                         style={{
                             fontFamily: lora,
                             background: 'transparent',
-                            color: hovering === 'no' ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.3)',
-                            border: '1px solid rgba(255,255,255,0.15)',
-                            padding: '16px 24px',
-                            fontSize: '11px',
+                            color: hovering === 'no' ? '#555' : '#ccc',
+                            border: '1px solid #eee',
+                            padding: '15px 24px',
+                            fontSize: '10px',
                             letterSpacing: '0.28em',
                             textTransform: 'uppercase',
                             cursor: 'pointer',
@@ -241,11 +258,11 @@ export default function AgeGate() {
                 {/* Legal */}
                 <p style={{
                     fontFamily: lora,
-                    color: 'rgba(255,255,255,0.3)',
+                    color: '#ccc',
                     fontSize: '10px',
                     lineHeight: 1.9,
-                    marginTop: '32px',
-                    letterSpacing: '0.05em',
+                    marginTop: '28px',
+                    letterSpacing: '0.03em',
                 }}>
                     {t.legal}
                 </p>
