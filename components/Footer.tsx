@@ -20,11 +20,14 @@ export default function Footer() {
                             {t('collections')}
                         </Link>
                         <Link href="/oeuvres/dyane-paris-pornstar-martini-70-cl" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
-                            CHAPITRE I
-                        </Link>
-                        <Link href="/oeuvres/bouteille-signee-teokaykay" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.7 }}>
-                            TEO FOR DYANE
-                        </Link>
+    CHAPITRE I
+</Link>
+<Link href="/oeuvres/dyane-no2-moscow-mule" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', marginBottom: '10px', opacity: 0.7 }}>
+    CHAPITRE II
+</Link>
+<Link href="/oeuvres/bouteille-signee-teokaykay" style={{ ...font, display: 'block', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', opacity: 0.7 }}>
+    TEO FOR DYANE
+</Link>
                     </div>
                     <div style={{ borderLeft: '1px solid rgba(0,0,0,0.10)', paddingLeft: '32px' }}>
                         <Link href="/la-maison" style={{ ...font, display: 'block', fontSize: '18px', fontWeight: '500', color: '#000', textDecoration: 'none', marginBottom: '14px' }}>
