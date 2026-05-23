@@ -42,7 +42,6 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     if (!visible) return null
 
     const t = {
-        eyebrow: lang === 'fr' ? 'Réservé aux Initiés' : 'Private Reserve',
         headline: lang === 'fr'
             ? <span>Cette Maison est réservée<br />aux personnes majeures.</span>
             : <span>This Maison is reserved<br />for those of legal age.</span>,
@@ -205,7 +204,6 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 <p style={{
                     fontFamily: lora,
                     fontSize: '12px',
-                    fontStyle: 'italic',
                     color: '#aaa',
                     marginBottom: '32px',
                     lineHeight: 1.6,
