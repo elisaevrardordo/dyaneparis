@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const fontNav = { fontFamily: 'Lora, serif' }
 
@@ -25,56 +25,14 @@ const navEn = [
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
-    const [langHover, setLangHover] = useState(false)
     const pathname = usePathname()
-    const router = useRouter()
 
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
     const navLinks = locale === 'fr' ? navFr : navEn
 
-    function switchLang() {
-        if (locale === 'fr') {
-            const newPath = '/en' + (pathname === '/fr' ? '' : pathname.replace('/fr', ''))
-            router.push(newPath)
-        } else {
-            const newPath = pathname.replace('/en', '') || '/'
-            router.push(newPath)
-        }
-    }
-
     return (
         <header style={{ background: '#0d0d0d', position: 'relative', zIndex: 50 }}>
-            <div style={{ padding: '14px 40px', display: 'flex', justifyContent: 'flex-end' }}>
-                <button
-                    onClick={switchLang}
-                    onMouseEnter={() => setLangHover(true)}
-                    onMouseLeave={() => setLangHover(false)}
-                    style={{
-                        ...fontNav,
-                        color: langHover ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.45)',
-                        fontSize: '9px',
-                        letterSpacing: '0.35em',
-                        textTransform: 'uppercase',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: '4px 0',
-                        position: 'relative',
-                        transition: 'color 0.3s ease',
-                    }}
-                >
-                    {locale === 'fr' ? 'Français' : 'English'}
-                    <span style={{
-                        position: 'absolute',
-                        bottom: 0, left: 0,
-                        width: '100%', height: '1px',
-                        background: langHover ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
-                        transition: 'background 0.3s ease',
-                    }} />
-                </button>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 24px 32px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 24px 32px' }}>
                 <Link href={locale === 'fr' ? '/' : '/en'} style={{ textDecoration: 'none' }}>
                     <img src="/LogoDYANE_blanc.png" alt="Dyane Paris" style={{ height: '70px', width: 'auto', display: 'block' }} />
                 </Link>
