@@ -26,7 +26,7 @@ const produits: Record<string, {
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg',
         ],
         plusInfos: 'VANILLE & PASSION\nSOLAIRE. CHARNELLE. UNE INTERPRÉTATION INTENSE DU FRUIT DE LA PASSION, INFUSÉE DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE. L\'ACIDITÉ SE TEND, LA DOUCEUR S\'ÉQUILIBRE. LA VANILLE MADAGASCAR BOURBON GOLD APPORTE UNE RONDEUR SOYEUSE.\nDENSE. LUMINEUSE. UNE ŒUVRE LIQUIDE.\n—\nPROFIL SENSORIEL\nROBE — OR AMBRÉ\nNEZ — PASSION FRAÎCHE, VANILLE CHAUDE\nBOUCHE — PULPEUSE, ÉQUILIBRÉE\nFINALE — LONGUE, SOLAIRE.',
-        livraison: 'LIVRAISON ESTIMÉE LE 15 AVRIL 2026.\nLIVRAISON OFFERTE À PARTIR DE 300€',
+        livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
         disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
     },
     'dyane-no2-moscow-mule': {
@@ -40,7 +40,7 @@ const produits: Record<string, {
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443860/FCE40708-7E8F-45A2-80E7-52C4AC46DA59_p4yftm.jpg',
         ],
         plusInfos: 'GINGEMBRE & CITRON VERT\nÉCLATANT. STRUCTURÉ. LE GINGEMBRE S\'IMPOSE, INFUSÉ LENTEMENT DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE.\nLES GRAINES DE GINGEMBRE FRANÇAISES LIBÈRENT UNE ÉNERGIE NETTE. LE CITRON VERT TRACE UNE FRAÎCHEUR LUMINEUSE. UNE TOUCHE DE VANILLE ET LE BOIS APPORTE L\'ÉQUILIBRE.\nSEC. ÉLÉGANT. VIVANT. UNE ŒUVRE DE CONTRASTE.\n—\nORIGINE : ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE. INFUSION DE GINGEMBRE FRANÇAIS. JUS DE CITRON BIOLOGIQUE. ÉLEVAGE EN FÛT DE CHÊNE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE, RÉGION D\'AVIGNON.\n—\nPROFIL SENSORIEL\nROBE — CRISTAL ARGENTÉ\nNEZ — GINGEMBRE FRAIS, ZESTE VIF\nBOUCHE — ATTAQUE TONIQUE, TEXTURE SOYEUSE\nFINALE — SÈCHE, PRÉCISE.',
-        livraison: 'LIVRAISON ESTIMÉE LE 15 AVRIL 2026.\nLIVRAISON OFFERTE À PARTIR DE 300€',
+        livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
         disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
     },
     'bouteille-signee-teokaykay': {
@@ -54,7 +54,7 @@ const produits: Record<string, {
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
         ],
         plusInfos: 'PLONGEZ DANS L\'UNIVERS DE DYANE PARIS, MAISON D\'ART LIQUIDE, OÙ L\'ART ET LA HAUTE MIXOLOGIE NE FONT QU\'UN. EN COLLABORATION AVEC TEO KAY KAY, DYANE RÉVÈLE UNE SÉRIE CONFIDENTIELLE DE 25 ŒUVRES. CHAQUE BOUTEILLE, PEINTE À LA MAIN À LA BOMBE, EST UNE PIÈCE UNIQUE, VIVANTE ET IRRÉPÉTABLE. À L\'INTÉRIEUR, LE COCKTAIL PROLONGE L\'ŒUVRE : DES INGRÉDIENTS NOBLES POUR UNE DÉGUSTATION INTENSE ET PRÉCISE. L\'ART SE BOIT, PUIS SE GARDE. CONTIENT UN COCKTAIL SIGNATURE DYANE (28–30 % VOL.) : PORNSTAR MARTINI OU MOSCOW MULE AU CHOIX. UNE PIÈCE RARE, À BOIRE OU À COLLECTIONNER.',
-        livraison: 'LIVRAISON ESTIMÉE LE 15 AVRIL 2026.\nLIVRAISON OFFERTE À PARTIR DE 300€',
+        livraison: 'PRODUCTION SUR COMMANDE. LIVRAISON ESTIMÉE SOUS TROIS SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
         disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
         formats: ['PORNSTAR MARTINI', 'MOSCOW MULE'],
     },
@@ -129,7 +129,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
                     </Link>
 
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>DATE ESTIMÉE DE LIVRAISON :</p>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '24px' }}>AVRIL 2026</p>
+                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '24px' }}>SOUS DEUX SEMAINES</p>
 
                     <Accordion titre="PLUS D'INFORMATIONS" contenu={produit.plusInfos} />
                     <Accordion titre="LIVRAISON" contenu={produit.livraison} />
