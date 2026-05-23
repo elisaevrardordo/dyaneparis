@@ -64,7 +64,7 @@ export default function AgeGate() {
                     fontSize: '10px',
                     letterSpacing: '0.3em',
                     textTransform: 'uppercase',
-                    color: '#c8a96e',
+                    color: '#111',
                     marginBottom: '20px',
                 }}>
                     Private Reserve
@@ -161,7 +161,7 @@ export default function AgeGate() {
                     position: 'absolute', bottom: 0, left: '50%',
                     transform: 'translateX(-50%)',
                     width: '40px', height: '1px',
-                    background: '#c8a96e'
+                    background: '#111'
                 }} />
             </div>
         </div>
