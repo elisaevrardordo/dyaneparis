@@ -55,5 +55,29 @@
     "confidentialite": "PRIVACY",
     "cookies": "COOKIES",
     "alcool": "ALCOHOL ABUSE IS DANGEROUS FOR YOUR HEALTH. PLEASE DRINK RESPONSIBLY."
-  }
+  },
+  "distillation": {
+    "kicker": "THE EXCELLENCE OF MAISON DYANE",
+    "titre": "THE PRESTIGE CUVÉE",
+    "intro1": "Each Dyane creation is born from a rare standard: achieving a balance few approach, and which one recognises immediately.",
+    "intro2": "Crafted in France, in the heart of Vaucluse, our cuvées come to life in a territory where light, matter and time shape every detail.",
+    "origine_titre": "THE ORIGIN: A NOBLE INGREDIENT, A LAND OF EXCELLENCE",
+    "origine_p1": "We exclusively select raw ingredients: fresh ginger, whole vanilla pods, citrus zests, to preserve the purity of aromas.",
+    "origine_p2": "Each element is chosen for its ability to express itself with precision, without artifice or correction.",
+    "origine_p3": "This rigour in selection forms the foundation of every cuvée.",
+    "elaboration_titre": "THE ELABORATION: WINE ALCOHOL AS FOUNDATION",
+    "elaboration_p1": "At the heart of each creation lies a fundamental element: a wine alcohol of exceptional purity.",
+    "elaboration_p2": "Derived from the transformation of wine, this alcohol is distinguished by its finesse, aromatic neutrality and ability to sublimate the ingredients it hosts.",
+    "elaboration_p3": "It acts as a revealer, allowing notes of ginger, vanilla or citrus to unfold with precision and elegance.",
+    "elaboration_p4": "Infusions are carried out slowly, over controlled durations, to extract every nuance without ever rushing the matter.",
+    "elaboration_p5": "This long process yields an aromatic depth and stability that give the cuvée its character and signature.",
+    "signature_titre": "THE SIGNATURE: A MASTERED SENSORY EXPERIENCE",
+    "signature_p1": "Each recipe is conceived as a composition: a frank attack, an expressive heart, a persistent finish.",
+    "signature_p2": "The balance between power and finesse is adjusted to the millilitre, until a rare harmony is achieved.",
+    "signature_p3": "Nothing is left to chance: neither the texture, nor the structure, nor the way aromas evolve throughout the tasting.",
+    "signature_p4": "At Dyane, the cocktail is no longer a mix. It is a liquid work of art.",
+    "citation": "« EACH DYANE CUVÉE IS CONCEIVED AS A SELF-EVIDENT TRUTH: A BALANCE SO RIGHT IT ASSERTS ITSELF FROM THE VERY FIRST SIP. »",
+    "citation_nom": "JULIEN DUCRUET",
+    "citation_titre": "HEAD OF RECIPE DESIGN AT DYANE"
+}
 }
