@@ -7,28 +7,31 @@
     "journal": "THE JOURNAL",
     "contact": "CONTACT THE CONCIERGE"
   },
-
   "home": {
-    "kicker": "LIQUID ART MAISON — PARIS",
-    "titre": "ART YOU DRINK.",
+    "kicker": "LIQUID ART HOUSE — PARIS",
+    "titre": "ART YOU CAN DRINK.",
     "cta": "DISCOVER THE COLLECTIONS"
   },
-
   "manifeste": {
     "label": "DYANE PARIS",
-    "titre": "LIQUID ART MAISON",
-    "ligne1": "THE COCKTAIL ELEVATED TO ART.",
+    "titre": "LIQUID ART HOUSE",
+    "ligne1": "THE COCKTAIL ELEVATED TO AN ART FORM.",
     "ligne2": "EACH BOTTLE IS AN EXPERIENCE TO LIVE, THEN TO KEEP.",
     "cta": "DISCOVER THE HOUSE"
   },
-
+  "hero": {
+    "kicker": "EXCLUSIVELY",
+    "titre": "DYANE PARIS, LIQUID ART HOUSE"
+  },
+  "products": {
+    "cta": "Contact the Concierge"
+  },
   "dualimage": {
     "label": "DYANE CUVÉE PRESTIGE",
     "titre": "FRENCH ARTISANAL DISTILLATION",
     "texte": "Our distillation in France embodies the Maison's standards: precision, purity, consistency.",
     "cta": "READ MORE"
   },
-
   "header": {
     "collections": "COLLECTIONS",
     "distillation": "DISTILLATION",
@@ -39,7 +42,6 @@
     "menu": "MENU",
     "close": "CLOSE"
   },
-
   "footer": {
     "collections": "COLLECTIONS",
     "maison": "THE HOUSE",
