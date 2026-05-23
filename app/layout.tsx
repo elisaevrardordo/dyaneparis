@@ -2,6 +2,8 @@ import './globals.css'
 import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 
+export const dynamic = 'force-dynamic'
+
 export default async function RootLayout({
   children
 }: {
