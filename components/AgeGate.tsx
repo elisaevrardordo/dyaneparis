@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const cormorant = 'Cormorant Garamond, Garamond, serif'
 const lora = 'Lora, serif'
@@ -10,18 +10,30 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     const [lang, setLang] = useState<'fr' | 'en'>(currentLocale === 'en' ? 'en' : 'fr')
     const [langOpen, setLangOpen] = useState(false)
     const [hovering, setHovering] = useState<string | null>(null)
-    const router = useRouter()
+    const pathname = usePathname()
 
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
+        const savedLang = sessionStorage.getItem('age-lang') as 'fr' | 'en' | null
+
+        if (confirmed && savedLang) {
+            const currentLocaleFromPath = pathname.split('/')[1]
+            if (savedLang !== currentLocaleFromPath) {
+                window.location.href = '/' + savedLang
+            }
+            return
+        }
+
         if (!confirmed) setVisible(true)
-    }, [])
+        setLang(currentLocale === 'en' ? 'en' : 'fr')
+    }, [pathname, currentLocale])
 
     function confirm() {
-    sessionStorage.setItem('age-confirmed', 'true')
-    setVisible(false)
-    window.location.href = '/' + lang
-}
+        sessionStorage.setItem('age-confirmed', 'true')
+        sessionStorage.setItem('age-lang', lang)
+        setVisible(false)
+        window.location.href = '/' + lang
+    }
 
     function deny() {
         window.location.href = 'https://www.google.com'
