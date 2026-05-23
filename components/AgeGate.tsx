@@ -1,10 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-
 export default function AgeGate() {
     const [visible, setVisible] = useState(false)
+    const [hovering, setHovering] = useState(null)
 
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
@@ -23,27 +22,157 @@ export default function AgeGate() {
     if (!visible) return null
 
     return (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url(/hero.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)' }} />
-            <div style={{ position: 'relative', textAlign: 'center', padding: '40px 24px', maxWidth: '600px', width: '100%' }}>
-                <div style={{ marginBottom: '48px' }}>
-                    <img src="/LogoDYANE_blanc.png" alt="Dyane Paris" style={{ height: '70px', width: 'auto', display: 'inline-block' }} />
+        <div style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backgroundImage: 'url(/hero.png)',
+            backgroundSize: 'cover', backgroundPosition: 'center'
+        }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
+
+            {/* White card */}
+            <div style={{
+                position: 'relative',
+                background: '#fff',
+                width: '100%',
+                maxWidth: '480px',
+                padding: '56px 48px 44px',
+                textAlign: 'center',
+                boxShadow: '0 32px 80px rgba(0,0,0,0.25)',
+            }}>
+                {/* Thin top gold line */}
+                <div style={{
+                    position: 'absolute', top: 0, left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '40px', height: '1px',
+                    background: '#c8a96e'
+                }} />
+
+                {/* Logo */}
+                <div style={{ marginBottom: '36px' }}>
+                    <img
+                        src="/LogoDYANE_noir.png"
+                        alt="Dyane Paris"
+                        style={{ height: '64px', width: 'auto', display: 'inline-block' }}
+                        onError={(e) => {
+                            // Fallback to white logo if black version doesn't exist
+                            e.target.src = '/LogoDYANE_blanc.png'
+                            e.target.style.filter = 'invert(1)'
+                        }}
+                    />
                 </div>
-                <h1 style={{ ...font, color: '#fff', fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 400, lineHeight: 1.2, marginBottom: '48px' }}>
-                    You must be of legal drinking age<br />to visit this site
-                </h1>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '400px', margin: '0 auto 40px' }}>
-                    <button onClick={confirm} style={{ ...font, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', padding: '16px 24px', fontSize: '12px', letterSpacing: '0.26em', textTransform: 'uppercase', cursor: 'pointer' }}>
-                        I'M OF LEGAL AGE
-                    </button>
-                    <button onClick={deny} style={{ ...font, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', padding: '16px 24px', fontSize: '12px', letterSpacing: '0.26em', textTransform: 'uppercase', cursor: 'pointer', opacity: 0.7 }}>
-                        I'M NOT OF LEGAL AGE
-                    </button>
-                </div>
-                <p style={{ ...font, color: 'rgba(255,255,255,0.6)', fontSize: '12px', lineHeight: 1.7 }}>
-                    By accessing this website you acknowledge that you accept its terms and conditions of use.{' '}
-                    <a href="/confidentialite" style={{ color: 'rgba(255,255,255,0.8)', textDecoration: 'underline' }}>See privacy policy</a>
+
+                {/* Eyebrow */}
+                <p style={{
+                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontSize: '10px',
+                    letterSpacing: '0.3em',
+                    textTransform: 'uppercase',
+                    color: '#c8a96e',
+                    marginBottom: '20px',
+                }}>
+                    Private Reserve
                 </p>
+
+                {/* Headline */}
+                <h1 style={{
+                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontSize: 'clamp(22px, 3.5vw, 28px)',
+                    fontWeight: 400,
+                    lineHeight: 1.45,
+                    color: '#111',
+                    marginBottom: '10px',
+                    letterSpacing: '0.02em',
+                }}>
+                    This Maison is reserved<br />for those of legal age.
+                </h1>
+
+                {/* Subline */}
+                <p style={{
+                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    fontSize: '14px',
+                    fontStyle: 'italic',
+                    color: '#888',
+                    marginBottom: '40px',
+                    lineHeight: 1.6,
+                }}>
+                    Please confirm to continue.
+                </p>
+
+                {/* Divider */}
+                <div style={{
+                    width: '32px', height: '1px',
+                    background: '#ddd',
+                    margin: '0 auto 36px'
+                }} />
+
+                {/* Buttons */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <button
+                        onClick={confirm}
+                        onMouseEnter={() => setHovering('yes')}
+                        onMouseLeave={() => setHovering(null)}
+                        style={{
+                            fontFamily: 'Cormorant Garamond, Garamond, serif',
+                            background: hovering === 'yes' ? '#111' : 'transparent',
+                            color: hovering === 'yes' ? '#fff' : '#111',
+                            border: '1px solid #111',
+                            padding: '15px 24px',
+                            fontSize: '11px',
+                            letterSpacing: '0.28em',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            width: '100%',
+                        }}
+                    >
+                        I Am of Legal Age
+                    </button>
+
+                    <button
+                        onClick={deny}
+                        onMouseEnter={() => setHovering('no')}
+                        onMouseLeave={() => setHovering(null)}
+                        style={{
+                            fontFamily: 'Cormorant Garamond, Garamond, serif',
+                            background: 'transparent',
+                            color: hovering === 'no' ? '#555' : '#aaa',
+                            border: '1px solid #e0e0e0',
+                            padding: '15px 24px',
+                            fontSize: '11px',
+                            letterSpacing: '0.28em',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            width: '100%',
+                        }}
+                    >
+                        I Am Not of Legal Age
+                    </button>
+                </div>
+
+                {/* Legal */}
+                <p style={{
+                    fontFamily: 'Cormorant Garamond, Garamond, serif',
+                    color: '#bbb',
+                    fontSize: '11px',
+                    lineHeight: 1.8,
+                    marginTop: '32px',
+                }}>
+                    By entering, you confirm you are of legal drinking age<br />
+                    and agree to our{' '}
+                    <a href="/confidentialite" style={{ color: '#999', textDecoration: 'underline' }}>
+                        Terms of Use and Privacy Policy
+                    </a>.
+                </p>
+
+                {/* Bottom gold line */}
+                <div style={{
+                    position: 'absolute', bottom: 0, left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '40px', height: '1px',
+                    background: '#c8a96e'
+                }} />
             </div>
         </div>
     )
