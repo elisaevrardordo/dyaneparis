@@ -1,33 +1,25 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const cormorant = 'Cormorant Garamond, Garamond, serif'
 const lora = 'Lora, serif'
 
-export default function AgeGate() {
+export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     const [visible, setVisible] = useState(false)
-    const [lang, setLang] = useState<'fr' | 'en'>('fr')
+    const [lang, setLang] = useState<'fr' | 'en'>(currentLocale === 'en' ? 'en' : 'fr')
     const [langOpen, setLangOpen] = useState(false)
     const [hovering, setHovering] = useState<string | null>(null)
     const router = useRouter()
-    const pathname = usePathname()
 
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
         if (!confirmed) setVisible(true)
-        const segments = pathname.split('/')
-        const localeSegment = segments[1]
-        setLang(localeSegment === 'en' ? 'en' : 'fr')
-    }, [pathname])
+    }, [])
 
     function confirm() {
         sessionStorage.setItem('age-confirmed', 'true')
-        if (lang === 'en') {
-            router.push('/en')
-        } else {
-            router.push('/fr')
-        }
+        router.push('/' + lang)
         setVisible(false)
     }
 
@@ -70,7 +62,6 @@ export default function AgeGate() {
                 textAlign: 'center',
                 boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
             }}>
-                {/* Logo */}
                 <div style={{ marginBottom: '28px' }}>
                     <img
                         src="/LogoDYANE_noir.png"
@@ -84,7 +75,6 @@ export default function AgeGate() {
                     />
                 </div>
 
-                {/* Language selector */}
                 <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
                     <div style={{ position: 'relative', width: '200px' }}>
                         <button
@@ -175,10 +165,8 @@ export default function AgeGate() {
                     </div>
                 </div>
 
-                {/* Divider */}
                 <div style={{ width: '28px', height: '1px', background: '#e0e0e0', margin: '0 auto 28px' }} />
 
-                {/* Eyebrow */}
                 <p style={{
                     fontFamily: lora,
                     fontSize: '9px',
@@ -190,7 +178,6 @@ export default function AgeGate() {
                     {t.eyebrow}
                 </p>
 
-                {/* Headline */}
                 <h1 style={{
                     fontFamily: cormorant,
                     fontSize: 'clamp(22px, 3.5vw, 28px)',
@@ -203,7 +190,6 @@ export default function AgeGate() {
                     {t.headline}
                 </h1>
 
-                {/* Subline */}
                 <p style={{
                     fontFamily: lora,
                     fontSize: '12px',
@@ -215,7 +201,6 @@ export default function AgeGate() {
                     {t.sub}
                 </p>
 
-                {/* Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <button
                         onClick={confirm}
@@ -260,7 +245,6 @@ export default function AgeGate() {
                     </button>
                 </div>
 
-                {/* Legal */}
                 <p style={{
                     fontFamily: lora,
                     color: '#ccc',
