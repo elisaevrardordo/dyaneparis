@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl'
 
 export default function HeroVideo() {
-    const t = useTranslations('hero')
+    const t = useTranslations('home')
     return (
         <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', background: '#0d0d0d' }}>
             <video
