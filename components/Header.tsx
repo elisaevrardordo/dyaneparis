@@ -59,7 +59,7 @@ export default function Header() {
                 }}
             >
                 <Link
-                    href={locale === 'en' ? '/en' : '/'}
+                    href={`/${locale}`}
                     style={{ textDecoration: 'none' }}
                 >
                     <img
@@ -87,11 +87,7 @@ export default function Header() {
                 {navLinks.map((link) => (
                     <Link
                         key={link.href}
-                        href={
-                            locale === 'en'
-                                ? '/en' + link.href
-                                : link.href
-                        }
+                        href={`/${locale}${link.href}`}
                         style={{
                             ...fontNav,
                             color: '#fff',
@@ -155,11 +151,7 @@ export default function Header() {
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
-                            href={
-                                locale === 'en'
-                                    ? '/en' + link.href
-                                    : link.href
-                            }
+                            href={`/${locale}${link.href}`}
                             onClick={() => setMenuOpen(false)}
                             style={{
                                 ...fontNav,
