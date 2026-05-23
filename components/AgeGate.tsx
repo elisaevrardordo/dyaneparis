@@ -21,8 +21,11 @@ export default function AgeGate() {
 
     function confirm() {
         sessionStorage.setItem('age-confirmed', 'true')
-        if (lang === 'en' && !pathname.startsWith('/en')) router.push('/en')
-        else if (lang === 'fr' && pathname.startsWith('/en')) router.push('/')
+        if (lang === 'en') {
+            router.push('/en')
+        } else {
+            router.push('/')
+        }
         setVisible(false)
     }
 
