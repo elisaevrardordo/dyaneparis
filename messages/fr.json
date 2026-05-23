@@ -60,5 +60,29 @@
 },
 "products": {
     "cta": "Contacter la Conciergerie"
+},
+  "distillation": {
+    "kicker": "L'EXCELLENCE DE LA MAISON DYANE",
+    "titre": "LA CUVÉE PRESTIGE",
+    "intro1": "Chaque création Dyane naît d'une exigence rare : atteindre un équilibre que peu approchent, et que l'on reconnaît immédiatement.",
+    "intro2": "Élaborées en France, au cœur du Vaucluse, nos cuvées prennent vie dans un territoire où la lumière, la matière et le temps façonnent chaque détail.",
+    "origine_titre": "L'ORIGINE : UNE MATIÈRE NOBLE, UNE TERRE D'EXIGENCE",
+    "origine_p1": "Nous sélectionnons exclusivement des ingrédients bruts: gingembre frais, gousses de vanille entières, zestes d'agrumes, pour préserver la pureté des arômes.",
+    "origine_p2": "Chaque élément est choisi pour sa capacité à s'exprimer avec justesse, sans artifice ni correction.",
+    "origine_p3": "Cette rigueur dans la sélection constitue la base de chaque cuvée.",
+    "elaboration_titre": "L'ÉLABORATION : L'ALCOOL VINIQUE COMME FONDATION",
+    "elaboration_p1": "Au cœur de chaque création se trouve un élément fondamental : un alcool vinique d'une pureté exceptionnelle.",
+    "elaboration_p2": "Issu de la transformation du vin, cet alcool se distingue par sa finesse, sa neutralité aromatique et sa capacité à sublimer les matières qu'il accueille.",
+    "elaboration_p3": "Il agit comme un révélateur, permettant aux notes de gingembre, de vanille ou d'agrumes de se déployer avec précision et élégance.",
+    "elaboration_p4": "Les infusions sont réalisées lentement, sur des durées maîtrisées, afin d'extraire chaque nuance sans jamais brusquer la matière.",
+    "elaboration_p5": "Ce temps long permet d'obtenir une profondeur aromatique et une stabilité qui donnent à la cuvée toute sa tenue et sa signature.",
+    "signature_titre": "LA SIGNATURE : UNE EXPÉRIENCE SENSORIELLE MAÎTRISÉE",
+    "signature_p1": "Chaque recette est pensée comme une composition : une attaque franche, un cœur expressif, une longueur en bouche persistante.",
+    "signature_p2": "L'équilibre entre puissance et finesse est ajusté au millilitre près, jusqu'à atteindre une harmonie rare.",
+    "signature_p3": "Rien n'est laissé au hasard : ni la texture, ni la structure, ni la manière dont les arômes évoluent au fil de la dégustation.",
+    "signature_p4": "Chez Dyane, le cocktail n'est plus un mélange. C'est une œuvre liquide.",
+    "citation": "« CHAQUE CUVÉE DYANE EST PENSÉE COMME UNE ÉVIDENCE : UN ÉQUILIBRE SI JUSTE QU'IL S'IMPOSE DÈS LA PREMIÈRE DÉGUSTATION. »",
+    "citation_nom": "JULIEN DUCRUET",
+    "citation_titre": "CHEF DE CONCEPTION DES RECETTES DYANE"
 }
 }
