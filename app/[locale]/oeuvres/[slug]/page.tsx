@@ -37,9 +37,8 @@ const produits: Record<string, {
         images: [
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635739/3_rtyiii.png',
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/7_swv5cg.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/9_a5maeo.png',
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/11_tsm9n9.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/2_afowta.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779636087/Design_sans_titre_61_roxrkv.png',
 ],
         plusInfos: 'GINGEMBRE & CITRON VERT\nÉCLATANT. STRUCTURÉ. LE GINGEMBRE S\'IMPOSE, INFUSÉ LENTEMENT DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE.\nLES GRAINES DE GINGEMBRE FRANÇAISES LIBÈRENT UNE ÉNERGIE NETTE. LE CITRON VERT TRACE UNE FRAÎCHEUR LUMINEUSE. UNE TOUCHE DE VANILLE ET LE BOIS APPORTE L\'ÉQUILIBRE.\nSEC. ÉLÉGANT. VIVANT. UNE ŒUVRE DE CONTRASTE.\n—\nORIGINE : ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE. INFUSION DE GINGEMBRE FRANÇAIS. JUS DE CITRON BIOLOGIQUE. ÉLEVAGE EN FÛT DE CHÊNE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE, RÉGION D\'AVIGNON.\n—\nPROFIL SENSORIEL\nROBE — CRISTAL ARGENTÉ\nNEZ — GINGEMBRE FRAIS, ZESTE VIF\nBOUCHE — ATTAQUE TONIQUE, TEXTURE SOYEUSE\nFINALE — SÈCHE, PRÉCISE.',
         livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
