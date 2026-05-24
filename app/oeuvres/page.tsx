@@ -4,42 +4,9 @@ import Link from 'next/link'
 const font = { fontFamily: 'Playfair Display, serif' }
 
 const oeuvres = [
-    {
-        id: 'no1',
-        href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
-        titre: 'DYANE NO.1',
-        sous_titre: 'UNE CRÉATION S\'INSPIRANT DU GOURMAND PORNSTAR MARTINI.',
-        images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443652/Capture_d_ecran_2026-04-02_a_15.16.48_pqfxxv.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443641/3_4b8843d8-0ab7-4fd0-bcb6-6983a224d83f_kkgh41.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443700/50d1340b3c962d6a72e96d38f28aa761_1_n1elgv.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg',
-        ],
-    },
-    {
-        id: 'no2',
-        href: '/oeuvres/dyane-no2-moscow-mule',
-        titre: 'DYANE NO.2',
-        sous_titre: 'UNE CRÉATION S\'INSPIRANT DU COMPLEXE MOSCOW MULE.',
-        images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443864/11_d8685905-f141-4225-9957-19b78e6fd892_n8qhyt.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443862/6f8f4f66a4a6d81deb15d2f383a53d02_2_utshc8.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443860/FCE40708-7E8F-45A2-80E7-52C4AC46DA59_p4yftm.jpg',
-        ],
-    },
-    {
-        id: 'teo',
-        href: '/oeuvres/bouteille-signee-teokaykay',
-        titre: 'TEO FOR DYANE',
-        sous_titre: 'EN COLLABORATION AVEC LE PEINTRE MATTEO MENGACCI, PLUS CONNU SOUS LE NOM DE TEO KAYKAY.',
-        images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443930/Capture_d_ecran_2026-04-02_a_13.55.34_lebijo.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
-        ],
-    },
+    { id: 'no1', href: '/oeuvres/dyane-paris-pornstar-martini-70-cl', titre: 'DYANE NO.1', cle_sous_titre: 'no1_sous_titre', images: ['https://res.cloudinary.com/dazhkrimv/image/upload/v1777443652/Capture_d_ecran_2026-04-02_a_15.16.48_pqfxxv.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443641/3_4b8843d8-0ab7-4fd0-bcb6-6983a224d83f_kkgh41.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443700/50d1340b3c962d6a72e96d38f28aa761_1_n1elgv.jpg', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg'] },
+    { id: 'no2', href: '/oeuvres/dyane-no2-moscow-mule', titre: 'DYANE NO.2', cle_sous_titre: 'no2_sous_titre', images: ['https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443864/11_d8685905-f141-4225-9957-19b78e6fd892_n8qhyt.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443862/6f8f4f66a4a6d81deb15d2f383a53d02_2_utshc8.jpg', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443860/FCE40708-7E8F-45A2-80E7-52C4AC46DA59_p4yftm.jpg'] },
+    { id: 'teo', href: '/oeuvres/bouteille-signee-teokaykay', titre: 'TEO FOR DYANE', cle_sous_titre: 'teo_sous_titre', images: ['https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443930/Capture_d_ecran_2026-04-02_a_13.55.34_lebijo.png', 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg'] },
 ]
 
 export default function OeuvresPage() {
