@@ -7,13 +7,11 @@
     "journal": "LE JOURNAL",
     "contact": "CONTACTER LA CONCIERGERIE"
   },
-
   "home": {
     "kicker": "MAISON D'ART LIQUIDE — PARIS",
     "titre": "L'ART QUE L'ON BOIT.",
     "cta": "DÉCOUVRIR LES ŒUVRES"
   },
-
   "manifeste": {
     "label": "DYANE PARIS",
     "titre": "MAISON D'ART LIQUIDE",
@@ -21,14 +19,12 @@
     "ligne2": "CHAQUE BOUTEILLE EST UNE EXPÉRIENCE À VIVRE, PUIS À CONSERVER.",
     "cta": "DÉCOUVRIR LA MAISON"
   },
-
   "dualimage": {
     "label": "DYANE CUVÉE PRESTIGE",
     "titre": "LA DISTILLATION ARTISANALE FRANÇAISE",
     "texte": "Notre distillation en France incarne l'exigence de la Maison : précision, pureté, constance.",
     "cta": "EN LIRE PLUS"
   },
-
   "header": {
     "collections": "ŒUVRES",
     "distillation": "DISTILLATION",
@@ -39,7 +35,6 @@
     "menu": "MENU",
     "close": "FERMER"
   },
-
   "footer": {
     "collections": "COLLECTIONS",
     "maison": "LA MAISON",
@@ -57,10 +52,10 @@
   "hero": {
     "kicker": "EN AVANT-PREMIÈRE",
     "titre": "DYANE PARIS, MAISON D'ART LIQUIDE"
-},
-"products": {
+  },
+  "products": {
     "cta": "Contacter la Conciergerie"
-},
+  },
   "distillation": {
     "kicker": "L'EXCELLENCE DE LA MAISON DYANE",
     "titre": "LA CUVÉE PRESTIGE",
@@ -84,7 +79,7 @@
     "citation": "« CHAQUE CUVÉE DYANE EST PENSÉE COMME UNE ÉVIDENCE : UN ÉQUILIBRE SI JUSTE QU'IL S'IMPOSE DÈS LA PREMIÈRE DÉGUSTATION. »",
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "CHEF DE CONCEPTION DES RECETTES DYANE"
-},
+  },
   "experiences": {
     "kicker": "L'EXPÉRIENCE DYANE",
     "titre": "EXPÉRIENCES",
@@ -107,7 +102,7 @@
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS",
     "citation_cta": "CONTACTER LA CONCIERGERIE"
-},
+  },
   "maison": {
     "kicker": "L'ART SE BOIT.",
     "titre": "L'HISTOIRE DE LA MAISON",
@@ -129,18 +124,18 @@
     "temps_p3": "La lenteur est assumée.",
     "contemporaine_titre": "UNE MAISON CONTEMPORAINE",
     "contemporaine_p": "Dyane s'inscrit dans une évolution du luxe. Un luxe plus rare que démonstratif. Plus durable que consommable."
-},
-"journal": {
+  },
+  "journal": {
     "titre": "RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE"
-},
-"oeuvres": {
-    "decouvrir_intro": "Découvrez les créations"
+  },
+  "oeuvres": {
+    "decouvrir_intro": "Découvrez les créations",
     "decouvrir": "DÉCOUVRIR",
     "no1_sous_titre": "L'audace du Pornstar Martini sublimée dans une création aux nuances gourmandes.",
-"no2_sous_titre": "Une interprétation sophistiquée du mythique Moscow Mule.",
-"teo_sous_titre": "En collaboration avec le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay."
-},
-"contact": {
+    "no2_sous_titre": "Une interprétation sophistiquée du mythique Moscow Mule.",
+    "teo_sous_titre": "En collaboration avec le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay."
+  },
+  "contact": {
     "kicker": "CONCIERGERIE DYANE",
     "titre": "CONTACTER LA MAISON",
     "intro": "Pour toute demande de collaboration, commande privée, partenariat ou presse, notre conciergerie vous répondra dans les meilleurs délais.",
@@ -151,5 +146,5 @@
     "envoyer": "ENVOYER",
     "merci": "Votre message a bien été envoyé. Nous vous répondrons sous 48h.",
     "options": ["Commande privée", "Partenariat hôtelier", "Collaboration artistique", "Presse & médias", "Autre"]
-}
+  }
 }
