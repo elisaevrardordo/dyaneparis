@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 const products = [
-    { name: 'Dyane No.1 — Pornstar Martini', href: '/oeuvres/dyane-paris-pornstar-martini-70-cl', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/1_ecqqiv.png' },
-    { name: 'Dyane No.2 — Moscow Mule', href: '/oeuvres/dyane-no2-moscow-mule', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/2_ezhhgx.png' },
+    { name: 'Dyane No.1 — Pornstar Martini', href: '/oeuvres/dyane-paris-pornstar-martini-70-cl', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/3_ijldt6.png' },
+    { name: 'Dyane No.2 — Moscow Mule', href: '/oeuvres/dyane-no2-moscow-mule', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/4_os0a6z.png' },
     { name: 'Teo for Dyane Paris', href: '/oeuvres/bouteille-signee-teokaykay', image: '/dyane-teo.png' },
 ]
 
