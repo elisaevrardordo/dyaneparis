@@ -21,7 +21,7 @@ export default function DualImage() {
                 setCurrent((prev) => (prev + 1) % total)
                 setFade(true)
             }, 400)
-        }, 4000)
+        }, 5000)
         return () => clearInterval(interval)
     }, [])
 
@@ -37,15 +37,12 @@ export default function DualImage() {
             </section>
 
             <section style={{ background: '#FAF8F5', overflow: 'hidden' }}>
-                <div style={{
-                    opacity: fade ? 1 : 0,
-                    transition: 'opacity 0.4s ease',
-                }}>
+                <div style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.4s ease' }}>
 
-                    {/* SLIDE 1 — images + texte */}
+                    {/* SLIDE 1 */}
                     {current === 0 && (
-                        <div style={{ padding: '68px 24px 72px' }}>
-                            <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '64px', alignItems: 'start' }}>
+                        <div style={{ padding: '80px 80px 100px' }}>
+                            <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '80px', alignItems: 'start' }}>
                                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', alignItems: 'end' }}>
                                     <div style={{ position: 'relative', height: '680px' }}>
                                         <Image src="/CREATION_2.png" alt="Dyane Paris Distillation" fill style={{ objectFit: 'cover' }} />
@@ -54,17 +51,17 @@ export default function DualImage() {
                                         <Image src="/10.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
                                     </div>
                                 </div>
-                                <div>
-                                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', opacity: 0.65, margin: '0 0 10px' }}>{t('label')}</p>
-                                    <h2 style={{ ...font, fontWeight: 500, fontSize: 'clamp(28px, 3vw, 42px)', lineHeight: 1.05, margin: '0 0 22px', textTransform: 'uppercase' }}>{t('titre')}</h2>
-                                    <p style={{ ...font, fontSize: '12px', lineHeight: 1.7, opacity: 0.8, maxWidth: '360px' }}>{t('texte')}</p>
-                                    <Link href="/distillation" style={{ ...font, display: 'inline-block', marginTop: '24px', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.4)', textDecoration: 'none', color: '#000', paddingBottom: '6px' }}>{t('cta')}</Link>
+                                <div style={{ paddingTop: '40px' }}>
+                                    <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, margin: '0 0 16px' }}>{t('label')}</p>
+                                    <h2 style={{ ...font, fontWeight: 500, fontSize: 'clamp(28px, 3vw, 42px)', lineHeight: 1.1, margin: '0 0 28px', textTransform: 'uppercase' }}>{t('titre')}</h2>
+                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75, maxWidth: '360px', marginBottom: '32px' }}>{t('texte')}</p>
+                                    <Link href="/distillation" style={{ ...lora, display: 'inline-block', fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.4)', textDecoration: 'none', color: '#000', paddingBottom: '6px' }}>{t('cta')}</Link>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* SLIDE 2 — image plein écran + texte blanc en haut */}
+                    {/* SLIDE 2 */}
                     {current === 1 && (
                         <div style={{ position: 'relative', width: '100%', height: '85vh', overflow: 'hidden' }}>
                             <Image
@@ -73,9 +70,9 @@ export default function DualImage() {
                                 fill
                                 style={{ objectFit: 'cover' }}
                             />
-                            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)' }} />
-                            <div style={{ position: 'absolute', top: '48px', left: '48px', maxWidth: '700px' }}>
-                                <p style={{ ...lora, color: '#fff', fontSize: '14px', lineHeight: 2, fontWeight: 500 }}>
+                            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} />
+                            <div style={{ position: 'absolute', top: '60px', left: '60px', maxWidth: '660px' }}>
+                                <p style={{ ...lora, color: '#fff', fontSize: '15px', lineHeight: 2.1, fontWeight: 400, opacity: 0.92 }}>
                                     Après les vendanges à Bordeaux, le raisin est fermenté pour transformer les sucres naturels en vin.<br />
                                     Ce vin est ensuite distillé afin d'obtenir un alcool vinique pur, issu exclusivement du raisin.<br />
                                     L'alcool est enfin retravaillé et assemblé pour créer la base de nos cocktails premium.
@@ -84,13 +81,12 @@ export default function DualImage() {
                         </div>
                     )}
 
-                    {/* SLIDE 3 — deux images + deux blocs texte */}
+                    {/* SLIDE 3 */}
                     {current === 2 && (
-                        <div style={{ padding: '68px 80px 72px', maxWidth: '1400px', margin: '0 auto' }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
-                                {/* Infusion */}
+                        <div style={{ padding: '100px 80px 120px', maxWidth: '1400px', margin: '0 auto' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px' }}>
                                 <div>
-                                    <div style={{ position: 'relative', height: '460px', marginBottom: '24px' }}>
+                                    <div style={{ position: 'relative', height: '520px', marginBottom: '36px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg"
                                             alt="Infusion"
@@ -98,14 +94,13 @@ export default function DualImage() {
                                             style={{ objectFit: 'cover' }}
                                         />
                                     </div>
-                                    <h3 style={{ ...font, fontSize: '18px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '16px' }}>INFUSION</h3>
-                                    <p style={{ ...font, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>
+                                    <h3 style={{ ...lora, fontSize: '11px', fontWeight: 400, letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '20px' }}>Infusion</h3>
+                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75 }}>
                                         Nos créations reposent sur une infusion lente d'ingrédients nobles : gingembre frais, vanille, fruits et épices, dans un alcool vinique d'exception, révélant une profondeur aromatique intense et raffinée.
                                     </p>
                                 </div>
-                                {/* Assemblage */}
                                 <div>
-                                    <div style={{ position: 'relative', height: '460px', marginBottom: '24px' }}>
+                                    <div style={{ position: 'relative', height: '520px', marginBottom: '36px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png"
                                             alt="Assemblage"
@@ -113,33 +108,14 @@ export default function DualImage() {
                                             style={{ objectFit: 'cover' }}
                                         />
                                     </div>
-                                    <h3 style={{ ...font, fontSize: '18px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '16px' }}>ASSEMBLAGE</h3>
-                                    <p style={{ ...font, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>
+                                    <h3 style={{ ...lora, fontSize: '11px', fontWeight: 400, letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '20px' }}>Assemblage</h3>
+                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75 }}>
                                         Chaque cocktail est minutieusement assemblé comme une œuvre d'art, équilibrant puissance, texture et élégance.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     )}
-                </div>
-
-                {/* Indicateurs */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', padding: '0 0 40px' }}>
-                    {Array.from({ length: total }).map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => goTo(i)}
-                            style={{
-                                width: i === current ? '24px' : '6px',
-                                height: '2px',
-                                background: i === current ? '#111' : 'rgba(0,0,0,0.2)',
-                                border: 'none',
-                                cursor: 'pointer',
-                                padding: 0,
-                                transition: 'all 0.3s ease',
-                            }}
-                        />
-                    ))}
                 </div>
             </section>
         </>
