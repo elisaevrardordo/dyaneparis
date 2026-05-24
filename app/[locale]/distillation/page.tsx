@@ -9,7 +9,7 @@ export default function DistillationPage() {
         <main style={{ background: '#FAF8F5' }}>
 
             {/* Image en premier */}
-<section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
+<section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
 </section>
 
