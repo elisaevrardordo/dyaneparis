@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation'
 
 const cormorant = 'Cormorant Garamond, Garamond, serif'
 const lora = 'Lora, serif'
+const playfair = 'Playfair Display, serif'
+const bordeaux = '#6B1A2A'
 
 export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     const [visible, setVisible] = useState(false)
@@ -68,17 +70,17 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 position: 'relative',
                 background: '#fff',
                 width: '100%',
-                maxWidth: '460px',
+                maxWidth: '480px',
                 padding: '48px 44px 36px',
                 textAlign: 'center',
                 boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
             }}>
                 {/* Logo */}
-                <div style={{ marginBottom: '28px' }}>
+                <div style={{ marginBottom: '36px' }}>
                     <img
                         src="/LogoDYANE_noir.png"
                         alt="Dyane Paris"
-                        style={{ height: '80px', width: 'auto', display: 'inline-block' }}
+                        style={{ height: '110px', width: 'auto', display: 'inline-block' }}
                         onError={(e) => {
                             const img = e.target as HTMLImageElement
                             img.src = '/LogoDYANE_blanc.png'
@@ -87,8 +89,32 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     />
                 </div>
 
+                {/* Headline */}
+                <h1 style={{
+                    fontFamily: cormorant,
+                    fontSize: 'clamp(22px, 3.5vw, 28px)',
+                    fontWeight: 400,
+                    lineHeight: 1.45,
+                    color: '#111',
+                    marginBottom: '12px',
+                    letterSpacing: '0.02em',
+                }}>
+                    {t.headline}
+                </h1>
+
+                {/* Subline */}
+                <p style={{
+                    fontFamily: lora,
+                    fontSize: '12px',
+                    color: '#aaa',
+                    marginBottom: '28px',
+                    lineHeight: 1.6,
+                }}>
+                    {t.sub}
+                </p>
+
                 {/* Language selector */}
-                <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
                     <div style={{ position: 'relative', width: '200px' }}>
                         <button
                             onClick={() => setLangOpen(!langOpen)}
@@ -176,75 +202,51 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     </div>
                 </div>
 
-                {/* Headline */}
-                <h1 style={{
-                    fontFamily: cormorant,
-                    fontSize: 'clamp(22px, 3.5vw, 28px)',
-                    fontWeight: 400,
-                    lineHeight: 1.45,
-                    color: '#111',
-                    marginBottom: '10px',
-                    letterSpacing: '0.02em',
-                }}>
-                    {t.headline}
-                </h1>
-
-                {/* Subline */}
-                <p style={{
-                    fontFamily: lora,
-                    fontSize: '12px',
-                    color: '#aaa',
-                    marginBottom: '32px',
-                    lineHeight: 1.6,
-                }}>
-                    {t.sub}
-                </p>
-
                 {/* Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <button
-    onClick={confirm}
-    onMouseEnter={() => setHovering('yes')}
-    onMouseLeave={() => setHovering(null)}
-    style={{
-        fontFamily: 'Playfair Display, serif',
-        background: hovering === 'yes' ? '#6B1A2A' : 'transparent',
-        color: hovering === 'yes' ? '#fff' : '#6B1A2A',
-        border: '1px solid #6B1A2A',
-        padding: '15px 24px',
-        fontSize: '11px',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        cursor: 'pointer',
-        transition: 'all 0.25s ease',
-        width: '100%',
-        fontStyle: 'italic',
-    }}
->
-    {t.yes}
-</button>
+                        onClick={confirm}
+                        onMouseEnter={() => setHovering('yes')}
+                        onMouseLeave={() => setHovering(null)}
+                        style={{
+                            fontFamily: playfair,
+                            background: hovering === 'yes' ? bordeaux : 'transparent',
+                            color: hovering === 'yes' ? '#fff' : bordeaux,
+                            border: `1px solid ${bordeaux}`,
+                            padding: '15px 24px',
+                            fontSize: '11px',
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            width: '100%',
+                            fontStyle: 'normal',
+                        }}
+                    >
+                        {t.yes}
+                    </button>
 
-<button
-    onClick={deny}
-    onMouseEnter={() => setHovering('no')}
-    onMouseLeave={() => setHovering(null)}
-    style={{
-        fontFamily: 'Playfair Display, serif',
-        background: 'transparent',
-        color: hovering === 'no' ? '#6B1A2A' : '#ccc',
-        border: '1px solid #eee',
-        padding: '15px 24px',
-        fontSize: '11px',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        cursor: 'pointer',
-        transition: 'all 0.25s ease',
-        width: '100%',
-        fontStyle: 'italic',
-    }}
->
-    {t.no}
-</button>
+                    <button
+                        onClick={deny}
+                        onMouseEnter={() => setHovering('no')}
+                        onMouseLeave={() => setHovering(null)}
+                        style={{
+                            fontFamily: playfair,
+                            background: 'transparent',
+                            color: hovering === 'no' ? '#555' : '#ccc',
+                            border: '1px solid #eee',
+                            padding: '15px 24px',
+                            fontSize: '11px',
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            width: '100%',
+                            fontStyle: 'normal',
+                        }}
+                    >
+                        {t.no}
+                    </button>
                 </div>
 
                 {/* Legal */}
