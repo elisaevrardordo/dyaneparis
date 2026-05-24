@@ -50,8 +50,9 @@
     "alcool": "L'ABUS D'ALCOOL EST DANGEREUX POUR LA SANTÉ. À CONSOMMER AVEC MODÉRATION."
   },
   "hero": {
-    "kicker": "MAISON D'ART LIQUIDE — PARIS",
-"titre": "Désormais, l'art se boit."
+    "kicker": "MAISON D'ART LIQUIDE",
+"titre": "Désormais, l'art se boit.",
+"sous_titre": "Dyane Paris est une maison française créant des cocktails prêts à déguster embouteillés dans des œuvres d'art en porcelaine."
   },
   "products": {
     "cta": "Contacter la Conciergerie"
