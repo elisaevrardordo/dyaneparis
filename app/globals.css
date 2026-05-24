@@ -93,3 +93,5 @@ textarea:not(.newsletter-input)::placeholder {
 button:hover, a:hover {
     color: #6B1A2A;
 }
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&display=swap');
+}
