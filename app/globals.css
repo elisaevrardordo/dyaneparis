@@ -90,3 +90,6 @@ textarea:not(.newsletter-input)::placeholder {
     color: #fff !important;
     opacity: 1 !important;
 }
+button:hover, a:hover {
+    color: #6B1A2A;
+}
