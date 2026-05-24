@@ -5,6 +5,12 @@ import { useState } from 'react'
 
 const font = { fontFamily: 'Playfair Display, serif' }
 
+const heroImages: Record<string, string> = {
+    'dyane-paris-pornstar-martini-70-cl': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/1_ecqqiv.png',
+    'dyane-no2-moscow-mule': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779649567/DYANE_NO._2_Inspired_by_Moscow_Mule_aqgviv.png',
+    'bouteille-signee-teokaykay': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
+}
+
 const produits: Record<string, {
     nom: string
     sousTitre: string
@@ -20,12 +26,12 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE, INFUSÉ AUX GOUSSES DE VANILLE MADAGASCAR BOURBON GOLD. PURÉE DE FRUIT DE LA PASSION, SUBLIMÉE PAR UNE TOUCHE DE FRAMBOISE SAUVAGE. JUS DE CITRON BIOLOGIQUE. EMBOUTEILLÉ EN FRANCE, DANS LA RÉGION D\'AVIGNON.',
         images: [
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/3_ijldt6.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/8_lvzjty.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/10_kzmspj.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634416/12_vfl7v7.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/1_wstqkf.png',
-],
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/3_ijldt6.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/8_lvzjty.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/10_kzmspj.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634416/12_vfl7v7.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/1_wstqkf.png',
+        ],
         plusInfos: 'VANILLE & PASSION\nSOLAIRE. CHARNELLE. UNE INTERPRÉTATION INTENSE DU FRUIT DE LA PASSION, INFUSÉE DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE. L\'ACIDITÉ SE TEND, LA DOUCEUR S\'ÉQUILIBRE. LA VANILLE MADAGASCAR BOURBON GOLD APPORTE UNE RONDEUR SOYEUSE.\nDENSE. LUMINEUSE. UNE ŒUVRE LIQUIDE.\n—\nPROFIL SENSORIEL\nROBE — OR AMBRÉ\nNEZ — PASSION FRAÎCHE, VANILLE CHAUDE\nBOUCHE — PULPEUSE, ÉQUILIBRÉE\nFINALE — LONGUE, SOLAIRE.',
         livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
         disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
@@ -35,11 +41,11 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE INFUSÉ AUX GRAINES DE GINGEMBRE. JUS DE CITRON FRAIS. EAU PURE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE.',
         images: [
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635739/3_rtyiii.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/7_swv5cg.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/11_tsm9n9.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1779636087/Design_sans_titre_61_roxrkv.png',
-],
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635739/3_rtyiii.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/7_swv5cg.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/11_tsm9n9.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779636087/Design_sans_titre_61_roxrkv.png',
+        ],
         plusInfos: 'GINGEMBRE & CITRON VERT\nÉCLATANT. STRUCTURÉ. LE GINGEMBRE S\'IMPOSE, INFUSÉ LENTEMENT DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE.\nLES GRAINES DE GINGEMBRE FRANÇAISES LIBÈRENT UNE ÉNERGIE NETTE. LE CITRON VERT TRACE UNE FRAÎCHEUR LUMINEUSE. UNE TOUCHE DE VANILLE ET LE BOIS APPORTE L\'ÉQUILIBRE.\nSEC. ÉLÉGANT. VIVANT. UNE ŒUVRE DE CONTRASTE.\n—\nORIGINE : ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE. INFUSION DE GINGEMBRE FRANÇAIS. JUS DE CITRON BIOLOGIQUE. ÉLEVAGE EN FÛT DE CHÊNE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE, RÉGION D\'AVIGNON.\n—\nPROFIL SENSORIEL\nROBE — CRISTAL ARGENTÉ\nNEZ — GINGEMBRE FRAIS, ZESTE VIF\nBOUCHE — ATTAQUE TONIQUE, TEXTURE SOYEUSE\nFINALE — SÈCHE, PRÉCISE.',
         livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
         disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
@@ -93,8 +99,18 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
         </main>
     )
 
+    const heroImg = heroImages[slug]
+
     return (
         <div style={{ background: '#FAF8F5' }}>
+
+            {/* Hero image */}
+            {heroImg && (
+                <section style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
+                    <Image src={heroImg} alt={produit.nom} fill style={{ objectFit: 'cover' }} />
+                </section>
+            )}
+
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
                 {/* Galerie gauche */}
@@ -137,7 +153,6 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
                     <Accordion titre="NOUS CONTACTER" contenu={'REJOIGNEZ LA LISTE D\'ATTENTE\n\nE-MAIL : CONTACT@DYANEPARIS.COM\nINSTAGRAM : @DYANEPARIS_'} />
                     <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }} />
                 </div>
-
             </div>
         </div>
     )
