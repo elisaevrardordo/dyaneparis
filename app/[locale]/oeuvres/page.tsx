@@ -14,7 +14,7 @@ const oeuvres = [
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/3_ijldt6.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/8_lvzjty.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/10_kzmspj.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634416/12_vfl7v7.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/1_wstqkf.png',
         ]
     },
     {
@@ -23,10 +23,10 @@ const oeuvres = [
         titre: 'DYANE NO.2',
         cle_sous_titre: 'no2_sous_titre',
         images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/4_os0a6z.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635739/3_rtyiii.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/7_swv5cg.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/9_a5maeo.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/11_tsm9n9.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/2_afowta.png',
         ]
     },
     {
