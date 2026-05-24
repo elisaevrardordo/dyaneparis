@@ -8,17 +8,18 @@ export default function DistillationPage() {
     return (
         <main style={{ background: '#FAF8F5' }}>
 
-            <section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
-                <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
-                <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('intro1')}</p>
-                <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>{t('intro2')}</p>
-            </section>
+            {/* Image en premier */}
+<section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
+    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
+</section>
 
-            <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
-            </section>
-
+{/* Texte ensuite */}
+<section style={{ padding: '80px 24px 60px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
+    <h1 style={{ ...font, fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
+    <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('intro1')}</p>
+    <p style={{ ...font, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>{t('intro2')}</p>
+</section>
             <section style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '48px' }}>
                 <div>
                     <h2 style={{ ...font, fontSize: '20px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '24px' }}>{t('origine_titre')}</h2>
