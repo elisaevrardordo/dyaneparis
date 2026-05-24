@@ -10,9 +10,9 @@ export default function ContactPage() {
     const t = useTranslations('contact')
     const [sent, setSent] = useState(false)
     const [form, setForm] = useState({
-        prenom: '', nom: '', email: '',
-        pays: '', codePostal: '', ville: '',
-        sujet: '', message: '', newsletter: false
+        prenom: '', email: '', pays: '',
+        codePostal: '', ville: '', sujet: '',
+        message: '', newsletter: false
     })
 
     function handleSubmit(e: React.MouseEvent) {
@@ -114,21 +114,14 @@ export default function ContactPage() {
                     )}
                 </div>
 
-                {/* Colonne droite — image petite + texte bas */}
-                <div style={{ padding: '80px 80px 100px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div style={{ position: 'relative', width: '100%', height: '420px', overflow: 'hidden' }}>
-                        <Image
-                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491991/Capture_d_ecran_2026-04-26_a_11.55.45_1_pallld.png"
-                            alt="Dyane Paris"
-                            fill
-                            style={{ objectFit: 'cover' }}
-                        />
-                    </div>
-                    <div style={{ marginTop: 'auto', paddingTop: '48px' }}>
-                        <p style={{ ...font, fontSize: 'clamp(32px, 5vw, 72px)', fontWeight: 500, lineHeight: 1, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#111', opacity: 0.08 }}>
-                            CONTACTER<br />LA CONCIERGERIE
-                        </p>
-                    </div>
+                {/* Colonne droite — photo */}
+                <div style={{ position: 'relative', minHeight: '80vh' }}>
+                    <Image
+                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491991/Capture_d_ecran_2026-04-26_a_11.55.45_1_pallld.png"
+                        alt="Dyane Paris"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                    />
                 </div>
             </div>
         </main>
