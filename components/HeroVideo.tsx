@@ -15,10 +15,10 @@ export default function HeroVideo() {
                 <source src="https://res.cloudinary.com/dazhkrimv/video/upload/v1777381608/0315_1_5_wghim4.mov" type="video/mp4" />
             </video>
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
-            <div style={{ position: 'absolute', bottom: '60px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center', color: '#fff', whiteSpace: 'nowrap' }}>
-                <p style={{ fontFamily: 'Playfair Display, serif', fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.75, margin: 0 }}>{t('kicker')}</p>
-                <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', lineHeight: 1.1, margin: '16px 0' }}>{t('titre')}</h1>
-            </div>
+            <div style={{ position: 'absolute', bottom: '60px', left: '48px', textAlign: 'left', color: '#fff' }}>
+    <p style={{ fontFamily: 'Lora, serif', fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.75, margin: '0 0 12px' }}>{t('kicker')}</p>
+    <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(20px, 2.5vw, 36px)', fontWeight: 400, letterSpacing: '0.04em', textTransform: 'uppercase', lineHeight: 1.2, margin: 0 }}>{t('titre')}</h1>
+</div>
         </section>
     )
 }
