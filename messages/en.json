@@ -79,12 +79,12 @@
     "citation": "« EACH DYANE CUVÉE IS CONCEIVED AS A SELF-EVIDENT TRUTH: A BALANCE SO RIGHT IT ASSERTS ITSELF FROM THE VERY FIRST SIP. »",
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "HEAD OF RECIPE DESIGN AT DYANE"
-},
+  },
   "experiences": {
     "kicker": "THE DYANE EXPERIENCE",
     "titre": "EXPERIENCES",
     "intro1": "Dyane Paris is a French Liquid Art House dedicated to reinterpreting exclusive cocktail flavours in the form of refined spirits.",
-    "intro2": "Its purpose is clear: to preserve mastery of taste, gesture and time in a world dominated by industrialisation. Each creation stems from a deliberately contained production, conducted with method and discernment.",
+    "intro2": "Its purpose is clear: to preserve mastery of taste, gesture and time in a world dominated by industrialisation. Each creation stems from a deliberately contained production, conducted with method and discernement.",
     "mesure_titre": "THE CHOICE OF MEASURE",
     "mesure_p1": "The Maison operates against the logic of volume. Production is never standardised.",
     "mesure_p2": "It is defined according to the nature of the project, the identity of the venue, the partner's requirements. Each batch is precisely monitored, from blending to bottling. Consistency prevails over cadence. Precision over quantity.",
@@ -102,7 +102,7 @@
     "citation_nom": "JULIEN DUCRUET",
     "citation_titre": "NOSE, DISTILLER, FRENCH PRODUCER",
     "citation_cta": "CONTACT THE CONCIERGE"
-},
+  },
   "maison": {
     "kicker": "ART IS DRUNK.",
     "titre": "THE STORY OF THE HOUSE",
@@ -124,18 +124,18 @@
     "temps_p3": "Slowness is embraced.",
     "contemporaine_titre": "A CONTEMPORARY HOUSE",
     "contemporaine_p": "Dyane is part of an evolution of luxury. A luxury that is rarer than demonstrative. More enduring than consumable."
-},
-"journal": {
+  },
+  "journal": {
     "titre": "ALL THE NEWS FROM MAISON DYANE"
-},
-"oeuvres": {
-    "decouvrir_intro": "Discover the collections"
+  },
+  "oeuvres": {
+    "decouvrir_intro": "Discover the collections",
     "decouvrir": "DISCOVER",
     "no1_sous_titre": "The audacity of the Pornstar Martini sublimated in a creation with indulgent nuances.",
-"no2_sous_titre": "A sophisticated interpretation of the mythical Moscow Mule.",
-"teo_sous_titre": "In collaboration with painter Matteo Mengacci, better known as Teo Kaykay."
-},
-"contact": {
+    "no2_sous_titre": "A sophisticated interpretation of the mythical Moscow Mule.",
+    "teo_sous_titre": "In collaboration with painter Matteo Mengacci, better known as Teo Kaykay."
+  },
+  "contact": {
     "kicker": "DYANE CONCIERGE",
     "titre": "CONTACT THE HOUSE",
     "intro": "For any collaboration request, private order, partnership or press enquiry, our concierge team will respond as soon as possible.",
@@ -146,5 +146,5 @@
     "envoyer": "SEND",
     "merci": "Your message has been sent. We will get back to you within 48 hours.",
     "options": ["Private order", "Hotel partnership", "Artistic collaboration", "Press & media", "Other"]
-}
+  }
 }
