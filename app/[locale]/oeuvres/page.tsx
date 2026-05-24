@@ -14,7 +14,7 @@ export default function OeuvresPage() {
     const t = useTranslations('oeuvres')
     return (
         <main style={{ background: '#fff' }}>
-            <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+            <section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
                 <Image src="/2.png" alt="Dyane Paris Oeuvres" fill style={{ objectFit: 'cover' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)' }} />
                 <div style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
