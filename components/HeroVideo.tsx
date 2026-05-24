@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl'
 
 export default function HeroVideo() {
-    const t = useTranslations('home')
+    const t = useTranslations('hero')
     return (
         <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', background: '#0d0d0d' }}>
             <video
@@ -16,10 +16,10 @@ export default function HeroVideo() {
             </video>
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
             <div style={{ position: 'absolute', bottom: '60px', left: '48px', textAlign: 'left', color: '#fff', maxWidth: '600px' }}>
-    <p style={{ fontFamily: 'Lora, serif', fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.75, margin: '0 0 12px' }}>{t('kicker')}</p>
-    <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(16px, 2vw, 28px)', fontWeight: 400, letterSpacing: '0.04em', textTransform: 'uppercase', lineHeight: 1.2, margin: '0 0 16px' }}>{t('titre')}</h1>
-    <p style={{ fontFamily: 'Lora, serif', fontSize: '12px', letterSpacing: '0.06em', lineHeight: 1.7, opacity: 0.75, margin: 0 }}>{t('sous_titre')}</p>
-</div>
+                <p style={{ fontFamily: 'Lora, serif', fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.75, margin: '0 0 12px' }}>{t('kicker')}</p>
+                <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(16px, 2vw, 28px)', fontWeight: 400, letterSpacing: '0.04em', textTransform: 'uppercase', lineHeight: 1.2, margin: '0 0 16px' }}>{t('titre')}</h1>
+                <p style={{ fontFamily: 'Lora, serif', fontSize: '12px', letterSpacing: '0.06em', lineHeight: 1.7, opacity: 0.75, margin: 0 }}>{t('sous_titre')}</p>
+            </div>
         </section>
     )
 }
