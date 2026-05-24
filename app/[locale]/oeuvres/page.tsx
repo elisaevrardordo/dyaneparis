@@ -14,13 +14,23 @@ export default function OeuvresPage() {
     const t = useTranslations('oeuvres')
     return (
         <main style={{ background: '#fff' }}>
-            <section style={{ position: 'relative', width: '100%', height: '50vh', overflow: 'hidden' }}>
-    <Image src="/2.png" alt="Dyane Paris Oeuvres" fill style={{ objectFit: 'cover' }} />
-    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }} />
-    <div style={{ position: 'absolute', bottom: '40px', left: '40px' }}>
-        <h1 style={{ ...font, color: '#fff', fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>{t('titre')}</h1>
-    </div>
-</section>
+            <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+                <Image src="/2.png" alt="Dyane Paris Oeuvres" fill style={{ objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)' }} />
+                <div style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
+                    <p style={{
+                        ...font,
+                        color: 'rgba(255,255,255,0.7)',
+                        fontSize: '11px',
+                        letterSpacing: '0.28em',
+                        textTransform: 'uppercase',
+                        fontWeight: 400,
+                    }}>
+                        {t('decouvrir_intro')}
+                    </p>
+                </div>
+            </section>
+
             {oeuvres.map((oeuvre) => (
                 <section key={oeuvre.id} style={{ padding: '60px 24px', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
