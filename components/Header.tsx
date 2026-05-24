@@ -43,13 +43,7 @@ export default function Header() {
     ]
 
     return (
-        <header
-            style={{
-                background: '#0d0d0d',
-                position: 'relative',
-                zIndex: 50,
-            }}
-        >
+       <header style={{ background: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50 }}>
             {/* Logo */}
             <div
                 style={{
