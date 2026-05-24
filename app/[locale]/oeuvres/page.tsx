@@ -35,7 +35,6 @@ const oeuvres = [
         titre: 'TEO FOR DYANE',
         cle_sous_titre: 'teo_sous_titre',
         images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443930/Capture_d_ecran_2026-04-02_a_13.55.34_lebijo.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
