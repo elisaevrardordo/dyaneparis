@@ -24,7 +24,7 @@ export default function OeuvresPage() {
                 <section key={oeuvre.id} style={{ padding: '60px 24px', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '200px 1fr', gap: '40px', alignItems: 'start' }}>
                         <div>
-                            <h2 style={{ ...font, fontSize: '22px', fontWeight: 600, letterSpacing: '0.04em', margin: '0 0 12px', textTransform: 'uppercase' }}>{oeuvre.titre}</h2>
+                            <h2 style={{ ...font, fontSize: '22px', fontWeight: 600, letterSpacing: '0.04em', margin: '0 0 12px', textTransform: 'uppercase' }}>{t(oeuvre.cle_sous_titre)}</h2>
                             <p style={{ ...font, fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.7, lineHeight: 1.6, margin: '0 0 24px' }}>{oeuvre.sous_titre}</p>
                             <Link href={oeuvre.href} style={{ ...font, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
                                 DÉCOUVRIR
