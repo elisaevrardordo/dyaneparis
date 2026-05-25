@@ -106,7 +106,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
 
             {/* Hero image */}
             {heroImg && (
-                <section style={{ position: 'relative', width: '100%', height: '30vh', overflow: 'hidden' }}>
+                <section style={{ position: 'relative', width: '100%', height: '20vh', overflow: 'hidden' }}>
                     <Image src={heroImg} alt={produit.nom} fill style={{ objectFit: 'cover' }} />
                 </section>
             )}
