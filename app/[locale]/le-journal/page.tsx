@@ -40,6 +40,9 @@ export default function LeJournalPage() {
         <>
             <style>{`
                 @media (max-width: 768px) {
+                    .journal-hero { height: 45vh !important; }
+                    .journal-hero-text { left: 24px !important; bottom: 24px !important; }
+                    .journal-hero-h1 { font-size: 18px !important; }
                     .journal-layout { flex-direction: column !important; }
                     .journal-sidebar { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; padding: 24px 20px !important; }
                     .journal-preview { display: none !important; }
@@ -52,14 +55,25 @@ export default function LeJournalPage() {
             `}</style>
             <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
 
-                {/* Header */}
-                <div style={{ padding: '80px 24px 0', textAlign: 'center' }}>
-                    <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, marginBottom: '12px' }}>Dyane Paris</p>
-                    <h1 style={{ ...font, fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 400, letterSpacing: '0.02em', margin: 0 }}>{t('titre')}</h1>
+                {/* Hero image */}
+                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '55vh', overflow: 'hidden' }}>
+                    <Image
+                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
+                        alt="Le Journal Dyane Paris"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
+                    <div className="journal-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
+                        <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '10px' }}>Dyane Paris</p>
+                        <h1 className="journal-hero-h1" style={{ ...font, fontSize: 'clamp(18px, 2.2vw, 30px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, maxWidth: '560px', lineHeight: 1.3 }}>
+                            {t('titre')}
+                        </h1>
+                    </div>
                 </div>
 
                 {/* Layout Jacquemus — sidebar + images */}
-                <div className="journal-layout" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.08)', marginTop: '48px', minHeight: '560px' }}>
+                <div className="journal-layout" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.08)', minHeight: '560px' }}>
 
                     {/* Sidebar titres */}
                     <div className="journal-sidebar" style={{ width: '340px', flexShrink: 0, borderRight: '1px solid rgba(0,0,0,0.08)', padding: '40px' }}>
@@ -79,7 +93,7 @@ export default function LeJournalPage() {
                                     transition: 'opacity 0.25s ease',
                                 }}
                             >
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.4, marginBottom: '6px', margin: '0 0 6px' }}>{article.date}</p>
+                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 6px' }}>{article.date}</p>
                                 <p style={{ ...font, fontSize: '15px', fontWeight: 400, lineHeight: 1.35, margin: 0 }}>{article.titre}</p>
                             </Link>
                         ))}
