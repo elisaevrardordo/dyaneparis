@@ -32,9 +32,8 @@ export default function ContactPage() {
     const inputStyle = {
         ...lora,
         width: '100%',
-        padding: '16px 0',
-        border: 'none',
-        borderBottom: '1px solid rgba(255,255,255,0.35)',
+        padding: '16px 18px',
+        border: '1px solid rgba(255,255,255,0.72)',
         background: 'transparent',
         fontSize: '11px',
         letterSpacing: '0.18em',
@@ -63,27 +62,29 @@ export default function ContactPage() {
 
                     .contact-form-row {
                         grid-template-columns: 1fr !important;
-                        gap: 0 !important;
+                        gap: 12px !important;
                     }
 
                     .contact-h1 {
-                        font-size: 34px !important;
+                        font-size: 28px !important;
                     }
                 }
 
-                input,
-                textarea,
-                select {
+                input.contact-field,
+                textarea.contact-field,
+                select.contact-field {
                     background: transparent !important;
+                    background-color: transparent !important;
                     color: #fff !important;
                     -webkit-text-fill-color: #fff !important;
+                    border: 1px solid rgba(255,255,255,0.72) !important;
                     border-radius: 0 !important;
                 }
 
-                input::placeholder,
-                textarea::placeholder {
-                    color: rgba(255,255,255,0.58) !important;
-                    -webkit-text-fill-color: rgba(255,255,255,0.58) !important;
+                .contact-field::placeholder {
+                    color: #fff !important;
+                    -webkit-text-fill-color: #fff !important;
+                    opacity: 1 !important;
                 }
 
                 select option {
@@ -91,15 +92,13 @@ export default function ContactPage() {
                     background: #fff !important;
                 }
 
-                input:focus,
-                textarea:focus,
-                select:focus {
-                    border-bottom-color: rgba(255,255,255,0.9) !important;
+                .contact-field:focus {
+                    border-color: #fff !important;
                 }
 
-                input:-webkit-autofill,
-                input:-webkit-autofill:hover,
-                input:-webkit-autofill:focus {
+                .contact-field:-webkit-autofill,
+                .contact-field:-webkit-autofill:hover,
+                .contact-field:-webkit-autofill:focus {
                     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
                     -webkit-text-fill-color: #fff !important;
                     transition: background-color 5000s ease-in-out 0s;
@@ -161,11 +160,11 @@ export default function ContactPage() {
                                     width: '100%',
                                     maxWidth: '720px',
                                     padding: '52px 56px',
-                                    background: 'rgba(255,255,255,0.075)',
-                                    border: '1px solid rgba(255,255,255,0.28)',
-                                    backdropFilter: 'blur(16px)',
-                                    WebkitBackdropFilter: 'blur(16px)',
-                                    boxShadow: '0 28px 90px rgba(0,0,0,0.38)',
+                                    background: 'transparent',
+                                    border: 'none',
+                                    backdropFilter: 'none',
+                                    WebkitBackdropFilter: 'none',
+                                    boxShadow: 'none',
                                 }}
                             >
                                 <p
@@ -185,7 +184,7 @@ export default function ContactPage() {
                                     className="contact-h1"
                                     style={{
                                         ...font,
-                                        fontSize: 'clamp(34px, 4.4vw, 66px)',
+                                        fontSize: 'clamp(28px, 3.2vw, 48px)',
                                         fontWeight: 400,
                                         lineHeight: 0.95,
                                         marginBottom: '18px',
@@ -225,11 +224,11 @@ export default function ContactPage() {
                                                 marginBottom: '24px',
                                             }}
                                         >
-                                            <input placeholder="PRÉNOM NOM *" style={inputStyle} />
-                                            <input type="email" placeholder="E-MAIL *" style={inputStyle} />
+                                            <input className="contact-field" placeholder="PRÉNOM NOM *" style={inputStyle} />
+                                            <input className="contact-field" type="email" placeholder="E-MAIL *" style={inputStyle} />
                                         </div>
 
-                                        <select style={{ ...inputStyle, marginBottom: '24px' }}>
+                                        <select className="contact-field" style={{ ...inputStyle, marginBottom: '24px' }}>
                                             <option value="" disabled>
                                                 PAYS / RÉGION *
                                             </option>
@@ -249,11 +248,11 @@ export default function ContactPage() {
                                                 marginBottom: '24px',
                                             }}
                                         >
-                                            <input placeholder="CODE POSTAL *" style={inputStyle} />
-                                            <input placeholder="VILLE *" style={inputStyle} />
+                                            <input className="contact-field" placeholder="CODE POSTAL *" style={inputStyle} />
+                                            <input className="contact-field" placeholder="VILLE *" style={inputStyle} />
                                         </div>
 
-                                        <select style={{ ...inputStyle, marginBottom: '24px' }}>
+                                        <select className="contact-field" style={{ ...inputStyle, marginBottom: '24px' }}>
                                             <option value="" disabled>
                                                 INFORMATIONS SUR NOS COCKTAILS
                                             </option>
@@ -265,6 +264,7 @@ export default function ContactPage() {
                                         </select>
 
                                         <textarea
+                                            className="contact-field"
                                             placeholder="VOTRE MESSAGE *"
                                             rows={4}
                                             style={{

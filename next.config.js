@@ -13,12 +13,6 @@ const nextConfig = {
       { source: '/blogs/:path*', destination: '/le-journal', permanent: true },
       { source: '/pages/la-maison', destination: '/la-maison', permanent: true },
       { source: '/pages/experiences', destination: '/experiences', permanent: true },
-      { source: '/contact', destination: '/fr/contact', permanent: false },
-      { source: '/confidentialite', destination: '/fr/confidentialite', permanent: false },
-{ source: '/cgv', destination: '/fr/cgv', permanent: false },
-{ source: '/cookies', destination: '/fr/cookies', permanent: false },
-{ source: '/mentions-legales', destination: '/fr/mentions-legales', permanent: false },
-{ source: '/faq', destination: '/fr/faq', permanent: false },
     ]
   },
 }

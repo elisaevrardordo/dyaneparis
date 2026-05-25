@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 
 const cormorant = 'Cormorant Garamond, Garamond, serif'
 const lora = 'Lora, serif'
@@ -9,32 +8,18 @@ const bordeaux = '#6B1A2A'
 
 export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     const [visible, setVisible] = useState(false)
-    const [lang, setLang] = useState<'fr' | 'en'>(currentLocale === 'en' ? 'en' : 'fr')
-    const [langOpen, setLangOpen] = useState(false)
     const [hovering, setHovering] = useState<string | null>(null)
-    const pathname = usePathname()
+    const lang = currentLocale === 'en' ? 'en' : 'fr'
 
     useEffect(() => {
         const confirmed = sessionStorage.getItem('age-confirmed')
-        const savedLang = sessionStorage.getItem('age-lang') as 'fr' | 'en' | null
-
-        if (confirmed && savedLang) {
-            const currentLocaleFromPath = pathname.split('/')[1]
-            if (savedLang !== currentLocaleFromPath) {
-                window.location.href = '/' + savedLang
-            }
-            return
-        }
-
+        sessionStorage.removeItem('age-lang')
         if (!confirmed) setVisible(true)
-        setLang(currentLocale === 'en' ? 'en' : 'fr')
-    }, [pathname, currentLocale])
+    }, [])
 
     function confirm() {
         sessionStorage.setItem('age-confirmed', 'true')
-        sessionStorage.setItem('age-lang', lang)
         setVisible(false)
-        window.location.href = '/' + lang
     }
 
     function deny() {
@@ -51,10 +36,8 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
         yes: lang === 'fr' ? "J'ai l'âge légal" : 'I Am of Legal Age',
         no: lang === 'fr' ? "Je n'ai pas l'âge légal" : 'I Am Not of Legal Age',
         legal: lang === 'fr'
-            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href="/confidentialite" style={{ color: '#999', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
-            : <>By entering, you confirm you are of legal drinking age and agree to our <a href="/confidentialite" style={{ color: '#999', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
-        langLabel: lang === 'fr' ? 'Langue' : 'Language',
-        langName: lang === 'fr' ? 'Français' : 'English',
+            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href={`/${lang}/confidentialite`} style={{ color: '#999', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
+            : <>By entering, you confirm you are of legal drinking age and agree to our <a href={`/${lang}/confidentialite`} style={{ color: '#999', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
     }
 
     return (
@@ -69,8 +52,6 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     .agegate-logo { height: 70px !important; margin-bottom: 20px !important; }
                     .agegate-headline { font-size: 20px !important; margin-bottom: 8px !important; }
                     .agegate-sub { font-size: 11px !important; margin-bottom: 20px !important; }
-                    .agegate-lang { margin-bottom: 20px !important; }
-                    .agegate-lang-btn { width: 160px !important; }
                     .agegate-btn { padding: 12px 16px !important; font-size: 10px !important; }
                     .agegate-legal { font-size: 9px !important; margin-top: 18px !important; }
                 }
@@ -130,94 +111,6 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     }}>
                         {t.sub}
                     </p>
-
-                    {/* Language selector */}
-                    <div className="agegate-lang" style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ position: 'relative', width: '200px' }}>
-                            <button
-                                className="agegate-lang-btn"
-                                onClick={() => setLangOpen(!langOpen)}
-                                style={{
-                                    width: '100%',
-                                    fontFamily: lora,
-                                    fontSize: '9px',
-                                    letterSpacing: '0.28em',
-                                    textTransform: 'uppercase',
-                                    color: '#111',
-                                    background: 'transparent',
-                                    border: '1px solid #ddd',
-                                    padding: '11px 36px 11px 14px',
-                                    cursor: 'pointer',
-                                    textAlign: 'left',
-                                    position: 'relative',
-                                    transition: 'border-color 0.2s ease',
-                                }}
-                            >
-                                <span style={{
-                                    fontFamily: lora,
-                                    fontSize: '8px',
-                                    letterSpacing: '0.2em',
-                                    color: '#bbb',
-                                    display: 'block',
-                                    marginBottom: '3px',
-                                    textTransform: 'uppercase',
-                                }}>
-                                    {t.langLabel}
-                                </span>
-                                {t.langName}
-                                <span style={{
-                                    position: 'absolute',
-                                    right: '14px',
-                                    top: '50%',
-                                    transform: langOpen ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)',
-                                    transition: 'transform 0.2s ease',
-                                    fontSize: '9px',
-                                    color: '#bbb',
-                                }}>▾</span>
-                            </button>
-
-                            {langOpen && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '100%',
-                                    left: 0,
-                                    width: '100%',
-                                    background: '#fff',
-                                    border: '1px solid #ddd',
-                                    borderTop: 'none',
-                                    zIndex: 10,
-                                    boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                                }}>
-                                    {(['fr', 'en'] as const).map((l) => (
-                                        <button
-                                            key={l}
-                                            onClick={() => { setLang(l); setLangOpen(false) }}
-                                            style={{
-                                                width: '100%',
-                                                fontFamily: lora,
-                                                fontSize: '9px',
-                                                letterSpacing: '0.25em',
-                                                textTransform: 'uppercase',
-                                                color: lang === l ? '#111' : '#aaa',
-                                                background: 'transparent',
-                                                border: 'none',
-                                                padding: '12px 14px',
-                                                cursor: 'pointer',
-                                                textAlign: 'left',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '10px',
-                                                transition: 'color 0.15s ease',
-                                            }}
-                                        >
-                                            <span style={{ width: '14px', display: 'inline-block' }} />
-                                            {l === 'fr' ? 'Français' : 'English'}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
 
                     {/* Buttons */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
