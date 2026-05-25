@@ -28,47 +28,54 @@ export default function Header() {
                 @media (max-width: 768px) {
                     .header-desktop-nav { display: none !important; }
                     .header-mobile-btn { display: flex !important; }
+                    .header-logo-wrap { grid-template-columns: 1fr auto 1fr !important; }
                 }
                 @media (min-width: 769px) {
                     .header-desktop-nav { display: flex !important; }
                     .header-mobile-btn { display: none !important; }
+                    .header-logo-wrap { justify-content: center !important; display: flex !important; }
                 }
             `}</style>
 
             <header style={{ background: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50 }}>
 
-                {/* Logo + bouton hamburger mobile */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px' }}>
+                {/* Logo centré desktop / logo gauche + hamburger droite mobile */}
+                <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '20px 24px 16px' }}>
+
+                    {/* Espace gauche vide sur desktop, invisible */}
+                    <div />
+
+                    {/* Logo centré */}
                     <Link href={`/${locale}`} style={{ textDecoration: 'none' }}>
                         <img
                             src="/LogoDYANE_blanc.png"
                             alt="Dyane Paris"
-                            style={{ height: '52px', width: 'auto', display: 'block' }}
+                            style={{ height: '60px', width: 'auto', display: 'block' }}
                         />
                     </Link>
 
-                    {/* Hamburger mobile */}
-                    <button
-                        className="header-mobile-btn"
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        style={{
-                            display: 'none',
-                            ...fontNav,
-                            color: '#fff',
-                            background: 'none',
-                            border: 'none',
-                            fontSize: '10px',
-                            letterSpacing: '0.22em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            padding: 0,
-                        }}
-                    >
-                        {menuOpen ? '✕' : '☰'}
-                    </button>
+                    {/* Hamburger à droite sur mobile */}
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <button
+                            className="header-mobile-btn"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                            style={{
+                                display: 'none',
+                                color: '#fff',
+                                background: 'none',
+                                border: 'none',
+                                fontSize: '24px',
+                                cursor: 'pointer',
+                                padding: '4px 8px',
+                                lineHeight: 1,
+                            }}
+                        >
+                            {menuOpen ? '✕' : '☰'}
+                        </button>
+                    </div>
                 </div>
 
-                {/* Desktop nav — centré sous le logo */}
+                {/* Desktop nav */}
                 <nav
                     className="header-desktop-nav"
                     style={{
@@ -101,15 +108,15 @@ export default function Header() {
                     ))}
                 </nav>
 
-                {/* Mobile menu déroulant */}
+                {/* Mobile menu déroulant transparent */}
                 {menuOpen && (
                     <nav style={{
-                        background: 'rgba(0,0,0,0.92)',
+                        background: 'transparent',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '28px',
-                        padding: '40px 24px',
+                        gap: '32px',
+                        padding: '48px 24px',
                         borderTop: '1px solid rgba(255,255,255,0.08)',
                     }}>
                         {navLinks.map((link) => (
@@ -120,11 +127,11 @@ export default function Header() {
                                 style={{
                                     ...fontNav,
                                     color: '#fff',
-                                    fontSize: '13px',
+                                    fontSize: '14px',
                                     letterSpacing: '0.28em',
                                     textTransform: 'uppercase',
                                     textDecoration: 'none',
-                                    opacity: 0.85,
+                                    opacity: 0.9,
                                 }}
                             >
                                 {link.label}
