@@ -102,23 +102,24 @@ const articles: Record<string, {
         titre: "L'Exigence des Ingrédients : Alcool Vinique et Filières Françaises",
         date: '10 FÉVRIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDIENTS_jnqiij.png',
-        extrait: "Chez Dyane Paris, chaque ingrédient est une décision. L'alcool vinique élaboré en France, les fruits, les plantes — rien n'est laissé au hasard.",
+        extrait: "Chez Dyane Paris, chaque ingrédient est un choix délibéré.
+De l’alcool vinique élaboré en France aux fruits, plantes et épices sélectionnés avec précision, rien n’est laissé au hasard. Chaque composant est pensé pour apporter équilibre, profondeur et signature aromatique à nos créations.",
         contenu: (
             <>
                 <h2>LE CHOIX DE L'ALCOOL VINIQUE</h2>
-                <p>Chez Dyane Paris, tout commence par la base. L'alcool vinique — issu de la fermentation puis de la distillation du vin — constitue le fondement de chacune de nos créations. Contrairement aux alcools neutres de grain, l'alcool vinique apporte une profondeur aromatique naturelle et une rondeur qui subliment chaque ingrédient qu'il accueille.</p>
-                <p>Élaboré exclusivement en France, dans la région d'Avignon, cet alcool est sélectionné pour sa pureté à 96%, sa neutralité aromatique maîtrisée et sa capacité à porter les ingrédients sans les écraser.</p>
+                <p>Nous avons choisi un alcool vinique issu de la fermentation puis de la distillation du vin, élaboré exclusivement en France, dans la région d’Avignon, après les vendanges bordelaises. Plus noble et plus complexe qu’un alcool neutre de grain, il apporte une texture plus ronde, une longueur plus élégante et une profondeur naturelle qui sublime les ingrédients sans jamais les dominer.</p>
+                <p>Sélectionné pour sa pureté à 96 %, cet alcool se distingue par sa neutralité aromatique maîtrisée : suffisamment discrète pour laisser s’exprimer chaque note, suffisamment structurée pour donner de la tenue et du relief à l’ensemble.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDINETS_b7p9za.png" alt="Ingrédients Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>DES FRUITS ET PLANTES D'EXCEPTION</h2>
-                <p>Le fruit de la passion provient de filières sélectionnées pour leur maturité et leur intensité. La vanille est une Madagascar Bourbon Gold, reconnue pour sa rondeur exceptionnelle. Le gingembre, issu de producteurs français, libère une chaleur nette et précise.</p>
-                <p>Chaque ingrédient fait l'objet d'une sélection rigoureuse. Nous travaillons uniquement avec des filières capables de garantir une constance qualitative d'un batch à l'autre.</p>
+                <p>Le fruit de la passion provient de filières sélectionnées pour la richesse de leur maturité et l’intensité naturelle de leurs arômes. La vanille utilisée dans nos créations est une Bourbon Gold de La Réunion, reconnue pour sa rondeur profonde et ses notes chaudes et enveloppantes. Le gingembre, issu de producteurs français, révèle une chaleur vive, nette et parfaitement équilibrée.</p>
+                <p>Chaque ingrédient fait l'objet d'une sélection rigoureuse. Nous travaillons exclusivement avec des partenaires capables de garantir une qualité irréprochable d’un batch à l’autre, afin de préserver l’identité sensorielle de chaque création Dyane Paris.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/INGREDIENTS_2_giygrp.png" alt="Ingrédients locaux Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>UN ENGAGEMENT POUR LE TERROIR FRANÇAIS</h2>
-                <p>Dyane Paris est une Maison profondément ancrée dans le terroir français. Nos cocktails ne sont pas seulement fabriqués en France — ils sont pensés, élaborés et assemblés avec des ingrédients qui racontent une géographie, une saison, un geste artisanal.</p>
+                <p>Dyane Paris est une Maison profondément ancrée dans le terroir français. Nos cocktails ne sont pas seulement fabriqués en France: ils sont pensés, élaborés et assemblés avec des ingrédients qui racontent une géographie, une saison, un geste artisanal.</p>
                 <blockquote>« NOUS NE FAISONS PAS DES COCKTAILS. NOUS FAISONS DES INTERPRÉTATIONS D'UN TERRITOIRE ET D'UNE SAISON, CAPTURÉES DANS UN FLACON. »</blockquote>
             </>
         ),
@@ -133,10 +134,12 @@ const articles: Record<string, {
         titre: 'TEO FOR DYANE',
         date: '18 JANVIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png',
-        extrait: "Une collaboration entre Dyane Paris et le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay.",
+        extrait: "Quand l’univers de Dyane Paris rencontre celui du peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay, la bouteille cesse d’être un simple contenant pour devenir une œuvre vivante.Dyane Paris dévoile une collaboration artistique avec Teo Kaykay, artiste reconnu pour son langage visuel instinctif, ses compositions spontanées et sa palette vibrante. Son travail, à la frontière entre abstraction contemporaine et énergie urbaine, trouve ici un nouveau terrain d’expression : la sculpture en porcelaine Dyane.",
         contenu: (
             <>
-                <p>Dyane Paris a noué une collaboration artistique avec Matteo Mengacci, alias Teo Kaykay, peintre dont l'univers visuel se distingue par une énergie brute et une palette audacieuse.</p>
+                <p>Cette rencontre entre deux univers créatifs — l’Art Liquide de Dyane et la peinture libre de Teo — donne naissance à une série de pièces uniques, entièrement peintes à la main.<p>
+                     <p>Chaque bouteille est pensée comme une sculpture d’expression : un objet où la matière, la couleur et le cocktail dialoguent dans un même geste artistique. Les formes deviennent support de mouvement, les volumes capturent la lumière, et chaque création porte les traces d’un travail instinctif et singulier.<p>
+ <p>Ici, le cocktail ne se contente plus d’être dégusté : il s’expose.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_2_whlyb1.png" alt="Teo Kaykay Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
