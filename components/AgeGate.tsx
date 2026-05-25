@@ -58,209 +58,227 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     }
 
     return (
-        <div style={{
-            position: 'fixed', inset: 0, zIndex: 9999,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            backgroundImage: 'url(/hero.png)',
-            backgroundSize: 'cover', backgroundPosition: 'center',
-        }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
-
+        <>
+            <style>{`
+                @media (max-width: 768px) {
+                    .agegate-card {
+                        padding: 28px 24px 24px !important;
+                        margin: 16px !important;
+                        width: calc(100% - 32px) !important;
+                    }
+                    .agegate-logo { height: 70px !important; margin-bottom: 20px !important; }
+                    .agegate-headline { font-size: 20px !important; margin-bottom: 8px !important; }
+                    .agegate-sub { font-size: 11px !important; margin-bottom: 20px !important; }
+                    .agegate-lang { margin-bottom: 20px !important; }
+                    .agegate-lang-btn { width: 160px !important; }
+                    .agegate-btn { padding: 12px 16px !important; font-size: 10px !important; }
+                    .agegate-legal { font-size: 9px !important; margin-top: 18px !important; }
+                }
+            `}</style>
             <div style={{
-                position: 'relative',
-                background: '#fff',
-                width: '100%',
-                maxWidth: '480px',
-                padding: '48px 44px 36px',
-                textAlign: 'center',
-                boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
+                position: 'fixed', inset: 0, zIndex: 9999,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                backgroundImage: 'url(/hero.png)',
+                backgroundSize: 'cover', backgroundPosition: 'center',
             }}>
-                {/* Logo */}
-                <div style={{ marginBottom: '36px' }}>
-                    <img
-                        src="/LogoDYANE_noir.png"
-                        alt="Dyane Paris"
-                        style={{ height: '110px', width: 'auto', display: 'inline-block' }}
-                        onError={(e) => {
-                            const img = e.target as HTMLImageElement
-                            img.src = '/LogoDYANE_blanc.png'
-                            img.style.filter = 'invert(1)'
-                        }}
-                    />
-                </div>
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
 
-                {/* Headline */}
-                <h1 style={{
-                    fontFamily: cormorant,
-                    fontSize: 'clamp(22px, 3.5vw, 28px)',
-                    fontWeight: 400,
-                    lineHeight: 1.45,
-                    color: '#111',
-                    marginBottom: '12px',
-                    letterSpacing: '0.02em',
+                <div className="agegate-card" style={{
+                    position: 'relative',
+                    background: '#fff',
+                    width: '100%',
+                    maxWidth: '480px',
+                    padding: '48px 44px 36px',
+                    textAlign: 'center',
+                    boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
                 }}>
-                    {t.headline}
-                </h1>
+                    {/* Logo */}
+                    <div style={{ marginBottom: '36px' }}>
+                        <img
+                            className="agegate-logo"
+                            src="/LogoDYANE_noir.png"
+                            alt="Dyane Paris"
+                            style={{ height: '110px', width: 'auto', display: 'inline-block' }}
+                            onError={(e) => {
+                                const img = e.target as HTMLImageElement
+                                img.src = '/LogoDYANE_blanc.png'
+                                img.style.filter = 'invert(1)'
+                            }}
+                        />
+                    </div>
 
-                {/* Subline */}
-                <p style={{
-                    fontFamily: lora,
-                    fontSize: '12px',
-                    color: '#aaa',
-                    marginBottom: '28px',
-                    lineHeight: 1.6,
-                }}>
-                    {t.sub}
-                </p>
+                    {/* Headline */}
+                    <h1 className="agegate-headline" style={{
+                        fontFamily: cormorant,
+                        fontSize: 'clamp(20px, 3.5vw, 28px)',
+                        fontWeight: 400,
+                        lineHeight: 1.45,
+                        color: '#111',
+                        marginBottom: '12px',
+                        letterSpacing: '0.02em',
+                    }}>
+                        {t.headline}
+                    </h1>
 
-                {/* Language selector */}
-                <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ position: 'relative', width: '200px' }}>
+                    {/* Subline */}
+                    <p className="agegate-sub" style={{
+                        fontFamily: lora,
+                        fontSize: '12px',
+                        color: '#aaa',
+                        marginBottom: '28px',
+                        lineHeight: 1.6,
+                    }}>
+                        {t.sub}
+                    </p>
+
+                    {/* Language selector */}
+                    <div className="agegate-lang" style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
+                        <div style={{ position: 'relative', width: '200px' }}>
+                            <button
+                                className="agegate-lang-btn"
+                                onClick={() => setLangOpen(!langOpen)}
+                                style={{
+                                    width: '100%',
+                                    fontFamily: lora,
+                                    fontSize: '9px',
+                                    letterSpacing: '0.28em',
+                                    textTransform: 'uppercase',
+                                    color: '#111',
+                                    background: 'transparent',
+                                    border: '1px solid #ddd',
+                                    padding: '11px 36px 11px 14px',
+                                    cursor: 'pointer',
+                                    textAlign: 'left',
+                                    position: 'relative',
+                                    transition: 'border-color 0.2s ease',
+                                }}
+                            >
+                                <span style={{
+                                    fontFamily: lora,
+                                    fontSize: '8px',
+                                    letterSpacing: '0.2em',
+                                    color: '#bbb',
+                                    display: 'block',
+                                    marginBottom: '3px',
+                                    textTransform: 'uppercase',
+                                }}>
+                                    {t.langLabel}
+                                </span>
+                                {t.langName}
+                                <span style={{
+                                    position: 'absolute',
+                                    right: '14px',
+                                    top: '50%',
+                                    transform: langOpen ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)',
+                                    transition: 'transform 0.2s ease',
+                                    fontSize: '9px',
+                                    color: '#bbb',
+                                }}>▾</span>
+                            </button>
+
+                            {langOpen && (
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '100%',
+                                    left: 0,
+                                    width: '100%',
+                                    background: '#fff',
+                                    border: '1px solid #ddd',
+                                    borderTop: 'none',
+                                    zIndex: 10,
+                                    boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                                }}>
+                                    {(['fr', 'en'] as const).map((l) => (
+                                        <button
+                                            key={l}
+                                            onClick={() => { setLang(l); setLangOpen(false) }}
+                                            style={{
+                                                width: '100%',
+                                                fontFamily: lora,
+                                                fontSize: '9px',
+                                                letterSpacing: '0.25em',
+                                                textTransform: 'uppercase',
+                                                color: lang === l ? '#111' : '#aaa',
+                                                background: 'transparent',
+                                                border: 'none',
+                                                padding: '12px 14px',
+                                                cursor: 'pointer',
+                                                textAlign: 'left',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px',
+                                                transition: 'color 0.15s ease',
+                                            }}
+                                        >
+                                            <span style={{ width: '14px', display: 'inline-block' }} />
+                                            {l === 'fr' ? 'Français' : 'English'}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Buttons */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <button
-                            onClick={() => setLangOpen(!langOpen)}
+                            className="agegate-btn"
+                            onClick={confirm}
+                            onMouseEnter={() => setHovering('yes')}
+                            onMouseLeave={() => setHovering(null)}
                             style={{
-                                width: '100%',
-                                fontFamily: lora,
-                                fontSize: '9px',
-                                letterSpacing: '0.28em',
+                                fontFamily: playfair,
+                                background: hovering === 'yes' ? bordeaux : 'transparent',
+                                color: hovering === 'yes' ? '#fff' : bordeaux,
+                                border: `1px solid ${bordeaux}`,
+                                padding: '15px 24px',
+                                fontSize: '11px',
+                                letterSpacing: '0.2em',
                                 textTransform: 'uppercase',
-                                color: '#111',
-                                background: 'transparent',
-                                border: '1px solid #ddd',
-                                padding: '11px 36px 11px 14px',
                                 cursor: 'pointer',
-                                textAlign: 'left',
-                                position: 'relative',
-                                transition: 'border-color 0.2s ease',
+                                transition: 'all 0.25s ease',
+                                width: '100%',
                             }}
                         >
-                            <span style={{
-                                fontFamily: lora,
-                                fontSize: '8px',
-                                letterSpacing: '0.2em',
-                                color: '#bbb',
-                                display: 'block',
-                                marginBottom: '3px',
-                                textTransform: 'uppercase',
-                            }}>
-                                {t.langLabel}
-                            </span>
-                            {t.langName}
-                            <span style={{
-                                position: 'absolute',
-                                right: '14px',
-                                top: '50%',
-                                transform: langOpen ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)',
-                                transition: 'transform 0.2s ease',
-                                fontSize: '9px',
-                                color: '#bbb',
-                            }}>▾</span>
+                            {t.yes}
                         </button>
 
-                        {langOpen && (
-                            <div style={{
-                                position: 'absolute',
-                                top: '100%',
-                                left: 0,
+                        <button
+                            className="agegate-btn"
+                            onClick={deny}
+                            onMouseEnter={() => setHovering('no')}
+                            onMouseLeave={() => setHovering(null)}
+                            style={{
+                                fontFamily: playfair,
+                                background: 'transparent',
+                                color: hovering === 'no' ? '#555' : '#ccc',
+                                border: '1px solid #eee',
+                                padding: '15px 24px',
+                                fontSize: '11px',
+                                letterSpacing: '0.2em',
+                                textTransform: 'uppercase',
+                                cursor: 'pointer',
+                                transition: 'all 0.25s ease',
                                 width: '100%',
-                                background: '#fff',
-                                border: '1px solid #ddd',
-                                borderTop: 'none',
-                                zIndex: 10,
-                                boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                            }}>
-                                {(['fr', 'en'] as const).map((l) => (
-                                    <button
-                                        key={l}
-                                        onClick={() => { setLang(l); setLangOpen(false) }}
-                                        style={{
-                                            width: '100%',
-                                            fontFamily: lora,
-                                            fontSize: '9px',
-                                            letterSpacing: '0.25em',
-                                            textTransform: 'uppercase',
-                                            color: lang === l ? '#111' : '#aaa',
-                                            background: 'transparent',
-                                            border: 'none',
-                                            padding: '12px 14px',
-                                            cursor: 'pointer',
-                                            textAlign: 'left',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '10px',
-                                            transition: 'color 0.15s ease',
-                                        }}
-                                        onMouseEnter={e => (e.currentTarget.style.color = '#111')}
-                                        onMouseLeave={e => (e.currentTarget.style.color = lang === l ? '#111' : '#aaa')}
-                                    >
-                                        <span style={{ width: '14px', display: 'inline-block' }} />
-                                        {l === 'fr' ? 'Français' : 'English'}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                            }}
+                        >
+                            {t.no}
+                        </button>
                     </div>
+
+                    {/* Legal */}
+                    <p className="agegate-legal" style={{
+                        fontFamily: lora,
+                        color: '#ccc',
+                        fontSize: '10px',
+                        lineHeight: 1.9,
+                        marginTop: '28px',
+                        letterSpacing: '0.03em',
+                    }}>
+                        {t.legal}
+                    </p>
                 </div>
-
-                {/* Buttons */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <button
-                        onClick={confirm}
-                        onMouseEnter={() => setHovering('yes')}
-                        onMouseLeave={() => setHovering(null)}
-                        style={{
-                            fontFamily: playfair,
-                            background: hovering === 'yes' ? bordeaux : 'transparent',
-                            color: hovering === 'yes' ? '#fff' : bordeaux,
-                            border: `1px solid ${bordeaux}`,
-                            padding: '15px 24px',
-                            fontSize: '11px',
-                            letterSpacing: '0.2em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            transition: 'all 0.25s ease',
-                            width: '100%',
-                            fontStyle: 'normal',
-                        }}
-                    >
-                        {t.yes}
-                    </button>
-
-                    <button
-                        onClick={deny}
-                        onMouseEnter={() => setHovering('no')}
-                        onMouseLeave={() => setHovering(null)}
-                        style={{
-                            fontFamily: playfair,
-                            background: 'transparent',
-                            color: hovering === 'no' ? '#555' : '#ccc',
-                            border: '1px solid #eee',
-                            padding: '15px 24px',
-                            fontSize: '11px',
-                            letterSpacing: '0.2em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            transition: 'all 0.25s ease',
-                            width: '100%',
-                            fontStyle: 'normal',
-                        }}
-                    >
-                        {t.no}
-                    </button>
-                </div>
-
-                {/* Legal */}
-                <p style={{
-                    fontFamily: lora,
-                    color: '#ccc',
-                    fontSize: '10px',
-                    lineHeight: 1.9,
-                    marginTop: '28px',
-                    letterSpacing: '0.03em',
-                }}>
-                    {t.legal}
-                </p>
             </div>
-        </div>
+        </>
     )
 }
