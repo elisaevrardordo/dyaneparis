@@ -290,6 +290,8 @@ export default function ContactPage() {
                                             <option value="Belgique">Belgique</option>
                                             <option value="Suisse">Suisse</option>
                                             <option value="Luxembourg">Luxembourg</option>
+                                            <option value="Luxembourg">Monaco</option>
+
                                             <option value="Autre">Autre</option>
                                         </select>
 
