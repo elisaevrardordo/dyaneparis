@@ -12,43 +12,62 @@ export default function Manifeste() {
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
 
     return (
-        <section style={{ background: '#fff', padding: '80px 24px', textAlign: 'center' }}>
-            <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section style={{ background: '#fff', padding: '80px 64px' }}>
+            <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
-                {/* Signature cursive */}
-                <p style={{
-                    fontFamily: '"Great Vibes", cursive',
-                    fontSize: 'clamp(52px, 8vw, 96px)',
-                    fontWeight: 400,
-                    color: '#111',
-                    margin: '0 0 8px',
-                    lineHeight: 1,
-                }}>
-                    Dyane Paris
-                </p>
+                {/* Colonne gauche */}
+                <div>
+                    {/* Signature */}
+                    <p style={{
+                        fontFamily: '"Corinthia", cursive',
+                        fontSize: 'clamp(64px, 9vw, 110px)',
+                        fontWeight: 400,
+                        color: '#111',
+                        margin: '0 0 40px',
+                        lineHeight: 0.9,
+                    }}>
+                        Dyane Paris
+                    </p>
 
-                {/* Sous-titre discret */}
-                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.35em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 48px' }}>
-                    {t('label')}
-                </p>
+                    {/* Trois lignes italiques */}
+                    <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Cocktails d'exception.</p>
+                    <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Flacons en porcelaine peints à la main.</p>
+                    <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '32px' }}>Objets de collection.</p>
 
-                <p style={{ ...lora, fontSize: '14px', lineHeight: 1.9, opacity: 0.75, marginBottom: '24px' }}>
-                    À la frontière entre l'art et les spiritueux, Dyane Paris transforme le cocktail en objet de collection.
-                    Chaque création est pensée comme une œuvre : des recettes haut de gamme infusées à partir d'ingrédients nobles, enfermées dans des bouteilles en porcelaine peintes à la main, conçues pour être conservées bien après la dégustation.
-                </p>
-                <p style={{ ...lora, fontSize: '14px', lineHeight: 1.9, opacity: 0.75, marginBottom: '24px' }}>
-                    Née du désir de faire vivre le luxe autrement, Dyane Paris ne vend pas seulement des cocktails, la marque raconte des histoires, capture des lieux, des émotions et des nuits parisiennes dans des flacons sculpturaux.
-                </p>
-                <p style={{ ...playfair, fontSize: '15px', lineHeight: 1.8, opacity: 0.9, marginBottom: '48px', fontStyle: 'italic' }}>
-                    Parce que chez Dyane Paris, désormais, l'art se boit.
-                </p>
+                    {/* Trait */}
+                    <div style={{ width: '40px', height: '1px', background: 'rgba(0,0,0,0.2)', marginBottom: '32px' }} />
 
-                <Link
-                    href={`/${locale}/la-maison`}
-                    style={{ ...lora, display: 'inline-block', padding: '12px 24px', textDecoration: 'none', color: '#000', border: '1px solid rgba(0,0,0,0.20)', fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase' }}
-                >
-                    {t('cta')}
-                </Link>
+                    {/* CTA */}
+                    <Link
+                        href={`/${locale}/la-maison`}
+                        style={{ ...lora, display: 'inline-block', padding: '12px 24px', textDecoration: 'none', color: '#000', border: '1px solid rgba(0,0,0,0.20)', fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase' }}
+                    >
+                        {t('cta')}
+                    </Link>
+                </div>
+
+                {/* Colonne droite */}
+                <div style={{ borderTop: '1px solid rgba(0,0,0,0.15)', paddingTop: '32px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '24px' }}>
+                        <p style={{ ...playfair, fontSize: '22px', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>HÉRITAGE</p>
+                        <p style={{ ...lora, fontSize: '12px', opacity: 0.4, margin: 0 }}>(1)</p>
+                    </div>
+
+                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.85, marginBottom: '4px' }}>Dyane Paris</p>
+                    <p style={{ ...lora, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.8, opacity: 0.7, marginBottom: '4px' }}>Créée en 2025</p>
+                    <p style={{ ...lora, fontSize: '13px', fontStyle: 'italic', lineHeight: 1.8, opacity: 0.7, marginBottom: '28px' }}>Paris, France</p>
+
+                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75, marginBottom: '16px' }}>
+                        Dyane Paris est née d'une conviction : le cocktail peut être plus qu'un instant, il peut devenir une œuvre.
+                    </p>
+                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75, marginBottom: '16px' }}>
+                        Inspirée par l'art, le patrimoine et le savoir-faire artisanal, la maison imagine des créations uniques où chaque détail raconte une histoire.
+                    </p>
+                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.75 }}>
+                        Entre tradition et audace, Dyane Paris réinvente l'expérience du luxe à travers des flacons en porcelaine peints à la main, de véritables objets de collection conçus pour traverser le temps.
+                    </p>
+                </div>
+
             </div>
         </section>
     )
