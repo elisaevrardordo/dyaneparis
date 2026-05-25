@@ -92,7 +92,7 @@ export default function LeJournalPage() {
             <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
 
                 {/* Hero image */}
-                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '55vh', overflow: 'hidden' }}>
+                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '35vh', overflow: 'hidden' }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
                         alt="Le Journal Dyane Paris"
