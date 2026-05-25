@@ -40,7 +40,7 @@ export default function LeJournalPage() {
         <>
             <style>{`
                 @media (max-width: 768px) {
-                    .journal-hero { height: 45vh !important; }
+                    .journal-hero { height: 45 !important; }
                     .journal-hero-text { left: 24px !important; bottom: 24px !important; }
                     .journal-hero-h1 { font-size: 18px !important; }
                     .journal-layout { flex-direction: column !important; }
@@ -56,7 +56,7 @@ export default function LeJournalPage() {
             <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
 
                 {/* Hero image */}
-                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '35vh', overflow: 'hidden' }}>
+                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '32vh', overflow: 'hidden' }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
                         alt="Le Journal Dyane Paris"
