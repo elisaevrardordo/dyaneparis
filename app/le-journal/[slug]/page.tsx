@@ -17,7 +17,7 @@ const articles: Record<string, {
     'commanderie-ambassadeurs-rungis': {
         titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis',
         date: '24 MARS 2026',
-        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_rzj5qf.png,
         extrait: "Dans l'écrin majestueux du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
         contenu: (
             <>
@@ -25,17 +25,17 @@ const articles: Record<string, {
                 <p>Cet événement, réunissant des figures emblématiques du monde gastronomique et des acteurs majeurs de l'excellence française, s'inscrit dans une tradition où savoir-faire, transmission et passion sont célébrés avec exigence et élégance.</p>
                 <p>Pour Dyane, cette collaboration a été l'occasion de proposer une lecture contemporaine du rituel de dégustation, en introduisant ses créations comme des objets à part entière, à la croisée du cocktail, de l'art et de l'expérience.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png" alt="Commanderie Rungis" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/CAFE_2_wozute.png" alt="Commanderie Rungis" fill style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Présentées dans des pièces en porcelaine façonnées avec précision, les créations Dyane ont trouvé naturellement leur place dans cet environnement où chaque détail compte.</p>
                 <p>Dans ce cadre chargé d'histoire et d'exigence, Dyane affirme sa volonté de s'inscrire dans les codes de l'excellence française tout en y apportant une dimension nouvelle : celle d'une Maison d'Art Liquide.</p>
             </>
         ),
         related: [
-            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
+            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_2_dlipkw.png' },
             { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
-            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
-            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/ART_pq1nvz.png' },
         ],
     },
     'ritz-paris-fashion-week': {
@@ -49,17 +49,17 @@ const articles: Record<string, {
                 <p>Dans ce lieu iconique, où se croisent création, héritage et modernité, Dyane a présenté ses pièces comme des œuvres à part entière, au-delà du simple objet fonctionnel.</p>
                 <p>Loin d'un format traditionnel, cette activation s'est insérée dans une approche curatoriale, où les créations étaient mises en scène pour dialoguer avec l'espace, la lumière et le mouvement des invités.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png" alt="Ritz Paris Fashion Week" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_ukrb4s.png" alt="Ritz Paris Fashion Week" fill style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Un moment qui confirme la volonté de Dyane Paris de s'inscrire dans les lieux et les événements où la création, l'élégance et l'art de vivre se rencontrent.</p>
                 <p>Cette présence au Ritz Paris marque une étape clé dans le développement de la Maison, affirmant son positionnement à la frontière de l'art, du luxe et de l'expérience.</p>
             </>
         ),
         related: [
-            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
+            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_rzj5qf.png' },
             { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
-            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
-            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/ART_pq1nvz.png' },
         ],
     },
     'point-de-vue-distillateur': {
