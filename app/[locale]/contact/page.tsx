@@ -1,15 +1,19 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 export default function ContactPage() {
     const t = useTranslations('contact')
+    const locale = useLocale()
     const [sent, setSent] = useState(false)
+    const [sending, setSending] = useState(false)
+    const [error, setError] = useState('')
 
     const [form, setForm] = useState({
         prenom: '',
@@ -19,12 +23,40 @@ export default function ContactPage() {
         ville: '',
         sujet: '',
         message: '',
-        newsletter: false,
     })
 
-    function handleSubmit(e: React.FormEvent) {
+    function updateField(field: keyof typeof form) {
+        return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+            setForm({ ...form, [field]: e.target.value })
+        }
+    }
+
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
-        setSent(true)
+        setSending(true)
+        setError('')
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ...form, locale }),
+            })
+
+            if (!response.ok) {
+                throw new Error('send_failed')
+            }
+
+            setSent(true)
+        } catch {
+            setError(locale === 'en'
+                ? 'The message could not be sent. Please try again.'
+                : "Le message n'a pas pu être envoyé. Veuillez réessayer.")
+        } finally {
+            setSending(false)
+        }
     }
 
     const options = t.raw('options') as string[]
@@ -118,6 +150,7 @@ export default function ContactPage() {
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779719956/Design_sans_titre_62_xo5qpq.png"
                         alt="Dyane Paris Contact"
                         fill
+                        sizes="100vw"
                         priority
                         style={{
                             objectFit: 'cover',
@@ -224,19 +257,40 @@ export default function ContactPage() {
                                                 marginBottom: '24px',
                                             }}
                                         >
-                                            <input className="contact-field" placeholder="PRÉNOM NOM *" style={inputStyle} />
-                                            <input className="contact-field" type="email" placeholder="E-MAIL *" style={inputStyle} />
+                                            <input
+                                                className="contact-field"
+                                                placeholder="PRÉNOM NOM *"
+                                                required
+                                                value={form.prenom}
+                                                onChange={updateField('prenom')}
+                                                style={inputStyle}
+                                            />
+                                            <input
+                                                className="contact-field"
+                                                type="email"
+                                                placeholder="E-MAIL *"
+                                                required
+                                                value={form.email}
+                                                onChange={updateField('email')}
+                                                style={inputStyle}
+                                            />
                                         </div>
 
-                                        <select className="contact-field" style={{ ...inputStyle, marginBottom: '24px' }}>
+                                        <select
+                                            className="contact-field"
+                                            required
+                                            value={form.pays}
+                                            onChange={updateField('pays')}
+                                            style={{ ...inputStyle, marginBottom: '24px' }}
+                                        >
                                             <option value="" disabled>
                                                 PAYS / RÉGION *
                                             </option>
-                                            <option value="fr">France</option>
-                                            <option value="be">Belgique</option>
-                                            <option value="ch">Suisse</option>
-                                            <option value="lu">Luxembourg</option>
-                                            <option value="other">Autre</option>
+                                            <option value="France">France</option>
+                                            <option value="Belgique">Belgique</option>
+                                            <option value="Suisse">Suisse</option>
+                                            <option value="Luxembourg">Luxembourg</option>
+                                            <option value="Autre">Autre</option>
                                         </select>
 
                                         <div
@@ -248,11 +302,30 @@ export default function ContactPage() {
                                                 marginBottom: '24px',
                                             }}
                                         >
-                                            <input className="contact-field" placeholder="CODE POSTAL *" style={inputStyle} />
-                                            <input className="contact-field" placeholder="VILLE *" style={inputStyle} />
+                                            <input
+                                                className="contact-field"
+                                                placeholder="CODE POSTAL *"
+                                                required
+                                                value={form.codePostal}
+                                                onChange={updateField('codePostal')}
+                                                style={inputStyle}
+                                            />
+                                            <input
+                                                className="contact-field"
+                                                placeholder="VILLE *"
+                                                required
+                                                value={form.ville}
+                                                onChange={updateField('ville')}
+                                                style={inputStyle}
+                                            />
                                         </div>
 
-                                        <select className="contact-field" style={{ ...inputStyle, marginBottom: '24px' }}>
+                                        <select
+                                            className="contact-field"
+                                            value={form.sujet}
+                                            onChange={updateField('sujet')}
+                                            style={{ ...inputStyle, marginBottom: '24px' }}
+                                        >
                                             <option value="" disabled>
                                                 INFORMATIONS SUR NOS COCKTAILS
                                             </option>
@@ -266,7 +339,10 @@ export default function ContactPage() {
                                         <textarea
                                             className="contact-field"
                                             placeholder="VOTRE MESSAGE *"
+                                            required
                                             rows={4}
+                                            value={form.message}
+                                            onChange={updateField('message')}
                                             style={{
                                                 ...inputStyle,
                                                 resize: 'none',
@@ -300,34 +376,52 @@ export default function ContactPage() {
                                             }}
                                         >
                                             Vos données personnelles sont traitées par Dyane Paris afin de répondre à votre demande.{' '}
-                                            <a
-                                                href="/confidentialite"
+                                            <Link
+                                                href={`/${locale}/confidentialite`}
                                                 style={{
                                                     color: '#fff',
                                                     textDecoration: 'underline',
                                                 }}
                                             >
                                                 Politique de confidentialité
-                                            </a>
+                                            </Link>
                                             .
                                         </p>
 
+                                        {error && (
+                                            <p
+                                                role="alert"
+                                                style={{
+                                                    ...lora,
+                                                    fontSize: '10px',
+                                                    letterSpacing: '0.16em',
+                                                    textTransform: 'uppercase',
+                                                    color: '#fff',
+                                                    marginBottom: '18px',
+                                                    lineHeight: 1.8,
+                                                }}
+                                            >
+                                                {error}
+                                            </p>
+                                        )}
+
                                         <button
                                             type="submit"
+                                            disabled={sending}
                                             style={{
                                                 ...lora,
-                                                background: 'rgba(255,255,255,0.92)',
+                                                background: sending ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.92)',
                                                 color: '#111',
                                                 border: '1px solid rgba(255,255,255,0.5)',
                                                 padding: '18px 24px',
                                                 fontSize: '10px',
                                                 letterSpacing: '0.35em',
                                                 textTransform: 'uppercase',
-                                                cursor: 'pointer',
+                                                cursor: sending ? 'wait' : 'pointer',
                                                 width: '100%',
                                             }}
                                         >
-                                            Envoyer
+                                            {sending ? (locale === 'en' ? 'Sending' : 'Envoi') : t('envoyer')}
                                         </button>
                                     </form>
                                 )}

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 const produits: Record<string, {
     nom: string
@@ -20,7 +20,7 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE, INFUSÉ AUX GOUSSES DE VANILLE MADAGASCAR BOURBON GOLD. PURÉE DE FRUIT DE LA PASSION, SUBLIMÉE PAR UNE TOUCHE DE FRAMBOISE SAUVAGE. JUS DE CITRON BIOLOGIQUE. EMBOUTEILLÉ EN FRANCE, DANS LA RÉGION D\'AVIGNON.',
         images: [
-            '/dyane-no1.png',
+            '/dyane-no1.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443652/Capture_d_ecran_2026-04-02_a_15.16.48_pqfxxv.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443700/50d1340b3c962d6a72e96d38f28aa761_1_n1elgv.jpg',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg',
@@ -34,7 +34,7 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE INFUSÉ AUX GRAINES DE GINGEMBRE. JUS DE CITRON FRAIS. EAU PURE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE.',
         images: [
-            '/dyane-no2.png',
+            '/dyane-no2.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443862/6f8f4f66a4a6d81deb15d2f383a53d02_2_utshc8.jpg',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443860/FCE40708-7E8F-45A2-80E7-52C4AC46DA59_p4yftm.jpg',
@@ -48,7 +48,7 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'PLONGEZ DANS L\'UNIVERS DE DYANE PARIS, MAISON D\'ART LIQUIDE, OÙ L\'ART ET LA HAUTE MIXOLOGIE NE FONT QU\'UN. EN COLLABORATION AVEC TEO KAY KAY, DYANE RÉVÈLE UNE SÉRIE CONFIDENTIELLE DE 25 ŒUVRES. CHAQUE BOUTEILLE, PEINTE À LA MAIN À LA BOMBE, EST UNE PIÈCE UNIQUE, VIVANTE ET IRRÉPÉTABLE.',
         images: [
-            '/dyane-teo.png',
+            '/dyane-teo.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
@@ -87,7 +87,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
     const produit = produits[slug]
 
     if (!produit) return (
-        <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
+        <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'var(--font-playfair), serif' }}>
             <p>Produit non trouvé</p>
             <Link href="/oeuvres">← Retour aux œuvres</Link>
         </main>
@@ -99,12 +99,12 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
 
                 {/* Galerie gauche */}
                 <div>
-                    <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'Playfair Display, serif', opacity: 0.5 }}>
+                    <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'var(--font-playfair), serif', opacity: 0.5 }}>
                         1<br />—<br />{produit.images.length}
                     </div>
                     {produit.images.map((src, i) => (
                         <div key={i} style={{ position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
-                            <Image src={src} alt={`${produit.nom} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                            <Image src={src} alt={`${produit.nom} ${i + 1}`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
                         </div>
                     ))}
                 </div>

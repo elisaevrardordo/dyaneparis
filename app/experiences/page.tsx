@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 const BG = 'rgb(252, 250, 247)'
 
 export default function ExperiencesPage() {
@@ -18,7 +18,7 @@ export default function ExperiencesPage() {
 
             {/* Image pleine largeur 1 — edge to edge, cover, 100vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill style={{ objectFit: 'cover' }} />
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section Le choix de la mesure */}
@@ -38,10 +38,10 @@ export default function ExperiencesPage() {
             {/* Duo images — contain, alignement bas */}
             <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
                 <div style={{ position: 'relative', height: '500px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
                 <div style={{ position: 'relative', height: '680px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
@@ -57,7 +57,7 @@ export default function ExperiencesPage() {
                     </div>
                 </div>
                 <div style={{ position: 'relative', height: '720px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
@@ -70,7 +70,7 @@ export default function ExperiencesPage() {
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>Deux implantations complémentaires, guidées par une même discipline.</p>
                 </div>
                 <div style={{ position: 'relative', height: '620px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Dyane Paris" fill style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                 </div>
             </section>
 
@@ -88,7 +88,7 @@ export default function ExperiencesPage() {
 
             {/* Image finale pleine largeur — edge to edge, cover, 100vh */}
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                <Image src="/1.webp" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </section>
 
         </div>

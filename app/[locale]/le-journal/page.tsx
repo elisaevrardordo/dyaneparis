@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 const articles = [
     {
@@ -97,6 +97,7 @@ export default function LeJournalPage() {
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
                         alt="Le Journal Dyane Paris"
                         fill
+                        sizes="100vw"
                         style={{ objectFit: 'cover' }}
                     />
                     <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
@@ -138,10 +139,10 @@ export default function LeJournalPage() {
                     {/* Images preview */}
                     <div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
                         <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img1} src={img1} alt="Journal" fill style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
+                            <Image key={img1} src={img1} alt="Journal" fill sizes="45vw" style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
                         </div>
                         <div style={{ position: 'relative', width: '45%', height: '360px', overflow: 'hidden', marginTop: '80px' }}>
-                            <Image key={img2} src={img2} alt="Journal" fill style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
+                            <Image key={img2} src={img2} alt="Journal" fill sizes="35vw" style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
                         </div>
                     </div>
                 </div>
@@ -154,7 +155,7 @@ export default function LeJournalPage() {
                     <Link href={`/${locale}/le-journal/${articles[0].slug}`} style={{ textDecoration: 'none', color: '#000', display: 'block', marginBottom: '72px' }}>
                         <div className="journal-featured-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
                             <div className="journal-featured-img" style={{ position: 'relative', height: '520px', overflow: 'hidden' }}>
-                                <Image src={articles[0].image} alt={articles[0].titre} fill style={{ objectFit: 'cover' }} />
+                                <Image src={articles[0].image} alt={articles[0].titre} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
                             </div>
                             <div>
                                 <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '20px' }}>{articles[0].date}</p>
@@ -172,7 +173,7 @@ export default function LeJournalPage() {
                         {articles.slice(1).map((article) => (
                             <Link key={article.slug} href={`/${locale}/le-journal/${article.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
                                 <div className="journal-small-img" style={{ position: 'relative', height: '280px', overflow: 'hidden', marginBottom: '16px' }}>
-                                    <Image src={article.image} alt={article.titre} fill style={{ objectFit: 'cover' }} />
+                                    <Image src={article.image} alt={article.titre} fill sizes="(max-width: 768px) 50vw, 33vw" style={{ objectFit: 'cover' }} />
                                 </div>
                                 <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '8px' }}>{article.date}</p>
                                 <p style={{ ...font, fontSize: '15px', fontWeight: 400, lineHeight: 1.35, marginBottom: '14px' }}>{article.titre}</p>

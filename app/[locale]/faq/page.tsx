@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 const faqs = [
     {
@@ -45,6 +45,7 @@ export default function ServiceAidePage() {
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
                     alt="Dyane Paris FAQ"
                     fill
+                    sizes="100vw"
                     style={{ objectFit: 'cover' }}
                 />
             </section>

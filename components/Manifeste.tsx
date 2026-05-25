@@ -1,10 +1,11 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 
-const lora = { fontFamily: 'Lora, serif' }
-const playfair = { fontFamily: 'Playfair Display, serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
+const playfair = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function Manifeste() {
     const t = useTranslations('manifeste')
@@ -25,10 +26,13 @@ export default function Manifeste() {
 
                     {/* Colonne gauche */}
                     <div>
-                        <img
+                        <Image
                             className="manifeste-logo"
                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779697015/ChatGPT_Image_25_mai_2026_10_16_51_xdcyp9.png"
                             alt="Dyane Paris"
+                            width={1672}
+                            height={941}
+                            sizes="(max-width: 768px) 280px, 380px"
                             style={{ width: '380px', height: 'auto', display: 'block', marginBottom: '40px' }}
                         />
                         <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Cocktails d'exception.</p>

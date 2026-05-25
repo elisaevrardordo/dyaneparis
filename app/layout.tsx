@@ -1,6 +1,6 @@
 import './globals.css'
-import {NextIntlClientProvider} from 'next-intl'
-import {getMessages} from 'next-intl/server'
+import { getLocale } from 'next-intl/server'
+import { fontVariables } from './fonts'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,14 +9,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const messages = await getMessages()
+  const locale = await getLocale()
 
   return (
-    <html lang="fr">
+    <html lang={locale} className={fontVariables}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
       </body>
     </html>
   )

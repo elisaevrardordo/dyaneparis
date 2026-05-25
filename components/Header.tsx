@@ -1,11 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
-const fontNav = { fontFamily: 'Lora, serif' }
+const fontNav = { fontFamily: 'var(--font-lora), serif' }
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -47,9 +48,12 @@ export default function Header() {
 
                     {/* Logo centré */}
                     <Link href={`/${locale}`} style={{ textDecoration: 'none' }}>
-                        <img
+                        <Image
                             src="/LogoDYANE_blanc.png"
                             alt="Dyane Paris"
+                            width={1554}
+                            height={1389}
+                            sizes="60px"
                             style={{ height: '60px', width: 'auto', display: 'block' }}
                         />
                     </Link>

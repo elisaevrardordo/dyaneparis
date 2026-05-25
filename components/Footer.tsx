@@ -1,9 +1,10 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function Footer() {
     const t = useTranslations('footer')
@@ -24,7 +25,7 @@ export default function Footer() {
                 <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 24px 40px' }} className="footer-wrap">
                     <div style={{ textAlign: 'center', marginBottom: '48px' }}>
                         <Link href={`/${locale}`} aria-label="Retour a l accueil">
-                            <img src="/LogoDYANE_blanc.png" alt="Dyane Paris" style={{ height: '70px', width: 'auto', display: 'inline-block', filter: 'invert(1)' }} />
+                            <Image src="/LogoDYANE_blanc.png" alt="Dyane Paris" width={1554} height={1389} sizes="70px" style={{ height: '70px', width: 'auto', display: 'inline-block', filter: 'invert(1)' }} />
                         </Link>
                     </div>
                     <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px', borderTop: '1px solid rgba(0,0,0,0.10)', paddingTop: '40px' }}>

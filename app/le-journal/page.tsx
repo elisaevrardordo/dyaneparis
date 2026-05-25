@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 const articles = [
     {
@@ -46,7 +46,7 @@ export default function LeJournalPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                     <Link href={`/le-journal/${articles[0].slug}`} style={{ textDecoration: 'none', color: '#000', gridRow: 'span 2' }}>
                         <div style={{ position: 'relative', height: '600px', overflow: 'hidden' }}>
-                            <Image src={articles[0].image} alt={articles[0].titre} fill style={{ objectFit: 'cover' }} />
+                            <Image src={articles[0].image} alt={articles[0].titre} fill sizes="100vw" style={{ objectFit: 'cover' }} />
                             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(255,255,255,0.92)', padding: '24px' }}>
                                 <h2 style={{ ...font, fontSize: '22px', fontWeight: 500, marginBottom: '8px' }}>{articles[0].titre}</h2>
                                 <p style={{ ...font, fontSize: '11px', letterSpacing: '0.2em', opacity: 0.6 }}>{articles[0].date}</p>
@@ -57,7 +57,7 @@ export default function LeJournalPage() {
                         {articles.slice(1).map((article) => (
                             <Link key={article.slug} href={`/le-journal/${article.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
                                 <div style={{ position: 'relative', height: '220px', overflow: 'hidden', marginBottom: '12px' }}>
-                                    <Image src={article.image} alt={article.titre} fill style={{ objectFit: 'cover' }} />
+                                    <Image src={article.image} alt={article.titre} fill sizes="100vw" style={{ objectFit: 'cover' }} />
                                 </div>
                                 <p style={{ ...font, fontSize: '13px', fontWeight: 500, marginBottom: '6px', lineHeight: 1.4 }}>{article.titre}</p>
                                 <p style={{ ...font, fontSize: '10px', letterSpacing: '0.2em', opacity: 0.6 }}>{article.date}</p>

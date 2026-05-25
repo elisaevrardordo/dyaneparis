@@ -1,9 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
-const cormorant = 'Cormorant Garamond, Garamond, serif'
-const lora = 'Lora, serif'
-const playfair = 'Playfair Display, serif'
+const cormorant = 'var(--font-cormorant), Garamond, serif'
+const lora = 'var(--font-lora), serif'
+const playfair = 'var(--font-playfair), serif'
 const bordeaux = '#6B1A2A'
 
 export default function AgeGate({ currentLocale }: { currentLocale: string }) {
@@ -59,9 +60,17 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
             <div style={{
                 position: 'fixed', inset: 0, zIndex: 9999,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                backgroundImage: 'url(/hero.png)',
-                backgroundSize: 'cover', backgroundPosition: 'center',
+                background: '#0d0d0d',
             }}>
+                <Image
+                    src="/1.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    aria-hidden="true"
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
 
                 <div className="agegate-card" style={{
@@ -75,16 +84,15 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 }}>
                     {/* Logo */}
                     <div style={{ marginBottom: '36px' }}>
-                        <img
+                        <Image
                             className="agegate-logo"
-                            src="/LogoDYANE_noir.png"
+                            src="/LogoDYANE_blanc.png"
                             alt="Dyane Paris"
-                            style={{ height: '110px', width: 'auto', display: 'inline-block' }}
-                            onError={(e) => {
-                                const img = e.target as HTMLImageElement
-                                img.src = '/LogoDYANE_blanc.png'
-                                img.style.filter = 'invert(1)'
-                            }}
+                            width={1554}
+                            height={1389}
+                            priority
+                            sizes="110px"
+                            style={{ height: '110px', width: 'auto', display: 'inline-block', filter: 'invert(1)' }}
                         />
                     </div>
 

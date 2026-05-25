@@ -1,4 +1,4 @@
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function MentionsLegalesPage() {
     return (

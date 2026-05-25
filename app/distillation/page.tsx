@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function DistillationPage() {
     return (
@@ -16,7 +16,7 @@ export default function DistillationPage() {
 
             {/* Image pleine page 1 */}
             <section style={{ position: 'relative', width: '100%', height: '70vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </section>
 
             {/* Section 3 colonnes */}
@@ -36,10 +36,10 @@ export default function DistillationPage() {
             {/* Deux images côte à côte */}
             <section style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0' }}>
                 <div style={{ position: 'relative', height: '600px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg" alt="Distillation" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg" alt="Distillation" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ position: 'relative', height: '600px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444726/CREATION_m4wcwy.png" alt="Création Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444726/CREATION_m4wcwy.png" alt="Création Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
             </section>
 
@@ -56,7 +56,7 @@ export default function DistillationPage() {
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginTop: '16px' }}>Ce temps long permet d'obtenir une profondeur aromatique et une stabilité qui donnent à la cuvée toute sa tenue et sa signature.</p>
                 </div>
                 <div style={{ position: 'relative', height: '500px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg" alt="Élaboration" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg" alt="Élaboration" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
             </section>
 
@@ -70,7 +70,7 @@ export default function DistillationPage() {
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>Chez Dyane, le cocktail n'est plus un mélange. C'est une œuvre liquide.</p>
                 </div>
                 <div style={{ position: 'relative', height: '600px' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444782/12_nehhxv.png" alt="Signature Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444782/12_nehhxv.png" alt="Signature Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
             </section>
 
@@ -83,7 +83,7 @@ export default function DistillationPage() {
 
             {/* Image finale */}
             <section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444815/Design_sans_titre_41_sens76.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444815/Design_sans_titre_41_sens76.png" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </section>
 
         </main>

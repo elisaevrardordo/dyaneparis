@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 const oeuvres = [
     {
@@ -50,7 +50,7 @@ function MobileCarousel({ images, href, titre }: { images: string[], href: strin
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <Link href={href} style={{ display: 'block', position: 'relative', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <Image src={images[current]} alt={titre} fill style={{ objectFit: 'cover' }} />
+                <Image src={images[current]} alt={titre} fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </Link>
             {/* Dots */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px' }}>
@@ -101,7 +101,7 @@ export default function OeuvresPage() {
             `}</style>
             <main style={{ background: '#fff' }}>
                 <section className="oeuvres-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="/2.png" alt="Dyane Paris Oeuvres" fill style={{ objectFit: 'cover' }} />
+                    <Image src="/2.webp" alt="Dyane Paris Oeuvres" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)' }} />
                     <div className="oeuvres-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
                         <p style={{ ...font, color: 'rgba(255,255,255,0.7)', fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', fontWeight: 400 }}>
@@ -127,7 +127,7 @@ export default function OeuvresPage() {
                             <div className="oeuvres-desktop-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                                 {oeuvre.images.map((src, i) => (
                                     <Link key={i} href={oeuvre.href} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', display: 'block' }}>
-                                        <Image src={src} alt={`${oeuvre.titre} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                                        <Image src={src} alt={`${oeuvre.titre} ${i + 1}`} fill sizes="(max-width: 768px) 100vw, 25vw" style={{ objectFit: 'cover' }} />
                                     </Link>
                                 ))}
                             </div>

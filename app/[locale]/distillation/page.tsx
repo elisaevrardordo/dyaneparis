@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 export default function DistillationPage() {
     const t = useTranslations('distillation')
@@ -28,7 +28,7 @@ export default function DistillationPage() {
 
                 {/* Image hero */}
                 <section className="dist-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
@@ -56,10 +56,10 @@ export default function DistillationPage() {
                 {/* Deux images */}
                 <section className="dist-2img" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '0' }}>
                     <div className="dist-2img-small" style={{ position: 'relative', height: '600px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg" alt="Distillation" fill style={{ objectFit: 'cover' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg" alt="Distillation" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </div>
                     <div className="dist-2img-large" style={{ position: 'relative', height: '600px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444726/CREATION_m4wcwy.png" alt="Création Dyane" fill style={{ objectFit: 'cover' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444726/CREATION_m4wcwy.png" alt="Création Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </div>
                 </section>
 
@@ -76,7 +76,7 @@ export default function DistillationPage() {
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginTop: '16px' }}>{t('elaboration_p5')}</p>
                     </div>
                     <div className="dist-elab-img" style={{ position: 'relative', height: '500px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg" alt="Élaboration" fill style={{ objectFit: 'cover' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg" alt="Élaboration" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </div>
                 </section>
 
@@ -90,7 +90,7 @@ export default function DistillationPage() {
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>{t('signature_p4')}</p>
                     </div>
                     <div className="dist-sig-img" style={{ position: 'relative', height: '600px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444782/12_nehhxv.png" alt="Signature Dyane" fill style={{ objectFit: 'cover' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444782/12_nehhxv.png" alt="Signature Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </div>
                 </section>
 
@@ -103,7 +103,7 @@ export default function DistillationPage() {
 
                 {/* Image finale */}
                 <section className="dist-final" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444815/Design_sans_titre_41_sens76.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444815/Design_sans_titre_41_sens76.png" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
             </main>

@@ -1,7 +1,8 @@
 'use client'
+import Image from 'next/image'
 import { useState } from 'react'
 
-const font = { fontFamily: 'Playfair Display, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
 const BG = 'rgb(252, 250, 247)'
 
 export default function ContactForm() {
@@ -31,7 +32,7 @@ export default function ContactForm() {
         textTransform: 'uppercase',
         outline: 'none',
         color: '#111',
-        fontFamily: 'Playfair Display, serif',
+        fontFamily: 'var(--font-playfair), serif',
         boxSizing: 'border-box',
         appearance: 'none',
         WebkitAppearance: 'none',
@@ -101,7 +102,7 @@ export default function ContactForm() {
                             </span>
                         </label>
 
-                        <button type="submit" style={{ width: '100%', padding: '20px', background: '#111', color: '#fff', border: 'none', fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', cursor: 'pointer', marginTop: '8px', fontFamily: 'Playfair Display, serif' }}>
+                        <button type="submit" style={{ width: '100%', padding: '20px', background: '#111', color: '#fff', border: 'none', fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', cursor: 'pointer', marginTop: '8px', fontFamily: 'var(--font-playfair), serif' }}>
                             ENVOYER
                         </button>
 
@@ -110,9 +111,12 @@ export default function ContactForm() {
 
                 {/* Colonne droite — image fixe */}
                 <div style={{ flex: '0 0 58%', position: 'sticky', top: 0, height: '100vh' }}>
-                    <img
+                    <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png"
                         alt="Dyane Paris"
+                        width={840}
+                        height={1046}
+                        sizes="58vw"
                         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                 </div>

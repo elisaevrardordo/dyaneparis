@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 
-const bodoni = { fontFamily: '"Bodoni Moda", "Playfair Display", serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const bodoni = { fontFamily: 'var(--font-bodoni), var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 export default function DualImage() {
     const t = useTranslations('dualimage')
@@ -52,7 +52,7 @@ export default function DualImage() {
             `}</style>
 
             <section style={{ position: 'relative', width: '100%', height: '75vh', overflow: 'hidden' }}>
-                <Image src="/1.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                <Image src="/1.webp" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </section>
 
             <section style={{ background: '#FAF8F5', overflow: 'hidden', position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -73,10 +73,10 @@ export default function DualImage() {
                             <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '80px', alignItems: 'center' }}>
                                 <div className="dual-slide1-images" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', alignItems: 'end' }}>
                                     <div className="dual-slide1-img-large" style={{ position: 'relative', height: '600px' }}>
-                                        <Image src="/CREATION_2.png" alt="Dyane Paris Distillation" fill style={{ objectFit: 'cover' }} />
+                                        <Image src="/CREATION_2.webp" alt="Dyane Paris Distillation" fill sizes="(max-width: 768px) 100vw, 56vw" style={{ objectFit: 'cover' }} />
                                     </div>
                                     <div className="dual-slide1-img-small" style={{ position: 'relative', height: '260px' }}>
-                                        <Image src="/10.png" alt="Dyane Paris" fill style={{ objectFit: 'cover' }} />
+                                        <Image src="/10.webp" alt="Dyane Paris" fill sizes="20vw" style={{ objectFit: 'cover' }} />
                                     </div>
                                 </div>
                                 <div>
@@ -92,7 +92,7 @@ export default function DualImage() {
                     {/* SLIDE 2 */}
                     {current === 1 && (
                         <div style={{ position: 'relative', width: '100%', flex: 1, minHeight: '100vh' }}>
-                            <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626200/0512eec9ef31ff0016ded898d96b2001_ltf2yr.jpg" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
+                            <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626200/0512eec9ef31ff0016ded898d96b2001_ltf2yr.jpg" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.38)' }} />
                             <div className="dual-slide2-text" style={{ position: 'absolute', top: '60px', left: '80px', maxWidth: '580px' }}>
                                 <p style={{ ...bodoni, color: '#fff', fontSize: '16px', lineHeight: 1.7, fontWeight: 400, opacity: 0.95 }}>
@@ -109,14 +109,14 @@ export default function DualImage() {
                             <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px' }}>
                                 <div>
                                     <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5' }}>
-                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg" alt="Infusion" fill style={{ objectFit: 'cover' }} />
+                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg" alt="Infusion" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
                                     </div>
                                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Infusion</p>
                                     <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Nos créations reposent sur une infusion lente d'ingrédients nobles : gingembre frais, vanille, fruits et épices, dans un alcool vinique d'exception, révélant une profondeur aromatique intense et raffinée.</p>
                                 </div>
                                 <div>
                                     <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5' }}>
-                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png" alt="Assemblage" fill style={{ objectFit: 'cover' }} />
+                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png" alt="Assemblage" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
                                     </div>
                                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Assemblage</p>
                                     <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Chaque cocktail est minutieusement assemblé comme une œuvre d'art, équilibrant puissance, texture et élégance.</p>

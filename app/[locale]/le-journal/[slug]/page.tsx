@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 const articles: Record<string, {
     titre: string
@@ -24,11 +24,11 @@ const articles: Record<string, {
                 <p>Dans l'écrin du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.</p>
                 <p>Cet événement, réunissant des figures emblématiques du monde gastronomique et des acteurs majeurs de l'excellence française, s'inscrit dans une tradition où savoir-faire, transmission et passion sont célébrés avec exigence et élégance.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/CAFE_2_wozute.png" alt="Café de l'Homme" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/CAFE_2_wozute.png" alt="Café de l'Homme" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Pour Dyane, cette collaboration a été l'occasion de proposer une lecture contemporaine du rituel de dégustation, en introduisant ses créations comme des objets à part entière, à la croisée du cocktail, de l'art et de l'expérience.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_3_vzlzva.png" alt="Café de l'Homme Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_3_vzlzva.png" alt="Café de l'Homme Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Présentées dans des pièces en porcelaine façonnées avec précision, les créations Dyane ont trouvé naturellement leur place dans cet environnement où chaque détail compte. Dans ce cadre chargé d'histoire et d'exigence, Dyane affirme sa volonté de s'inscrire dans les codes de l'excellence française tout en y apportant une dimension nouvelle : celle d'une Maison d'Art Liquide.</p>
             </>
@@ -49,15 +49,15 @@ const articles: Record<string, {
             <>
                 <p>À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une véritable exposition d'Art Liquide.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_ukrb4s.png" alt="Ritz Paris" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_ukrb4s.png" alt="Ritz Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Dans ce lieu iconique, où se croisent création, héritage et modernité, Dyane a présenté ses pièces comme des œuvres à part entière. Chaque bouteille, en porcelaine, a été conçue comme une sculpture, une présence visuelle, un point de rencontre entre art et hospitalité.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_3_eow2t2.png" alt="Ritz Paris Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_3_eow2t2.png" alt="Ritz Paris Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Loin d'un format traditionnel, cette activation s'est insérée dans une approche curatoriale, où les créations étaient mises en scène pour dialoguer avec l'espace, la lumière et le mouvement des invités.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/RITZ_4_c0iyhi.png" alt="Ritz Paris Fashion Week Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/RITZ_4_c0iyhi.png" alt="Ritz Paris Fashion Week Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Un moment qui confirme la volonté de Dyane Paris de s'inscrire dans les lieux et les événements où la création, l'élégance et l'art de vivre se rencontrent.</p>
             </>
@@ -80,7 +80,7 @@ const articles: Record<string, {
                 <p>Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange d'ingrédients. Il naît d'une recherche autour des arômes, des matières premières et du geste de la distillation.</p>
                 <p>C'est dans le Vaucluse, au cœur de la Provence, que cette exploration prend forme avec Julien Ducruet, président d'Esprit Distillation.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_yjwtvq.png" alt="Distillation Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_yjwtvq.png" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <blockquote>« CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES. »</blockquote>
                 <h2>UNE RENCONTRE ENTRE AUDACE ET SAVOIR-FAIRE</h2>
@@ -109,13 +109,13 @@ const articles: Record<string, {
                 <p>Chez Dyane Paris, tout commence par la base. L'alcool vinique — issu de la fermentation puis de la distillation du vin — constitue le fondement de chacune de nos créations. Contrairement aux alcools neutres de grain, l'alcool vinique apporte une profondeur aromatique naturelle et une rondeur qui subliment chaque ingrédient qu'il accueille.</p>
                 <p>Élaboré exclusivement en France, dans la région d'Avignon, cet alcool est sélectionné pour sa pureté à 96%, sa neutralité aromatique maîtrisée et sa capacité à porter les ingrédients sans les écraser.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDINETS_b7p9za.png" alt="Ingrédients Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDINETS_b7p9za.png" alt="Ingrédients Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>DES FRUITS ET PLANTES D'EXCEPTION</h2>
                 <p>Le fruit de la passion provient de filières sélectionnées pour leur maturité et leur intensité. La vanille est une Madagascar Bourbon Gold, reconnue pour sa rondeur exceptionnelle. Le gingembre, issu de producteurs français, libère une chaleur nette et précise.</p>
                 <p>Chaque ingrédient fait l'objet d'une sélection rigoureuse. Nous travaillons uniquement avec des filières capables de garantir une constance qualitative d'un batch à l'autre.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/INGREDIENTS_2_giygrp.png" alt="Ingrédients locaux Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/INGREDIENTS_2_giygrp.png" alt="Ingrédients locaux Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>UN ENGAGEMENT POUR LE TERROIR FRANÇAIS</h2>
                 <p>Dyane Paris est une Maison profondément ancrée dans le terroir français. Nos cocktails ne sont pas seulement fabriqués en France — ils sont pensés, élaborés et assemblés avec des ingrédients qui racontent une géographie, une saison, un geste artisanal.</p>
@@ -138,11 +138,11 @@ const articles: Record<string, {
             <>
                 <p>Dyane Paris a noué une collaboration artistique avec Matteo Mengacci, alias Teo Kaykay, peintre dont l'univers visuel se distingue par une énergie brute et une palette audacieuse.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_2_whlyb1.png" alt="Teo Kaykay Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_2_whlyb1.png" alt="Teo Kaykay Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>Cette rencontre entre deux univers — l'Art Liquide de Dyane et la peinture de Teo — a donné naissance à une série de pièces uniques où la bouteille devient toile. Chaque sculpture en porcelaine a été pensée comme un support d'expression artistique, au croisement du cocktail et de l'œuvre.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_mcxbuu.png" alt="Teo for Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_mcxbuu.png" alt="Teo for Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <p>La collaboration illustre la vision de Dyane Paris : faire du contenant une œuvre à part entière, aussi singulière que le cocktail qu'elle abrite. Ce projet s'inscrit dans la démarche de la Maison : inviter des artistes à s'exprimer à travers le prisme de l'Art Liquide, pour créer des éditions limitées qui sont autant des objets de collection que des expériences sensorielles.</p>
             </>
@@ -165,13 +165,13 @@ const articles: Record<string, {
                 <p>La porcelaine de Dyane Paris n'est pas un emballage. C'est une sculpture habitée, façonnée par plus de 70 mains, cuite trois fois, pensée pour traverser le temps bien au-delà de la dégustation.</p>
                 <p>Élaborée à partir de trois poudres minérales — feldspath, quartz et kaolin — la barbotine est moulée, travaillée, puis soumise à trois cuissons successives : à 600°C, à 900°C, et à 1300°C pour la vitrification finale qui lui confère son éclat caractéristique.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_2_o6ut9l.png" alt="Porcelaine Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_2_o6ut9l.png" alt="Porcelaine Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>LA VÉNUS DE MILO COMME RÉFÉRENCE</h2>
                 <p>La forme de la bouteille Dyane s'inspire librement de la Vénus de Milo — symbole intemporel de féminité, de beauté classique et de mystère. Chaque courbe, chaque proportion a été pensée pour que la sculpture existe pleinement, même vide.</p>
                 <p>L'objet ne disparaît pas après la dégustation — il commence une nouvelle vie décorative, mémorielle, affective.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_genaol.png" alt="Porcelaine art Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_genaol.png" alt="Porcelaine art Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>PLUS DE 70 MAINS, DEUX MOIS DE TRAVAIL</h2>
                 <p>Le cycle complet de fabrication d'une pièce Dyane prend plus de deux mois. De la préparation de la barbotine à la peinture finale, chaque étape mobilise des artisans spécialisés dont le geste est irremplaçable.</p>
@@ -195,7 +195,7 @@ const articles: Record<string, {
                 <h2>ET SI UNE OEUVRE POUVAIT SE BOIRE ?</h2>
                 <p>Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. Ce que Dyane Paris appelle "Art Liquide" repose sur une idée précise : un cocktail signature haut de gamme présenté dans un contenant artistique unique, pensé pour être conservé.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/ART_2_akhiva.png" alt="Art Liquide Dyane" fill style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/ART_2_akhiva.png" alt="Art Liquide Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>L'APPARITION D'UNE NOUVELLE CATÉGORIE</h2>
                 <p>Dyane ne revendique pas l'étiquette de simple marque de Ready-To-Drink. Son positionnement est plus ambitieux : Maison d'Art Liquide. Dans l'univers du luxe français, le terme "Maison" évoque instantanément l'héritage des maisons de haute couture ou de joaillerie.</p>
@@ -221,7 +221,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
     const article = articles[params.slug]
 
     if (!article) return (
-        <main style={{ background: '#FAF8F5', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
+        <main style={{ background: '#FAF8F5', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'var(--font-playfair), serif' }}>
             <p>Article non trouvé</p>
             <Link href={`/${locale}/le-journal`}>← Retour au journal</Link>
         </main>
@@ -241,10 +241,10 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                     .article-related-img { height: 100px !important; }
                     .article-related-section { padding: 0 20px 60px !important; }
                 }
-                .article-content p { margin-bottom: 24px; font-family: 'Lora', serif; font-size: 16px; line-height: 2; color: #222; }
-                .article-content h2 { font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin: 48px 0 20px; opacity: 0.6; }
+                .article-content p { margin-bottom: 24px; font-family: var(--font-lora), serif; font-size: 16px; line-height: 2; color: #222; }
+                .article-content h2 { font-family: var(--font-playfair), serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin: 48px 0 20px; opacity: 0.6; }
                 .article-content blockquote { border-left: 1px solid #000; padding-left: 28px; margin: 40px 0; }
-                .article-content blockquote p { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; }
+                .article-content blockquote p { font-family: var(--font-playfair), serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; }
                 .article-content strong { font-weight: 600; }
             `}</style>
 
@@ -264,6 +264,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
                             alt="Le Journal Dyane Paris"
                             fill
+                            sizes="100vw"
                             style={{ objectFit: 'cover' }}
                         />
                         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
@@ -279,7 +280,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                 {/* Hero article */}
                 <section className="article-hero-grid" style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px 48px', display: 'grid', gridTemplateColumns: '300px 1fr', gap: '64px', alignItems: 'start' }}>
                     <div className="article-hero-img" style={{ position: 'relative', height: '380px', overflow: 'hidden' }}>
-                        <Image src={article.image} alt={article.titre} fill style={{ objectFit: 'cover' }} />
+                        <Image src={article.image} alt={article.titre} fill sizes="(max-width: 768px) 100vw, 300px" style={{ objectFit: 'cover' }} />
                     </div>
                     <div style={{ paddingTop: '16px' }}>
                         <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, marginBottom: '20px' }}>{article.date}</p>
@@ -307,7 +308,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                         {article.related.map((r) => (
                             <Link key={r.slug} href={`/${locale}/le-journal/${r.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
                                 <div className="article-related-img" style={{ position: 'relative', height: '140px', overflow: 'hidden', marginBottom: '12px' }}>
-                                    <Image src={r.image} alt={r.titre} fill style={{ objectFit: 'cover' }} />
+                                    <Image src={r.image} alt={r.titre} fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: 'cover' }} />
                                 </div>
                                 <p style={{ ...font, fontSize: '13px', lineHeight: 1.4 }}>{r.titre}</p>
                             </Link>

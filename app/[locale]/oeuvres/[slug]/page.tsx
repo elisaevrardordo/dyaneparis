@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-const font = { fontFamily: 'Playfair Display, serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const font = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-lora), serif' }
 
 const heroImages: Record<string, string> = {
     'dyane-paris-pornstar-martini-70-cl': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/1_ecqqiv.png',
@@ -57,7 +57,7 @@ const produits: Record<string, {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'PLONGEZ DANS L\'UNIVERS DE DYANE PARIS, MAISON D\'ART LIQUIDE, OÙ L\'ART ET LA HAUTE MIXOLOGIE NE FONT QU\'UN. EN COLLABORATION AVEC TEO KAY KAY, DYANE RÉVÈLE UNE SÉRIE CONFIDENTIELLE DE 25 ŒUVRES. CHAQUE BOUTEILLE, PEINTE À LA MAIN À LA BOMBE, EST UNE PIÈCE UNIQUE, VIVANTE ET IRRÉPÉTABLE.',
         images: [
-            '/dyane-teo.png',
+            '/dyane-teo.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png',
         ],
@@ -92,7 +92,7 @@ function MobileImageCarousel({ images, nom }: { images: string[], nom: string })
     return (
         <div style={{ position: 'relative', width: '100%', marginBottom: '24px' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <Image src={images[current]} alt={`${nom} ${current + 1}`} fill style={{ objectFit: 'cover' }} />
+                <Image src={images[current]} alt={`${nom} ${current + 1}`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </div>
             <button onClick={() => setCurrent((current - 1 + images.length) % images.length)} style={{ position: 'absolute', top: '50%', left: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>‹</button>
             <button onClick={() => setCurrent((current + 1) % images.length)} style={{ position: 'absolute', top: '50%', right: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>›</button>
@@ -112,7 +112,7 @@ export default function ProduitPage({ params }: { params: { slug: string } }) {
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
 
     if (!produit) return (
-        <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
+        <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'var(--font-playfair), serif' }}>
             <p>Produit non trouvé</p>
             <Link href="/oeuvres">← Retour aux œuvres</Link>
         </main>
@@ -140,7 +140,7 @@ export default function ProduitPage({ params }: { params: { slug: string } }) {
                 {/* Hero */}
                 {heroImg && (
                     <section className="produit-hero" style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
-                        <Image src={heroImg} alt={produit.nom} fill style={{ objectFit: 'cover' }} />
+                        <Image src={heroImg} alt={produit.nom} fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </section>
                 )}
 
@@ -148,12 +148,12 @@ export default function ProduitPage({ params }: { params: { slug: string } }) {
 
                     {/* Galerie desktop */}
                     <div className="produit-galerie-desktop">
-                        <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'Playfair Display, serif', opacity: 0.5 }}>
+                        <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'var(--font-playfair), serif', opacity: 0.5 }}>
                             1<br />—<br />{produit.images.length}
                         </div>
                         {produit.images.map((src, i) => (
                             <div key={i} style={{ position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
-                                <Image src={src} alt={`${produit.nom} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                                <Image src={src} alt={`${produit.nom} ${i + 1}`} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
                             </div>
                         ))}
                     </div>
