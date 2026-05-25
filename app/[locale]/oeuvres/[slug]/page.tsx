@@ -2,8 +2,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const font = { fontFamily: 'Playfair Display, serif' }
+const lora = { fontFamily: 'Lora, serif' }
 
 const heroImages: Record<string, string> = {
     'dyane-paris-pornstar-martini-70-cl': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/1_ecqqiv.png',
@@ -70,17 +72,14 @@ function Accordion({ titre, contenu }: { titre: string, contenu: string }) {
     const [open, setOpen] = useState(false)
     return (
         <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
-            <button
-                onClick={() => setOpen(!open)}
-                style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
-            >
+            <button onClick={() => setOpen(!open)} style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
                 <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>{titre}</span>
                 <span style={{ fontSize: '16px', opacity: 0.5 }}>{open ? '∧' : '›'}</span>
             </button>
             {open && (
                 <div style={{ paddingBottom: '16px' }}>
                     {contenu.split('\n').map((ligne, i) => (
-                        <p key={i} style={{ ...font, fontSize: '12px', letterSpacing: '0.08em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase' }}>{ligne}</p>
+                        <p key={i} style={{ ...lora, fontSize: '12px', letterSpacing: '0.08em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase' }}>{ligne}</p>
                     ))}
                 </div>
             )}
@@ -88,9 +87,29 @@ function Accordion({ titre, contenu }: { titre: string, contenu: string }) {
     )
 }
 
-export default async function ProduitPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params
+function MobileImageCarousel({ images, nom }: { images: string[], nom: string }) {
+    const [current, setCurrent] = useState(0)
+    return (
+        <div style={{ position: 'relative', width: '100%', marginBottom: '24px' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
+                <Image src={images[current]} alt={`${nom} ${current + 1}`} fill style={{ objectFit: 'cover' }} />
+            </div>
+            <button onClick={() => setCurrent((current - 1 + images.length) % images.length)} style={{ position: 'absolute', top: '50%', left: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>‹</button>
+            <button onClick={() => setCurrent((current + 1) % images.length)} style={{ position: 'absolute', top: '50%', right: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>›</button>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px' }}>
+                {images.map((_, i) => (
+                    <button key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '2px', background: i === current ? '#111' : 'rgba(0,0,0,0.2)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s ease' }} />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export default function ProduitPage({ params }: { params: { slug: string } }) {
+    const { slug } = params
     const produit = produits[slug]
+    const pathname = usePathname()
+    const locale = pathname.startsWith('/en') ? 'en' : 'fr'
 
     if (!produit) return (
         <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
@@ -102,58 +121,78 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
     const heroImg = heroImages[slug]
 
     return (
-        <div style={{ background: '#FAF8F5' }}>
+        <>
+            <style>{`
+                @media (max-width: 768px) {
+                    .produit-hero { height: 40vh !important; }
+                    .produit-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 24px 20px !important; }
+                    .produit-galerie-desktop { display: none !important; }
+                    .produit-galerie-mobile { display: block !important; }
+                    .produit-sticky { position: static !important; }
+                }
+                @media (min-width: 769px) {
+                    .produit-galerie-desktop { display: block !important; }
+                    .produit-galerie-mobile { display: none !important; }
+                }
+            `}</style>
+            <div style={{ background: '#FAF8F5' }}>
 
-            {/* Hero image */}
-            {heroImg && (
-                <section style={{ position: 'relative', width: '100%', height: '20vh', overflow: 'hidden' }}>
-                    <Image src={heroImg} alt={produit.nom} fill style={{ objectFit: 'cover' }} />
-                </section>
-            )}
+                {/* Hero */}
+                {heroImg && (
+                    <section className="produit-hero" style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
+                        <Image src={heroImg} alt={produit.nom} fill style={{ objectFit: 'cover' }} />
+                    </section>
+                )}
 
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+                <div className="produit-grid" style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
-                {/* Galerie gauche */}
-                <div>
-                    <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'Playfair Display, serif', opacity: 0.5 }}>
-                        1<br />—<br />{produit.images.length}
+                    {/* Galerie desktop */}
+                    <div className="produit-galerie-desktop">
+                        <div style={{ marginBottom: '8px', fontSize: '12px', fontFamily: 'Playfair Display, serif', opacity: 0.5 }}>
+                            1<br />—<br />{produit.images.length}
+                        </div>
+                        {produit.images.map((src, i) => (
+                            <div key={i} style={{ position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
+                                <Image src={src} alt={`${produit.nom} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                            </div>
+                        ))}
                     </div>
-                    {produit.images.map((src, i) => (
-                        <div key={i} style={{ position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
-                            <Image src={src} alt={`${produit.nom} ${i + 1}`} fill style={{ objectFit: 'cover' }} />
-                        </div>
-                    ))}
-                </div>
 
-                {/* Infos droite — sticky */}
-                <div style={{ position: 'sticky', top: '120px' }}>
-                    <h1 style={{ ...font, fontSize: '14px', fontWeight: 400, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>{produit.nom}</h1>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '24px' }}>{produit.sousTitre}</p>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase', marginBottom: '24px' }}>{produit.description}</p>
+                    {/* Carousel mobile */}
+                    <div className="produit-galerie-mobile" style={{ display: 'none' }}>
+                        <MobileImageCarousel images={produit.images} nom={produit.nom} />
+                    </div>
 
-                    {produit.formats && (
-                        <div style={{ marginBottom: '20px' }}>
-                            <p style={{ ...font, fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>FORMAT</p>
-                            <select style={{ ...font, width: '100%', padding: '12px 16px', border: '1px solid rgba(0,0,0,0.2)', background: '#FAF8F5', fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', outline: 'none' }}>
-                                {produit.formats.map(f => <option key={f}>{f}</option>)}
-                            </select>
-                        </div>
-                    )}
+                    {/* Infos droite */}
+                    <div className="produit-sticky" style={{ position: 'sticky', top: '120px' }}>
+                        <h1 style={{ ...font, fontSize: '14px', fontWeight: 400, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>{produit.nom}</h1>
+                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '24px' }}>{produit.sousTitre}</p>
+                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.12em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase', marginBottom: '24px' }}>{produit.description}</p>
 
-                    <Link href="/contact" style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
-                        CONTACTER LA CONCIERGERIE
-                    </Link>
+                        {produit.formats && (
+                            <div style={{ marginBottom: '20px' }}>
+                                <p style={{ ...font, fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>FORMAT</p>
+                                <select style={{ ...lora, width: '100%', padding: '12px 16px', border: '1px solid rgba(0,0,0,0.2)', background: '#FAF8F5', fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', outline: 'none' }}>
+                                    {produit.formats.map(f => <option key={f}>{f}</option>)}
+                                </select>
+                            </div>
+                        )}
 
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>DATE ESTIMÉE DE LIVRAISON :</p>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '24px' }}>SOUS DEUX SEMAINES</p>
+                        <Link href={`/${locale}/contact`} style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
+                            CONTACTER LA CONCIERGERIE
+                        </Link>
 
-                    <Accordion titre="PLUS D'INFORMATIONS" contenu={produit.plusInfos} />
-                    <Accordion titre="LIVRAISON" contenu={produit.livraison} />
-                    <Accordion titre="DISPONIBILITÉ EN BOUTIQUE" contenu={produit.disponibilite} />
-                    <Accordion titre="NOUS CONTACTER" contenu={'REJOIGNEZ LA LISTE D\'ATTENTE\n\nE-MAIL : CONTACT@DYANEPARIS.COM\nINSTAGRAM : @DYANEPARIS_'} />
-                    <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }} />
+                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>DATE ESTIMÉE DE LIVRAISON :</p>
+                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '24px' }}>SOUS DEUX SEMAINES</p>
+
+                        <Accordion titre="PLUS D'INFORMATIONS" contenu={produit.plusInfos} />
+                        <Accordion titre="LIVRAISON" contenu={produit.livraison} />
+                        <Accordion titre="DISPONIBILITÉ EN BOUTIQUE" contenu={produit.disponibilite} />
+                        <Accordion titre="NOUS CONTACTER" contenu={'REJOIGNEZ LA LISTE D\'ATTENTE\n\nE-MAIL : CONTACT@DYANEPARIS.COM\nINSTAGRAM : @DYANEPARIS_'} />
+                        <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
