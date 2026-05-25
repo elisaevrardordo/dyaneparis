@@ -146,6 +146,6 @@
     "message": "Votre message",
     "envoyer": "ENVOYER",
     "merci": "Votre message a bien été envoyé. Nous vous répondrons sous 48h.",
-    "options": ["Commande privée", "Partenariat hôtelier", "Collaboration artistique", "Presse & médias", "Autre"]
+    "options": ["Commande privée", "Partenariat", "Suivi de commande", "Recrutement", "Collaboration artistique", "Presse & médias", "Autre"]
   }
 }
