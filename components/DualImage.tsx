@@ -88,25 +88,17 @@ export default function DualImage() {
                     )}
 
                     {/* SLIDE 2 */}
-                    {current === 1 && (
-                        <div style={{ position: 'relative', width: '100%', height: '800px' }}>
-                            <Image
-                                src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626200/0512eec9ef31ff0016ded898d96b2001_ltf2yr.jpg"
-                                alt="Distillation Dyane"
-                                fill
-                                sizes="100vw"
-                                style={{ objectFit: 'cover' }}
-                            />
-                            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.38)' }} />
-                            <div className="dual-slide2-text" style={{ position: 'absolute', top: '60px', left: '80px', maxWidth: '580px' }}>
-                                <p style={{ ...bodoni, color: '#fff', fontSize: '16px', lineHeight: 1.7, fontWeight: 400, opacity: 0.95 }}>
-                                    Après les vendanges bordelaises, le raisin est fermenté puis distillé afin d'obtenir un alcool vinique pur.<br /><br />
-                                    Retravaillé et assemblé avec précision, il devient la base de nos cocktails Dyane.
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
+{current === 1 && (
+    <div style={{ position: 'relative', width: '100%', height: '800px' }}>
+        <Image
+            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779746699/Apre%CC%80s_les_vendanges_bordelaines_b3yov0.png"
+            alt="Distillation Dyane"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+        />
+    </div>
+)}
                     {/* SLIDE 3 */}
                     {current === 2 && (
                         <div className="dual-slide3-grid" style={{ padding: '80px 100px', minHeight: '800px', display: 'flex', alignItems: 'center' }}>
