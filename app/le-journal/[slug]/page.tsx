@@ -231,7 +231,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
         <>
             <style>{`
                 @media (max-width: 768px) {
-                    .slug-banner { height: 35vh !important; padding-top: 80px !important; }
+                    .slug-banner { height: 25vh !important; padding-top: 80px !important; }
                     .slug-banner-text { left: 24px !important; bottom: 20px !important; }
                     .slug-banner-title { font-size: 13px !important; }
                     .article-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 32px 20px 24px !important; }
