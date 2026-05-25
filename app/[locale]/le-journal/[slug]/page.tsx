@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
-const lora = { fontFamily: 'var(--font-lora), serif' }
+const font = { fontFamily: 'Playfair Display, serif' }
+const lora = { fontFamily: 'Lora, serif' }
 
 const articles: Record<string, {
     titre: string
@@ -18,19 +18,20 @@ const articles: Record<string, {
         titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis',
         date: '24 MARS 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_rzj5qf.png',
-        extrait: "Dans l'écrin majestueux du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
+        extrait: "Dans l'écrin majestueux du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à une soirée d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
         contenu: (
             <>
-                <p>Dans l'écrin du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.</p>
-                <p>Cet événement, réunissant des figures emblématiques du monde gastronomique et des acteurs majeurs de l'excellence française, s'inscrit dans une tradition où savoir-faire, transmission et passion sont célébrés avec exigence et élégance.</p>
+                <p>Dans l'écrin majestueux du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à une soirée d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.</p>
+                <p>Réunissant des figures emblématiques de la gastronomie française, des artisans du goût et des acteurs majeurs de l'excellence française, cet événement célébrait la transmission, le savoir-faire et la passion avec une élégance rare.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/CAFE_2_wozute.png" alt="Café de l'Homme" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Pour Dyane, cette collaboration a été l'occasion de proposer une lecture contemporaine du rituel de dégustation, en introduisant ses créations comme des objets à part entière, à la croisée du cocktail, de l'art et de l'expérience.</p>
+                <p>Dans ce décor suspendu au-dessus de Paris, Dyane a présenté ses créations comme des objets à part entière, à la frontière du cocktail, de l'art et de l'expérience sensorielle. Les pièces en porcelaine, façonnées avec précision, trouvaient naturellement leur place dans cet univers où chaque détail porte une intention et où l'exigence devient une signature.</p>
+                <p>Cette collaboration fut l'occasion pour la Maison de proposer une lecture contemporaine du rituel de dégustation. Chez Dyane, le cocktail ne se limite pas à un instant de consommation : il devient un geste esthétique, une émotion visuelle, une œuvre pensée pour prolonger l'expérience bien au-delà du verre.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_3_vzlzva.png" alt="Café de l'Homme Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Présentées dans des pièces en porcelaine façonnées avec précision, les créations Dyane ont trouvé naturellement leur place dans cet environnement où chaque détail compte. Dans ce cadre chargé d'histoire et d'exigence, Dyane affirme sa volonté de s'inscrire dans les codes de l'excellence française tout en y apportant une dimension nouvelle : celle d'une Maison d'Art Liquide.</p>
+                <p>Présentées dans un cadre chargé d'histoire et de symboles, les créations Dyane ont dialogué avec l'esprit du lieu, mêlant héritage gastronomique français et vision contemporaine du luxe. À travers cette présence au Café de l'Homme, Dyane Paris poursuit son inscription dans les cercles de l'excellence française tout en affirmant une vision singulière : celle d'une Maison d'Art Liquide où la création, l'émotion et le savoir-faire se rencontrent.</p>
             </>
         ),
         related: [
@@ -44,22 +45,23 @@ const articles: Record<string, {
         titre: 'Dyane Paris au Ritz Paris — Une Fashion Week',
         date: '4 MARS 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_2_dlipkw.png',
-        extrait: "À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une véritable exposition d'Art Liquide.",
+        extrait: "À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence imaginée comme une véritable exposition d'Art Liquide.",
         contenu: (
             <>
-                <p>À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une véritable exposition d'Art Liquide.</p>
+                <p>À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence imaginée comme une véritable exposition d'Art Liquide.</p>
+                <p>Dans ce lieu emblématique de la place Vendôme, où se croisent héritage, création et art de vivre à la française, la Maison a dévoilé ses créations en porcelaine comme des œuvres sculpturales à part entière.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_ukrb4s.png" alt="Ritz Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Dans ce lieu iconique, où se croisent création, héritage et modernité, Dyane a présenté ses pièces comme des œuvres à part entière. Chaque bouteille, en porcelaine, a été conçue comme une sculpture, une présence visuelle, un point de rencontre entre art et hospitalité.</p>
+                <p>Loin d'une approche traditionnelle de la dégustation, cette présence s'apparentait davantage à une installation curatoriale qu'à une simple activation événementielle. Les cocktails devenaient objets d'expression, silhouettes à contempler, signatures visuelles incarnant une vision nouvelle du luxe contemporain.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_3_eow2t2.png" alt="Ritz Paris Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Loin d'un format traditionnel, cette activation s'est insérée dans une approche curatoriale, où les créations étaient mises en scène pour dialoguer avec l'espace, la lumière et le mouvement des invités.</p>
+                <p>Présentées dans les salons du Ritz Paris, les créations Dyane ont trouvé naturellement leur place dans cet univers où chaque détail raconte une histoire. La porcelaine, travaillée comme une matière d'art, faisait écho à l'atmosphère intemporelle du lieu, entre raffinement classique et modernité discrète.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713796/RITZ_4_c0iyhi.png" alt="Ritz Paris Fashion Week Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Un moment qui confirme la volonté de Dyane Paris de s'inscrire dans les lieux et les événements où la création, l'élégance et l'art de vivre se rencontrent.</p>
+                <p>À travers cette apparition durant la Fashion Week, Dyane Paris affirme sa volonté d'inscrire l'Art Liquide dans les lieux où la mode, la culture et l'excellence française se rencontrent avec évidence. Une présence qui traduit l'ambition de la Maison : faire du cocktail un objet de collection, de contemplation et d'émotion.</p>
             </>
         ),
         related: [
@@ -73,22 +75,20 @@ const articles: Record<string, {
         titre: "Dyane, du point de vue d'un distillateur.",
         date: '22 FÉVRIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_2_r6oj8w.png',
-        extrait: "Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange d'ingrédients. Il naît d'une recherche autour des arômes, des matières premières et du geste de la distillation.",
+        extrait: "Chez Dyane Paris, un cocktail ne naît jamais d'un simple assemblage. Il prend forme à travers une recherche exigeante autour des arômes, des matières premières et du geste précis de la distillation.",
         contenu: (
             <>
-                <h2>LA DISTILLATION AU CŒUR DES CRÉATIONS DYANE PARIS</h2>
-                <p>Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange d'ingrédients. Il naît d'une recherche autour des arômes, des matières premières et du geste de la distillation.</p>
-                <p>C'est dans le Vaucluse, au cœur de la Provence, que cette exploration prend forme avec Julien Ducruet, président d'Esprit Distillation.</p>
+                <p>Chez Dyane Paris, un cocktail ne naît jamais d'un simple assemblage. Il prend forme à travers une recherche exigeante autour des arômes, des matières premières et du geste précis de la distillation.</p>
+                <p>C'est au cœur du Vaucluse, entre lumière provençale et savoir-faire artisanal, que cette exploration se construit aux côtés de Julien Ducruet, président d'Esprit Distillation.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_yjwtvq.png" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <blockquote>« CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES. »</blockquote>
-                <h2>UNE RENCONTRE ENTRE AUDACE ET SAVOIR-FAIRE</h2>
-                <p>Certaines collaborations naissent d'une évidence. Celle entre Elisa, fondatrice de Dyane Paris, et Julien Ducruet en fait partie.</p>
+                <blockquote>« CHAQUE SPIRITUEUX EST IMAGINÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE RÉVÉLER LA PURETÉ DES ARÔMES ET LA COMPLEXITÉ DES MATIÈRES PREMIÈRES. »</blockquote>
+                <p>Certaines collaborations naissent d'une évidence. Celle entre Elisa Evrard Ordonez, fondatrice de Dyane Paris, et Julien Ducruet s'est imposée autour d'une ambition commune : créer des cocktails capables de conjuguer exigence technique, émotion et sophistication contemporaine.</p>
                 <blockquote>« DERRIÈRE LA JEUNESSE D'ELISA, J'AI IMMÉDIATEMENT PERÇU UNE MATURITÉ RARE, UNE ÉNERGIE POSITIVE FOLLE ET CETTE INTUITION JUSTE QUI CARACTÉRISE LES GRANDS CRÉATEURS. »</blockquote>
-                <h2>UNE SIGNATURE FRANÇAISE</h2>
-                <p>Cette collaboration est née d'un respect mutuel et d'une ambition partagée : proposer des cocktails premium qui allient authenticité, élégance et modernité.</p>
+                <p>Au-delà de la maîtrise des procédés, cette rencontre traduit une vision commune du luxe français : un luxe fondé sur le temps, le détail et l'authenticité du geste. Chez Dyane, la création d'un cocktail s'apparente davantage au travail d'un parfumeur ou d'un artisan d'art qu'à une simple production de boissons.</p>
                 <blockquote>« ENSEMBLE, NOUS CRÉONS DES COCKTAILS QUI RACONTENT UNE HISTOIRE : CELLE D'UNE RENCONTRE, D'UNE PASSION COMMUNE ET D'UN ENGAGEMENT TOTAL POUR LA QUALITÉ. »</blockquote>
+                <p>Chaque création raconte ainsi une histoire singulière — celle d'une rencontre entre artisanat, création et passion — portée par une volonté absolue de qualité. Une approche où la distillation devient un langage, et où chaque note aromatique participe à la signature émotionnelle de la Maison.</p>
             </>
         ),
         related: [
@@ -102,24 +102,24 @@ const articles: Record<string, {
         titre: "L'Exigence des Ingrédients : Alcool Vinique et Filières Françaises",
         date: '10 FÉVRIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDIENTS_jnqiij.png',
-        extrait: "Chez Dyane Paris, chaque ingrédient est un choix délibéré.
-De l’alcool vinique élaboré en France aux fruits, plantes et épices sélectionnés avec précision, rien n’est laissé au hasard. Chaque composant est pensé pour apporter équilibre, profondeur et signature aromatique à nos créations.",
+        extrait: "Chez Dyane Paris, chaque ingrédient est un choix délibéré. De l'alcool vinique élaboré en France aux fruits, plantes et épices sélectionnés avec précision, rien n'est laissé au hasard.",
         contenu: (
             <>
+                <p>Chez Dyane Paris, chaque ingrédient est un choix délibéré. De l'alcool vinique élaboré en France aux fruits, plantes et épices sélectionnés avec précision, rien n'est laissé au hasard. Chaque composant est pensé pour apporter équilibre, profondeur et signature aromatique à nos créations.</p>
                 <h2>LE CHOIX DE L'ALCOOL VINIQUE</h2>
-                <p>Nous avons choisi un alcool vinique issu de la fermentation puis de la distillation du vin, élaboré exclusivement en France, dans la région d’Avignon, après les vendanges bordelaises. Plus noble et plus complexe qu’un alcool neutre de grain, il apporte une texture plus ronde, une longueur plus élégante et une profondeur naturelle qui sublime les ingrédients sans jamais les dominer.</p>
-                <p>Sélectionné pour sa pureté à 96 %, cet alcool se distingue par sa neutralité aromatique maîtrisée : suffisamment discrète pour laisser s’exprimer chaque note, suffisamment structurée pour donner de la tenue et du relief à l’ensemble.</p>
+                <p>Nous avons choisi un alcool vinique issu de la fermentation puis de la distillation du vin, élaboré exclusivement en France, dans la région d'Avignon, après les vendanges bordelaises. Plus noble et plus complexe qu'un alcool neutre de grain, il apporte une texture plus ronde, une longueur plus élégante et une profondeur naturelle qui sublime les ingrédients sans jamais les dominer.</p>
+                <p>Sélectionné pour sa pureté à 96%, cet alcool se distingue par sa neutralité aromatique maîtrisée : suffisamment discrète pour laisser s'exprimer chaque note, suffisamment structurée pour donner de la tenue et du relief à l'ensemble.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDINETS_b7p9za.png" alt="Ingrédients Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>DES FRUITS ET PLANTES D'EXCEPTION</h2>
-                <p>Le fruit de la passion provient de filières sélectionnées pour la richesse de leur maturité et l’intensité naturelle de leurs arômes. La vanille utilisée dans nos créations est une Bourbon Gold de La Réunion, reconnue pour sa rondeur profonde et ses notes chaudes et enveloppantes. Le gingembre, issu de producteurs français, révèle une chaleur vive, nette et parfaitement équilibrée.</p>
-                <p>Chaque ingrédient fait l'objet d'une sélection rigoureuse. Nous travaillons exclusivement avec des partenaires capables de garantir une qualité irréprochable d’un batch à l’autre, afin de préserver l’identité sensorielle de chaque création Dyane Paris.</p>
+                <p>Le fruit de la passion provient de filières sélectionnées pour la richesse de leur maturité et l'intensité naturelle de leurs arômes. La vanille utilisée dans nos créations est une Bourbon Gold de La Réunion, reconnue pour sa rondeur profonde et ses notes chaudes et enveloppantes. Le gingembre, issu de producteurs français, révèle une chaleur vive, nette et parfaitement équilibrée.</p>
+                <p>Chaque ingrédient fait l'objet d'une sélection rigoureuse. Nous travaillons exclusivement avec des partenaires capables de garantir une qualité irréprochable d'un batch à l'autre, afin de préserver l'identité sensorielle de chaque création Dyane Paris.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/INGREDIENTS_2_giygrp.png" alt="Ingrédients locaux Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>UN ENGAGEMENT POUR LE TERROIR FRANÇAIS</h2>
-                <p>Dyane Paris est une Maison profondément ancrée dans le terroir français. Nos cocktails ne sont pas seulement fabriqués en France: ils sont pensés, élaborés et assemblés avec des ingrédients qui racontent une géographie, une saison, un geste artisanal.</p>
+                <p>Dyane Paris est une Maison profondément ancrée dans le terroir français. Nos cocktails ne sont pas seulement fabriqués en France : ils sont pensés, élaborés et assemblés avec des ingrédients qui racontent une géographie, une saison, un geste artisanal.</p>
                 <blockquote>« NOUS NE FAISONS PAS DES COCKTAILS. NOUS FAISONS DES INTERPRÉTATIONS D'UN TERRITOIRE ET D'UNE SAISON, CAPTURÉES DANS UN FLACON. »</blockquote>
             </>
         ),
@@ -134,20 +134,21 @@ De l’alcool vinique élaboré en France aux fruits, plantes et épices sélect
         titre: 'TEO FOR DYANE',
         date: '18 JANVIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png',
-        extrait: "Quand l’univers de Dyane Paris rencontre celui du peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay, la bouteille cesse d’être un simple contenant pour devenir une œuvre vivante.Dyane Paris dévoile une collaboration artistique avec Teo Kaykay, artiste reconnu pour son langage visuel instinctif, ses compositions spontanées et sa palette vibrante. Son travail, à la frontière entre abstraction contemporaine et énergie urbaine, trouve ici un nouveau terrain d’expression : la sculpture en porcelaine Dyane.",
+        extrait: "Dyane Paris dévoile une collaboration artistique avec Matteo Mengacci, plus connu sous le nom de Teo Kaykay, peintre dont l'univers visuel se distingue par une énergie instinctive et une écriture contemporaine immédiatement reconnaissable.",
         contenu: (
             <>
-                <p>Cette rencontre entre deux univers créatifs — l’Art Liquide de Dyane et la peinture libre de Teo — donne naissance à une série de pièces uniques, entièrement peintes à la main.<p>
-                     <p>Chaque bouteille est pensée comme une sculpture d’expression : un objet où la matière, la couleur et le cocktail dialoguent dans un même geste artistique. Les formes deviennent support de mouvement, les volumes capturent la lumière, et chaque création porte les traces d’un travail instinctif et singulier.<p>
- <p>Ici, le cocktail ne se contente plus d’être dégusté : il s’expose.</p>
+                <p>Dyane Paris dévoile une collaboration artistique avec Matteo Mengacci, plus connu sous le nom de Teo Kaykay, peintre italien dont l'univers visuel se distingue par une énergie instinctive, des contrastes affirmés et une écriture contemporaine immédiatement reconnaissable.</p>
+                <p>À travers cette rencontre entre l'Art Liquide de Dyane et l'univers pictural de Teo, la Maison poursuit son dialogue entre artisanat, création et expression artistique. Ensemble, ils donnent naissance à une série de pièces uniques où la bouteille devient toile, sculpture et terrain d'expérimentation visuelle.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_2_whlyb1.png" alt="Teo Kaykay Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>Cette rencontre entre deux univers — l'Art Liquide de Dyane et la peinture de Teo — a donné naissance à une série de pièces uniques où la bouteille devient toile. Chaque sculpture en porcelaine a été pensée comme un support d'expression artistique, au croisement du cocktail et de l'œuvre.</p>
+                <p>Chaque création en porcelaine a été peinte à la main par l'artiste, transformant les silhouettes Dyane en œuvres singulières. Les couleurs vibrantes, les motifs spontanés et les jeux de matière viennent habiter la porcelaine avec intensité, créant un contraste entre la délicatesse de la sculpture et l'énergie brute du geste artistique.</p>
+                <p>Cette collaboration illustre pleinement la vision de Dyane Paris : faire du contenant une œuvre à part entière, aussi expressive et précieuse que le cocktail qu'elle renferme. Ici, l'objet dépasse sa fonction initiale pour devenir pièce de collection, fragment d'émotion et témoignage d'une rencontre créative.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_mcxbuu.png" alt="Teo for Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <p>La collaboration illustre la vision de Dyane Paris : faire du contenant une œuvre à part entière, aussi singulière que le cocktail qu'elle abrite. Ce projet s'inscrit dans la démarche de la Maison : inviter des artistes à s'exprimer à travers le prisme de l'Art Liquide, pour créer des éditions limitées qui sont autant des objets de collection que des expériences sensorielles.</p>
+                <p>Pensé comme une édition limitée, ce projet s'inscrit dans la volonté de la Maison d'inviter des artistes contemporains à s'approprier l'univers Dyane à travers leur propre langage esthétique. Chaque intervention transforme ainsi l'Art Liquide en territoire d'expression libre, où le cocktail dialogue avec la peinture, la matière et le geste.</p>
+                <p>Entre sculpture, artisanat et création contemporaine, Teo for Dyane célèbre une vision du luxe plus artistique, plus émotionnelle et profondément incarnée. Une rencontre où l'objet devient mémoire visuelle autant qu'expérience sensorielle.</p>
             </>
         ),
         related: [
@@ -161,24 +162,24 @@ De l’alcool vinique élaboré en France aux fruits, plantes et épices sélect
         titre: "L'Art de la Porcelaine : Quand le Contenant devient Œuvre",
         date: '5 JANVIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/PORCELAINE_3_khqmjh.png',
-        extrait: "La porcelaine de Dyane Paris n'est pas un emballage. C'est une sculpture habitée, façonnée par plus de 70 mains, cuite trois fois, pensée pour traverser le temps.",
+        extrait: "Chez Dyane Paris, la porcelaine n'est pas un simple contenant. Elle est pensée comme une œuvre habitée, façonnée pour traverser le temps bien au-delà de la dégustation.",
         contenu: (
             <>
-                <h2>UNE MATIÈRE NOBLE, UN GESTE ANCIEN</h2>
-                <p>La porcelaine de Dyane Paris n'est pas un emballage. C'est une sculpture habitée, façonnée par plus de 70 mains, cuite trois fois, pensée pour traverser le temps bien au-delà de la dégustation.</p>
-                <p>Élaborée à partir de trois poudres minérales — feldspath, quartz et kaolin — la barbotine est moulée, travaillée, puis soumise à trois cuissons successives : à 600°C, à 900°C, et à 1300°C pour la vitrification finale qui lui confère son éclat caractéristique.</p>
+                <p>Chez Dyane Paris, la porcelaine n'est pas un simple contenant. Elle est pensée comme une œuvre habitée, façonnée pour traverser le temps bien au-delà de la dégustation.</p>
+                <p>Chaque pièce naît d'un processus exigeant mobilisant plus de soixante-dix mains artisanes et plusieurs mois de travail. La matière, élaborée à partir de feldspath, de quartz et de kaolin, est moulée, travaillée puis soumise à trois cuissons successives afin d'obtenir sa profondeur, sa résistance et son éclat final.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_2_o6ut9l.png" alt="Porcelaine Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>LA VÉNUS DE MILO COMME RÉFÉRENCE</h2>
-                <p>La forme de la bouteille Dyane s'inspire librement de la Vénus de Milo — symbole intemporel de féminité, de beauté classique et de mystère. Chaque courbe, chaque proportion a été pensée pour que la sculpture existe pleinement, même vide.</p>
-                <p>L'objet ne disparaît pas après la dégustation — il commence une nouvelle vie décorative, mémorielle, affective.</p>
+                <p>La silhouette de la bouteille s'inspire librement de la Vénus de Milo, figure intemporelle de féminité, de beauté classique et de mystère. Chaque courbe, chaque proportion et chaque détail ont été pensés afin de donner à la pièce une présence sculpturale autonome.</p>
+                <p>Une fois vide, l'objet poursuit son existence. Il devient pièce décorative, souvenir d'un instant vécu, présence silencieuse dans un intérieur. Cette seconde vie fait partie intégrante de la philosophie de la Maison : créer des objets capables de conserver une mémoire émotionnelle.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/PORCELAINE_genaol.png" alt="Porcelaine art Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
                 <h2>PLUS DE 70 MAINS, DEUX MOIS DE TRAVAIL</h2>
-                <p>Le cycle complet de fabrication d'une pièce Dyane prend plus de deux mois. De la préparation de la barbotine à la peinture finale, chaque étape mobilise des artisans spécialisés dont le geste est irremplaçable.</p>
+                <p>Le cycle complet de fabrication d'une création Dyane dépasse deux mois. De la préparation de la barbotine jusqu'aux finitions peintes à la main, chaque étape célèbre la précision du geste et la noblesse des savoir-faire artisanaux.</p>
                 <blockquote>« UN OBJET QUI TRAVERSE LE TEMPS DOIT ÊTRE PENSÉ POUR LE TEMPS. C'EST POURQUOI CHAQUE PIÈCE DYANE EST CONÇUE AUTANT POUR ÊTRE REGARDÉE QUE POUR ÊTRE BUE. »</blockquote>
+                <p>À travers cette approche, Dyane Paris affirme une vision du luxe fondée sur le temps, la matière et la transmission. Un luxe où l'objet conserve une âme longtemps après le dernier verre, et où chaque création devient le témoin durable d'un moment d'exception.</p>
             </>
         ),
         related: [
@@ -192,20 +193,21 @@ De l’alcool vinique élaboré en France aux fruits, plantes et épices sélect
         titre: 'Quand le Cocktail devient œuvre à Collectionner',
         date: '31 JANVIER 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/ART_pq1nvz.png',
-        extrait: "Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. Dans un paysage du luxe en pleine mutation, la jeune Maison française propose un geste inédit.",
+        extrait: "Avec Dyane Paris, le cocktail quitte le verre pour entrer dans l'univers de la sculpture. La Maison française propose une approche inédite : transformer la dégustation en expérience esthétique durable.",
         contenu: (
             <>
-                <h2>ET SI UNE OEUVRE POUVAIT SE BOIRE ?</h2>
-                <p>Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. Ce que Dyane Paris appelle "Art Liquide" repose sur une idée précise : un cocktail signature haut de gamme présenté dans un contenant artistique unique, pensé pour être conservé.</p>
+                <p>Avec Dyane Paris, le cocktail quitte le verre pour entrer dans l'univers de la sculpture.</p>
+                <p>Dans un paysage du luxe en pleine évolution, la Maison française propose une approche inédite : transformer la dégustation en expérience esthétique durable. Ce que Dyane appelle « Art Liquide » repose sur une vision précise : des cocktails signatures haut de gamme présentés dans des pièces en porcelaine conçues pour être conservées bien après l'instant de dégustation.</p>
                 <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/ART_2_akhiva.png" alt="Art Liquide Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </div>
-                <h2>L'APPARITION D'UNE NOUVELLE CATÉGORIE</h2>
-                <p>Dyane ne revendique pas l'étiquette de simple marque de Ready-To-Drink. Son positionnement est plus ambitieux : Maison d'Art Liquide. Dans l'univers du luxe français, le terme "Maison" évoque instantanément l'héritage des maisons de haute couture ou de joaillerie.</p>
+                <h2>UNE NOUVELLE MAISON FRANÇAISE</h2>
+                <p>Loin des codes traditionnels du ready-to-drink, Dyane revendique un territoire plus rare : celui d'une Maison d'Art Liquide. Une expression qui emprunte à l'univers des grandes Maisons françaises leur rapport au temps, à la matière et à la création.</p>
                 <h2>LA BOUTEILLE DEVIENT SCULPTURE</h2>
-                <p>Dyane abandonne l'archétype historique de la bouteille en verre pour adopter la porcelaine. Cette matière noble donne à la pièce une présence sculpturale, inspirée de la Vénus de Milo — référence classique et féminine.</p>
+                <p>Inspirées librement de la Vénus de Milo, les silhouettes en porcelaine affirment une présence sculpturale forte, entre héritage classique et modernité contemporaine. Chaque courbe a été pensée pour donner à l'objet une identité visuelle singulière, capable d'exister pleinement même après avoir été dégusté.</p>
                 <h2>L'OBJET APRÈS LA DÉGUSTATION</h2>
-                <p>Une fois vide, la statue devient pièce décorative, souvenir d'un moment, objet de collection. La production est volontairement limitée, environ 500 pièces par an.</p>
+                <p>Chez Dyane, l'objet ne disparaît pas après l'usage. Il poursuit son existence comme pièce décorative, souvenir émotionnel ou objet de collection. Produites en série limitée, les créations Dyane cultivent une forme de rareté volontaire. Chaque pièce porte en elle le temps du geste artisanal, la précision des finitions et l'idée qu'un objet peut conserver une valeur émotionnelle bien après son utilisation première.</p>
+                <p>Avec Dyane Paris, le cocktail ne se consomme plus uniquement : il se contemple, se collectionne et se transmet.</p>
                 <p style={{ ...lora, fontSize: '11px', opacity: 0.5, marginTop: '48px' }}>Crédit : Bethszabée Garner, Oniriq, paru le vendredi 19 février 2026.</p>
             </>
         ),
@@ -224,7 +226,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
     const article = articles[params.slug]
 
     if (!article) return (
-        <main style={{ background: '#FAF8F5', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'var(--font-playfair), serif' }}>
+        <main style={{ background: '#FAF8F5', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
             <p>Article non trouvé</p>
             <Link href={`/${locale}/le-journal`}>← Retour au journal</Link>
         </main>
@@ -244,10 +246,10 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                     .article-related-img { height: 100px !important; }
                     .article-related-section { padding: 0 20px 60px !important; }
                 }
-                .article-content p { margin-bottom: 24px; font-family: var(--font-lora), serif; font-size: 16px; line-height: 2; color: #222; }
-                .article-content h2 { font-family: var(--font-playfair), serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin: 48px 0 20px; opacity: 0.6; }
+                .article-content p { margin-bottom: 24px; font-family: 'Lora', serif; font-size: 16px; line-height: 2; color: #222; }
+                .article-content h2 { font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin: 48px 0 20px; opacity: 0.6; }
                 .article-content blockquote { border-left: 1px solid #000; padding-left: 28px; margin: 40px 0; }
-                .article-content blockquote p { font-family: var(--font-playfair), serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; }
+                .article-content blockquote p { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; margin-bottom: 0; }
                 .article-content strong { font-weight: 600; }
             `}</style>
 
