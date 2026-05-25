@@ -27,8 +27,7 @@ export default function Manifeste() {
                     {/* Trois lignes italiques */}
                     <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Cocktails d'exception.</p>
                     <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Flacons en porcelaine peints à la main.</p>
-                    <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '32px' }}>Objets de collection.</p>
-
+                    
                     {/* Trait */}
                     <div style={{ width: '40px', height: '1px', background: 'rgba(0,0,0,0.2)', marginBottom: '32px' }} />
 
