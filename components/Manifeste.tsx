@@ -19,7 +19,7 @@ export default function Manifeste() {
                 <div>
                     {/* Signature */}
                     <p style={{
-fontFamily: '"Ms Madi", cursive',
+fontFamily: 'Playfair Display, serif',
                         fontSize: 'clamp(64px, 9vw, 110px)',
                         fontWeight: 400,
                         color: '#111',
