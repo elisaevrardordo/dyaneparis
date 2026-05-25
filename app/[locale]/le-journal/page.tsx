@@ -1,150 +1,248 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
 
 const font = { fontFamily: 'Playfair Display, serif' }
 const lora = { fontFamily: 'Lora, serif' }
 
-const articles = [
-    { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', date: '24 MARS 2026', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
-    { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', date: '12 MARS 2026', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
-    { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", date: '5 FÉVRIER 2026', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
-    { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', date: '18 JANVIER 2026', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
-    { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', date: '3 JANVIER 2026', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
-]
-
-const extraits: Record<string, string> = {
-    'commanderie-ambassadeurs-rungis': "Dans l'écrin du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a participé à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
-    'ritz-paris-fashion-week': "À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une exposition d'Art Liquide.",
-    'point-de-vue-distillateur': "Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange. Il naît d'une recherche autour des arômes et du geste de la distillation.",
-    'teo-for-dyane': "Une collaboration entre Dyane Paris et le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay.",
-    'cocktail-oeuvre-collectionner': "Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. La jeune Maison française propose un geste inédit.",
+const articles: Record<string, {
+    titre: string
+    date: string
+    image: string
+    extrait: string
+    contenu: React.ReactNode
+    related: { slug: string; titre: string; image: string }[]
+}> = {
+    'commanderie-ambassadeurs-rungis': {
+        titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis',
+        date: '24 MARS 2026',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png',
+        extrait: "Dans l'écrin majestueux du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
+        contenu: (
+            <>
+                <p>Dans l'écrin du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a eu l'honneur de participer à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.</p>
+                <p>Cet événement, réunissant des figures emblématiques du monde gastronomique et des acteurs majeurs de l'excellence française, s'inscrit dans une tradition où savoir-faire, transmission et passion sont célébrés avec exigence et élégance.</p>
+                <p>Pour Dyane, cette collaboration a été l'occasion de proposer une lecture contemporaine du rituel de dégustation, en introduisant ses créations comme des objets à part entière, à la croisée du cocktail, de l'art et de l'expérience.</p>
+                <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png" alt="Commanderie Rungis" fill style={{ objectFit: 'cover' }} />
+                </div>
+                <p>Présentées dans des pièces en porcelaine façonnées avec précision, les créations Dyane ont trouvé naturellement leur place dans cet environnement où chaque détail compte.</p>
+                <p>Dans ce cadre chargé d'histoire et d'exigence, Dyane affirme sa volonté de s'inscrire dans les codes de l'excellence française tout en y apportant une dimension nouvelle : celle d'une Maison d'Art Liquide.</p>
+            </>
+        ),
+        related: [
+            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
+            { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+        ],
+    },
+    'ritz-paris-fashion-week': {
+        titre: 'Dyane Paris au Ritz Paris — Une Fashion Week',
+        date: '4 MARS 2026',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png',
+        extrait: "À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une véritable exposition d'Art Liquide.",
+        contenu: (
+            <>
+                <p>À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence pensée comme une véritable exposition d'Art Liquide.</p>
+                <p>Dans ce lieu iconique, où se croisent création, héritage et modernité, Dyane a présenté ses pièces comme des œuvres à part entière, au-delà du simple objet fonctionnel.</p>
+                <p>Loin d'un format traditionnel, cette activation s'est insérée dans une approche curatoriale, où les créations étaient mises en scène pour dialoguer avec l'espace, la lumière et le mouvement des invités.</p>
+                <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png" alt="Ritz Paris Fashion Week" fill style={{ objectFit: 'cover' }} />
+                </div>
+                <p>Un moment qui confirme la volonté de Dyane Paris de s'inscrire dans les lieux et les événements où la création, l'élégance et l'art de vivre se rencontrent.</p>
+                <p>Cette présence au Ritz Paris marque une étape clé dans le développement de la Maison, affirmant son positionnement à la frontière de l'art, du luxe et de l'expérience.</p>
+            </>
+        ),
+        related: [
+            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
+            { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+        ],
+    },
+    'point-de-vue-distillateur': {
+        titre: "Dyane, du point de vue d'un distillateur.",
+        date: '22 FÉVRIER 2026',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg',
+        extrait: "Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange d'ingrédients. Il naît d'une recherche autour des arômes, des matières premières et du geste de la distillation.",
+        contenu: (
+            <>
+                <h2>LA DISTILLATION AU CŒUR DES CRÉATIONS DYANE PARIS</h2>
+                <p>Chez Dyane Paris, un cocktail ne commence jamais par un simple mélange d'ingrédients. Il naît d'une recherche autour des arômes, des matières premières et du geste de la distillation.</p>
+                <p>C'est dans le Vaucluse, au cœur de la Provence, que cette exploration prend forme avec Julien Ducruet, président d'Esprit Distillation.</p>
+                <blockquote>« CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES. »</blockquote>
+                <h2>UNE RENCONTRE ENTRE AUDACE ET SAVOIR-FAIRE</h2>
+                <p>Certaines collaborations naissent d'une évidence. Celle entre Elisa, fondatrice de Dyane Paris, et Julien Ducruet en fait partie.</p>
+                <blockquote>« DERRIÈRE LA JEUNESSE D'ELISA, J'AI IMMÉDIATEMENT PERÇU UNE MATURITÉ RARE, UNE ÉNERGIE POSITIVE FOLLE ET CETTE INTUITION JUSTE QUI CARACTÉRISE LES GRANDS CRÉATEURS. »</blockquote>
+                <h2>L'INTERPRÉTATION DES MATIÈRES PREMIÈRES</h2>
+                <p>La distillation n'est pas qu'un procédé technique : c'est un véritable art d'interprétation. Gingembre, vanille, agrumes ou plantes aromatiques sont choisis pour leur potentiel aromatique.</p>
+                <blockquote>« TOUT COMMENCE PAR LA MATIÈRE PREMIÈRE. NOTRE RÔLE EST DE LA COMPRENDRE, DE LA RESPECTER ET D'EN RÉVÉLER LE MEILLEUR. »</blockquote>
+                <h2>UNE SIGNATURE FRANÇAISE</h2>
+                <p>Cette collaboration entre Dyane Paris et Esprit Distillation est née d'un respect mutuel et d'une ambition partagée : proposer des cocktails premium qui allient authenticité, élégance et modernité.</p>
+                <blockquote>« ENSEMBLE, NOUS CRÉONS DES COCKTAILS QUI RACONTENT UNE HISTOIRE : CELLE D'UNE RENCONTRE, D'UNE PASSION COMMUNE ET D'UN ENGAGEMENT TOTAL POUR LA QUALITÉ. »</blockquote>
+            </>
+        ),
+        related: [
+            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
+            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+        ],
+    },
+    'teo-for-dyane': {
+        titre: 'TEO FOR DYANE',
+        date: '18 JANVIER 2026',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg',
+        extrait: "Une collaboration entre Dyane Paris et le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay.",
+        contenu: (
+            <>
+                <p>Dyane Paris a noué une collaboration artistique avec Matteo Mengacci, alias Teo Kaykay, peintre dont l'univers visuel se distingue par une énergie brute et une palette audacieuse.</p>
+                <p>Cette rencontre entre deux univers — l'Art Liquide de Dyane et la peinture de Teo — a donné naissance à une série de pièces uniques où la bouteille devient toile.</p>
+                <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg" alt="Teo for Dyane" fill style={{ objectFit: 'cover' }} />
+                </div>
+                <p>La collaboration illustre la vision de Dyane Paris : faire du contenant une œuvre à part entière, aussi singulière que le cocktail qu'elle abrite.</p>
+                <p>Ce projet s'inscrit dans la démarche de la Maison : inviter des artistes à s'exprimer à travers le prisme de l'Art Liquide, pour créer des éditions limitées qui sont autant des objets de collection que des expériences sensorielles.</p>
+            </>
+        ),
+        related: [
+            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
+            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
+            { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
+            { slug: 'cocktail-oeuvre-collectionner', titre: 'Quand le Cocktail devient œuvre à Collectionner', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg' },
+        ],
+    },
+    'cocktail-oeuvre-collectionner': {
+        titre: 'Quand le Cocktail devient œuvre à Collectionner',
+        date: '31 JANVIER 2026',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg',
+        extrait: "Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. Dans un paysage du luxe en pleine mutation, la jeune Maison française propose un geste inédit.",
+        contenu: (
+            <>
+                <h2>ET SI UNE OEUVRE POUVAIT SE BOIRE ?</h2>
+                <p>Avec Dyane Paris, le cocktail quitte le verre pour investir la sculpture. Ce que Dyane Paris appelle "Art Liquide" repose sur une idée précise : un cocktail signature haut de gamme présenté dans un contenant artistique unique, pensé pour être conservé.</p>
+                <h2>L'APPARITION D'UNE NOUVELLE CATÉGORIE</h2>
+                <p>Dyane ne revendique pas l'étiquette de simple marque de Ready-To-Drink. Son positionnement est plus ambitieux : Maison d'Art Liquide.</p>
+                <h2>LA BOUTEILLE DEVIENT SCULPTURE</h2>
+                <p>Dyane abandonne l'archétype historique de la bouteille en verre pour adopter la porcelaine. Cette matière noble donne à la pièce une présence sculpturale, inspirée de la Vénus de Milo.</p>
+                <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg" alt="Cocktail œuvre" fill style={{ objectFit: 'cover' }} />
+                </div>
+                <h2>UNE RENAISSANCE CONTEMPORAINE DE L'ARTISANAT FRANÇAIS</h2>
+                <p>Plus de 70 mains façonnent chaque pièce. La porcelaine est cuite trois fois, à 600°C, 900°C et 1300°C. Le cycle complet prend plus de deux mois.</p>
+                <h2>L'OBJET APRÈS LA DÉGUSTATION</h2>
+                <p>Une fois vide, la statue devient pièce décorative, souvenir d'un moment, objet de collection. La production est limitée à environ 500 pièces par an.</p>
+                <p style={{ ...lora, fontSize: '11px', opacity: 0.5, marginTop: '48px' }}>Crédit : Bethszabée Garner, Oniriq, paru le vendredi 19 février 2026.</p>
+            </>
+        ),
+        related: [
+            { slug: 'commanderie-ambassadeurs-rungis', titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491786/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.43.00_ocmeeg.png' },
+            { slug: 'ritz-paris-fashion-week', titre: 'Dyane Paris au Ritz Paris — Une Fashion Week', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777491765/Capture_d_e%CC%81cran_2026-04-29_a%CC%80_21.42.39_piph9h.png' },
+            { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777449278/f00d9ad4796cd5debc9e8da3c8d5c00d_1_ugpgdf.jpg' },
+            { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455783/img-40_zkfygu.jpg' },
+        ],
+    },
 }
 
-export default function LeJournalPage() {
-    const t = useTranslations('journal')
+export default function ArticlePage({ params }: { params: { slug: string } }) {
     const pathname = usePathname()
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
-    const [hovered, setHovered] = useState<string | null>(null)
+    const article = articles[params.slug]
 
-    const hoveredArticle = articles.find(a => a.slug === hovered)
-    const img1 = hoveredArticle ? hoveredArticle.image : articles[0].image
-    const img2 = hoveredArticle
-        ? (articles.find(a => a.slug !== hovered)?.image || articles[1].image)
-        : articles[1].image
+    if (!article) return (
+        <main style={{ padding: '120px 24px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
+            <p>Article non trouvé</p>
+            <Link href={`/${locale}/le-journal`}>← Retour au journal</Link>
+        </main>
+    )
 
     return (
         <>
             <style>{`
                 @media (max-width: 768px) {
-                    .journal-hero { height: 45 !important; }
-                    .journal-hero-text { left: 24px !important; bottom: 24px !important; }
-                    .journal-hero-h1 { font-size: 18px !important; }
-                    .journal-layout { flex-direction: column !important; }
-                    .journal-sidebar { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; padding: 24px 20px !important; }
-                    .journal-preview { display: none !important; }
-                    .journal-featured-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
-                    .journal-featured-img { height: 260px !important; }
-                    .journal-small-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
-                    .journal-small-img { height: 160px !important; }
-                    .journal-bottom { padding: 32px 20px 60px !important; }
+                    .slug-journal-hero { height: 35vh !important; }
+                    .slug-journal-hero-text { left: 24px !important; bottom: 20px !important; }
+                    .slug-journal-hero-title { font-size: 13px !important; }
+                    .article-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 32px 20px 24px !important; }
+                    .article-hero-img { height: 220px !important; }
+                    .article-body { padding: 32px 20px !important; }
+                    .article-related-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+                    .article-related-img { height: 100px !important; }
+                    .article-related-section { padding: 0 20px 60px !important; }
                 }
+                .article-content p { margin-bottom: 24px; font-family: 'Lora', serif; font-size: 16px; line-height: 2; color: #222; }
+                .article-content h2 { font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin: 48px 0 20px; opacity: 0.6; }
+                .article-content blockquote { border-left: 1px solid #000; padding-left: 28px; margin: 40px 0; }
+                .article-content blockquote p { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; }
+                .article-content strong { font-weight: 600; }
             `}</style>
-            <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
+            <main style={{ background: '#FAF8F5' }}>
 
-                {/* Hero image */}
-                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '32vh', overflow: 'hidden' }}>
-                    <Image
-                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
-                        alt="Le Journal Dyane Paris"
-                        fill
-                        style={{ objectFit: 'cover' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
-                    <div className="journal-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
-                        <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '10px' }}>Dyane Paris</p>
-                        <h1 className="journal-hero-h1" style={{ ...font, fontSize: 'clamp(18px, 2.2vw, 30px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, maxWidth: '560px', lineHeight: 1.3 }}>
-                            {t('titre')}
-                        </h1>
+                {/* Header journal — cliquable, ramène à la liste */}
+                <Link href={`/${locale}/le-journal`} style={{ display: 'block', textDecoration: 'none' }}>
+                    <div className="slug-journal-hero" style={{ position: 'relative', width: '100%', height: '40vh', overflow: 'hidden' }}>
+                        <Image
+                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
+                            alt="Le Journal Dyane Paris"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                        />
+                        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
+                        <div className="slug-journal-hero-text" style={{ position: 'absolute', bottom: '40px', left: '48px' }}>
+                            <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '8px' }}>Dyane Paris</p>
+                            <p className="slug-journal-hero-title" style={{ ...font, fontSize: 'clamp(16px, 2vw, 26px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, lineHeight: 1.3 }}>
+                                RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE
+                            </p>
+                        </div>
                     </div>
+                </Link>
+
+                {/* Hero article */}
+                <section className="article-hero-grid" style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px 48px', display: 'grid', gridTemplateColumns: '300px 1fr', gap: '64px', alignItems: 'start' }}>
+                    <div className="article-hero-img" style={{ position: 'relative', height: '380px', overflow: 'hidden' }}>
+                        <Image src={article.image} alt={article.titre} fill style={{ objectFit: 'cover' }} />
+                    </div>
+                    <div style={{ paddingTop: '16px' }}>
+                        <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, marginBottom: '20px' }}>{article.date}</p>
+                        <h1 style={{ ...font, fontSize: 'clamp(22px, 3vw, 38px)', fontWeight: 400, lineHeight: 1.2, marginBottom: '24px' }}>{article.titre}</h1>
+                        <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.65, marginBottom: '32px', fontStyle: 'italic' }}>{article.extrait}</p>
+                        <span style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.5 }}>↑ PARTAGER</span>
+                    </div>
+                </section>
+
+                <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px' }}>
+                    <div style={{ height: '1px', background: 'rgba(0,0,0,0.1)' }} />
                 </div>
 
-                {/* Layout Jacquemus — sidebar + images */}
-                <div className="journal-layout" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.08)', minHeight: '560px' }}>
-
-                    {/* Sidebar titres */}
-                    <div className="journal-sidebar" style={{ width: '340px', flexShrink: 0, borderRight: '1px solid rgba(0,0,0,0.08)', padding: '40px' }}>
-                        {articles.map((article, i) => (
-                            <Link
-                                key={article.slug}
-                                href={`/${locale}/le-journal/${article.slug}`}
-                                onMouseEnter={() => setHovered(article.slug)}
-                                onMouseLeave={() => setHovered(null)}
-                                style={{
-                                    display: 'block',
-                                    textDecoration: 'none',
-                                    color: '#000',
-                                    padding: '20px 0',
-                                    borderBottom: i < articles.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none',
-                                    opacity: hovered && hovered !== article.slug ? 0.3 : 1,
-                                    transition: 'opacity 0.25s ease',
-                                }}
-                            >
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 6px' }}>{article.date}</p>
-                                <p style={{ ...font, fontSize: '15px', fontWeight: 400, lineHeight: 1.35, margin: 0 }}>{article.titre}</p>
-                            </Link>
-                        ))}
+                {/* Contenu */}
+                <section className="article-body" style={{ maxWidth: '700px', margin: '0 auto', padding: '64px 24px 80px' }}>
+                    <div className="article-content">
+                        {article.contenu}
                     </div>
+                </section>
 
-                    {/* Images preview */}
-                    <div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
-                        <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img1} src={img1} alt="Journal" fill style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
-                        </div>
-                        <div style={{ position: 'relative', width: '45%', height: '360px', overflow: 'hidden', marginTop: '80px' }}>
-                            <Image key={img2} src={img2} alt="Journal" fill style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Grille articles */}
-                <section className="journal-bottom" style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '64px 48px 80px', maxWidth: '1400px', margin: '0 auto' }}>
-                    <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '48px' }}>TOUS LES ARTICLES</p>
-
-                    {/* Featured */}
-                    <Link href={`/${locale}/le-journal/${articles[0].slug}`} style={{ textDecoration: 'none', color: '#000', display: 'block', marginBottom: '72px' }}>
-                        <div className="journal-featured-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
-                            <div className="journal-featured-img" style={{ position: 'relative', height: '520px', overflow: 'hidden' }}>
-                                <Image src={articles[0].image} alt={articles[0].titre} fill style={{ objectFit: 'cover' }} />
-                            </div>
-                            <div>
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '20px' }}>{articles[0].date}</p>
-                                <h2 style={{ ...font, fontSize: 'clamp(22px, 3vw, 38px)', fontWeight: 400, lineHeight: 1.2, marginBottom: '24px' }}>{articles[0].titre}</h2>
-                                <p style={{ ...lora, fontSize: '14px', lineHeight: 1.9, opacity: 0.65, marginBottom: '36px', fontStyle: 'italic' }}>
-                                    {extraits[articles[0].slug]}
-                                </p>
-                                <span style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.35)', paddingBottom: '4px' }}>Lire l'article →</span>
-                            </div>
-                        </div>
-                    </Link>
-
-                    {/* Grille 4 articles */}
-                    <div className="journal-small-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '28px' }}>
-                        {articles.slice(1).map((article) => (
-                            <Link key={article.slug} href={`/${locale}/le-journal/${article.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
-                                <div className="journal-small-img" style={{ position: 'relative', height: '280px', overflow: 'hidden', marginBottom: '16px' }}>
-                                    <Image src={article.image} alt={article.titre} fill style={{ objectFit: 'cover' }} />
+                {/* Articles liés */}
+                <section className="article-related-section" style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px 80px', borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+                    <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, margin: '48px 0 32px' }}>À LIRE AUSSI</p>
+                    <div className="article-related-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+                        {article.related.map((r) => (
+                            <Link key={r.slug} href={`/${locale}/le-journal/${r.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
+                                <div className="article-related-img" style={{ position: 'relative', height: '140px', overflow: 'hidden', marginBottom: '12px' }}>
+                                    <Image src={r.image} alt={r.titre} fill style={{ objectFit: 'cover' }} />
                                 </div>
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '8px' }}>{article.date}</p>
-                                <p style={{ ...font, fontSize: '15px', fontWeight: 400, lineHeight: 1.35, marginBottom: '14px' }}>{article.titre}</p>
-                                <p style={{ ...lora, fontSize: '12px', lineHeight: 1.7, opacity: 0.6, marginBottom: '16px', fontStyle: 'italic' }}>{extraits[article.slug]}</p>
-                                <span style={{ ...lora, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.45, borderBottom: '1px solid rgba(0,0,0,0.2)', paddingBottom: '2px' }}>Lire →</span>
+                                <p style={{ ...font, fontSize: '13px', lineHeight: 1.4 }}>{r.titre}</p>
                             </Link>
                         ))}
                     </div>
+                </section>
+
+                {/* Retour */}
+                <section style={{ textAlign: 'center', padding: '0 0 80px' }}>
+                    <Link href={`/${locale}/le-journal`} style={{ ...lora, fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.3)', paddingBottom: '4px' }}>
+                        ← Retour au journal
+                    </Link>
                 </section>
             </main>
         </>
