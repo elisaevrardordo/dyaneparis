@@ -7,9 +7,6 @@ import { useState, useEffect } from 'react'
 const bodoni = { fontFamily: '"Bodoni Moda", "Playfair Display", serif' }
 const lora = { fontFamily: 'Lora, serif' }
 
-const SLIDE_HEIGHT = '620px'
-const SLIDE_HEIGHT_MOBILE = '300px'
-
 export default function DualImage() {
     const t = useTranslations('dualimage')
     const [current, setCurrent] = useState(0)
@@ -35,31 +32,49 @@ export default function DualImage() {
                     .dual-slide1-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 24px !important; }
                     .dual-slide1-images { grid-template-columns: 1fr !important; }
                     .dual-slide1-img-small { display: none !important; }
-                    .dual-slide1-img-large { height: ${SLIDE_HEIGHT_MOBILE} !important; }
                     .dual-slide2-text { left: 24px !important; top: 32px !important; max-width: 90% !important; font-size: 13px !important; }
                     .dual-slide3-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding: 40px 24px !important; }
-                    .dual-slide3-img { height: ${SLIDE_HEIGHT_MOBILE} !important; }
                 }
             `}</style>
 
+            {/* Image du haut */}
             <section style={{ position: 'relative', width: '100%', height: '75vh', overflow: 'hidden' }}>
-                <Image src="/1.png" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                <Image
+                    src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png"
+                    alt="Dyane Paris"
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: 'cover' }}
+                />
             </section>
 
-            <section style={{ background: '#FAF8F5', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+            {/* Section carousel — hauteur fixe uniforme */}
+            <section style={{ background: '#FAF8F5', overflow: 'hidden', position: 'relative' }}>
 
-                <div style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.4s ease', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.4s ease' }}>
 
                     {/* SLIDE 1 */}
                     {current === 0 && (
-                        <div className="dual-slide1-grid" style={{ padding: '80px 100px', display: 'flex', alignItems: 'center' }}>
+                        <div className="dual-slide1-grid" style={{ padding: '80px 100px', minHeight: '800px', display: 'flex', alignItems: 'center' }}>
                             <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '80px', alignItems: 'center' }}>
                                 <div className="dual-slide1-images" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', alignItems: 'stretch' }}>
-                                    <div className="dual-slide1-img-large" style={{ position: 'relative', height: SLIDE_HEIGHT }}>
-                                        <Image src="/CREATION_2.png" alt="Dyane Paris Distillation" fill sizes="(max-width: 768px) 100vw, 56vw" style={{ objectFit: 'cover' }} />
+                                    <div className="dual-slide1-img-large" style={{ position: 'relative', height: '600px' }}>
+                                        <Image
+                                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745940/CREATION_2_bwk7r0.png"
+                                            alt="Dyane Paris Distillation"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 56vw"
+                                            style={{ objectFit: 'cover' }}
+                                        />
                                     </div>
-                                    <div className="dual-slide1-img-small" style={{ position: 'relative', height: SLIDE_HEIGHT }}>
-                                        <Image src="/10.png" alt="Dyane Paris" fill sizes="20vw" style={{ objectFit: 'cover' }} />
+                                    <div className="dual-slide1-img-small" style={{ position: 'relative', height: '600px' }}>
+                                        <Image
+                                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745953/10_fl8iqj.png"
+                                            alt="Dyane Paris"
+                                            fill
+                                            sizes="20vw"
+                                            style={{ objectFit: 'cover' }}
+                                        />
                                     </div>
                                 </div>
                                 <div>
@@ -74,8 +89,14 @@ export default function DualImage() {
 
                     {/* SLIDE 2 */}
                     {current === 1 && (
-                        <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-                            <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626200/0512eec9ef31ff0016ded898d96b2001_ltf2yr.jpg" alt="Distillation Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                        <div style={{ position: 'relative', width: '100%', height: '800px' }}>
+                            <Image
+                                src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626200/0512eec9ef31ff0016ded898d96b2001_ltf2yr.jpg"
+                                alt="Distillation Dyane"
+                                fill
+                                sizes="100vw"
+                                style={{ objectFit: 'cover' }}
+                            />
                             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.38)' }} />
                             <div className="dual-slide2-text" style={{ position: 'absolute', top: '60px', left: '80px', maxWidth: '580px' }}>
                                 <p style={{ ...bodoni, color: '#fff', fontSize: '16px', lineHeight: 1.7, fontWeight: 400, opacity: 0.95 }}>
@@ -88,18 +109,30 @@ export default function DualImage() {
 
                     {/* SLIDE 3 */}
                     {current === 2 && (
-                        <div className="dual-slide3-grid" style={{ padding: '80px 100px', display: 'flex', alignItems: 'flex-start' }}>
+                        <div className="dual-slide3-grid" style={{ padding: '80px 100px', minHeight: '800px', display: 'flex', alignItems: 'center' }}>
                             <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px' }}>
                                 <div>
-                                    <div className="dual-slide3-img" style={{ position: 'relative', width: '100%', height: SLIDE_HEIGHT }}>
-                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg" alt="Infusion" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+                                    <div style={{ position: 'relative', width: '100%', height: '600px' }}>
+                                        <Image
+                                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg"
+                                            alt="Infusion"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            style={{ objectFit: 'cover' }}
+                                        />
                                     </div>
                                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Infusion</p>
                                     <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Nos créations reposent sur une infusion lente d'ingrédients nobles : gingembre frais, vanille, fruits et épices, dans un alcool vinique d'exception, révélant une profondeur aromatique intense et raffinée.</p>
                                 </div>
                                 <div>
-                                    <div className="dual-slide3-img" style={{ position: 'relative', width: '100%', height: SLIDE_HEIGHT }}>
-                                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png" alt="Assemblage" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+                                    <div style={{ position: 'relative', width: '100%', height: '600px' }}>
+                                        <Image
+                                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png"
+                                            alt="Assemblage"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            style={{ objectFit: 'cover' }}
+                                        />
                                     </div>
                                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Assemblage</p>
                                     <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Chaque cocktail est minutieusement assemblé comme une œuvre d'art, équilibrant puissance, texture et élégance.</p>
@@ -108,15 +141,6 @@ export default function DualImage() {
                         </div>
                     )}
                 </div>
-
-                {/* Compteur discret uniquement */}
-                {current !== 1 && (
-                    <div style={{ textAlign: 'center', padding: '24px 0 32px' }}>
-                        <span style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', color: '#111', opacity: 0.3 }}>
-                            0{current + 1} — 0{total}
-                        </span>
-                    </div>
-                )}
             </section>
         </>
     )
