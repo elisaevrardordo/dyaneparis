@@ -9,7 +9,6 @@ const lora = { fontFamily: 'Lora, serif' }
 
 export default function ContactPage() {
     const t = useTranslations('contact')
-
     const [sent, setSent] = useState(false)
 
     const [form, setForm] = useState({
@@ -23,7 +22,7 @@ export default function ContactPage() {
         newsletter: false,
     })
 
-    function handleSubmit(e: React.MouseEvent) {
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
         setSent(true)
     }
@@ -35,7 +34,7 @@ export default function ContactPage() {
         width: '100%',
         padding: '16px 0',
         border: 'none',
-        borderBottom: '1px solid rgba(255,255,255,0.22)',
+        borderBottom: '1px solid rgba(255,255,255,0.35)',
         background: 'transparent',
         fontSize: '11px',
         letterSpacing: '0.18em',
@@ -44,7 +43,6 @@ export default function ContactPage() {
         boxSizing: 'border-box' as const,
         color: '#fff',
         WebkitTextFillColor: '#fff',
-        transition: 'border-color 0.25s ease, opacity 0.25s ease',
     }
 
     return (
@@ -56,9 +54,11 @@ export default function ContactPage() {
                     }
 
                     .contact-form-col {
-                        padding: 100px 24px 60px !important;
-                        background: rgba(0,0,0,0.35) !important;
-                        backdrop-filter: blur(6px);
+                        padding: 96px 20px 56px !important;
+                    }
+
+                    .contact-card {
+                        padding: 34px 22px !important;
                     }
 
                     .contact-form-row {
@@ -67,7 +67,7 @@ export default function ContactPage() {
                     }
 
                     .contact-h1 {
-                        font-size: 28px !important;
+                        font-size: 34px !important;
                     }
                 }
 
@@ -77,16 +77,13 @@ export default function ContactPage() {
                     background: transparent !important;
                     color: #fff !important;
                     -webkit-text-fill-color: #fff !important;
+                    border-radius: 0 !important;
                 }
 
-                input::placeholder {
-                    color: rgba(255,255,255,0.4) !important;
-                    -webkit-text-fill-color: rgba(255,255,255,0.4) !important;
-                }
-
+                input::placeholder,
                 textarea::placeholder {
-                    color: rgba(255,255,255,0.4) !important;
-                    -webkit-text-fill-color: rgba(255,255,255,0.4) !important;
+                    color: rgba(255,255,255,0.58) !important;
+                    -webkit-text-fill-color: rgba(255,255,255,0.58) !important;
                 }
 
                 select option {
@@ -97,7 +94,7 @@ export default function ContactPage() {
                 input:focus,
                 textarea:focus,
                 select:focus {
-                    border-bottom: 1px solid rgba(255,255,255,0.65) !important;
+                    border-bottom-color: rgba(255,255,255,0.9) !important;
                 }
 
                 input:-webkit-autofill,
@@ -117,14 +114,7 @@ export default function ContactPage() {
                     background: '#000',
                 }}
             >
-                {/* Background */}
-                <div
-                    style={{
-                        position: 'fixed',
-                        inset: 0,
-                        zIndex: 0,
-                    }}
-                >
+                <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779719956/Design_sans_titre_62_xo5qpq.png"
                         alt="Dyane Paris Contact"
@@ -140,369 +130,210 @@ export default function ContactPage() {
                         style={{
                             position: 'absolute',
                             inset: 0,
-                            background: 'rgba(0,0,0,0.22)',
+                            background:
+                                'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.58) 46%, rgba(0,0,0,0.18) 100%)',
                         }}
                     />
                 </div>
 
-                {/* Content */}
-                <div
-                    style={{
-                        position: 'relative',
-                        zIndex: 1,
-                        minHeight: '100vh',
-                    }}
-                >
+                <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
                     <div
                         className="contact-inner"
                         style={{
                             width: '100%',
                             display: 'grid',
-                            gridTemplateColumns: '55% 45%',
+                            gridTemplateColumns: '52% 48%',
                             minHeight: '100vh',
                         }}
                     >
-                        {/* Left Column */}
                         <div
                             className="contact-form-col"
                             style={{
-                                padding: '120px 80px 80px 80px',
+                                padding: '140px 72px 80px',
                                 display: 'flex',
-                                flexDirection: 'column',
+                                alignItems: 'center',
                                 justifyContent: 'center',
-                                backdropFilter: 'blur(3px)',
-                                background: 'rgba(0,0,0,0.18)',
                             }}
                         >
-                            <p
+                            <section
+                                className="contact-card"
                                 style={{
-                                    ...lora,
-                                    fontSize: '9px',
-                                    letterSpacing: '0.35em',
-                                    textTransform: 'uppercase',
-                                    color: 'rgba(255,255,255,0.55)',
-                                    marginBottom: '18px',
+                                    width: '100%',
+                                    maxWidth: '720px',
+                                    padding: '52px 56px',
+                                    background: 'rgba(255,255,255,0.075)',
+                                    border: '1px solid rgba(255,255,255,0.28)',
+                                    backdropFilter: 'blur(16px)',
+                                    WebkitBackdropFilter: 'blur(16px)',
+                                    boxShadow: '0 28px 90px rgba(0,0,0,0.38)',
                                 }}
                             >
-                                Dyane Paris
-                            </p>
-
-                            <h1
-                                className="contact-h1"
-                                style={{
-                                    ...font,
-                                    fontSize: 'clamp(30px, 4vw, 62px)',
-                                    fontWeight: 400,
-                                    lineHeight: 1,
-                                    marginBottom: '18px',
-                                    color: '#fff',
-                                    textTransform: 'uppercase',
-                                }}
-                            >
-                                CONTACTER LA MAISON.
-                            </h1>
-
-                            <p
-                                style={{
-                                    ...lora,
-                                    fontSize: '10px',
-                                    letterSpacing: '0.25em',
-                                    textTransform: 'uppercase',
-                                    color: 'rgba(255,255,255,0.5)',
-                                    marginBottom: '56px',
-                                    lineHeight: 1.8,
-                                }}
-                            >
-                                LUNDI AU VENDREDI — 10H00 À 18H00, HEURE DE PARIS.
-                            </p>
-
-                            {sent ? (
                                 <p
                                     style={{
-                                        ...font,
-                                        fontSize: '18px',
-                                        lineHeight: 1.8,
-                                        color: '#fff',
+                                        ...lora,
+                                        fontSize: '9px',
+                                        letterSpacing: '0.35em',
+                                        textTransform: 'uppercase',
+                                        color: 'rgba(255,255,255,0.72)',
+                                        marginBottom: '18px',
                                     }}
                                 >
-                                    {t('merci')}
+                                    Dyane Paris
                                 </p>
-                            ) : (
-                                <div
+
+                                <h1
+                                    className="contact-h1"
                                     style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        maxWidth: '620px',
+                                        ...font,
+                                        fontSize: 'clamp(34px, 4.4vw, 66px)',
+                                        fontWeight: 400,
+                                        lineHeight: 0.95,
+                                        marginBottom: '18px',
+                                        color: '#fff',
+                                        textTransform: 'uppercase',
                                     }}
                                 >
-                                    <div
-                                        className="contact-form-row"
-                                        style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: '1fr 1fr',
-                                            gap: '32px',
-                                            marginBottom: '28px',
-                                        }}
-                                    >
-                                        <input
-                                            type="text"
-                                            placeholder="PRÉNOM NOM *"
-                                            value={form.prenom}
-                                            onChange={e =>
-                                                setForm({
-                                                    ...form,
-                                                    prenom: e.target.value,
-                                                })
-                                            }
-                                            style={inputStyle}
-                                        />
+                                    Contacter la Maison.
+                                </h1>
 
-                                        <input
-                                            type="email"
-                                            placeholder="E-MAIL *"
-                                            value={form.email}
-                                            onChange={e =>
-                                                setForm({
-                                                    ...form,
-                                                    email: e.target.value,
-                                                })
-                                            }
-                                            style={inputStyle}
-                                        />
-                                    </div>
+                                <p
+                                    style={{
+                                        ...lora,
+                                        fontSize: '10px',
+                                        letterSpacing: '0.24em',
+                                        textTransform: 'uppercase',
+                                        color: 'rgba(255,255,255,0.62)',
+                                        marginBottom: '44px',
+                                        lineHeight: 1.8,
+                                    }}
+                                >
+                                    Lundi au vendredi — 10h00 à 18h00, heure de Paris.
+                                </p>
 
-                                    <select
-                                        value={form.pays}
-                                        onChange={e =>
-                                            setForm({
-                                                ...form,
-                                                pays: e.target.value,
-                                            })
-                                        }
-                                        style={{
-                                            ...inputStyle,
-                                            marginBottom: '28px',
-                                            appearance: 'none',
-                                            backgroundImage:
-                                                'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'white\'%3E%3Cpath d=\'M7 10l5 5 5-5z\'/%3E%3C/svg%3E")',
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition:
-                                                'right 0 center',
-                                        }}
-                                    >
-                                        <option value="" disabled>
-                                            PAYS / RÉGION *
-                                        </option>
-                                        <option value="fr">France</option>
-                                        <option value="be">Belgique</option>
-                                        <option value="ch">Suisse</option>
-                                        <option value="lu">Luxembourg</option>
-                                        <option value="other">Autre</option>
-                                    </select>
-
-                                    <div
-                                        className="contact-form-row"
-                                        style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: '1fr 1fr',
-                                            gap: '32px',
-                                            marginBottom: '28px',
-                                        }}
-                                    >
-                                        <input
-                                            type="text"
-                                            placeholder="CODE POSTAL *"
-                                            value={form.codePostal}
-                                            onChange={e =>
-                                                setForm({
-                                                    ...form,
-                                                    codePostal:
-                                                        e.target.value,
-                                                })
-                                            }
-                                            style={inputStyle}
-                                        />
-
-                                        <input
-                                            type="text"
-                                            placeholder="VILLE *"
-                                            value={form.ville}
-                                            onChange={e =>
-                                                setForm({
-                                                    ...form,
-                                                    ville: e.target.value,
-                                                })
-                                            }
-                                            style={inputStyle}
-                                        />
-                                    </div>
-
-                                    <select
-                                        value={form.sujet}
-                                        onChange={e =>
-                                            setForm({
-                                                ...form,
-                                                sujet: e.target.value,
-                                            })
-                                        }
-                                        style={{
-                                            ...inputStyle,
-                                            marginBottom: '28px',
-                                            appearance: 'none',
-                                            backgroundImage:
-                                                'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'white\'%3E%3Cpath d=\'M7 10l5 5 5-5z\'/%3E%3C/svg%3E")',
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition:
-                                                'right 0 center',
-                                        }}
-                                    >
-                                        <option value="" disabled>
-                                            INFORMATIONS SUR NOS COCKTAILS
-                                        </option>
-
-                                        {options.map((opt: string) => (
-                                            <option key={opt} value={opt}>
-                                                {opt}
-                                            </option>
-                                        ))}
-                                    </select>
-
-                                    <textarea
-                                        placeholder="VOTRE MESSAGE *"
-                                        value={form.message}
-                                        onChange={e =>
-                                            setForm({
-                                                ...form,
-                                                message: e.target.value,
-                                            })
-                                        }
-                                        rows={4}
-                                        style={{
-                                            ...inputStyle,
-                                            resize: 'none',
-                                            marginBottom: '36px',
-                                        }}
-                                    />
-
-                                    <p
-                                        style={{
-                                            ...lora,
-                                            fontSize: '9px',
-                                            letterSpacing: '0.16em',
-                                            textTransform: 'uppercase',
-                                            color: 'rgba(255,255,255,0.35)',
-                                            marginBottom: '18px',
-                                            lineHeight: 1.9,
-                                        }}
-                                    >
-                                        LES CHAMPS AVEC UNE * SONT
-                                        OBLIGATOIRES.
+                                {sent ? (
+                                    <p style={{ ...font, fontSize: '20px', lineHeight: 1.8, color: '#fff' }}>
+                                        {t('merci')}
                                     </p>
-
-                                    <p
-                                        style={{
-                                            ...lora,
-                                            fontSize: '9px',
-                                            letterSpacing: '0.16em',
-                                            textTransform: 'uppercase',
-                                            color: 'rgba(255,255,255,0.35)',
-                                            marginBottom: '28px',
-                                            lineHeight: 1.9,
-                                        }}
-                                    >
-                                        VOS DONNÉES PERSONNELLES SONT
-                                        TRAITÉES PAR DYANE PARIS AFIN DE
-                                        RÉPONDRE À VOTRE DEMANDE.{' '}
-                                        <a
-                                            href="/confidentialite"
+                                ) : (
+                                    <form onSubmit={handleSubmit}>
+                                        <div
+                                            className="contact-form-row"
                                             style={{
-                                                color:
-                                                    'rgba(255,255,255,0.65)',
-                                                textDecoration: 'underline',
+                                                display: 'grid',
+                                                gridTemplateColumns: '1fr 1fr',
+                                                gap: '32px',
+                                                marginBottom: '24px',
                                             }}
                                         >
-                                            POLITIQUE DE CONFIDENTIALITÉ
-                                        </a>
-                                        .
-                                    </p>
+                                            <input placeholder="PRÉNOM NOM *" style={inputStyle} />
+                                            <input type="email" placeholder="E-MAIL *" style={inputStyle} />
+                                        </div>
 
-                                    <label
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'flex-start',
-                                            gap: '12px',
-                                            marginBottom: '48px',
-                                            cursor: 'pointer',
-                                        }}
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            checked={form.newsletter}
-                                            onChange={e =>
-                                                setForm({
-                                                    ...form,
-                                                    newsletter:
-                                                        e.target.checked,
-                                                })
-                                            }
+                                        <select style={{ ...inputStyle, marginBottom: '24px' }}>
+                                            <option value="" disabled>
+                                                PAYS / RÉGION *
+                                            </option>
+                                            <option value="fr">France</option>
+                                            <option value="be">Belgique</option>
+                                            <option value="ch">Suisse</option>
+                                            <option value="lu">Luxembourg</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+
+                                        <div
+                                            className="contact-form-row"
                                             style={{
-                                                marginTop: '3px',
-                                                cursor: 'pointer',
-                                                accentColor: '#fff',
+                                                display: 'grid',
+                                                gridTemplateColumns: '1fr 1fr',
+                                                gap: '32px',
+                                                marginBottom: '24px',
+                                            }}
+                                        >
+                                            <input placeholder="CODE POSTAL *" style={inputStyle} />
+                                            <input placeholder="VILLE *" style={inputStyle} />
+                                        </div>
+
+                                        <select style={{ ...inputStyle, marginBottom: '24px' }}>
+                                            <option value="" disabled>
+                                                INFORMATIONS SUR NOS COCKTAILS
+                                            </option>
+                                            {options.map((opt: string) => (
+                                                <option key={opt} value={opt}>
+                                                    {opt}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        <textarea
+                                            placeholder="VOTRE MESSAGE *"
+                                            rows={4}
+                                            style={{
+                                                ...inputStyle,
+                                                resize: 'none',
+                                                marginBottom: '30px',
                                             }}
                                         />
 
-                                        <span
+                                        <p
                                             style={{
                                                 ...lora,
                                                 fontSize: '9px',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
-                                                color:
-                                                    'rgba(255,255,255,0.35)',
+                                                color: 'rgba(255,255,255,0.54)',
+                                                marginBottom: '18px',
                                                 lineHeight: 1.9,
                                             }}
                                         >
-                                            OUI, JE SOUHAITE RECEVOIR DES
-                                            COMMUNICATIONS PERSONNALISÉES
-                                            ET INVITATIONS. DÉSINSCRIPTION
-                                            À TOUT MOMENT.
-                                        </span>
-                                    </label>
+                                            Les champs avec une * sont obligatoires.
+                                        </p>
 
-                                    <button
-                                        onClick={handleSubmit}
-                                        style={{
-                                            ...lora,
-                                            background: '#fff',
-                                            color: '#111',
-                                            border:
-                                                '1px solid rgba(255,255,255,0.15)',
-                                            padding: '18px 24px',
-                                            fontSize: '10px',
-                                            letterSpacing: '0.35em',
-                                            textTransform: 'uppercase',
-                                            cursor: 'pointer',
-                                            width: '100%',
-                                            transition:
-                                                'all 0.25s ease',
-                                        }}
-                                        onMouseEnter={e => {
-                                            e.currentTarget.style.opacity =
-                                                '0.85'
-                                        }}
-                                        onMouseLeave={e => {
-                                            e.currentTarget.style.opacity =
-                                                '1'
-                                        }}
-                                    >
-                                        ENVOYER
-                                    </button>
-                                </div>
-                            )}
+                                        <p
+                                            style={{
+                                                ...lora,
+                                                fontSize: '9px',
+                                                letterSpacing: '0.16em',
+                                                textTransform: 'uppercase',
+                                                color: 'rgba(255,255,255,0.54)',
+                                                marginBottom: '28px',
+                                                lineHeight: 1.9,
+                                            }}
+                                        >
+                                            Vos données personnelles sont traitées par Dyane Paris afin de répondre à votre demande.{' '}
+                                            <a
+                                                href="/confidentialite"
+                                                style={{
+                                                    color: '#fff',
+                                                    textDecoration: 'underline',
+                                                }}
+                                            >
+                                                Politique de confidentialité
+                                            </a>
+                                            .
+                                        </p>
+
+                                        <button
+                                            type="submit"
+                                            style={{
+                                                ...lora,
+                                                background: 'rgba(255,255,255,0.92)',
+                                                color: '#111',
+                                                border: '1px solid rgba(255,255,255,0.5)',
+                                                padding: '18px 24px',
+                                                fontSize: '10px',
+                                                letterSpacing: '0.35em',
+                                                textTransform: 'uppercase',
+                                                cursor: 'pointer',
+                                                width: '100%',
+                                            }}
+                                        >
+                                            Envoyer
+                                        </button>
+                                    </form>
+                                )}
+                            </section>
                         </div>
 
-                        {/* Right side */}
                         <div />
                     </div>
                 </div>
