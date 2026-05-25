@@ -136,15 +136,15 @@ export default function LeJournalPage() {
                         ))}
                     </div>
 
-                    {/* Images preview */}
-                    <div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
-                        <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img1} src={img1} alt="Journal" fill sizes="45vw" style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
-                        </div>
-                        <div style={{ position: 'relative', width: '45%', height: '360px', overflow: 'hidden', marginTop: '80px' }}>
-                            <Image key={img2} src={img2} alt="Journal" fill sizes="35vw" style={{ objectFit: 'cover', transition: 'opacity 0.3s ease' }} />
-                        </div>
-                    </div>
+                {/* Images preview */}
+<div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
+    <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
+        <Image key={img1} src={img1} alt="Journal" fill style={{ objectFit: 'cover' }} />
+    </div>
+    <div style={{ position: 'relative', width: '45%', height: '480px', overflow: 'hidden' }}>
+        <Image key={img2} src={img2} alt="Journal" fill style={{ objectFit: 'cover' }} />
+    </div>
+</div>
                 </div>
 
                 {/* Grille articles */}
