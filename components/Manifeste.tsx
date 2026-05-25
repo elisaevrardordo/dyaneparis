@@ -21,7 +21,7 @@ export default function Manifeste() {
                     <img
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779697015/ChatGPT_Image_25_mai_2026_10_16_51_xdcyp9.png"
                         alt="Dyane Paris"
-                        style={{ width: '280px', height: 'auto', display: 'block', marginBottom: '40px' }}
+                        style={{ width: '380px', height: 'auto', display: 'block', marginBottom: '40px' }}
                     />
 
                     {/* Trois lignes italiques */}
