@@ -17,17 +17,12 @@ export default function Manifeste() {
 
                 {/* Colonne gauche */}
                 <div>
-                    {/* Signature */}
-                    <p style={{
-fontFamily: 'Playfair Display, serif',
-                        fontSize: 'clamp(64px, 9vw, 110px)',
-                        fontWeight: 400,
-                        color: '#111',
-                        margin: '0 0 40px',
-                        lineHeight: 0.9,
-                    }}>
-                        Dyane Paris
-                    </p>
+                    {/* Logo */}
+                    <img
+                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779696566/Dyane_Paris_1_k7i9cd.png"
+                        alt="Dyane Paris"
+                        style={{ width: '280px', height: 'auto', display: 'block', marginBottom: '40px' }}
+                    />
 
                     {/* Trois lignes italiques */}
                     <p style={{ ...lora, fontSize: '14px', fontStyle: 'italic', lineHeight: 1.9, opacity: 0.8, marginBottom: '4px' }}>Cocktails d'exception.</p>
