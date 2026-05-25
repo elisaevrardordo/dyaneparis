@@ -91,7 +91,7 @@ export default function DualImage() {
 {current === 1 && (
     <div style={{ position: 'relative', width: '100%', height: '800px' }}>
         <Image
-            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779746699/Apre%CC%80s_les_vendanges_bordelaines_b3yov0.png"
+            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779746937/Apre%CC%80s_les_vendanges_bordelaines_1_by3wu8.png"
             alt="Distillation Dyane"
             fill
             sizes="100vw"
