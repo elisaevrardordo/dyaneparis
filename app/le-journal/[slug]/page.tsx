@@ -146,13 +146,13 @@ const articles: Record<string, {
     },
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
+export default function ArticlePage({ params }: { params: { slug: string; locale: string } }) {
     const pathname = usePathname()
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
     const article = articles[params.slug]
 
     if (!article) return (
-        <main style={{ padding: '120px 24px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
+        <main style={{ background: '#FAF8F5', paddingTop: '140px', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
             <p>Article non trouvé</p>
             <Link href={`/${locale}/le-journal`}>← Retour au journal</Link>
         </main>
@@ -162,9 +162,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <>
             <style>{`
                 @media (max-width: 768px) {
-                    .slug-journal-hero { height: 35vh !important; }
-                    .slug-journal-hero-text { left: 24px !important; bottom: 20px !important; }
-                    .slug-journal-hero-title { font-size: 13px !important; }
+                    .slug-banner { height: 35vh !important; padding-top: 80px !important; }
+                    .slug-banner-text { left: 24px !important; bottom: 20px !important; }
+                    .slug-banner-title { font-size: 13px !important; }
                     .article-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 32px 20px 24px !important; }
                     .article-hero-img { height: 220px !important; }
                     .article-body { padding: 32px 20px !important; }
@@ -178,11 +178,19 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 .article-content blockquote p { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.12em; font-style: italic; line-height: 1.8; opacity: 0.85; }
                 .article-content strong { font-weight: 600; }
             `}</style>
+
             <main style={{ background: '#FAF8F5' }}>
 
-                {/* Header journal — cliquable, ramène à la liste */}
+                {/* Bannière journal — cliquable, avec paddingTop pour compenser le header */}
                 <Link href={`/${locale}/le-journal`} style={{ display: 'block', textDecoration: 'none' }}>
-                    <div className="slug-journal-hero" style={{ position: 'relative', width: '100%', height: '40vh', overflow: 'hidden' }}>
+                    <div className="slug-banner" style={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '45vh',
+                        overflow: 'hidden',
+                        paddingTop: '140px',
+                        boxSizing: 'border-box',
+                    }}>
                         <Image
                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
                             alt="Le Journal Dyane Paris"
@@ -190,9 +198,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                             style={{ objectFit: 'cover' }}
                         />
                         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
-                        <div className="slug-journal-hero-text" style={{ position: 'absolute', bottom: '40px', left: '48px' }}>
+                        <div className="slug-banner-text" style={{ position: 'absolute', bottom: '40px', left: '48px' }}>
                             <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '8px' }}>Dyane Paris</p>
-                            <p className="slug-journal-hero-title" style={{ ...font, fontSize: 'clamp(16px, 2vw, 26px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, lineHeight: 1.3 }}>
+                            <p className="slug-banner-title" style={{ ...font, fontSize: 'clamp(16px, 2vw, 26px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, lineHeight: 1.3 }}>
                                 RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE
                             </p>
                         </div>
