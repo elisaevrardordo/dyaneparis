@@ -19,7 +19,7 @@ export default function Manifeste() {
                 <div>
                     {/* Logo */}
                     <img
-                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779696566/Dyane_Paris_1_k7i9cd.png"
+                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779697015/ChatGPT_Image_25_mai_2026_10_16_51_xdcyp9.png"
                         alt="Dyane Paris"
                         style={{ width: '280px', height: 'auto', display: 'block', marginBottom: '40px' }}
                     />
