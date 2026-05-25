@@ -40,7 +40,7 @@ export default function LeJournalPage() {
         <>
             <style>{`
                 @media (max-width: 768px) {
-                    .journal-hero { height: 45vh !important; }
+                    .journal-hero { height: 25vh !important; }
                     .journal-hero-text { left: 24px !important; bottom: 24px !important; }
                     .journal-hero-h1 { font-size: 18px !important; }
                     .journal-layout { flex-direction: column !important; }
