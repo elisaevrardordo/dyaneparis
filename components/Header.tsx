@@ -32,8 +32,7 @@ export default function Header() {
 
     const isLight = pathname.includes('/contact')
     const textColor = isLight ? '#14120f' : '#fff'
-    const borderColor = isLight ? 'rgba(20,18,15,0.12)' : 'rgba(255,255,255,0.10)'
-    const logoSrc = isLight ? '/LogoDYANE_noir.png' : '/LogoDYANE_blanc.png'
+    const logoSrc = 'https://res.cloudinary.com/dazhkrimv/image/upload/v1781515887/LogoDYANE_blanc_xizfyl.png'
 
     const headerBg = scrolled
         ? isLight
@@ -70,7 +69,7 @@ export default function Header() {
                 transition: 'background 0.4s ease, backdrop-filter 0.4s ease',
             }}>
 
-                <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '20px 24px 16px' }}>
+                <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '24px 24px 12px' }}>
                     <div />
                     <Link href={`/${locale}`} style={{ textDecoration: 'none' }}>
                         <Image
@@ -78,8 +77,8 @@ export default function Header() {
                             alt="Dyane Paris"
                             width={1554}
                             height={1389}
-                            sizes="60px"
-                            style={{ height: '60px', width: 'auto', display: 'block' }}
+                            sizes="52px"
+                            style={{ height: '52px', width: 'auto', display: 'block' }}
                         />
                     </Link>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -108,8 +107,7 @@ export default function Header() {
                         display: 'flex',
                         justifyContent: 'center',
                         gap: '40px',
-                        paddingBottom: '24px',
-                        borderBottom: `1px solid ${borderColor}`,
+                        paddingBottom: '20px',
                     }}
                 >
                     {navLinks.map((link) => (
@@ -140,7 +138,6 @@ export default function Header() {
                         alignItems: 'center',
                         gap: '32px',
                         padding: '48px 24px',
-                        borderTop: `1px solid ${borderColor}`,
                     }}>
                         {navLinks.map((link) => (
                             <Link
