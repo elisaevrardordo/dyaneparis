@@ -139,7 +139,7 @@ select.cf:-webkit-autofill {
                         style={{
                             width: '100%',
                             maxWidth: '480px',
-                            padding: '120px 40px 80px',
+                            padding: '160px 40px 80px',
                         }}
                     >
                         <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.5)', marginBottom: '16px' }}>
