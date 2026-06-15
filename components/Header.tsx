@@ -30,15 +30,15 @@ export default function Header() {
         { label: t('contact'), href: '/contact' },
     ]
 
-    const isLight = pathname.includes('/contact')
-    const textColor = isLight ? '#14120f' : '#fff'
+    const isDarkBar = pathname.includes('/le-journal') || pathname.includes('/contact')
+    const textColor = '#fff'
     const logoSrc = 'https://res.cloudinary.com/dazhkrimv/image/upload/v1781515887/LogoDYANE_blanc_xizfyl.png'
 
-    const headerBg = scrolled
-        ? isLight
-            ? 'rgba(248,245,240,0.88)'
-            : 'rgba(0,0,0,0.72)'
-        : 'transparent'
+    const headerBg = isDarkBar
+        ? 'rgba(8,12,20,0.92)'
+        : scrolled
+            ? 'rgba(0,0,0,0.72)'
+            : 'transparent'
 
     return (
         <>
@@ -64,9 +64,9 @@ export default function Header() {
                 right: 0,
                 zIndex: 50,
                 background: headerBg,
-                backdropFilter: scrolled ? 'blur(12px)' : 'none',
-                WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-                transition: 'background 0.4s ease, backdrop-filter 0.4s ease',
+                backdropFilter: (!isDarkBar && scrolled) ? 'blur(12px)' : 'none',
+                WebkitBackdropFilter: (!isDarkBar && scrolled) ? 'blur(12px)' : 'none',
+                transition: 'background 0.4s ease',
             }}>
 
                 <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '24px 24px 12px' }}>
@@ -132,7 +132,7 @@ export default function Header() {
 
                 {menuOpen && (
                     <nav style={{
-                        background: isLight ? 'rgba(248,245,240,0.95)' : 'rgba(0,0,0,0.92)',
+                        background: 'rgba(8,12,20,0.96)',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
