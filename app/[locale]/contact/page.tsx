@@ -59,7 +59,7 @@ export default function ContactPage() {
         width: '100%',
         background: 'transparent',
         border: 'none',
-        borderBottom: '1px solid rgba(20,18,15,0.28)',
+        borderBottom: '1px solid rgba(20,18,15,0.3)',
         padding: '13px 0',
         fontSize: '10px',
         letterSpacing: '0.2em',
@@ -76,8 +76,8 @@ export default function ContactPage() {
         <>
             <style>{`
                 .cf::placeholder { color: rgba(20,18,15,0.4); }
-                .cf:focus { border-bottom-color: rgba(20,18,15,0.65) !important; }
-                .cf option { background: #faf8f5; color: #14120f; }
+                .cf:focus { border-bottom-color: rgba(20,18,15,0.7) !important; }
+                .cf option { background: #f5f0e8; color: #14120f; }
                 .cf-select {
                     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(20,18,15,0.4)' fill='none' stroke-width='1'/%3E%3C/svg%3E");
                     background-repeat: no-repeat;
@@ -96,13 +96,13 @@ export default function ContactPage() {
                 @media (max-width: 768px) {
                     .cf-row { grid-template-columns: 1fr !important; gap: 0 !important; }
                     .cf-h1 { font-size: 32px !important; }
-                    .cf-wrap { padding: 100px 28px 60px !important; }
+                    .cf-wrap { padding: 100px 28px 60px !important; margin-left: 0 !important; }
                 }
             `}</style>
 
             <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
 
-                {/* Image de fond — le tableau */}
+                {/* Image de fond */}
                 <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781513624/CONTACTER_LA_CONCIERGERIE_zwmuhm.png"
@@ -112,17 +112,21 @@ export default function ContactPage() {
                         sizes="100vw"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
-                    {/* Voile blanc léger pour lisibilité */}
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(248,245,240,0.52)' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(248,245,240,0.38)' }} />
                 </div>
 
                 {/* Contenu */}
                 <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
                     <div
                         className="cf-content cf-wrap"
-                        style={{ width: '100%', maxWidth: '500px', margin: '0 auto', padding: '120px 40px 80px' }}
+                        style={{
+                            width: '100%',
+                            maxWidth: '480px',
+                            marginLeft: 'max(80px, 8vw)',
+                            padding: '120px 40px 80px',
+                        }}
                     >
-                        <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.45)', marginBottom: '16px' }}>
+                        <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.5)', marginBottom: '16px' }}>
                             Dyane Paris
                         </p>
                         <h1
@@ -131,10 +135,10 @@ export default function ContactPage() {
                         >
                             Contacter<br />la Maison.
                         </h1>
-                        <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.45)', marginBottom: '44px', lineHeight: 1.8 }}>
+                        <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.5)', marginBottom: '44px', lineHeight: 1.8 }}>
                             Lundi au vendredi — 10h00 à 18h00, heure de Paris.
                         </p>
-                        <div style={{ width: '28px', height: '1px', background: 'rgba(20,18,15,0.2)', marginBottom: '44px' }} />
+                        <div style={{ width: '28px', height: '1px', background: 'rgba(20,18,15,0.22)', marginBottom: '44px' }} />
 
                         {sent ? (
                             <p style={{ ...font, fontSize: '16px', lineHeight: 1.8, color: '#14120f' }}>{t('merci')}</p>
@@ -171,10 +175,10 @@ export default function ContactPage() {
                                 <textarea className="cf" placeholder="Votre message *" required rows={4} value={form.message} onChange={updateField('message')}
                                     style={{ ...lineField, resize: 'none', marginBottom: '28px' }} />
 
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.35)', lineHeight: 1.9, marginBottom: '14px' }}>
+                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.38)', lineHeight: 1.9, marginBottom: '14px' }}>
                                     Les champs avec une * sont obligatoires.
                                 </p>
-                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.35)', lineHeight: 1.9, marginBottom: '28px' }}>
+                                <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.38)', lineHeight: 1.9, marginBottom: '28px' }}>
                                     Vos données personnelles sont traitées par Dyane Paris afin de répondre à votre demande.{' '}
                                     <Link href={`/${locale}/confidentialite`} style={{ color: 'rgba(20,18,15,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
                                         Politique de confidentialité
