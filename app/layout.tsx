@@ -1,4 +1,8 @@
-import './globals.css'
+export const metadata = {
+  icons: {
+    icon: '/favicon.svg',
+  },
+} import './globals.css'
 import { getLocale } from 'next-intl/server'
 import { fontVariables } from './fonts'
 
