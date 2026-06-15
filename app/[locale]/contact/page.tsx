@@ -96,13 +96,13 @@ export default function ContactPage() {
                 @media (max-width: 768px) {
                     .cf-row { grid-template-columns: 1fr !important; gap: 0 !important; }
                     .cf-h1 { font-size: 32px !important; }
-                    .cf-wrap { padding: 100px 28px 60px !important; margin-left: 0 !important; }
+                    .cf-wrap { padding: 100px 28px 60px !important; }
                 }
             `}</style>
 
             <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
 
-                {/* Image de fond */}
+                {/* Image de fond — sans voile */}
                 <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781513624/CONTACTER_LA_CONCIERGERIE_zwmuhm.png"
@@ -112,17 +112,15 @@ export default function ContactPage() {
                         sizes="100vw"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(248,245,240,0.38)' }} />
                 </div>
 
-                {/* Contenu */}
-                <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+                {/* Contenu centré */}
+                <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <div
                         className="cf-content cf-wrap"
                         style={{
                             width: '100%',
                             maxWidth: '480px',
-                            marginLeft: 'max(80px, 8vw)',
                             padding: '120px 40px 80px',
                         }}
                     >
