@@ -98,6 +98,24 @@ export default function ContactPage() {
                     .cf-h1 { font-size: 32px !important; }
                     .cf-wrap { padding: 100px 28px 60px !important; }
                 }
+                input.cf,
+textarea.cf,
+select.cf {
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+}
+
+input.cf:-webkit-autofill,
+input.cf:-webkit-autofill:hover,
+input.cf:-webkit-autofill:focus,
+textarea.cf:-webkit-autofill,
+select.cf:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #14120f !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
             `}</style>
 
             <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
