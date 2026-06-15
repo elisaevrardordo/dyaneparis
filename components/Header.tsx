@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
@@ -10,9 +10,16 @@ const fontNav = { fontFamily: 'var(--font-lora), serif' }
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
     const pathname = usePathname()
     const t = useTranslations('header')
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 10)
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
 
     const navLinks = [
         { label: t('collections'), href: '/oeuvres' },
@@ -22,6 +29,17 @@ export default function Header() {
         { label: t('journal'), href: '/le-journal' },
         { label: t('contact'), href: '/contact' },
     ]
+
+    const isLight = pathname.includes('/contact')
+    const textColor = isLight ? '#14120f' : '#fff'
+    const borderColor = isLight ? 'rgba(20,18,15,0.12)' : 'rgba(255,255,255,0.10)'
+    const logoSrc = isLight ? '/LogoDYANE_noir.png' : '/LogoDYANE_blanc.png'
+
+    const headerBg = scrolled
+        ? isLight
+            ? 'rgba(248,245,240,0.88)'
+            : 'rgba(0,0,0,0.72)'
+        : 'transparent'
 
     return (
         <>
@@ -36,20 +54,27 @@ export default function Header() {
                     .header-mobile-btn { display: none !important; }
                     .header-logo-wrap { justify-content: center !important; display: flex !important; }
                 }
+                .header-link { transition: opacity 0.2s ease !important; }
+                .header-link:hover { opacity: 1 !important; }
             `}</style>
 
-            <header style={{ background: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50 }}>
+            <header style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 50,
+                background: headerBg,
+                backdropFilter: scrolled ? 'blur(12px)' : 'none',
+                WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+                transition: 'background 0.4s ease, backdrop-filter 0.4s ease',
+            }}>
 
-                {/* Logo centré desktop / logo gauche + hamburger droite mobile */}
                 <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '20px 24px 16px' }}>
-
-                    {/* Espace gauche vide sur desktop, invisible */}
                     <div />
-
-                    {/* Logo centré */}
                     <Link href={`/${locale}`} style={{ textDecoration: 'none' }}>
                         <Image
-                            src="/LogoDYANE_blanc.png"
+                            src={logoSrc}
                             alt="Dyane Paris"
                             width={1554}
                             height={1389}
@@ -57,15 +82,13 @@ export default function Header() {
                             style={{ height: '60px', width: 'auto', display: 'block' }}
                         />
                     </Link>
-
-                    {/* Hamburger à droite sur mobile */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <button
                             className="header-mobile-btn"
                             onClick={() => setMenuOpen(!menuOpen)}
                             style={{
                                 display: 'none',
-                                color: '#fff',
+                                color: textColor,
                                 background: 'none',
                                 border: 'none',
                                 fontSize: '24px',
@@ -79,7 +102,6 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* Desktop nav */}
                 <nav
                     className="header-desktop-nav"
                     style={{
@@ -87,41 +109,38 @@ export default function Header() {
                         justifyContent: 'center',
                         gap: '40px',
                         paddingBottom: '24px',
-                        borderBottom: '1px solid rgba(255,255,255,0.10)',
+                        borderBottom: `1px solid ${borderColor}`,
                     }}
                 >
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={`/${locale}${link.href}`}
+                            className="header-link"
                             style={{
                                 ...fontNav,
-                                color: '#fff',
+                                color: textColor,
                                 fontSize: '11px',
                                 letterSpacing: '0.22em',
                                 textTransform: 'uppercase',
                                 textDecoration: 'none',
                                 opacity: 0.75,
-                                transition: 'opacity 0.2s ease',
                             }}
-                            onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                            onMouseLeave={e => (e.currentTarget.style.opacity = '0.75')}
                         >
                             {link.label}
                         </Link>
                     ))}
                 </nav>
 
-                {/* Mobile menu déroulant transparent */}
                 {menuOpen && (
                     <nav style={{
-                        background: 'transparent',
+                        background: isLight ? 'rgba(248,245,240,0.95)' : 'rgba(0,0,0,0.92)',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         gap: '32px',
                         padding: '48px 24px',
-                        borderTop: '1px solid rgba(255,255,255,0.08)',
+                        borderTop: `1px solid ${borderColor}`,
                     }}>
                         {navLinks.map((link) => (
                             <Link
@@ -130,7 +149,7 @@ export default function Header() {
                                 onClick={() => setMenuOpen(false)}
                                 style={{
                                     ...fontNav,
-                                    color: '#fff',
+                                    color: textColor,
                                     fontSize: '14px',
                                     letterSpacing: '0.28em',
                                     textTransform: 'uppercase',
