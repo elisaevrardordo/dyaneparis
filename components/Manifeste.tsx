@@ -63,7 +63,7 @@ export default function Manifeste() {
                 }
             `}</style>
 
-            <section className="manifeste-outer">
+           <section className="manifeste-outer" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
                 <div className="manifeste-row">
 
                     {/* Colonne gauche : photo sculpture plein cadre */}
