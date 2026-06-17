@@ -69,7 +69,7 @@ export default function Manifeste() {
                     {/* Colonne gauche : photo sculpture plein cadre */}
                     <div className="manifeste-col-left">
                         <Image
-                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781702984/DSC00189_zxny0e.jpg"
+                            src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781703414/DSC00189_1_zvm9vh.jpg"
                             alt="Sculpture Dyane Paris"
                             fill
                             sizes="33vw"
