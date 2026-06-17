@@ -4,7 +4,13 @@ import { fontVariables } from './fonts'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  icons: { icon: '/favicon.png' },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export const dynamic = 'force-dynamic'
