@@ -92,22 +92,21 @@ export default function LeJournalPage() {
             <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
 
                 {/* Hero image */}
-                <div className="journal-hero" style={{ position: 'relative', width: '100%', height: '35vh', overflow: 'hidden' }}>
-                    <Image
-                        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
-                        alt="Le Journal Dyane Paris"
-                        fill
-                        sizes="100vw"
-                        style={{ objectFit: 'cover' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
-                    <div className="journal-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
-                        <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '10px' }}>Dyane Paris</p>
-                        <h1 className="journal-hero-h1" style={{ ...font, fontSize: 'clamp(18px, 2.2vw, 30px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, maxWidth: '560px', lineHeight: 1.3 }}>
-                            {t('titre')}
-                        </h1>
-                    </div>
-                </div>
+<div className="journal-hero" style={{ position: 'relative', width: '100%', height: '35vh', overflow: 'hidden' }}>
+    <Image
+        src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
+        alt="Le Journal Dyane Paris"
+        fill
+        sizes="100vw"
+        style={{ objectFit: 'cover' }}
+    />
+    <div className="journal-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
+        <p style={{ ...lora, fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '10px' }}>Dyane Paris</p>
+        <h1 className="journal-hero-h1" style={{ ...font, fontSize: 'clamp(18px, 2.2vw, 30px)', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, maxWidth: '560px', lineHeight: 1.3 }}>
+            {t('titre')}
+        </h1>
+    </div>
+</div>
 
                 {/* Layout Jacquemus */}
                 <div className="journal-layout" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.08)', minHeight: '560px' }}>
