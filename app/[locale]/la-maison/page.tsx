@@ -30,7 +30,7 @@ export default function LaMaisonPage() {
 
                 {/* Hero */}
                 <section className="maison-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447485/Capture_d_ecran_2026-03-18_a_10.00.11_xcmvzb.png" alt="La Maison Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781704009/ChatGPT_Image_17_juin_2026_15_46_45_bs2e8m.png" alt="La Maison Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
