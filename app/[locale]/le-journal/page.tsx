@@ -11,7 +11,7 @@ const lora = { fontFamily: 'var(--font-lora), serif' }
 const articles = [
     {
         slug: 'commanderie-ambassadeurs-rungis',
-        titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis',
+        titre: 'Dyane Paris pour la Commanderie des Ambassadeurs de Rungis.',
         date: '24 MARS 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_rzj5qf.png',
         extrait: "Dans l'écrin du Café de l'Homme, face à la Tour Eiffel, Dyane Paris a participé à un moment d'exception aux côtés de la Commanderie des Ambassadeurs de Rungis.",
