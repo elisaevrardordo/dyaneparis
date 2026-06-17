@@ -1,5 +1,0 @@
-export const metadata = {
-  icons: {
-    icon: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777845644/LogoDYNANE_noir_pmbyq4.png',
-  },
-}
