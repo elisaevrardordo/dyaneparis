@@ -86,7 +86,7 @@ export default function LeJournalPage() {
                     .journal-bottom { padding: 32px 20px 60px !important; }
                 }
             `}</style>
-            <main style={{ background: '#FAF8F5', minHeight: '100vh' }}>
+                <main style={{ background: '#FAF8F5', minHeight: '100vh', paddingTop: '80px' }}>
 
                 {/* Layout Jacquemus */}
                 <div className="journal-layout" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.08)', minHeight: '560px' }}>
