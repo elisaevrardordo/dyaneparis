@@ -42,7 +42,7 @@ const articles: Record<string, {
         ],
     },
     'ritz-paris-fashion-week': {
-        titre: 'Dyane Paris au Ritz Paris — Une Fashion Week',
+        titre: 'Dyane Paris au Ritz Paris, Fashion Week',
         date: '4 MARS 2026',
         image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_2_dlipkw.png',
         extrait: "À l'occasion de la Paris Fashion Week, Dyane Paris a investi les salons du Ritz Paris à travers une présence imaginée comme une véritable exposition d'Art Liquide.",
