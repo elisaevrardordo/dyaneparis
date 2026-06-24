@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
+import NewsletterForm from '@/components/NewsletterForm'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 
@@ -33,8 +34,6 @@ const faqs = [
 
 export default function ServiceAidePage() {
     const [open, setOpen] = useState<number | null>(null)
-    const [email, setEmail] = useState('')
-    const [subscribed, setSubscribed] = useState(false)
 
     return (
         <div style={{ background: '#FAF8F5' }}>
@@ -78,38 +77,7 @@ export default function ServiceAidePage() {
             </section>
 
             {/* Newsletter */}
-            <section style={{ background: '#0d0d0d', padding: '100px 24px' }}>
-                <div style={{ maxWidth: '600px' }}>
-                    <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '16px' }}>NEWSLETTER</p>
-                    <h2 style={{ ...font, fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 400, color: '#fff', marginBottom: '16px' }}>S'ABONNER À NOS E-MAILS</h2>
-                    <p style={{ ...font, fontSize: '13px', lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: '48px' }}>
-                        Faites partie des premières personnes à être informées des nouvelles collections et des offres exclusives.
-                    </p>
-                    {subscribed ? (
-                        <p style={{ ...font, fontSize: '13px', color: 'rgba(255,255,255,0.8)', letterSpacing: '0.1em' }}>Merci pour votre inscription.</p>
-                    ) : (
-                        <form onSubmit={e => { e.preventDefault(); setSubscribed(true) }} style={{ display: 'flex', flexDirection: 'column' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.3)', marginBottom: '32px' }}>
-                                <input
-                                    type="email"
-                                    placeholder="VOTRE ADRESSE E-MAIL *"
-                                    required
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    className="newsletter-input"
-                                    style={{ ...font, flex: 1, background: 'none', border: 'none', color: '#fff', fontSize: '11px', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '12px 0', outline: 'none' }}
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                style={{ ...font, background: 'none', border: 'none', color: '#fff', fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.5)', paddingBottom: '4px', alignSelf: 'flex-start' }}
-                            >
-                                S'INSCRIRE À LA NEWSLETTER
-                            </button>
-                        </form>
-                    )}
-                </div>
-            </section>
+            <NewsletterForm />
 
         </div>
     )

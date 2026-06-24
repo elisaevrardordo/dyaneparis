@@ -1,10 +1,13 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function ContactForm() {
+    const pathname = usePathname()
+    const locale: 'fr' | 'en' = pathname?.startsWith('/en') ? 'en' : 'fr'
     const [sent, setSent] = useState(false)
     const [form, setForm] = useState({
         name: '', email: '', country: '', zip: '', city: '', subject: '', message: '', newsletter: false
@@ -12,6 +15,15 @@ export default function ContactForm() {
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
+        if (form.newsletter && form.email) {
+            const [firstName] = form.name.trim().split(/\s+/)
+            // Best-effort newsletter opt-in; do not block the contact confirmation on it.
+            fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: form.email, firstName, locale, source: 'contact_form' }),
+            }).catch(() => {})
+        }
         setSent(true)
     }
 

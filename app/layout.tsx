@@ -1,3 +1,4 @@
+// @ts-expect-error - CSS side-effect import has no type declarations
 import './globals.css'
 import { getLocale } from 'next-intl/server'
 import { fontVariables } from './fonts'
