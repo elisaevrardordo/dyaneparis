@@ -218,6 +218,35 @@ const articles: Record<string, {
             { slug: 'ingredients-locaux-francais', titre: "L'Exigence des Ingrédients", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDIENTS_jnqiij.png' },
         ],
     },
+    'journal-de-bord-frivole': {
+    titre: 'Journal de bord — Frivole',
+    date: '24 JUIN 2026',
+    image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1782315804/VISUEL1_xfkylg.png',
+    extrait: "Certaines rencontres semblent écrites d'avance. Notre arrivée chez Frivole marque le début d'un nouveau chapitre dans l'histoire de Dyane.",
+    contenu: (
+        <>
+            <p>Certaines rencontres semblent écrites d'avance. Notre arrivée chez Frivole marque le début d'un nouveau chapitre dans l'histoire de Dyane. Dès les premiers instants, le lieu dévoile son caractère : une esthétique audacieuse, une élégance contemporaine et ce subtil équilibre entre raffinement et liberté qui fait naître les plus belles collaborations.</p>
+            <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1782315804/VISUEL1_xfkylg.png" alt="Frivole x Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+            </div>
+            <p>C'est ici qu'est née notre première création commune. Aux côtés du mixologue Thibaud Sauvet, nous avons imaginé une recette exclusive, pensée pour traduire l'identité de Frivole dans un flacon de porcelaine. Un cocktail à 21 % vol., où chaque ingrédient a été choisi avec précision pour raconter une histoire.</p>
+            <p>Le gin artisanal français en constitue l'ossature, apportant une fraîcheur botanique profonde. Le sirop de basilic et de yuzu dévoile une tension végétale relevée d'une vivacité délicatement citronnée. Quelques gouttes de bitters français viennent structurer l'ensemble avec élégance, tandis que la liqueur de sureau française enveloppe la dégustation d'une douceur florale, longue et aérienne.</p>
+            <blockquote><p>« UNE COMPOSITION PRÉCISE, ÉQUILIBRÉE ET RÉSOLUMENT FRANÇAISE, IMAGINÉE POUR PROLONGER L'EXPÉRIENCE FRIVOLE BIEN AU-DELÀ DE LA DERNIÈRE GORGÉE. »</p></blockquote>
+            <div style={{ position: 'relative', width: '100%', height: '500px', margin: '48px 0' }}>
+                <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1782315892/c316cbca611b6edeee751d9c65b9ec46_cefx8o.jpg" alt="Frivole x Dyane Paris — Cocktail" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+            </div>
+            <p>Comme toujours chez Dyane, le contenu dialogue avec le contenant. Cette recette prendra place dans une bouteille en porcelaine peinte à la main, véritable objet d'art destiné à traverser le temps autant qu'à sublimer le moment de dégustation.</p>
+            <p>Cette première journée chez Frivole n'a pas seulement donné naissance à un cocktail. Elle a posé les fondations d'une vision commune : celle d'un luxe vivant, créatif et profondément artisanal, où la mixologie rencontre l'art, et où chaque bouteille devient le souvenir tangible d'une expérience unique.</p>
+            <p>Une première page s'écrit aujourd'hui. Les suivantes promettent d'être tout aussi inspirantes.</p>
+        </>
+    ),
+    related: [
+        { slug: 'teo-for-dyane', titre: 'TEO FOR DYANE', image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png' },
+        { slug: 'art-de-la-porcelaine', titre: "L'Art de la Porcelaine", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/PORCELAINE_3_khqmjh.png' },
+        { slug: 'point-de-vue-distillateur', titre: "Dyane, du point de vue d'un distillateur", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_2_r6oj8w.png' },
+        { slug: 'ingredients-locaux-francais', titre: "L'Exigence des Ingrédients", image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/INGREDIENTS_jnqiij.png' },
+    ],
+},
 }
 
 export default function ArticlePage({ params }: { params: { slug: string; locale: string } }) {
