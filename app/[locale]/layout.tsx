@@ -3,11 +3,32 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AgeGate from '@/components/AgeGate'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-    title: "Dyane Paris — Maison d'Art Liquide",
-    description: "Le cocktail élevé au rang d'œuvre.",
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'seo.home' })
+    const path = locale === 'fr' ? '' : `/${locale}`
+
+    return {
+        title: t('title'),
+        description: t('description'),
+        alternates: {
+            canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: 'https://www.dyaneparis.com',
+                en: 'https://www.dyaneparis.com/en',
+                'x-default': 'https://www.dyaneparis.com',
+            },
+        },
+        openGraph: {
+            locale: locale === 'fr' ? 'fr_FR' : 'en_US',
+        },
+    }
 }
 
 export default async function LocaleLayout({

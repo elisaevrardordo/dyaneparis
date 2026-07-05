@@ -1,8 +1,37 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 const lora = { fontFamily: 'var(--font-lora), serif' }
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'seo.distillation' })
+    const path = locale === 'fr' ? '/distillation' : `/${locale}/distillation`
+
+    return {
+        title: t('title'),
+        description: t('description'),
+        alternates: {
+            canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: 'https://www.dyaneparis.com/distillation',
+                en: 'https://www.dyaneparis.com/en/distillation',
+            },
+        },
+        openGraph: {
+            title: t('title'),
+            description: t('description'),
+            url: `https://www.dyaneparis.com${path}`,
+        },
+    }
+}
 
 export default function DistillationPage() {
     const t = useTranslations('distillation')
