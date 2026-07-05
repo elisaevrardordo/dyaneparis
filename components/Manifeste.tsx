@@ -106,7 +106,7 @@ export default function Manifeste() {
                             <p style={{ margin: 0 }}>PARIS, FRANCE</p>
                         </div>
                         <div className="heritage-body" style={{ ...lora }}>
-                            <p>DYANE PARIS EST NÉE D'UNE CONVICTION : LE COCKTAIL PEUT ÊTRE PLUS QU'UN INSTANT, IL PEUT DEVENIR UNE ŒUVRE.</p>
+                            <p>DYANE PARIS EST NÉE D'UNE CONVICTION : LE COCKTAIL PEUT ÊTRE PLUS QU'UN INSTANT, IL PEUT DEVENIR UNE EXPÉRIENCE.</p>
                             <p>INSPIRÉE PAR L'ART, LE PATRIMOINE ET LE SAVOIR-FAIRE ARTISANAL, LA MAISON IMAGINE DES CRÉATIONS UNIQUES OÙ CHAQUE DÉTAIL RACONTE UNE HISTOIRE.</p>
                             <p style={{ margin: 0 }}>ENTRE TRADITION ET AUDACE, DYANE PARIS RÉINVENTE L'EXPÉRIENCE DU LUXE À TRAVERS DES FLACONS EN PORCELAINE PEINTS À LA MAIN, DE VÉRITABLES OBJETS DE COLLECTION CONÇUS POUR TRAVERSER LE TEMPS.</p>
                         </div>
