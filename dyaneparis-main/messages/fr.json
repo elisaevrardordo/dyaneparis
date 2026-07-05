@@ -1,0 +1,193 @@
+{
+    "nav": {
+        "oeuvres": "ŒUVRES",
+        "distillation": "DISTILLATION",
+        "experiences": "EXPÉRIENCES",
+        "maison": "LA MAISON",
+        "journal": "LE JOURNAL",
+        "contact": "CONTACTER LA CONCIERGERIE"
+    },
+    "home": {
+        "kicker": "MAISON D'ART LIQUIDE",
+        "titre": "L'ART QUE L'ON BOIT.",
+        "cta": "DÉCOUVRIR LES ŒUVRES"
+    },
+    "manifeste": {
+        "label": "DYANE PARIS",
+        "titre": "MAISON D'ART LIQUIDE",
+        "ligne1": "LE COCKTAIL ÉLEVÉ AU RANG D'ŒUVRE.",
+        "ligne2": "CHAQUE BOUTEILLE EST UNE EXPÉRIENCE À VIVRE, PUIS À CONSERVER.",
+        "cta": "DÉCOUVRIR LA MAISON"
+    },
+    "dualimage": {
+        "label": "DYANE CUVÉE PRESTIGE",
+        "titre": "LA DISTILLATION ARTISANALE FRANÇAISE",
+        "texte": "Notre distillation en France incarne l'exigence de la Maison : précision, pureté, constance.",
+        "cta": "EN LIRE PLUS"
+    },
+    "header": {
+        "collections": "ŒUVRES",
+        "distillation": "DISTILLATION",
+        "experiences": "EXPÉRIENCES",
+        "maison": "LA MAISON",
+        "journal": "LE JOURNAL",
+        "contact": "CONTACTER LA CONCIERGERIE",
+        "menu": "MENU",
+        "close": "FERMER"
+    },
+    "footer": {
+        "collections": "COLLECTIONS",
+        "maison": "LA MAISON",
+        "journal": "LE JOURNAL",
+        "experiences": "EXPÉRIENCES",
+        "aide_titre": "BESOIN D'AIDE ?",
+        "aide_faq": "SERVICE D'AIDE",
+        "aide_contact": "CONTACTEZ LA MAISON",
+        "legal": "MENTIONS LÉGALES",
+        "cgv": "CGV",
+        "confidentialite": "CONFIDENTIALITÉ",
+        "cookies": "COOKIES",
+        "alcool": "L'ABUS D'ALCOOL EST DANGEREUX POUR LA SANTÉ. À CONSOMMER AVEC MODÉRATION."
+    },
+    "hero": {
+        "kicker": "MAISON D'ART LIQUIDE — PARIS",
+        "titre": "Désormais, l'art se boit.",
+        "sous_titre": "LE COCKTAIL ÉLEVÉ AU RANG D'ŒUVRE.\nCHAQUE BOUTEILLE EST UNE EXPÉRIENCE À VIVRE, PUIS À CONSERVER."
+    },
+    "products": {
+        "cta": "Contacter la Conciergerie"
+    },
+    "distillation": {
+        "kicker": "L'EXCELLENCE DE LA MAISON DYANE",
+        "titre": "LA CUVÉE PRESTIGE",
+        "intro1": "Chaque création Dyane naît d'une exigence rare : atteindre un équilibre que peu approchent, et que l'on reconnaît immédiatement.",
+        "intro2": "Élaborées en France, au cœur du Vaucluse, nos cuvées prennent vie dans un territoire où la lumière, la matière et le temps façonnent chaque détail.",
+        "origine_titre": "L'ORIGINE : UNE MATIÈRE NOBLE, UNE TERRE D'EXIGENCE",
+        "origine_p1": "Nous sélectionnons exclusivement des ingrédients bruts: gingembre frais, gousses de vanille entières, zestes d'agrumes, pour préserver la pureté des arômes.",
+        "origine_p2": "Chaque élément est choisi pour sa capacité à s'exprimer avec justesse, sans artifice ni correction.",
+        "origine_p3": "Cette rigueur dans la sélection constitue la base de chaque cuvée.",
+        "elaboration_titre": "L'ÉLABORATION : L'ALCOOL VINIQUE COMME FONDATION",
+        "elaboration_p1": "Au cœur de chaque création se trouve un élément fondamental : un alcool vinique d'une pureté exceptionnelle.",
+        "elaboration_p2": "Issu de la transformation du vin, cet alcool se distingue par sa finesse, sa neutralité aromatique et sa capacité à sublimer les matières qu'il accueille.",
+        "elaboration_p3": "Il agit comme un révélateur, permettant aux notes de gingembre, de vanille ou d'agrumes de se déployer avec précision et élégance.",
+        "elaboration_p4": "Les infusions sont réalisées lentement, sur des durées maîtrisées, afin d'extraire chaque nuance sans jamais brusquer la matière.",
+        "elaboration_p5": "Ce temps long permet d'obtenir une profondeur aromatique et une stabilité qui donnent à la cuvée toute sa tenue et sa signature.",
+        "signature_titre": "LA SIGNATURE : UNE EXPÉRIENCE SENSORIELLE MAÎTRISÉE",
+        "signature_p1": "Chaque recette est pensée comme une composition : une attaque franche, un cœur expressif, une longueur en bouche persistante.",
+        "signature_p2": "L'équilibre entre puissance et finesse est ajusté au millilitre près, jusqu'à atteindre une harmonie rare.",
+        "signature_p3": "Rien n'est laissé au hasard : ni la texture, ni la structure, ni la manière dont les arômes évoluent au fil de la dégustation.",
+        "signature_p4": "Chez Dyane, le cocktail n'est plus un mélange. C'est une œuvre liquide.",
+        "citation": "« CHAQUE CUVÉE DYANE EST PENSÉE COMME UNE ÉVIDENCE : UN ÉQUILIBRE SI JUSTE QU'IL S'IMPOSE DÈS LA PREMIÈRE DÉGUSTATION. »",
+        "citation_nom": "JULIEN DUCRUET",
+        "citation_titre": "CHEF DE CONCEPTION DES RECETTES DYANE"
+    },
+    "experiences": {
+        "kicker": "L'EXPÉRIENCE DYANE",
+        "titre": "EXPÉRIENCES",
+        "intro1": "Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.",
+        "intro2": "Sa vocation est claire : préserver la maîtrise du goût, du geste et du temps dans un univers dominé par l'industrialisation. Chaque création est issue d'une production volontairement contenue, conduite avec méthode et discernement.",
+        "mesure_titre": "LE CHOIX DE LA MESURE",
+        "mesure_p1": "La Maison s'inscrit à rebours des logiques de volume. La production n'est jamais standardisée.",
+        "mesure_p2": "Elle est définie selon la nature du projet, l'identité du lieu, l'exigence du partenaire. Chaque lot fait l'objet d'un suivi précis, depuis l'assemblage jusqu'à la mise en bouteille. La constance prévaut sur la cadence. La précision sur la quantité.",
+        "mesure_p3": "Chaque série est réalisée à la commande, dans une temporalité maîtrisée. Cette organisation garantit l'intégrité des arômes, la cohérence des assemblages et l'adaptation exacte des formats, du 70 cL au 12 L. La production demeure ajustée pour ne jamais devenir mécanisée à grande échelle.",
+        "perso_titre": "LA PERSONNALISATION DES BOUTEILLES DYANE.",
+        "perso_p1": "La personnalisation constitue l'une des expressions les plus abouties du savoir-faire de la Maison. Chaque projet fait l'objet d'une étude attentive, afin d'assurer une parfaite cohérence entre contenu et le contenant.",
+        "perso_p2": "Les recettes peuvent être ajustées dans leurs équilibres, leur intensité, leur signature aromatique, pour répondre aux attentes les plus spécifiques.",
+        "perso_p3": "Le contenant est développé avec le même niveau d'exigence. Formats, finitions, interventions artistiques : chaque détail est envisagé comme une composante essentielle de l'ensemble.",
+        "perso_p4": "Elle engage la Maison dans une démarche d'écoute et de précision afin d'accompagner les demandes de nos partenaires les plus exigeants.",
+        "ancrages_titre": "DEUX ANCRAGES, UNE MÊME EXIGENCE",
+        "ancrages_p1": "La Maison opère sur deux sites de production en France.",
+        "ancrages_p2": "En Île-de-France, au cœur d'un écosystème culturel et hôtelier d'excellence, où sont conduites les productions événementielles et les séries sur mesure. Dans la région d'Avignon, territoire de tradition artisanale, dédié aux assemblages et à la stabilité des infusions.",
+        "ancrages_p3": "Deux implantations complémentaires, guidées par une même discipline.",
+        "citation": "\"MA COLLABORATION AVEC DYANE EST NÉE D'UN RESPECT MUTUEL ET D'UNE AMBITION PARTAGÉE : PROPOSER DES COCKTAILS PREMIUM QUI ALLIENT AUTHENTICITÉ, ÉLÉGANCE ET MODERNITÉ. CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES.\"",
+        "citation_nom": "JULIEN DUCRUET",
+        "citation_titre": "NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS",
+        "citation_cta": "CONTACTER LA CONCIERGERIE"
+    },
+    "maison": {
+        "kicker": "L'ART SE BOIT.",
+        "titre": "L'HISTOIRE DE LA MAISON",
+        "intro": "Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.",
+        "genese_kicker": "GENÈSE",
+        "genese_titre": "LE NOM, DYANE.",
+        "genese_p1": "Dyane puise son inspiration dans la figure mythologique de Diane, déesse chasseresse. Figure libre, indépendante et souveraine.",
+        "genese_p2": "Gardienne des forêts et des cycles naturels. La Maison retient de cette symbolique la maîtrise, la précision du geste ainsi que l'exigence silencieuse.",
+        "genese_p3": "La chasse n'est pas ici prédation mais devient quête. Quête de justesse, Quête d'équilibre, Quête de beauté.",
+        "art_kicker": "ART & SPIRITS",
+        "art_titre": "LA NAISSANCE D'UNE MAISON D'ART LIQUIDE",
+        "art_p1": "Dyane ne se définit ni comme une marque de spiritueux, ni comme une simple catégorie Ready-To-Drink.",
+        "art_p2": "La Maison revendique une identité propre : l'Art Liquide. Chaque création associe un cocktail signature, élaboré avec exigence, à un contenant artistique conçu pour être conservé. Boire devient un geste. Conserver devient une mémoire.",
+        "art_p3": "La rupture est volontaire. Dyane abandonne la bouteille de verre traditionnelle pour la porcelaine. Une matière noble, pérenne, sculpturale. La forme évoque une présence.",
+        "art_p4": "Elle s'inscrit dans un espace comme une œuvre autonome. Une fois le cocktail dégusté, l'objet demeure. Il traverse le temps et s'inscrit dans un intérieur.",
+        "temps_titre": "LE TEMPS ET LA MAIN",
+        "temps_p1": "La Maison s'appuie sur un processus artisanal exigeant réparti entre le Vaucluse et l'Île-de-France. La porcelaine naît d'un travail minéral, transformée, moulée, cuite selon un cycle long.",
+        "temps_p2": "Les cocktails sont élaborés à partir d'alcool vinique français, produit après les vendanges puis travaillés par infusion. Chaque création Dyane mobilise plus de 70 mains de la poudre de kaolin à la dégustation finale. La production est volontairement limitée.",
+        "temps_p3": "La lenteur est assumée.",
+        "contemporaine_titre": "UNE MAISON CONTEMPORAINE",
+        "contemporaine_p": "Dyane s'inscrit dans une évolution du luxe. Un luxe plus rare que démonstratif. Plus durable que consommable."
+    },
+    "journal": {
+        "titre": "RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE"
+    },
+    "oeuvres": {
+        "decouvrir_intro": "Découvrez les créations",
+        "decouvrir": "DÉCOUVRIR",
+        "no1_sous_titre": "L'audace du Pornstar Martini sublimée dans une création aux nuances gourmandes.",
+        "no2_sous_titre": "Une interprétation sophistiquée du mythique Moscow Mule.",
+        "teo_sous_titre": "En collaboration avec le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay."
+    },
+    "contact": {
+        "kicker": "CONCIERGERIE DYANE",
+        "titre": "CONTACTER LA MAISON",
+        "intro": "Pour toute demande de collaboration, commande privée, partenariat ou presse, notre conciergerie vous répondra dans les meilleurs délais.",
+        "nom": "Nom",
+        "email": "Adresse e-mail",
+        "sujet": "Sujet",
+        "message": "Votre message",
+        "envoyer": "ENVOYER",
+        "merci": "Votre message a bien été envoyé. Nous vous répondrons sous 48h.",
+        "options": [
+            "Commande privée",
+            "Partenariat",
+            "Suivi de commande",
+            "Recrutement",
+            "Collaboration artistique",
+            "Presse & médias",
+            "Autre"
+        ]
+    },
+    "seo": {
+        "home": {
+            "title": "Dyane Paris | Maison Française d'Art Liquide — Cocktails de Luxe en Porcelaine",
+            "description": "Dyane Paris, Maison française d'Art Liquide, crée des cocktails de luxe prêts-à-déguster dans des flacons sculpturaux en porcelaine peints à la main. Artisanat français, édition limitée à 500 pièces par an."
+        },
+        "laMaison": {
+            "title": "La Maison | Histoire, Artisanat et Art Liquide",
+            "description": "Découvrez l'histoire de Dyane Paris : la genèse du nom, la naissance de l'Art Liquide et le savoir-faire artisanal français derrière chaque flacon en porcelaine peint à la main."
+        },
+        "oeuvres": {
+            "title": "Les Œuvres | Collection de Cocktails en Porcelaine",
+            "description": "Explorez la collection Dyane Paris : cocktails signature — Pornstar Martini, Moscow Mule, Basil Smash — servis dans des flacons en porcelaine peints à la main, pièces uniques en édition limitée."
+        },
+        "experiences": {
+            "title": "Expériences | Événements Privés & Partenariats de Luxe",
+            "description": "Dyane Paris accompagne hôtels palaces, restaurants gastronomiques et événements d'exception avec des expériences d'Art Liquide sur-mesure, en France et à l'international."
+        },
+        "distillation": {
+            "title": "La Distillation | Savoir-Faire Français & Alcool Vinique",
+            "description": "Chaque cocktail Dyane Paris est élaboré à partir d'alcool vinique français et de matières premières sélectionnées, selon un processus artisanal exigeant mené dans le Vaucluse."
+        },
+        "contact": {
+            "title": "Contact | Dyane Paris",
+            "description": "Contactez la Maison Dyane Paris pour toute demande commerciale, partenariat hôtelier ou presse autour de nos créations d'Art Liquide en porcelaine peinte à la main."
+        },
+        "faq": {
+            "title": "Foire aux Questions | Dyane Paris",
+            "description": "Toutes les réponses à vos questions sur les créations Dyane Paris : composition, conservation, livraison et art de la dégustation de nos cocktails en porcelaine."
+        },
+        "journal": {
+            "title": "Le Journal | Actualités de la Maison Dyane Paris",
+            "description": "Suivez les actualités de Dyane Paris : collaborations artistiques, présences au Ritz Paris et au Café de l'Homme, coulisses de l'artisanat et de la distillation."
+        }
+    }
+}
