@@ -5,6 +5,40 @@ import { articles } from '@/components/data/articles'
 const BASE = 'https://www.dyaneparis.com'
 const locales = ['fr', 'en'] as const
 
+const abs = (src: string) => (src.startsWith('http') ? src : `${BASE}${src}`)
+
+// Curated, crawlable images per section so they can be discovered and ranked in
+// Google Images. Each image must actually appear on the corresponding page.
+const CLD = 'https://res.cloudinary.com/dazhkrimv/image/upload'
+
+const productImages = products.map((p) => abs(p.image))
+
+const routeImages: Record<string, string[]> = {
+    '': [
+        `${CLD}/v1779745931/Design_sans_titre_63_nbwcnv.png`,
+        `${CLD}/v1781703609/Design_sans_titre_68_azlqdk.png`,
+        ...productImages,
+    ],
+    '/la-maison': [
+        `${CLD}/v1779745931/Design_sans_titre_63_nbwcnv.png`,
+        `${CLD}/v1781702999/Capture_d_e%CC%81cran_2026-05-29_a%CC%80_22.30.42_td92ih.png`,
+    ],
+    '/oeuvres': [abs('/2.webp'), ...productImages],
+    '/experiences': [
+        `${CLD}/v1779745940/CREATION_2_bwk7r0.png`,
+        `${CLD}/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg`,
+    ],
+    '/distillation': [
+        `${CLD}/v1779747067/Apre%CC%80s_les_vendanges_bordelaines_2_e0i2dx.png`,
+        `${CLD}/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png`,
+    ],
+    '/le-journal': Object.values(articles).map((a) => a.image),
+}
+
+const productImageBySlug: Record<string, string> = Object.fromEntries(
+    products.map((p) => [p.slug, abs(p.image)])
+)
+
 const staticRoutes = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { path: '/la-maison', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -36,6 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const entries: MetadataRoute.Sitemap = []
 
     for (const route of staticRoutes) {
+        const images = routeImages[route.path]
         for (const locale of locales) {
             entries.push({
                 url: localizedPath(locale, route.path),
@@ -43,12 +78,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 changeFrequency: route.changeFrequency,
                 priority: route.priority,
                 alternates: alternatesFor(route.path),
+                ...(images ? { images } : {}),
             })
         }
     }
 
     for (const product of products) {
         const path = `/oeuvres/${product.slug}`
+        const image = productImageBySlug[product.slug]
         for (const locale of locales) {
             entries.push({
                 url: localizedPath(locale, path),
@@ -56,11 +93,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 changeFrequency: 'monthly',
                 priority: 0.85,
                 alternates: alternatesFor(path),
+                ...(image ? { images: [image] } : {}),
             })
         }
     }
 
-    for (const slug of Object.keys(articles)) {
+    for (const [slug, article] of Object.entries(articles)) {
         const path = `/le-journal/${slug}`
         for (const locale of locales) {
             entries.push({
@@ -69,6 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 changeFrequency: 'monthly',
                 priority: 0.6,
                 alternates: alternatesFor(path),
+                ...(article.image ? { images: [article.image] } : {}),
             })
         }
     }

@@ -92,7 +92,7 @@ function MobileImageCarousel({ images, nom }: { images: string[], nom: string })
     return (
         <div style={{ position: 'relative', width: '100%', marginBottom: '24px' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <Image src={images[current]} alt={`${nom} ${current + 1}`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                <Image src={images[current]} alt={`${nom} — cocktail Dyane Paris en flacon de porcelaine peint à la main (vue ${current + 1})`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </div>
             <button onClick={() => setCurrent((current - 1 + images.length) % images.length)} style={{ position: 'absolute', top: '50%', left: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>‹</button>
             <button onClick={() => setCurrent((current + 1) % images.length)} style={{ position: 'absolute', top: '50%', right: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>›</button>
@@ -140,7 +140,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                 {/* Hero */}
                 {heroImg && (
                     <section className="produit-hero" style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
-                        <Image src={heroImg} alt={produit.nom} fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                        <Image src={heroImg} alt={`${produit.nom} — cocktail d'exception Dyane Paris en flacon de porcelaine`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     </section>
                 )}
 
@@ -153,7 +153,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                         </div>
                         {produit.images.map((src, i) => (
                             <div key={i} style={{ position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
-                                <Image src={src} alt={`${produit.nom} ${i + 1}`} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
+                                <Image src={src} alt={`${produit.nom} — flacon Dyane Paris (vue ${i + 1})`} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
                             </div>
                         ))}
                     </div>

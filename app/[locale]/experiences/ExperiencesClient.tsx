@@ -35,7 +35,7 @@ export default function ExperiencesClient() {
 
                 {/* Hero */}
                 <section className="exp-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences Dyane" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences et événements sur mesure Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
@@ -63,10 +63,10 @@ export default function ExperiencesClient() {
                 {/* Duo images */}
                 <section className="exp-duo" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
                     <div className="exp-duo-img1" style={{ position: 'relative', height: '500px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience de dégustation des cocktails Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                     </div>
                     <div className="exp-duo-img2" style={{ position: 'relative', height: '680px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Expérience Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Coffret et présentation des cocktails Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                     </div>
                 </section>
 
@@ -82,7 +82,7 @@ export default function ExperiencesClient() {
                         </div>
                     </div>
                     <div className="exp-2col-img" style={{ position: 'relative', height: '720px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation Dyane" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation des flacons en porcelaine Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                     </div>
                 </section>
 
@@ -95,7 +95,7 @@ export default function ExperiencesClient() {
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('ancrages_p3')}</p>
                     </div>
                     <div className="exp-2col-img" style={{ position: 'relative', height: '620px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
+                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Expérience exclusive Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                     </div>
                 </section>
 
@@ -113,7 +113,7 @@ export default function ExperiencesClient() {
 
                 {/* Image finale */}
                 <section className="exp-final" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                    <Image src="/1.webp" alt="Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="/1.webp" alt="Cocktails d'exception Dyane Paris en flacon de porcelaine" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
             </div>

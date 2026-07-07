@@ -70,7 +70,7 @@ export default function Manifeste() {
                     <div className="manifeste-col-left">
                         <Image
                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781703609/Design_sans_titre_68_azlqdk.png"
-                            alt="Sculpture Dyane Paris"
+                            alt="Flacon sculptural en porcelaine peint à la main Dyane Paris"
                             fill
                             sizes="33vw"
                             style={{ objectFit: 'cover', objectPosition: 'center top' }}
@@ -88,7 +88,7 @@ export default function Manifeste() {
                         <div className="manifeste-center-img">
                             <Image
                                 src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781702999/Capture_d_e%CC%81cran_2026-05-29_a%CC%80_22.30.42_td92ih.png"
-                                alt="Flacon Dyane Paris"
+                                alt="Flacon de cocktail Dyane Paris en porcelaine peinte à la main"
                                 width={460}
                                 height={500}
                                 sizes="33vw"

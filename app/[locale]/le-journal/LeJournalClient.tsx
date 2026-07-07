@@ -118,10 +118,10 @@ export default function LeJournalClient() {
                     {/* Images preview */}
                     <div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
                         <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img1} src={img1} alt="Journal" fill style={{ objectFit: 'cover' }} />
+                            <Image key={img1} src={img1} alt="Le Journal Dyane Paris — actualités et événements de la maison" fill style={{ objectFit: 'cover' }} />
                         </div>
                         <div style={{ position: 'relative', width: '45%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img2} src={img2} alt="Journal" fill style={{ objectFit: 'cover' }} />
+                            <Image key={img2} src={img2} alt="Le Journal Dyane Paris — coulisses des créations" fill style={{ objectFit: 'cover' }} />
                         </div>
                     </div>
                 </div>

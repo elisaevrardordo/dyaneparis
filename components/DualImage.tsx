@@ -41,7 +41,7 @@ export default function DualImage() {
             <section style={{ position: 'relative', width: '100%', height: '75vh', overflow: 'hidden' }}>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png"
-                    alt="Dyane Paris"
+                    alt="Cocktails Dyane Paris présentés dans leurs flacons en porcelaine peints à la main"
                     fill
                     sizes="100vw"
                     style={{ objectFit: 'cover' }}
@@ -61,7 +61,7 @@ export default function DualImage() {
                                     <div className="dual-slide1-img-large" style={{ position: 'relative', height: '600px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745940/CREATION_2_bwk7r0.png"
-                                            alt="Dyane Paris Distillation"
+                                            alt="Distillation artisanale des cocktails Dyane Paris"
                                             fill
                                             sizes="(max-width: 768px) 100vw, 56vw"
                                             style={{ objectFit: 'cover' }}
@@ -70,7 +70,7 @@ export default function DualImage() {
                                     <div className="dual-slide1-img-small" style={{ position: 'relative', height: '600px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745953/10_fl8iqj.png"
-                                            alt="Dyane Paris"
+                                            alt="Détail d'un flacon en porcelaine peint à la main Dyane Paris"
                                             fill
                                             sizes="20vw"
                                             style={{ objectFit: 'cover' }}
@@ -92,7 +92,7 @@ export default function DualImage() {
     <div style={{ position: 'relative', width: '100%', height: '800px' }}>
         <Image
             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779747067/Apre%CC%80s_les_vendanges_bordelaines_2_e0i2dx.png"
-            alt="Distillation Dyane"
+            alt="Distillation Dyane Paris après les vendanges bordelaises"
             fill
             sizes="100vw"
             style={{ objectFit: 'cover' }}
@@ -107,7 +107,7 @@ export default function DualImage() {
                                     <div style={{ position: 'relative', width: '100%', height: '600px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg"
-                                            alt="Infusion"
+                                            alt="Infusion lente d'ingrédients nobles pour les cocktails Dyane Paris"
                                             fill
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             style={{ objectFit: 'cover' }}
@@ -120,7 +120,7 @@ export default function DualImage() {
                                     <div style={{ position: 'relative', width: '100%', height: '600px' }}>
                                         <Image
                                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779626279/ChatGPT_Image_24_mai_2026_14_09_25_rfymiu.png"
-                                            alt="Assemblage"
+                                            alt="Assemblage des cocktails d'exception Dyane Paris"
                                             fill
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             style={{ objectFit: 'cover' }}
