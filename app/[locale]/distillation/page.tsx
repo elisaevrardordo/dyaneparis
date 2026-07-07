@@ -23,6 +23,7 @@ export async function generateMetadata({
             languages: {
                 fr: 'https://www.dyaneparis.com/distillation',
                 en: 'https://www.dyaneparis.com/en/distillation',
+                'x-default': 'https://www.dyaneparis.com/distillation',
             },
         },
         openGraph: {

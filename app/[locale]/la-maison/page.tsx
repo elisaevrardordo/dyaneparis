@@ -19,6 +19,7 @@ export async function generateMetadata({
             languages: {
                 fr: 'https://www.dyaneparis.com/la-maison',
                 en: 'https://www.dyaneparis.com/en/la-maison',
+                'x-default': 'https://www.dyaneparis.com/la-maison',
             },
         },
         openGraph: {

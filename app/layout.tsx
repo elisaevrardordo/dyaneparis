@@ -1,7 +1,15 @@
 import './globals.css'
 import { getLocale } from 'next-intl/server'
 import { fontVariables } from './fonts'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+
+const OG_IMAGE =
+  'https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png'
+
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  colorScheme: 'light',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.dyaneparis.com'),
@@ -47,7 +55,7 @@ export const metadata: Metadata = {
     siteName: 'Dyane Paris',
     images: [
       {
-        url: '/og-image.jpg',
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "Dyane Paris — Maison Française d'Art Liquide",
@@ -61,7 +69,7 @@ export const metadata: Metadata = {
     title: "Dyane Paris | Maison Française d'Art Liquide",
     description:
       'Luxury cocktails presented in hand-painted porcelain sculptures, crafted in France.',
-    images: ['/og-image.jpg'],
+    images: [OG_IMAGE],
   },
   icons: {
     icon: [

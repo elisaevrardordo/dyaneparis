@@ -19,6 +19,7 @@ export async function generateMetadata({
             languages: {
                 fr: 'https://www.dyaneparis.com/le-journal',
                 en: 'https://www.dyaneparis.com/en/le-journal',
+                'x-default': 'https://www.dyaneparis.com/le-journal',
             },
         },
         openGraph: {

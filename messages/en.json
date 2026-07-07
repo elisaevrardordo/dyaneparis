@@ -186,6 +186,22 @@
         "journal": {
             "title": "The Journal | Dyane Paris News",
             "description": "Follow Dyane Paris news: artistic collaborations, appearances at the Ritz Paris and Café de l'Homme, and behind-the-scenes craftsmanship and distillation."
+        },
+        "cgv": {
+            "title": "Terms & Conditions of Sale | Dyane Paris",
+            "description": "Read the Dyane Paris terms and conditions of sale: orders, pricing, payment, delivery, right of withdrawal and alcohol sales."
+        },
+        "confidentialite": {
+            "title": "Privacy Policy | Dyane Paris",
+            "description": "Dyane Paris privacy policy: how we collect, use and protect your personal data in compliance with GDPR."
+        },
+        "cookies": {
+            "title": "Cookie Policy | Dyane Paris",
+            "description": "Learn how Dyane Paris uses cookies and how to manage your browsing preferences."
+        },
+        "mentionsLegales": {
+            "title": "Legal Notice | Dyane Paris",
+            "description": "Legal notice for the Dyane Paris website: publisher, host and the Maison's legal information."
         }
     }
 }

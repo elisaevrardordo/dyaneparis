@@ -26,6 +26,7 @@ export async function generateMetadata({
             },
         },
         openGraph: {
+            url: `https://www.dyaneparis.com${path}`,
             locale: locale === 'fr' ? 'fr_FR' : 'en_US',
         },
     }

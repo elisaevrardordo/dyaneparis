@@ -19,6 +19,7 @@ export async function generateMetadata({
             languages: {
                 fr: 'https://www.dyaneparis.com/experiences',
                 en: 'https://www.dyaneparis.com/en/experiences',
+                'x-default': 'https://www.dyaneparis.com/experiences',
             },
         },
         openGraph: {

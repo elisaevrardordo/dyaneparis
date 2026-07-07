@@ -188,6 +188,22 @@
         "journal": {
             "title": "Le Journal | Actualités de la Maison Dyane Paris",
             "description": "Suivez les actualités de Dyane Paris : collaborations artistiques, présences au Ritz Paris et au Café de l'Homme, coulisses de l'artisanat et de la distillation."
+        },
+        "cgv": {
+            "title": "Conditions Générales de Vente | Dyane Paris",
+            "description": "Consultez les conditions générales de vente de Dyane Paris : commandes, prix, paiement, livraison, droit de rétractation et vente d'alcool."
+        },
+        "confidentialite": {
+            "title": "Politique de Confidentialité | Dyane Paris",
+            "description": "Politique de confidentialité de Dyane Paris : collecte, utilisation et protection de vos données personnelles conformément au RGPD."
+        },
+        "cookies": {
+            "title": "Politique de Cookies | Dyane Paris",
+            "description": "Découvrez comment Dyane Paris utilise les cookies et comment gérer vos préférences de navigation."
+        },
+        "mentionsLegales": {
+            "title": "Mentions Légales | Dyane Paris",
+            "description": "Mentions légales du site Dyane Paris : éditeur, hébergeur et informations légales de la Maison."
         }
     }
 }

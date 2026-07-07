@@ -1,3 +1,28 @@
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'seo.cookies' })
+    const path = locale === 'fr' ? '/cookies' : `/${locale}/cookies`
+    return {
+        title: t('title'),
+        description: t('description'),
+        alternates: {
+            canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: 'https://www.dyaneparis.com/cookies',
+                en: 'https://www.dyaneparis.com/en/cookies',
+                'x-default': 'https://www.dyaneparis.com/cookies',
+            },
+        },
+    }
+}
+
 const font = { fontFamily: 'var(--font-playfair), serif' }
 
 const sections = [

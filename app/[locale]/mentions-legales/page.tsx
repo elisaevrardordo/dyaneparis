@@ -1,3 +1,28 @@
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'seo.mentionsLegales' })
+    const path = locale === 'fr' ? '/mentions-legales' : `/${locale}/mentions-legales`
+    return {
+        title: t('title'),
+        description: t('description'),
+        alternates: {
+            canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: 'https://www.dyaneparis.com/mentions-legales',
+                en: 'https://www.dyaneparis.com/en/mentions-legales',
+                'x-default': 'https://www.dyaneparis.com/mentions-legales',
+            },
+        },
+    }
+}
+
 const font = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function MentionsLegalesPage() {

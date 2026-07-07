@@ -20,6 +20,7 @@ export async function generateMetadata({
             languages: {
                 fr: 'https://www.dyaneparis.com/oeuvres',
                 en: 'https://www.dyaneparis.com/en/oeuvres',
+                'x-default': 'https://www.dyaneparis.com/oeuvres',
             },
         },
         openGraph: {

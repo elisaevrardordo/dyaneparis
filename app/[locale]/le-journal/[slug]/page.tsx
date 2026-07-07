@@ -14,7 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: article.titre,
         description: article.extrait,
-        alternates: { canonical: `https://www.dyaneparis.com${path}` },
+        alternates: {
+            canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: `https://www.dyaneparis.com/le-journal/${slug}`,
+                en: `https://www.dyaneparis.com/en/le-journal/${slug}`,
+                'x-default': `https://www.dyaneparis.com/le-journal/${slug}`,
+            },
+        },
         openGraph: {
             title: article.titre,
             description: article.extrait,

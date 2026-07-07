@@ -20,6 +20,11 @@ export async function generateMetadata({
         description,
         alternates: {
             canonical: `https://www.dyaneparis.com${path}`,
+            languages: {
+                fr: `https://www.dyaneparis.com/oeuvres/${slug}`,
+                en: `https://www.dyaneparis.com/en/oeuvres/${slug}`,
+                'x-default': `https://www.dyaneparis.com/oeuvres/${slug}`,
+            },
         },
         openGraph: {
             title,
