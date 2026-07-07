@@ -101,7 +101,7 @@ export default function OeuvresClient() {
             `}</style>
             <main style={{ background: '#fff' }}>
                 <section className="oeuvres-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="/2.webp" alt="Collection Dyane Paris — flacons de cocktails de luxe en porcelaine peinte à la main" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="/dyane-paris-collection-oeuvres.webp" alt="Collection Dyane Paris — flacons de cocktails de luxe en porcelaine peinte à la main" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)' }} />
                     <div className="oeuvres-hero-text" style={{ position: 'absolute', bottom: '48px', left: '48px' }}>
                         <p style={{ ...font, color: 'rgba(255,255,255,0.7)', fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', fontWeight: 400 }}>

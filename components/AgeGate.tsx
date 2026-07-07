@@ -63,7 +63,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 background: '#0d0d0d',
             }}>
                 <Image
-                    src="/1.webp"
+                    src="/dyane-paris-cocktails-porcelaine.webp"
                     alt=""
                     fill
                     priority

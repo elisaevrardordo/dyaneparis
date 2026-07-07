@@ -113,7 +113,7 @@ export default function ExperiencesClient() {
 
                 {/* Image finale */}
                 <section className="exp-final" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                    <Image src="/1.webp" alt="Cocktails d'exception Dyane Paris en flacon de porcelaine" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="/dyane-paris-cocktails-porcelaine.webp" alt="Cocktails d'exception Dyane Paris en flacon de porcelaine" fill sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
             </div>

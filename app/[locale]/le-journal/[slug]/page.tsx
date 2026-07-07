@@ -53,7 +53,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         '@type': 'Article',
         headline: article.titre,
         description: article.extrait,
-        image: [article.image],
+        image: [
+            {
+                '@type': 'ImageObject',
+                url: article.image,
+                contentUrl: article.image,
+                caption: article.titre,
+                creditText: 'Dyane Paris',
+                creator: { '@type': 'Organization', name: 'Dyane Paris' },
+                representativeOfPage: true,
+            },
+        ],
         author: { '@type': 'Organization', name: 'Dyane Paris' },
         publisher: { '@id': 'https://www.dyaneparis.com/#organization' },
         mainEntityOfPage: `https://www.dyaneparis.com${path}`,

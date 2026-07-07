@@ -57,13 +57,26 @@ export default async function ProduitPage({
     const produit = produits[slug]
     const image = heroImages[slug] || produit?.images?.[0]
 
+    const allImages = produit
+        ? Array.from(new Set(image ? [image, ...(produit.images || [])] : produit.images || []))
+        : []
+    const imageObjects = allImages.map((url, i) => ({
+        '@type': 'ImageObject',
+        url,
+        contentUrl: url,
+        caption: `${produit!.nom} — cocktail de luxe Dyane Paris en flacon de porcelaine peint à la main`,
+        creditText: 'Dyane Paris',
+        creator: { '@type': 'Organization', name: 'Dyane Paris' },
+        ...(i === 0 ? { representativeOfPage: true } : {}),
+    }))
+
     const jsonLd = produit
         ? {
               '@context': 'https://schema.org',
               '@type': 'Product',
               name: produit.nom,
               description: produit.description,
-              image: image ? [image, ...(produit.images || [])] : produit.images,
+              image: imageObjects.length ? imageObjects : undefined,
               brand: {
                   '@type': 'Brand',
                   name: 'Dyane Paris',

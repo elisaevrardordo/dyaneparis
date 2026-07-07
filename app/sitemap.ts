@@ -23,7 +23,7 @@ const routeImages: Record<string, string[]> = {
         `${CLD}/v1779745931/Design_sans_titre_63_nbwcnv.png`,
         `${CLD}/v1781702999/Capture_d_e%CC%81cran_2026-05-29_a%CC%80_22.30.42_td92ih.png`,
     ],
-    '/oeuvres': [abs('/2.webp'), ...productImages],
+    '/oeuvres': [abs('/dyane-paris-collection-oeuvres.webp'), ...productImages],
     '/experiences': [
         `${CLD}/v1779745940/CREATION_2_bwk7r0.png`,
         `${CLD}/v1779626358/copy_of_bda00076f243f0269f3ef397c14901a1_ljqyel.jpg`,
