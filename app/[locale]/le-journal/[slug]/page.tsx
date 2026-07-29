@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { articles } from '@/components/data/articles'
+import { breadcrumbJsonLd, localizedAlternates, localizedUrl, serializeJsonLd } from '@/lib/seo'
+import { localizedPath } from '@/i18n/paths'
 
 const font = { fontFamily: 'Playfair Display, serif' }
 const lora = { fontFamily: 'Lora, serif' }
@@ -9,25 +12,30 @@ const lora = { fontFamily: 'Lora, serif' }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params
     const article = articles[slug]
-    if (!article) return {}
-    const path = locale === 'fr' ? `/le-journal/${slug}` : `/${locale}/le-journal/${slug}`
+    if (!article) return { robots: { index: false, follow: false } }
+    const path = `/le-journal/${slug}`
+    const pageUrl = localizedUrl(locale, path)
     return {
         title: article.titre,
         description: article.extrait,
         alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: `https://www.dyaneparis.com/le-journal/${slug}`,
-                en: `https://www.dyaneparis.com/en/le-journal/${slug}`,
-                'x-default': `https://www.dyaneparis.com/le-journal/${slug}`,
-            },
+            canonical: pageUrl,
+            languages: localizedAlternates(path),
         },
         openGraph: {
             title: article.titre,
             description: article.extrait,
-            url: `https://www.dyaneparis.com${path}`,
+            url: pageUrl,
             type: 'article',
-            images: [{ url: article.image, width: 1200, height: 630, alt: article.titre }],
+            publishedTime: article.datePublished,
+            authors: ['Dyane Paris'],
+            images: [{ url: article.image, alt: article.titre }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: article.titre,
+            description: article.extrait,
+            images: [{ url: article.image, alt: article.titre }],
         },
     }
 }
@@ -40,38 +48,49 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     const { slug, locale } = await params
     const article = articles[slug]
 
-    if (!article) return (
-        <main style={{ background: '#FAF8F5', padding: '140px 24px 80px', textAlign: 'center', fontFamily: 'Playfair Display, serif' }}>
-            <p>Article non trouvé</p>
-            <Link href={`/${locale}/le-journal`}>← Retour au journal</Link>
-        </main>
-    )
+    if (!article) notFound()
 
-    const path = locale === 'fr' ? `/le-journal/${slug}` : `/${locale}/le-journal/${slug}`
+    const pageUrl = localizedUrl(locale, `/le-journal/${slug}`)
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: article.titre,
-        description: article.extrait,
-        image: [
+        '@graph': [
             {
-                '@type': 'ImageObject',
-                url: article.image,
-                contentUrl: article.image,
-                caption: article.titre,
-                creditText: 'Dyane Paris',
-                creator: { '@type': 'Organization', name: 'Dyane Paris' },
-                representativeOfPage: true,
+                '@type': 'Article',
+                '@id': `${pageUrl}#article`,
+                headline: article.titre,
+                description: article.extrait,
+                datePublished: article.datePublished,
+                dateModified: article.datePublished,
+                image: [
+                    {
+                        '@type': 'ImageObject',
+                        url: article.image,
+                        contentUrl: article.image,
+                        name: article.titre,
+                        caption: article.titre,
+                        description: article.extrait,
+                        creditText: 'Dyane Paris',
+                        creator: { '@type': 'Organization', name: 'Dyane Paris' },
+                        copyrightNotice: 'Dyane Paris',
+                        representativeOfPage: true,
+                    },
+                ],
+                author: { '@type': 'Organization', name: 'Dyane Paris' },
+                publisher: { '@id': 'https://www.dyaneparis.com/#organization' },
+                mainEntityOfPage: pageUrl,
+                inLanguage: locale,
             },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: locale === 'en' ? 'Journal' : 'Le Journal', path: '/le-journal' },
+                { name: article.titre, path: `/le-journal/${slug}` },
+            ]),
         ],
-        author: { '@type': 'Organization', name: 'Dyane Paris' },
-        publisher: { '@id': 'https://www.dyaneparis.com/#organization' },
-        mainEntityOfPage: `https://www.dyaneparis.com${path}`,
     }
 
     return (
         <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
             <style>{`
                 @media (max-width: 768px) {
                     .slug-banner { height: 35vh !important; padding-top: 80px !important; }
@@ -94,7 +113,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <main style={{ background: '#FAF8F5' }}>
 
                 {/* Bannière journal cliquable */}
-                <Link href={`/${locale}/le-journal`} style={{ display: 'block', textDecoration: 'none' }}>
+                <Link href={localizedPath(locale, '/le-journal')} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="slug-banner" style={{
                         position: 'relative',
                         width: '100%',
@@ -105,8 +124,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     }}>
                         <Image
                             src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png"
-                            alt="Le Journal Dyane Paris"
+                            alt="Bannière du Journal de la Maison Dyane Paris"
                             fill
+                            priority
                             sizes="100vw"
                             style={{ objectFit: 'cover' }}
                         />
@@ -123,7 +143,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 {/* Hero article */}
                 <section className="article-hero-grid" style={{ maxWidth: '1000px', margin: '0 auto', padding: '64px 24px 48px', display: 'grid', gridTemplateColumns: '300px 1fr', gap: '64px', alignItems: 'start' }}>
                     <div className="article-hero-img" style={{ position: 'relative', height: '380px', overflow: 'hidden' }}>
-                        <Image src={article.image} alt={article.titre} fill sizes="(max-width: 768px) 100vw, 300px" style={{ objectFit: 'cover' }} />
+                        <Image src={article.image} alt={article.titre} fill sizes="(max-width: 768px) calc(100vw - 40px), 300px" style={{ objectFit: 'cover' }} />
                     </div>
                     <div style={{ paddingTop: '16px' }}>
                         <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, marginBottom: '20px' }}>{article.date}</p>
@@ -149,9 +169,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, margin: '48px 0 32px' }}>À LIRE AUSSI</p>
                     <div className="article-related-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
                         {article.related.map((r) => (
-                            <Link key={r.slug} href={`/${locale}/le-journal/${r.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
+                            <Link key={r.slug} href={localizedPath(locale, `/le-journal/${r.slug}`)} style={{ textDecoration: 'none', color: '#000' }}>
                                 <div className="article-related-img" style={{ position: 'relative', height: '140px', overflow: 'hidden', marginBottom: '12px' }}>
-                                    <Image src={r.image} alt={r.titre} fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: 'cover' }} />
+                                    <Image src={r.image} alt={r.titre} fill sizes="(max-width: 768px) calc(50vw - 28px), 232px" style={{ objectFit: 'cover' }} />
                                 </div>
                                 <p style={{ ...font, fontSize: '13px', lineHeight: 1.4 }}>{r.titre}</p>
                             </Link>
@@ -161,7 +181,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
                 {/* Retour */}
                 <section style={{ textAlign: 'center', padding: '0 0 80px' }}>
-                    <Link href={`/${locale}/le-journal`} style={{ ...lora, fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.3)', paddingBottom: '4px' }}>
+                    <Link href={localizedPath(locale, '/le-journal')} style={{ ...lora, fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.3)', paddingBottom: '4px' }}>
                         ← Retour au journal
                     </Link>
                 </section>

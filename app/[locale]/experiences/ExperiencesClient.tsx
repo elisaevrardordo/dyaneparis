@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
+import { localizedPath } from '@/i18n/paths'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 const lora = { fontFamily: 'var(--font-lora), serif' }
@@ -35,7 +36,7 @@ export default function ExperiencesClient() {
 
                 {/* Hero */}
                 <section className="exp-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences et événements sur mesure Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences et événements sur mesure Dyane Paris" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
@@ -105,7 +106,7 @@ export default function ExperiencesClient() {
                         <p style={{ ...lora, fontSize: 'clamp(11px, 1.3vw, 15px)', letterSpacing: '0.05em', textTransform: 'uppercase', lineHeight: 1.7, marginBottom: '36px' }}>{t('citation')}</p>
                         <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '8px' }}>{t('citation_nom')}</p>
                         <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '48px' }}>{t('citation_titre')}</p>
-                        <Link href={`/${locale}/contact`} style={{ ...lora, fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
+                        <Link href={localizedPath(locale, '/contact')} style={{ ...lora, fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
                             {t('citation_cta')}
                         </Link>
                     </div>

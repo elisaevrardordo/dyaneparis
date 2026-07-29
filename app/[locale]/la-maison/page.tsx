@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import LaMaisonClient from './LaMaisonClient'
+import {
+    breadcrumbJsonLd,
+    buildPageMetadata,
+    imageObject,
+    localizedUrl,
+    seoImages,
+    serializeJsonLd,
+} from '@/lib/seo'
 
 export async function generateMetadata({
     params,
@@ -9,52 +17,51 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'seo.laMaison' })
-    const path = locale === 'fr' ? '/la-maison' : `/${locale}/la-maison`
 
-    return {
+    return buildPageMetadata({
+        locale,
+        path: '/la-maison',
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: 'https://www.dyaneparis.com/la-maison',
-                en: 'https://www.dyaneparis.com/en/la-maison',
-                'x-default': 'https://www.dyaneparis.com/la-maison',
+        image: seoImages.maison,
+    })
+}
+
+export default async function LaMaisonPage({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}) {
+    const { locale } = await params
+    const pageUrl = localizedUrl(locale, '/la-maison')
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'AboutPage',
+                '@id': `${pageUrl}#about`,
+                name: locale === 'en' ? 'The Maison — Dyane Paris' : 'La Maison — Dyane Paris',
+                url: pageUrl,
+                isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
+                about: { '@id': 'https://www.dyaneparis.com/#organization' },
+                primaryImageOfPage: imageObject(seoImages.maison, true),
+                description: locale === 'en'
+                    ? 'The story of Dyane Paris, its porcelain craftsmanship and French Liquid Art savoir-faire.'
+                    : "L'histoire de Dyane Paris, son artisanat de la porcelaine et son savoir-faire français d'Art Liquide.",
+                inLanguage: locale,
             },
-        },
-        openGraph: {
-            title: t('title'),
-            description: t('description'),
-            url: `https://www.dyaneparis.com${path}`,
-            images: [
-                {
-                    url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png',
-                    width: 1200,
-                    height: 630,
-                    alt: "La Maison Dyane Paris — Art Liquide et artisanat français",
-                },
-            ],
-        },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: locale === 'en' ? 'The Maison' : 'La Maison', path: '/la-maison' },
+            ]),
+        ],
     }
-}
 
-const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: "La Maison — Dyane Paris",
-    url: 'https://www.dyaneparis.com/la-maison',
-    isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
-    about: { '@id': 'https://www.dyaneparis.com/#organization' },
-    description:
-        "L'histoire de Dyane Paris, Maison française d'Art Liquide : genèse du nom, artisanat de la porcelaine et savoir-faire français.",
-}
-
-export default function LaMaisonPage() {
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
             <LaMaisonClient />
         </>

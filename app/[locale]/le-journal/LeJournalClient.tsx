@@ -1,9 +1,9 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { localizedPath } from '@/i18n/paths'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 const lora = { fontFamily: 'var(--font-lora), serif' }
@@ -61,16 +61,16 @@ const articles = [
 ]
 
 export default function LeJournalClient() {
-    const t = useTranslations('journal')
     const pathname = usePathname()
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
     const [hovered, setHovered] = useState<string | null>(null)
 
     const hoveredArticle = articles.find(a => a.slug === hovered)
     const img1 = hoveredArticle ? hoveredArticle.image : articles[0].image
-    const img2 = hoveredArticle
-        ? (articles.find(a => a.slug !== hovered)?.image || articles[1].image)
-        : articles[1].image
+    const secondaryArticle = hoveredArticle
+        ? (articles.find(a => a.slug !== hovered) || articles[1])
+        : articles[1]
+    const img2 = secondaryArticle.image
 
     return (
         <>
@@ -96,7 +96,7 @@ export default function LeJournalClient() {
                         {articles.map((article, i) => (
                             <Link
                                 key={article.slug}
-                                href={`/${locale}/le-journal/${article.slug}`}
+                                href={localizedPath(locale, `/le-journal/${article.slug}`)}
                                 onMouseEnter={() => setHovered(article.slug)}
                                 onMouseLeave={() => setHovered(null)}
                                 style={{
@@ -118,10 +118,10 @@ export default function LeJournalClient() {
                     {/* Images preview */}
                     <div className="journal-preview" style={{ flex: 1, display: 'flex', gap: '16px', padding: '40px 48px', alignItems: 'flex-start' }}>
                         <div style={{ position: 'relative', width: '55%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img1} src={img1} alt="Le Journal Dyane Paris — actualités et événements de la maison" fill style={{ objectFit: 'cover' }} />
+                            <Image key={img1} src={img1} alt={(hoveredArticle || articles[0]).titre} fill priority sizes="55vw" style={{ objectFit: 'cover' }} />
                         </div>
                         <div style={{ position: 'relative', width: '45%', height: '480px', overflow: 'hidden' }}>
-                            <Image key={img2} src={img2} alt="Le Journal Dyane Paris — coulisses des créations" fill style={{ objectFit: 'cover' }} />
+                            <Image key={img2} src={img2} alt={secondaryArticle.titre} fill sizes="45vw" style={{ objectFit: 'cover' }} />
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@ export default function LeJournalClient() {
                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '48px' }}>TOUS LES ARTICLES</p>
 
                     {/* Featured */}
-                    <Link href={`/${locale}/le-journal/${articles[0].slug}`} style={{ textDecoration: 'none', color: '#000', display: 'block', marginBottom: '72px' }}>
+                    <Link href={localizedPath(locale, `/le-journal/${articles[0].slug}`)} style={{ textDecoration: 'none', color: '#000', display: 'block', marginBottom: '72px' }}>
                         <div className="journal-featured-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
                             <div className="journal-featured-img" style={{ position: 'relative', height: '520px', overflow: 'hidden' }}>
                                 <Image src={articles[0].image} alt={articles[0].titre} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
@@ -150,7 +150,7 @@ export default function LeJournalClient() {
                     {/* Grille autres articles */}
                     <div className="journal-small-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '28px' }}>
                         {articles.slice(1).map((article) => (
-                            <Link key={article.slug} href={`/${locale}/le-journal/${article.slug}`} style={{ textDecoration: 'none', color: '#000' }}>
+                            <Link key={article.slug} href={localizedPath(locale, `/le-journal/${article.slug}`)} style={{ textDecoration: 'none', color: '#000' }}>
                                 <div className="journal-small-img" style={{ position: 'relative', height: '280px', overflow: 'hidden', marginBottom: '16px' }}>
                                     <Image src={article.image} alt={article.titre} fill sizes="(max-width: 768px) 50vw, 33vw" style={{ objectFit: 'cover' }} />
                                 </div>

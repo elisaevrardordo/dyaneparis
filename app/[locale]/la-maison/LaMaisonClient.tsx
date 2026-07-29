@@ -30,7 +30,7 @@ export default function LaMaisonClient() {
 
                 {/* Hero */}
                 <section className="maison-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png" alt="Dyane Paris — flacon de cocktail de luxe en porcelaine peinte à la main" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png" alt="Dyane Paris — flacon de cocktail en porcelaine peinte à la main" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
@@ -60,7 +60,7 @@ export default function LaMaisonClient() {
                         <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier de porcelaine français, façonnage artisanal des flacons Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
                     </div>
                     <div className="maison-duo-video" style={{ position: 'relative', height: '620px' }}>
-                        <video autoPlay muted loop playsInline preload="metadata" poster="https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_900/v1777448171/download_8_1_qv3jyo.jpg" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
+                        <video autoPlay muted loop playsInline preload="metadata" poster="https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_900/v1777448171/download_8_1_qv3jyo.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
                             <source src="https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto/v1777448171/download_8_1_qv3jyo.mp4" type="video/mp4" />
                         </video>
                     </div>

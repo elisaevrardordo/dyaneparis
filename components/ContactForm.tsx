@@ -74,7 +74,7 @@ export default function ContactForm() {
             <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781513624/CONTACTER_LA_CONCIERGERIE_zwmuhm.png"
-                    alt="Dyane Paris"
+                    alt="La Conciergerie de la Maison Dyane Paris"
                     fill
                     priority
                     sizes="100vw"

@@ -1,14 +1,16 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
+import { localizedPath } from '@/i18n/paths'
 
 const bodoni = { fontFamily: '"Bodoni Moda", "Playfair Display", serif' }
 const lora = { fontFamily: 'Lora, serif' }
 
 export default function DualImage() {
     const t = useTranslations('dualimage')
+    const locale = useLocale()
     const [current, setCurrent] = useState(0)
     const [fade, setFade] = useState(true)
 
@@ -81,7 +83,7 @@ export default function DualImage() {
                                     <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 16px' }}>{t('label')}</p>
                                     <h2 style={{ ...bodoni, fontWeight: 400, fontSize: 'clamp(22px, 2.8vw, 40px)', lineHeight: 1.15, margin: '0 0 24px', textTransform: 'uppercase' }}>{t('titre')}</h2>
                                     <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7, marginBottom: '28px' }}>{t('texte')}</p>
-                                    <Link href="/distillation" style={{ ...lora, display: 'inline-block', fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.35)', textDecoration: 'none', color: '#000', paddingBottom: '5px' }}>{t('cta')}</Link>
+                                    <Link href={localizedPath(locale, '/distillation')} style={{ ...lora, display: 'inline-block', fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.35)', textDecoration: 'none', color: '#000', paddingBottom: '5px' }}>{t('cta')}</Link>
                                 </div>
                             </div>
                         </div>

@@ -20,7 +20,6 @@ export default function HeroVideo() {
                     playsInline
                     preload="metadata"
                     poster="https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1920/v1777381608/0315_1_5_wghim4.jpg"
-                    aria-hidden="true"
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
                 >
                     <source src="https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto/v1777381608/0315_1_5_wghim4.mp4" type="video/mp4" />

@@ -2,6 +2,15 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import OeuvresClient from './OeuvresClient'
 import { products } from '@/components/data/products'
+import {
+    absoluteUrl,
+    breadcrumbJsonLd,
+    buildPageMetadata,
+    imageObject,
+    localizedUrl,
+    seoImages,
+    serializeJsonLd,
+} from '@/lib/seo'
 
 export async function generateMetadata({
     params,
@@ -10,25 +19,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'seo.oeuvres' })
-    const path = locale === 'fr' ? '/oeuvres' : `/${locale}/oeuvres`
 
-    return {
+    return buildPageMetadata({
+        locale,
+        path: '/oeuvres',
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: 'https://www.dyaneparis.com/oeuvres',
-                en: 'https://www.dyaneparis.com/en/oeuvres',
-                'x-default': 'https://www.dyaneparis.com/oeuvres',
-            },
-        },
-        openGraph: {
-            title: t('title'),
-            description: t('description'),
-            url: `https://www.dyaneparis.com${path}`,
-        },
-    }
+        image: seoImages.collection,
+    })
 }
 
 export default async function OeuvresPage({
@@ -37,30 +35,46 @@ export default async function OeuvresPage({
     params: Promise<{ locale: string }>
 }) {
     const { locale } = await params
-    const base = locale === 'fr' ? '' : `/${locale}`
+    const pageUrl = localizedUrl(locale, '/oeuvres')
 
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        name: 'Les Œuvres — Dyane Paris',
-        url: `https://www.dyaneparis.com${base}/oeuvres`,
-        isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
-        mainEntity: {
-            '@type': 'ItemList',
-            itemListElement: products.map((p, i) => ({
-                '@type': 'ListItem',
-                position: i + 1,
-                url: `https://www.dyaneparis.com${base}/oeuvres/${p.slug}`,
-                name: p.name,
-            })),
-        },
+        '@graph': [
+            {
+                '@type': 'CollectionPage',
+                '@id': `${pageUrl}#collection`,
+                name: locale === 'en' ? 'The Collections — Dyane Paris' : 'Les Œuvres — Dyane Paris',
+                url: pageUrl,
+                isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
+                primaryImageOfPage: imageObject(seoImages.collection, true),
+                inLanguage: locale,
+                mainEntity: {
+                    '@type': 'ItemList',
+                    itemListElement: products.map((p, i) => ({
+                        '@type': 'ListItem',
+                        position: i + 1,
+                        item: {
+                            '@type': 'Product',
+                            name: p.name,
+                            url: localizedUrl(locale, `/oeuvres/${p.slug}`),
+                            image: absoluteUrl(p.image),
+                            brand: { '@type': 'Brand', name: 'Dyane Paris' },
+                        },
+                    })),
+                },
+            },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: locale === 'en' ? 'Collections' : 'Œuvres', path: '/oeuvres' },
+            ]),
+        ],
     }
 
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
             <OeuvresClient />
         </>

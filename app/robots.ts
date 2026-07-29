@@ -8,8 +8,12 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
                 disallow: ['/api/'],
             },
+            {
+                userAgent: 'Googlebot-Image',
+                allow: '/',
+            },
         ],
         sitemap: 'https://www.dyaneparis.com/sitemap.xml',
-        host: 'https://www.dyaneparis.com',
+        host: 'www.dyaneparis.com',
     }
 }

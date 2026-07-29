@@ -1,17 +1,10 @@
 'use client'
-import Link from 'next/link'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
 
 const lora = { fontFamily: 'var(--font-lora), serif' }
 const playfair = { fontFamily: 'var(--font-playfair), serif' }
 
 export default function Manifeste() {
-    const t = useTranslations('manifeste')
-    const pathname = usePathname()
-    const locale = pathname.startsWith('/en') ? 'en' : 'fr'
-
     return (
         <>
             <style>{`
@@ -74,7 +67,6 @@ export default function Manifeste() {
                             fill
                             sizes="33vw"
                             style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                            priority
                         />
                     </div>
 

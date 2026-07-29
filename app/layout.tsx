@@ -2,9 +2,10 @@ import './globals.css'
 import { getLocale } from 'next-intl/server'
 import { fontVariables } from './fonts'
 import type { Metadata, Viewport } from 'next'
+import { absoluteUrl, imageObject, seoImages, serializeJsonLd, SITE_URL } from '@/lib/seo'
+import { Analytics } from "@vercel/analytics/next"
 
-const OG_IMAGE =
-  'https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png'
+const OG_IMAGE = absoluteUrl(seoImages.home.url)
 
 export const viewport: Viewport = {
   themeColor: '#0a0a0a',
@@ -12,7 +13,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.dyaneparis.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Dyane Paris | Maison Française d'Art Liquide",
     template: '%s | Dyane Paris',
@@ -56,9 +57,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Dyane Paris — Maison Française d'Art Liquide",
+        width: seoImages.home.width,
+        height: seoImages.home.height,
+        alt: seoImages.home.alt,
       },
     ],
     locale: 'fr_FR',
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     title: "Dyane Paris | Maison Française d'Art Liquide",
     description:
       'Luxury cocktails presented in hand-painted porcelain sculptures, crafted in France.',
-    images: [OG_IMAGE],
+    images: [{ url: OG_IMAGE, alt: seoImages.home.alt }],
   },
   icons: {
     icon: [
@@ -94,18 +95,22 @@ const jsonLd = {
       url: 'https://www.dyaneparis.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.dyaneparis.com/logo.png',
-        width: 512,
-        height: 512,
+        url: `${SITE_URL}/logo.png`,
+        contentUrl: `${SITE_URL}/logo.png`,
+        width: 1554,
+        height: 1389,
+        caption: 'Logo Dyane Paris',
       },
-      image: 'https://www.dyaneparis.com/logo.png',
+      image: imageObject(seoImages.home, true),
+      description:
+        "Maison française d'Art Liquide créant des cocktails prêts à déguster dans des sculptures en porcelaine peintes à la main.",
       sameAs: ['https://www.instagram.com/dyaneparis_/'],
     },
     {
       '@type': 'Brand',
       name: 'Dyane Paris',
       slogan: "Maison Française d'Art Liquide",
-      logo: 'https://www.dyaneparis.com/logo.png',
+      logo: `${SITE_URL}/logo.png`,
     },
     {
       '@type': 'WebSite',
@@ -113,6 +118,7 @@ const jsonLd = {
       url: 'https://www.dyaneparis.com',
       name: 'Dyane Paris',
       publisher: { '@id': 'https://www.dyaneparis.com/#organization' },
+      image: imageObject(seoImages.home, true),
       inLanguage: ['fr', 'en'],
     },
   ],
@@ -129,10 +135,12 @@ export default async function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>{children}
+      <Analytics />
+      </body>
     </html>
   )
 }

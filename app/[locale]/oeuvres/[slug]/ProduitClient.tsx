@@ -3,76 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { localizedPath } from '@/i18n/paths'
+import { heroImages, produits } from '@/components/data/productDetails'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 const lora = { fontFamily: 'var(--font-lora), serif' }
-
-export const heroImages: Record<string, string> = {
-    'dyane-paris-pornstar-martini-70-cl': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/1_ecqqiv.png',
-    'dyane-no2-moscow-mule': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779649567/DYANE_NO._2_Inspired_by_Moscow_Mule_aqgviv.png',
-    'bouteille-signee-teokaykay': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
-}
-
-export const produits: Record<string, {
-    nom: string
-    sousTitre: string
-    description: string
-    images: string[]
-    plusInfos: string
-    livraison: string
-    disponibilite: string
-    formats?: string[]
-}> = {
-    'dyane-paris-pornstar-martini-70-cl': {
-        nom: 'DYANE NO.1 — PORNSTAR MARTINI',
-        sousTitre: 'CONTACTER LA CONCIERGERIE',
-        description: 'ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE, INFUSÉ AUX GOUSSES DE VANILLE MADAGASCAR BOURBON GOLD. PURÉE DE FRUIT DE LA PASSION, SUBLIMÉE PAR UNE TOUCHE DE FRAMBOISE SAUVAGE. JUS DE CITRON BIOLOGIQUE. EMBOUTEILLÉ EN FRANCE, DANS LA RÉGION D\'AVIGNON.',
-        images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/3_ijldt6.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/8_lvzjty.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/10_kzmspj.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634416/12_vfl7v7.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635735/1_wstqkf.png',
-        ],
-        plusInfos: 'VANILLE & PASSION\nSOLAIRE. CHARNELLE. UNE INTERPRÉTATION INTENSE DU FRUIT DE LA PASSION, INFUSÉE DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE. L\'ACIDITÉ SE TEND, LA DOUCEUR S\'ÉQUILIBRE. LA VANILLE MADAGASCAR BOURBON GOLD APPORTE UNE RONDEUR SOYEUSE.\nDENSE. LUMINEUSE. UNE ŒUVRE LIQUIDE.\n—\nPROFIL SENSORIEL\nROBE — OR AMBRÉ\nNEZ — PASSION FRAÎCHE, VANILLE CHAUDE\nBOUCHE — PULPEUSE, ÉQUILIBRÉE\nFINALE — LONGUE, SOLAIRE.',
-        livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
-        disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
-    },
-    'dyane-no2-moscow-mule': {
-        nom: 'DYANE NO.2 — MOSCOW MULE',
-        sousTitre: 'CONTACTER LA CONCIERGERIE',
-        description: 'ALCOOL VINIQUE INFUSÉ AUX GRAINES DE GINGEMBRE. JUS DE CITRON FRAIS. EAU PURE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE.',
-        images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779635739/3_rtyiii.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634414/7_swv5cg.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779634413/11_tsm9n9.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779636087/Design_sans_titre_61_roxrkv.png',
-        ],
-        plusInfos: 'GINGEMBRE & CITRON VERT\nÉCLATANT. STRUCTURÉ. LE GINGEMBRE S\'IMPOSE, INFUSÉ LENTEMENT DANS UN ALCOOL VINIQUE D\'EXCEPTION ÉLEVÉ EN FÛT DE CHÊNE.\nLES GRAINES DE GINGEMBRE FRANÇAISES LIBÈRENT UNE ÉNERGIE NETTE. LE CITRON VERT TRACE UNE FRAÎCHEUR LUMINEUSE. UNE TOUCHE DE VANILLE ET LE BOIS APPORTE L\'ÉQUILIBRE.\nSEC. ÉLÉGANT. VIVANT. UNE ŒUVRE DE CONTRASTE.\n—\nORIGINE : ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE. INFUSION DE GINGEMBRE FRANÇAIS. JUS DE CITRON BIOLOGIQUE. ÉLEVAGE EN FÛT DE CHÊNE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE, RÉGION D\'AVIGNON.\n—\nPROFIL SENSORIEL\nROBE — CRISTAL ARGENTÉ\nNEZ — GINGEMBRE FRAIS, ZESTE VIF\nBOUCHE — ATTAQUE TONIQUE, TEXTURE SOYEUSE\nFINALE — SÈCHE, PRÉCISE.',
-        livraison: 'LIVRAISON ESTIMÉE SOUS DEUX SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
-        disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
-    },
-    'bouteille-signee-teokaykay': {
-        nom: 'TEO FOR DYANE PARIS',
-        sousTitre: 'CONTACTER LA CONCIERGERIE',
-        description: 'PLONGEZ DANS L\'UNIVERS DE DYANE PARIS, MAISON D\'ART LIQUIDE, OÙ L\'ART ET LA HAUTE MIXOLOGIE NE FONT QU\'UN. EN COLLABORATION AVEC TEO KAY KAY, DYANE RÉVÈLE UNE SÉRIE CONFIDENTIELLE DE 25 ŒUVRES. CHAQUE BOUTEILLE, PEINTE À LA MAIN À LA BOMBE, EST UNE PIÈCE UNIQUE, VIVANTE ET IRRÉPÉTABLE.',
-        images: [
-            '/dyane-teo.webp',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443893/Capture_d_ecran_2026-04-02_a_14.01.13_rixjqx.png',
-        ],
-        plusInfos: 'PLONGEZ DANS L\'UNIVERS DE DYANE PARIS, MAISON D\'ART LIQUIDE, OÙ L\'ART ET LA HAUTE MIXOLOGIE NE FONT QU\'UN. EN COLLABORATION AVEC TEO KAY KAY, DYANE RÉVÈLE UNE SÉRIE CONFIDENTIELLE DE 25 ŒUVRES. CHAQUE BOUTEILLE, PEINTE À LA MAIN À LA BOMBE, EST UNE PIÈCE UNIQUE, VIVANTE ET IRRÉPÉTABLE. À L\'INTÉRIEUR, LE COCKTAIL PROLONGE L\'ŒUVRE : DES INGRÉDIENTS NOBLES POUR UNE DÉGUSTATION INTENSE ET PRÉCISE. L\'ART SE BOIT, PUIS SE GARDE. CONTIENT UN COCKTAIL SIGNATURE DYANE (28–30 % VOL.) : PORNSTAR MARTINI OU MOSCOW MULE AU CHOIX. UNE PIÈCE RARE, À BOIRE OU À COLLECTIONNER.',
-        livraison: 'PRODUCTION SUR COMMANDE. LIVRAISON ESTIMÉE SOUS TROIS SEMAINES.\nLIVRAISON OFFERTE À PARTIR DE 300€',
-        disponibilite: 'BATCH 1.\n25 PIÈCES PAR BATCH.\nINSCRIVEZ-VOUS À NOTRE NEWSLETTER POUR ÊTRE INFORMÉ(E) DES PROCHAINS BATCHS.',
-        formats: ['PORNSTAR MARTINI', 'MOSCOW MULE'],
-    },
-}
 
 function Accordion({ titre, contenu }: { titre: string, contenu: string }) {
     const [open, setOpen] = useState(false)
     return (
         <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
-            <button onClick={() => setOpen(!open)} style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
+            <button type="button" onClick={() => setOpen(!open)} style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
                 <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>{titre}</span>
                 <span style={{ fontSize: '16px', opacity: 0.5 }}>{open ? '∧' : '›'}</span>
             </button>
@@ -94,11 +35,11 @@ function MobileImageCarousel({ images, nom }: { images: string[], nom: string })
             <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
                 <Image src={images[current]} alt={`${nom} — cocktail Dyane Paris en flacon de porcelaine peint à la main (vue ${current + 1})`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
             </div>
-            <button onClick={() => setCurrent((current - 1 + images.length) % images.length)} style={{ position: 'absolute', top: '50%', left: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>‹</button>
-            <button onClick={() => setCurrent((current + 1) % images.length)} style={{ position: 'absolute', top: '50%', right: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>›</button>
+            <button type="button" onClick={() => setCurrent((current - 1 + images.length) % images.length)} style={{ position: 'absolute', top: '50%', left: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>‹</button>
+            <button type="button" onClick={() => setCurrent((current + 1) % images.length)} style={{ position: 'absolute', top: '50%', right: '8px', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.8)', border: 'none', cursor: 'pointer', padding: '10px 14px', fontSize: '18px' }}>›</button>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px' }}>
                 {images.map((_, i) => (
-                    <button key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '2px', background: i === current ? '#111' : 'rgba(0,0,0,0.2)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s ease' }} />
+                    <button type="button" key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '2px', background: i === current ? '#111' : 'rgba(0,0,0,0.2)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s ease' }} />
                 ))}
             </div>
         </div>
@@ -114,7 +55,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
     if (!produit) return (
         <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'var(--font-playfair), serif' }}>
             <p>Produit non trouvé</p>
-            <Link href="/oeuvres">← Retour aux œuvres</Link>
+            <Link href={localizedPath(locale, '/oeuvres')}>← Retour aux œuvres</Link>
         </main>
     )
 
@@ -140,7 +81,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                 {/* Hero */}
                 {heroImg && (
                     <section className="produit-hero" style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden' }}>
-                        <Image src={heroImg} alt={`${produit.nom} — cocktail d'exception Dyane Paris en flacon de porcelaine`} fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                        <Image src={heroImg} alt={`${produit.nom} — cocktail Dyane Paris en sculpture de porcelaine`} fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
                     </section>
                 )}
 
@@ -178,7 +119,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                             </div>
                         )}
 
-                        <Link href={`/${locale}/contact`} style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
+                        <Link href={localizedPath(locale, '/contact')} style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
                             CONTACTER LA CONCIERGERIE
                         </Link>
 

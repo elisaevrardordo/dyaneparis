@@ -1,10 +1,22 @@
 import Image from 'next/image'
 
 const instaImages = [
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413053/DSC00149_upnxh1.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1777412912/DSC00087_e4xrvf.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413138/DSC00137_copie_dej6vn.jpg',
+    {
+        src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413053/DSC00149_upnxh1.jpg',
+        alt: 'Homme tenant une sculpture-bouteille Dyane Paris ivoire et rouge',
+    },
+    {
+        src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777412912/DSC00087_e4xrvf.jpg',
+        alt: 'Cocktail servi à côté de sa sculpture en porcelaine Dyane Paris',
+    },
+    {
+        src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg',
+        alt: 'Femme tenant un cocktail devant une sculpture-bouteille Dyane Paris',
+    },
+    {
+        src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777413138/DSC00137_copie_dej6vn.jpg',
+        alt: 'Sculpture-bouteille Dyane Paris en porcelaine tenue à la main',
+    },
 ]
 
 export default function InstagramGrid() {
@@ -23,9 +35,9 @@ export default function InstagramGrid() {
                         <a href="https://instagram.com/dyaneparis_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#000', fontFamily: 'var(--font-playfair), serif', fontWeight: 500, fontSize: '20px' }}>@DYANEPARIS_</a>
                     </div>
                     <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '28px' }}>
-                        {instaImages.map((src, i) => (
-                            <a key={i} href="https://instagram.com/dyaneparis_" target="_blank" rel="noopener noreferrer" style={{ display: 'block', aspectRatio: '1/1', position: 'relative', overflow: 'hidden' }}>
-                                <Image src={src} alt={`Dyane Paris Instagram ${i + 1}`} fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: 'cover' }} />
+                        {instaImages.map(({ src, alt }) => (
+                            <a key={src} href="https://instagram.com/dyaneparis_" target="_blank" rel="noopener noreferrer" style={{ display: 'block', aspectRatio: '1/1', position: 'relative', overflow: 'hidden' }}>
+                                <Image src={src} alt={alt} fill sizes="(max-width: 768px) calc(50vw - 20px), 25vw" style={{ objectFit: 'cover' }} />
                             </a>
                         ))}
                     </div>
@@ -34,7 +46,7 @@ export default function InstagramGrid() {
             <section style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413217/VISUEL1_udys3s.png"
-                    alt="Dyane Paris"
+                    alt="Sculpture-bouteille Dyane Paris et cocktail servis sur le comptoir d'un bar"
                     fill
                     sizes="100vw"
                     style={{ objectFit: 'cover' }}

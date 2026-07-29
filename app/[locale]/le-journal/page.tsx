@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import LeJournalClient from './LeJournalClient'
+import {
+    breadcrumbJsonLd,
+    buildPageMetadata,
+    imageObject,
+    localizedUrl,
+    seoImages,
+    serializeJsonLd,
+} from '@/lib/seo'
 
 export async function generateMetadata({
     params,
@@ -9,27 +17,43 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'seo.journal' })
-    const path = locale === 'fr' ? '/le-journal' : `/${locale}/le-journal`
 
-    return {
+    return buildPageMetadata({
+        locale,
+        path: '/le-journal',
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: 'https://www.dyaneparis.com/le-journal',
-                en: 'https://www.dyaneparis.com/en/le-journal',
-                'x-default': 'https://www.dyaneparis.com/le-journal',
-            },
-        },
-        openGraph: {
-            title: t('title'),
-            description: t('description'),
-            url: `https://www.dyaneparis.com${path}`,
-        },
-    }
+        image: seoImages.journal,
+        absoluteTitle: true,
+    })
 }
 
-export default function LeJournalPage() {
-    return <LeJournalClient />
+export default async function LeJournalPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const pageUrl = localizedUrl(locale, '/le-journal')
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'CollectionPage',
+                '@id': `${pageUrl}#journal`,
+                name: locale === 'en' ? 'The Journal — Dyane Paris' : 'Le Journal — Dyane Paris',
+                url: pageUrl,
+                isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
+                primaryImageOfPage: imageObject(seoImages.journal, true),
+                inLanguage: locale,
+            },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: locale === 'en' ? 'Journal' : 'Le Journal', path: '/le-journal' },
+            ]),
+        ],
+    }
+
+    return (
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+            <LeJournalClient />
+        </>
+    )
 }

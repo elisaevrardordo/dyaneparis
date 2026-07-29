@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { localizedPath } from '@/i18n/paths'
 
 const cormorant = 'var(--font-cormorant), Garamond, serif'
 const lora = 'var(--font-lora), serif'
@@ -37,8 +38,8 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
         yes: lang === 'fr' ? "J'ai l'âge légal" : 'I Am of Legal Age',
         no: lang === 'fr' ? "Je n'ai pas l'âge légal" : 'I Am Not of Legal Age',
         legal: lang === 'fr'
-            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href={`/${lang}/confidentialite`} style={{ color: '#999', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
-            : <>By entering, you confirm you are of legal drinking age and agree to our <a href={`/${lang}/confidentialite`} style={{ color: '#999', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
+            ? <>En accédant, vous confirmez être majeur et acceptez nos <a href={localizedPath(lang, '/confidentialite')} style={{ color: '#999', textDecoration: 'underline' }}>Conditions d'utilisation</a>.</>
+            : <>By entering, you confirm you are of legal drinking age and agree to our <a href={localizedPath(lang, '/confidentialite')} style={{ color: '#999', textDecoration: 'underline' }}>Terms of Use and Privacy Policy</a>.</>,
     }
 
     return (
@@ -123,6 +124,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     {/* Buttons */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <button
+                            type="button"
                             className="agegate-btn"
                             onClick={confirm}
                             onMouseEnter={() => setHovering('yes')}
@@ -145,6 +147,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                         </button>
 
                         <button
+                            type="button"
                             className="agegate-btn"
                             onClick={deny}
                             onMouseEnter={() => setHovering('no')}

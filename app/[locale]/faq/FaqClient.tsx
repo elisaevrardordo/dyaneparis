@@ -42,8 +42,9 @@ export default function FaqClient() {
             <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
-                    alt="Dyane Paris FAQ"
+                    alt="Sculpture en porcelaine Dyane Paris accompagnant la foire aux questions"
                     fill
+                    priority
                     sizes="100vw"
                     style={{ objectFit: 'cover' }}
                 />
@@ -58,6 +59,7 @@ export default function FaqClient() {
                 {faqs.map((faq, i) => (
                     <div key={i} style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
                         <button
+                            type="button"
                             onClick={() => setOpen(open === i ? null : i)}
                             style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                         >

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
+import { localizedPath } from '@/i18n/paths'
 import Image from 'next/image'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
@@ -124,7 +125,7 @@ select.cf:-webkit-autofill {
                 <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
                     <Image
                         src="https://res.cloudinary.com/dazhkrimv/image/upload/v1781513624/CONTACTER_LA_CONCIERGERIE_zwmuhm.png"
-                        alt="Dyane Paris"
+                        alt="La Conciergerie de la Maison Dyane Paris"
                         fill
                         priority
                         sizes="100vw"
@@ -196,7 +197,7 @@ select.cf:-webkit-autofill {
                                 </p>
                                 <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(20,18,15,0.38)', lineHeight: 1.9, marginBottom: '28px' }}>
                                     Vos données personnelles sont traitées par Dyane Paris afin de répondre à votre demande.{' '}
-                                    <Link href={`/${locale}/confidentialite`} style={{ color: 'rgba(20,18,15,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                                    <Link href={localizedPath(locale, '/confidentialite')} style={{ color: 'rgba(20,18,15,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
                                         Politique de confidentialité
                                     </Link>.
                                 </p>

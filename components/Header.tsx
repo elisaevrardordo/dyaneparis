@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { localizedPath } from '@/i18n/paths'
 
 const fontNav = { fontFamily: 'var(--font-lora), serif' }
 
@@ -32,7 +33,7 @@ export default function Header() {
 
     const isDarkBar = pathname.includes('/le-journal') || pathname.includes('/contact')
     const textColor = '#fff'
-    const logoSrc = 'https://res.cloudinary.com/dazhkrimv/image/upload/v1781515887/LogoDYANE_blanc_xizfyl.png'
+    const logoSrc = '/LogoDYANE_blanc.png'
 
     const headerBg = isDarkBar
         ? 'rgba(8,12,20,0.92)'
@@ -71,7 +72,7 @@ export default function Header() {
 
                 <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '24px 24px 12px' }}>
                     <div />
-                    <Link href={`/${locale}`} style={{ textDecoration: 'none' }}>
+                    <Link href={localizedPath(locale)} style={{ textDecoration: 'none' }}>
                         <Image
                             src={logoSrc}
                             alt="Dyane Paris"
@@ -83,6 +84,7 @@ export default function Header() {
                     </Link>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <button
+                            type="button"
                             className="header-mobile-btn"
                             onClick={() => setMenuOpen(!menuOpen)}
                             style={{
@@ -113,7 +115,7 @@ export default function Header() {
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
-                            href={`/${locale}${link.href}`}
+                            href={localizedPath(locale, link.href)}
                             className="header-link"
                             style={{
                                 ...fontNav,
@@ -142,7 +144,7 @@ export default function Header() {
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
-                                href={`/${locale}${link.href}`}
+                                href={localizedPath(locale, link.href)}
                                 onClick={() => setMenuOpen(false)}
                                 style={{
                                     ...fontNav,

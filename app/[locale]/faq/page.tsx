@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import FaqClient from './FaqClient'
+import { breadcrumbJsonLd, buildPageMetadata, imageObject, localizedUrl, seoImages, serializeJsonLd } from '@/lib/seo'
 
 export async function generateMetadata({
     params,
@@ -9,27 +10,43 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'seo.faq' })
-    const path = locale === 'fr' ? '/faq' : `/${locale}/faq`
 
-    return {
+    return buildPageMetadata({
+        locale,
+        path: '/faq',
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: 'https://www.dyaneparis.com/faq',
-                en: 'https://www.dyaneparis.com/en/faq',
-                'x-default': 'https://www.dyaneparis.com/faq',
-            },
-        },
-        openGraph: {
-            title: t('title'),
-            description: t('description'),
-            url: `https://www.dyaneparis.com${path}`,
-        },
-    }
+        image: seoImages.faq,
+        absoluteTitle: true,
+    })
 }
 
-export default function Page() {
-    return <FaqClient />
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const pageUrl = localizedUrl(locale, '/faq')
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'WebPage',
+                '@id': `${pageUrl}#faq`,
+                name: locale === 'en' ? 'Dyane Paris FAQ' : 'Foire aux questions Dyane Paris',
+                url: pageUrl,
+                isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
+                primaryImageOfPage: imageObject(seoImages.faq, true),
+                inLanguage: locale,
+            },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: 'FAQ', path: '/faq' },
+            ]),
+        ],
+    }
+
+    return (
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+            <FaqClient />
+        </>
+    )
 }

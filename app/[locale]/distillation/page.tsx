@@ -1,7 +1,14 @@
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
+import {
+    breadcrumbJsonLd,
+    buildPageMetadata,
+    imageObject,
+    localizedUrl,
+    seoImages,
+    serializeJsonLd,
+} from '@/lib/seo'
 
 const font = { fontFamily: 'var(--font-playfair), serif' }
 const lora = { fontFamily: 'var(--font-lora), serif' }
@@ -13,31 +20,47 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'seo.distillation' })
-    const path = locale === 'fr' ? '/distillation' : `/${locale}/distillation`
 
-    return {
+    return buildPageMetadata({
+        locale,
+        path: '/distillation',
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://www.dyaneparis.com${path}`,
-            languages: {
-                fr: 'https://www.dyaneparis.com/distillation',
-                en: 'https://www.dyaneparis.com/en/distillation',
-                'x-default': 'https://www.dyaneparis.com/distillation',
-            },
-        },
-        openGraph: {
-            title: t('title'),
-            description: t('description'),
-            url: `https://www.dyaneparis.com${path}`,
-        },
-    }
+        image: seoImages.distillation,
+    })
 }
 
-export default function DistillationPage() {
-    const t = useTranslations('distillation')
+export default async function DistillationPage({
+    params,
+}: {
+    params: Promise<{ locale: string }>
+}) {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'distillation' })
+    const pageUrl = localizedUrl(locale, '/distillation')
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'WebPage',
+                '@id': `${pageUrl}#webpage`,
+                name: locale === 'en' ? 'French artisanal distillation — Dyane Paris' : 'La distillation artisanale française — Dyane Paris',
+                url: pageUrl,
+                isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
+                about: { '@id': 'https://www.dyaneparis.com/#organization' },
+                primaryImageOfPage: imageObject(seoImages.distillation, true),
+                inLanguage: locale,
+            },
+            breadcrumbJsonLd(locale, [
+                { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+                { name: locale === 'en' ? 'Distillation' : 'Distillation', path: '/distillation' },
+            ]),
+        ],
+    }
+
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
             <style>{`
                 @media (max-width: 768px) {
                     .dist-hero { height: 55vh !important; }
@@ -58,7 +81,7 @@ export default function DistillationPage() {
 
                 {/* Image hero */}
                 <section className="dist-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation artisanale des cocktails Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation artisanale des cocktails Dyane Paris" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
