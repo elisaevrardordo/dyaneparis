@@ -83,7 +83,7 @@ export default function Header() {
                             width={1554}
                             height={1389}
                             sizes="52px"
-                            priority={isConfigurator}
+                            priority
                             style={{ height: '52px', width: 'auto', display: 'block', filter: isConfigurator ? 'invert(1)' : 'none' }}
                         />
                     </Link>

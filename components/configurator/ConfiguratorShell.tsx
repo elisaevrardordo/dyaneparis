@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import styles from './Configurator.module.css'
 import ConfiguratorStage from './ConfiguratorStage'
 import {
@@ -50,6 +50,8 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
   const [activeStep, setActiveStep] = useState<ConfiguratorStep>('format')
   const [selectedFormatId, setSelectedFormatId] = useState<FormatId | null>(null)
   const [paletteId, setPaletteId] = useState<PaletteId>(defaultPaletteId)
+  const [reducedMotion, setReducedMotion] = useState(false)
+  const [introActive, setIntroActive] = useState(true)
   const isEnglish = locale === 'en'
   const text = isEnglish ? copy.en : copy.fr
   const numberLocale = isEnglish ? 'en-GB' : 'fr-FR'
@@ -62,6 +64,44 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
     [paletteId],
   )
 
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const forceReduced =
+      process.env.NODE_ENV === 'development' &&
+      new URLSearchParams(window.location.search).get('reduced-motion') === '1'
+    const syncPreference = () => setReducedMotion(media.matches || forceReduced)
+    syncPreference()
+    media.addEventListener('change', syncPreference)
+    return () => media.removeEventListener('change', syncPreference)
+  }, [])
+
+  useEffect(() => {
+    const forceReplay = new URLSearchParams(window.location.search).get('intro') === '1'
+    const sessionKey = 'dyane-configurator-intro-seen'
+    const shouldPlay = forceReplay || sessionStorage.getItem(sessionKey) !== '1'
+
+    if (!shouldPlay) {
+      setIntroActive(false)
+      return
+    }
+
+    sessionStorage.setItem(sessionKey, '1')
+    const forceReduced =
+      process.env.NODE_ENV === 'development' &&
+      new URLSearchParams(window.location.search).get('reduced-motion') === '1'
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || forceReduced
+    const timer = window.setTimeout(() => setIntroActive(false), reduce ? 480 : 2800)
+    const skip = () => setIntroActive(false)
+    window.addEventListener('pointerdown', skip, { once: true })
+    window.addEventListener('keydown', skip, { once: true })
+
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('pointerdown', skip)
+      window.removeEventListener('keydown', skip)
+    }
+  }, [])
+
   function formatStartingPrice(startingPrice: number | null) {
     return startingPrice === null ? text.onRequest : `${text.startingAt} ${formatPrice(startingPrice * 100, numberLocale)}`
   }
@@ -72,11 +112,18 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
   }
 
   return (
-    <main className={styles.configurator} data-step={activeStep}>
+    <main
+      className={styles.configurator}
+      data-step={activeStep}
+      data-intro={introActive ? 'playing' : 'done'}
+      data-motion={reducedMotion ? 'reduced' : 'full'}
+    >
       <ConfiguratorStage
         activeStep={activeStep}
         selectedFormatId={selectedFormatId}
         palette={selectedPalette}
+        reducedMotion={reducedMotion}
+        introActive={introActive}
       />
 
       <div className={styles.atelierMark} aria-hidden="true">
@@ -152,7 +199,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
                 >
                   <span
                     className={`${styles.swatch} ${selected ? styles.swatchSelected : ''}`}
-                    style={{ '--swatch-color': palette.color } as React.CSSProperties}
+                    style={{ '--swatch-color': palette.material.color } as React.CSSProperties}
                     aria-hidden="true"
                   />
                   <span className={styles.paletteName}>{palette.shortName}</span>

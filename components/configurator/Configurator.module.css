@@ -2,7 +2,7 @@
   --ink: #25211e;
   --muted: #77716b;
   --line: rgba(37, 33, 30, 0.16);
-  --paper: #efeee9;
+  --paper: #e7e1db;
   position: relative;
   min-height: 100svh;
   overflow: hidden;
@@ -52,7 +52,7 @@
   z-index: 3;
   height: 250px;
   padding: 0 44px 22px;
-  background: linear-gradient(180deg, rgba(239, 238, 233, 0) 0, rgba(239, 238, 233, 0.95) 14%, var(--paper) 28%);
+  background: linear-gradient(180deg, rgba(231, 225, 219, 0) 0, rgba(231, 225, 219, 0.95) 14%, var(--paper) 28%);
   animation: interfaceIn 600ms ease both;
 }
 
@@ -408,6 +408,16 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes unveilingInterface {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes unveilingDetail {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes paletteIn {
   from { opacity: 0; transform: translateY(calc(-45% + 16px)); }
   to { opacity: 1; transform: translateY(-45%); }
@@ -416,6 +426,83 @@
 @keyframes loading {
   from { transform: translateX(-100%); }
   to { transform: translateX(220%); }
+}
+
+.calibrationPanel {
+  position: absolute;
+  z-index: 12;
+  top: 94px;
+  left: 18px;
+  display: grid;
+  grid-template-columns: 154px 250px;
+  overflow: hidden;
+  color: #292522;
+  border: 1px solid rgba(37, 33, 30, 0.2);
+  border-radius: 4px;
+  background: rgba(245, 241, 236, 0.94);
+  box-shadow: 0 18px 55px rgba(47, 41, 36, 0.16);
+  backdrop-filter: blur(14px);
+  touch-action: auto;
+}
+
+.calibrationReference {
+  position: relative;
+  min-height: 300px;
+  background: #ded8d1;
+}
+
+.calibrationReference img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calibrationControls {
+  padding: 14px 15px 13px;
+}
+
+.calibrationHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 9px;
+  font-family: var(--font-lora), serif;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.calibrationHeading button {
+  padding: 0;
+  color: #6b1a2a;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 7px;
+  cursor: pointer;
+}
+
+.calibrationControl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 10px;
+  align-items: center;
+  margin-top: 6px;
+  color: rgba(37, 33, 30, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 8px;
+}
+
+.calibrationControl output {
+  color: #292522;
+  font-variant-numeric: tabular-nums;
+}
+
+.calibrationControl input {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: #6b1a2a;
 }
 
 @media (max-width: 980px) {
@@ -447,7 +534,7 @@
     padding: 20px 16px calc(14px + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(37, 33, 30, 0.12);
     border-radius: 20px 20px 0 0;
-    background: rgba(244, 242, 237, 0.97);
+    background: rgba(238, 233, 227, 0.97);
     box-shadow: 0 -18px 60px rgba(55, 49, 44, 0.08);
   }
 
@@ -504,7 +591,7 @@
     padding: 18px 22px calc(16px + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(37, 33, 30, 0.12);
     border-radius: 20px 20px 0 0;
-    background: rgba(244, 242, 237, 0.97);
+    background: rgba(238, 233, 227, 0.97);
     box-shadow: 0 -18px 60px rgba(55, 49, 44, 0.09);
     transform: none;
     animation: mobileSheetIn 720ms 180ms cubic-bezier(0.22, 0.68, 0.2, 1) both;
@@ -537,6 +624,18 @@
   .interactionHint,
   .signature {
     display: none;
+  }
+
+  .calibrationPanel {
+    top: 92px;
+    right: 10px;
+    left: 10px;
+    grid-template-columns: 92px 1fr;
+    max-height: 390px;
+  }
+
+  .calibrationReference {
+    min-height: 250px;
   }
 }
 
@@ -572,4 +671,51 @@
   .loadingLine::after {
     animation: none;
   }
+
+}
+
+@keyframes reducedReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.configurator[data-intro='playing'] .atelierMark {
+  animation: unveilingInterface 620ms 2s ease both;
+}
+
+.configurator[data-intro='playing'] .formatPanel {
+  animation: unveilingInterface 680ms 2.02s ease both;
+}
+
+.configurator[data-intro='playing'] .formatTitle,
+.configurator[data-intro='playing'] .stepLabel {
+  animation: unveilingDetail 560ms 1.96s ease both;
+}
+
+.configurator[data-intro='playing'] .formatChoices {
+  animation: unveilingDetail 560ms 2.14s ease both;
+}
+
+.configurator[data-intro='playing'] .continueRow {
+  animation: unveilingDetail 560ms 2.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .configurator[data-intro='playing'] .atelierMark,
+  .configurator[data-intro='playing'] .formatPanel,
+  .configurator[data-intro='playing'] .formatTitle,
+  .configurator[data-intro='playing'] .stepLabel,
+  .configurator[data-intro='playing'] .formatChoices,
+  .configurator[data-intro='playing'] .continueRow {
+    animation: reducedReveal 420ms ease both;
+  }
+}
+
+.configurator[data-motion='reduced'][data-intro='playing'] .atelierMark,
+.configurator[data-motion='reduced'][data-intro='playing'] .formatPanel,
+.configurator[data-motion='reduced'][data-intro='playing'] .formatTitle,
+.configurator[data-motion='reduced'][data-intro='playing'] .stepLabel,
+.configurator[data-motion='reduced'][data-intro='playing'] .formatChoices,
+.configurator[data-motion='reduced'][data-intro='playing'] .continueRow {
+  animation: reducedReveal 420ms ease both;
 }

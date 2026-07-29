@@ -43,12 +43,20 @@ export interface Palette {
   id: PaletteId
   name: string
   shortName: string
+  material: GlazeMaterialPreset
+}
+
+export interface GlazeMaterialPreset {
   color: string
-  material: {
-    roughness: number
-    metalness: number
-    clearcoat: number
-  }
+  roughness: number
+  metalness: 0
+  ior: number
+  specularIntensity: number
+  specularColor: string
+  clearcoat: number
+  clearcoatRoughness: number
+  envMapIntensity: number
+  transmission: 0
 }
 
 export interface Finish {

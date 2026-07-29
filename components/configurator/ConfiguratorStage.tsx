@@ -3,7 +3,14 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import styles from './Configurator.module.css'
-import type { ConfiguratorStep, FormatId, Palette } from './data'
+import {
+  type ConfiguratorStep,
+  defaultMaterialCalibration,
+  type FormatId,
+  type MaterialCalibration,
+  type Palette,
+} from './data'
+import MaterialCalibrationPanel from './MaterialCalibrationPanel'
 
 const DyaneCanvas = dynamic(() => import('./DyaneCanvas'), {
   ssr: false,
@@ -19,21 +26,25 @@ interface ConfiguratorStageProps {
   activeStep: ConfiguratorStep
   selectedFormatId: FormatId | null
   palette: Palette
+  reducedMotion: boolean
+  introActive: boolean
 }
 
 export default function ConfiguratorStage({
   activeStep,
   selectedFormatId,
   palette,
+  reducedMotion,
+  introActive,
 }: ConfiguratorStageProps) {
-  const [reducedMotion, setReducedMotion] = useState(false)
+  const [debugMaterials, setDebugMaterials] = useState(false)
+  const [calibration, setCalibration] = useState<MaterialCalibration>({
+    ...defaultMaterialCalibration,
+  })
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const syncPreference = () => setReducedMotion(media.matches)
-    syncPreference()
-    media.addEventListener('change', syncPreference)
-    return () => media.removeEventListener('change', syncPreference)
+    const queryEnabled = new URLSearchParams(window.location.search).get('debug-materials') === '1'
+    setDebugMaterials(process.env.NODE_ENV === 'development' && queryEnabled)
   }, [])
 
   return (
@@ -43,7 +54,16 @@ export default function ConfiguratorStage({
         selectedFormatId={selectedFormatId}
         palette={palette}
         reducedMotion={reducedMotion}
+        introActive={introActive}
+        calibration={calibration}
       />
+      {debugMaterials ? (
+        <MaterialCalibrationPanel
+          value={calibration}
+          onChange={setCalibration}
+          onReset={() => setCalibration({ ...defaultMaterialCalibration })}
+        />
+      ) : null}
     </div>
   )
 }
