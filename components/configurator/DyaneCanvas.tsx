@@ -87,7 +87,7 @@ function getInstanceTarget(
   reducedMotion: boolean,
 ): InstanceTarget {
   const desktopX = [-1.85, -0.05, 1.85]
-  const mobileX = [-1.05, 0, 1.05]
+  const mobileX = [-0.94, -0.05, 0.82]
   const mobileZ = [-0.9, 0, -0.72]
   const initialX = (isMobile ? mobileX : desktopX)[index]
   const initialZ = isMobile ? mobileZ[index] : 0
