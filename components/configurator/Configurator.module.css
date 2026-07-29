@@ -1,0 +1,411 @@
+.configurator {
+  --ivory: #f3ede4;
+  --muted: rgba(243, 237, 228, 0.62);
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--ivory);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(115, 88, 72, 0.22), transparent 33%),
+    linear-gradient(128deg, #171311 0%, #211b18 50%, #110f0e 100%);
+}
+
+.configurator::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.3), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.22));
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  touch-action: none;
+  cursor: grab;
+}
+
+.stage:active {
+  cursor: grabbing;
+}
+
+.halo {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: min(42vw, 560px);
+  height: 18%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(231, 209, 190, 0.14);
+  filter: blur(48px);
+}
+
+.stage canvas {
+  position: relative;
+}
+
+.introduction {
+  position: absolute;
+  z-index: 2;
+  top: clamp(145px, 18vh, 205px);
+  left: clamp(28px, 5vw, 78px);
+  width: min(29vw, 410px);
+}
+
+.eyebrow,
+.panelHeading p,
+.panelHeading h2,
+.paletteName,
+.selectedName,
+.interactionHint {
+  font-family: var(--font-lora), serif;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 390px;
+  margin: 0;
+  font-family: var(--font-cormorant), Garamond, serif;
+  font-size: clamp(38px, 4vw, 66px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.intro {
+  max-width: 335px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-family: var(--font-lora), serif;
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.025em;
+}
+
+.palettePanel {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: clamp(28px, 5vw, 78px);
+  width: min(25vw, 330px);
+  transform: translateY(-42%);
+}
+
+.panelHeading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 9px 15px;
+}
+
+.panelHeading p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.panelHeading span {
+  display: block;
+  height: 1px;
+  background: rgba(243, 237, 228, 0.32);
+}
+
+.panelHeading h2 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.paletteList {
+  display: flex;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.paletteButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  min-width: 55px;
+  padding: 0;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.paletteButton:hover {
+  color: inherit;
+}
+
+.swatch {
+  position: relative;
+  display: block;
+  width: 31px;
+  height: 31px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 50%;
+  background: var(--swatch-color);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.24), 0 5px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 350ms ease, box-shadow 350ms ease;
+}
+
+.swatch::after {
+  position: absolute;
+  inset: -6px;
+  content: '';
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition: border-color 350ms ease;
+}
+
+.paletteButton:focus-visible {
+  outline: none;
+}
+
+.paletteButton:focus-visible .swatch::after {
+  border-color: rgba(243, 237, 228, 0.9);
+  box-shadow: 0 0 0 3px rgba(243, 237, 228, 0.14);
+}
+
+.paletteButton:hover .swatch,
+.swatchSelected {
+  transform: scale(1.08);
+}
+
+.swatchSelected::after {
+  border-color: rgba(243, 237, 228, 0.72);
+}
+
+.paletteName {
+  color: rgba(243, 237, 228, 0.56);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  transition: color 300ms ease;
+}
+
+.paletteButton[aria-pressed='true'] .paletteName {
+  color: var(--ivory);
+}
+
+.selectedName {
+  margin: 29px 0 0;
+  padding-top: 17px;
+  color: rgba(243, 237, 228, 0.48);
+  border-top: 1px solid rgba(243, 237, 228, 0.12);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.selectedName strong {
+  color: rgba(243, 237, 228, 0.88);
+  font-weight: 400;
+}
+
+.interactionHint {
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  transform: translateX(-50%);
+  color: rgba(243, 237, 228, 0.42);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.interactionHint span {
+  font-size: 15px;
+}
+
+.signature {
+  position: absolute;
+  z-index: 2;
+  right: clamp(28px, 5vw, 78px);
+  bottom: 27px;
+  margin: 0;
+  color: rgba(243, 237, 228, 0.68);
+  font-family: var(--font-cormorant), Garamond, serif;
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: rgba(243, 237, 228, 0.56);
+  font-family: var(--font-lora), serif;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.loadingLine {
+  width: 70px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(243, 237, 228, 0.18);
+}
+
+.loadingLine::after {
+  display: block;
+  width: 45%;
+  height: 100%;
+  content: '';
+  background: rgba(243, 237, 228, 0.78);
+  animation: loading 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes loading {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(220%); }
+}
+
+@media (max-width: 980px) {
+  .introduction {
+    top: 135px;
+    left: 28px;
+    width: 270px;
+  }
+
+  .intro {
+    display: none;
+  }
+
+  .palettePanel {
+    top: auto;
+    right: 28px;
+    bottom: 75px;
+    width: 265px;
+    transform: none;
+  }
+
+  .paletteList {
+    gap: 18px;
+    margin-top: 23px;
+  }
+
+  .selectedName {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .configurator {
+    min-height: 100svh;
+    background:
+      radial-gradient(circle at 50% 47%, rgba(121, 91, 73, 0.24), transparent 34%),
+      linear-gradient(152deg, #1c1715 0%, #120f0e 100%);
+  }
+
+  .configurator::before {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), transparent 25%, transparent 75%, rgba(0, 0, 0, 0.34));
+  }
+
+  .introduction {
+    top: 116px;
+    left: 22px;
+    width: calc(100% - 44px);
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: 8px;
+  }
+
+  .title {
+    max-width: 100%;
+    font-size: clamp(31px, 9.5vw, 43px);
+    line-height: 1;
+  }
+
+  .palettePanel {
+    right: 50%;
+    bottom: 58px;
+    width: min(310px, calc(100% - 40px));
+    transform: translateX(50%);
+  }
+
+  .panelHeading {
+    display: flex;
+    justify-content: center;
+  }
+
+  .panelHeading p,
+  .panelHeading span {
+    display: none;
+  }
+
+  .paletteList {
+    justify-content: center;
+    gap: 24px;
+    margin-top: 19px;
+  }
+
+  .paletteName {
+    font-size: 8px;
+  }
+
+  .interactionHint {
+    bottom: 19px;
+    max-width: calc(100% - 40px);
+    overflow: hidden;
+    font-size: 8px;
+    text-overflow: ellipsis;
+  }
+
+  .signature {
+    display: none;
+  }
+
+  .halo {
+    bottom: 18%;
+    width: 74vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingLine::after {
+    animation: none;
+  }
+
+  .swatch {
+    transition: none;
+  }
+
+  .paletteButton:focus-visible .swatch::after,
+  .paletteButton:not(:focus-visible) .swatch::after {
+    transition: none;
+  }
+}

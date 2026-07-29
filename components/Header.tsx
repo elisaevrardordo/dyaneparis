@@ -1,10 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 import { localizedPath } from '@/i18n/paths'
 
 const fontNav = { fontFamily: 'var(--font-lora), serif' }
@@ -15,6 +15,7 @@ export default function Header() {
     const pathname = usePathname()
     const t = useTranslations('header')
     const locale = pathname.startsWith('/en') ? 'en' : 'fr'
+    const isConfigurator = pathname.includes('/configurateur')
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 10)
@@ -53,6 +54,7 @@ export default function Header() {
                     .header-desktop-nav { display: flex !important; }
                     .header-mobile-btn { display: none !important; }
                     .header-logo-wrap { justify-content: center !important; display: flex !important; }
+                    .header-logo-wrap.header-configurator { justify-content: flex-start !important; padding-left: 48px !important; }
                 }
                 .header-link { transition: opacity 0.2s ease !important; }
                 .header-link:hover { opacity: 1 !important; }
@@ -70,7 +72,7 @@ export default function Header() {
                 transition: 'background 0.4s ease',
             }}>
 
-                <div className="header-logo-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '24px 24px 12px' }}>
+                <div className={`header-logo-wrap${isConfigurator ? ' header-configurator' : ''}`} style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', padding: '24px 24px 12px' }}>
                     <div />
                     <Link href={localizedPath(locale)} style={{ textDecoration: 'none' }}>
                         <Image
@@ -103,7 +105,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                <nav
+                {!isConfigurator && <nav
                     className="header-desktop-nav"
                     style={{
                         display: 'flex',
@@ -130,7 +132,7 @@ export default function Header() {
                             {link.label}
                         </Link>
                     ))}
-                </nav>
+                </nav>}
 
                 {menuOpen && (
                     <nav style={{
