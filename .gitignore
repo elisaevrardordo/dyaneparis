@@ -13,4 +13,6 @@ coverage
 *.swp
 *.swo
 *.bak
+*.blend1
+__pycache__/
 .next
