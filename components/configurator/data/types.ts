@@ -1,19 +1,23 @@
 export type PriceAmount = number | null
 
-export type FormatId = '25cl' | '1-5l' | '12l'
+export type FormatId = '25cl' | '150cl' | '12l'
 export type ArtistId = 'atelier-dyane'
 export type ArtworkId = 'voile-monochrome'
 export type PaletteId = 'bordeaux-profond' | 'bleu-nocturne' | 'terre-de-sienne'
 export type FinishId = 'mat' | 'satine'
+export type ConfiguratorStep = 'format' | 'artist' | 'palette' | 'finishes' | 'summary'
+export type PricingMode = 'starting-at' | 'on-request'
 
 export interface FormatOption {
   id: FormatId
   label: string
   volume: string
+  physicalHeightCm: number | null
   modelPath: string
-  sceneScale: number
-  cameraDistance: number
-  available: boolean
+  futureModelPath?: string
+  modelScale: number
+  startingPrice: number | null
+  pricingMode: PricingMode
 }
 
 export interface Artist {

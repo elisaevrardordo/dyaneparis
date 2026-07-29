@@ -33,10 +33,12 @@ export default function Header() {
     ]
 
     const isDarkBar = pathname.includes('/le-journal') || pathname.includes('/contact')
-    const textColor = '#fff'
+    const textColor = isConfigurator ? '#1d1916' : '#fff'
     const logoSrc = '/LogoDYANE_blanc.png'
 
-    const headerBg = isDarkBar
+    const headerBg = isConfigurator
+        ? scrolled ? 'rgba(242,240,235,0.9)' : 'transparent'
+        : isDarkBar
         ? 'rgba(8,12,20,0.92)'
         : scrolled
             ? 'rgba(0,0,0,0.72)'
@@ -81,7 +83,8 @@ export default function Header() {
                             width={1554}
                             height={1389}
                             sizes="52px"
-                            style={{ height: '52px', width: 'auto', display: 'block' }}
+                            priority={isConfigurator}
+                            style={{ height: '52px', width: 'auto', display: 'block', filter: isConfigurator ? 'invert(1)' : 'none' }}
                         />
                     </Link>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -136,7 +139,7 @@ export default function Header() {
 
                 {menuOpen && (
                     <nav style={{
-                        background: 'rgba(8,12,20,0.96)',
+                        background: isConfigurator ? 'rgba(242,240,235,0.98)' : 'rgba(8,12,20,0.96)',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

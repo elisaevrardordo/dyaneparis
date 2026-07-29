@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import styles from './Configurator.module.css'
-import type { Palette } from './data'
+import type { ConfiguratorStep, FormatId, Palette } from './data'
 
 const DyaneCanvas = dynamic(() => import('./DyaneCanvas'), {
   ssr: false,
@@ -15,7 +15,17 @@ const DyaneCanvas = dynamic(() => import('./DyaneCanvas'), {
   ),
 })
 
-export default function ConfiguratorStage({ palette }: { palette: Palette }) {
+interface ConfiguratorStageProps {
+  activeStep: ConfiguratorStep
+  selectedFormatId: FormatId | null
+  palette: Palette
+}
+
+export default function ConfiguratorStage({
+  activeStep,
+  selectedFormatId,
+  palette,
+}: ConfiguratorStageProps) {
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
@@ -27,9 +37,13 @@ export default function ConfiguratorStage({ palette }: { palette: Palette }) {
   }, [])
 
   return (
-    <div className={styles.stage}>
-      <div className={styles.halo} aria-hidden="true" />
-      <DyaneCanvas palette={palette} reducedMotion={reducedMotion} />
+    <div className={styles.stage} data-step={activeStep}>
+      <DyaneCanvas
+        activeStep={activeStep}
+        selectedFormatId={selectedFormatId}
+        palette={palette}
+        reducedMotion={reducedMotion}
+      />
     </div>
   )
 }

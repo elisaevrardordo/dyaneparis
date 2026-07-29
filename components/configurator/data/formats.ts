@@ -3,29 +3,37 @@ import type { FormatOption } from './types'
 export const formats = [
   {
     id: '25cl',
-    label: 'Dyane 25 cL',
+    label: '25 cL',
     volume: '25 cL',
+    physicalHeightCm: 23.5,
     modelPath: '/models/dyane.glb',
-    sceneScale: 1,
-    cameraDistance: 5.35,
-    available: true,
+    modelScale: 0.56,
+    startingPrice: 1000,
+    pricingMode: 'starting-at',
   },
   {
-    id: '1-5l',
-    label: 'Dyane 1,5 L',
+    id: '150cl',
+    label: '1,5 L',
     volume: '1,5 L',
-    modelPath: '/models/dyane-1-5l.glb',
-    sceneScale: 1.2,
-    cameraDistance: 5.2,
-    available: false,
+    physicalHeightCm: 42,
+    modelPath: '/models/dyane.glb',
+    modelScale: 1,
+    startingPrice: 1500,
+    pricingMode: 'starting-at',
   },
   {
     id: '12l',
-    label: 'Dyane 12 L',
+    label: '12 L',
     volume: '12 L',
-    modelPath: '/models/dyane-12l.glb',
-    sceneScale: 1.6,
-    cameraDistance: 6.1,
-    available: false,
+    physicalHeightCm: null,
+    modelPath: '/models/dyane.glb',
+    futureModelPath: '/models/dyane-12l.glb',
+    modelScale: 1.55,
+    startingPrice: null,
+    pricingMode: 'on-request',
   },
 ] as const satisfies readonly FormatOption[]
+
+export const formatById = Object.fromEntries(formats.map((format) => [format.id, format])) as {
+  [Format in (typeof formats)[number] as Format['id']]: Format
+}

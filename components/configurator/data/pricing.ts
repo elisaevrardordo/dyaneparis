@@ -1,11 +1,12 @@
+import { formatById } from './formats'
 import type { ConfigurationSelection, PriceAmount, PricingCatalog } from './types'
 
 export const pricing = {
   currency: 'EUR',
   formatBase: {
-    '25cl': 100_000,
-    '1-5l': 150_000,
-    '12l': null,
+    '25cl': formatById['25cl'].startingPrice * 100,
+    '150cl': formatById['150cl'].startingPrice * 100,
+    '12l': formatById['12l'].startingPrice,
   },
   artistSupplements: {
     'atelier-dyane': 0,
