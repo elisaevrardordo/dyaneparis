@@ -40,6 +40,11 @@
         "maison": "THE HOUSE",
         "journal": "THE JOURNAL",
         "contact": "CONTACT THE CONCIERGE",
+        "personalization": "CUSTOMIZATION",
+        "concierge": "CONCIERGE",
+        "primaryNavigation": "Primary navigation",
+        "secondaryNavigation": "Secondary navigation",
+        "mobileNavigation": "Mobile navigation",
         "menu": "MENU",
         "close": "CLOSE"
     },
@@ -55,6 +60,8 @@
         "cgv": "T&C",
         "confidentialite": "PRIVACY",
         "cookies": "COOKIES",
+        "signature": "Art, now drinkable.",
+        "follow": "FOLLOW THE HOUSE",
         "alcool": "ALCOHOL ABUSE IS DANGEROUS FOR YOUR HEALTH. PLEASE DRINK RESPONSIBLY."
     },
     "distillation": {

@@ -11,6 +11,7 @@ html {
     padding: 0;
     scroll-behavior: smooth;
     background: #0d0d0d;
+    text-rendering: optimizeLegibility;
 }
 
 body {
@@ -108,6 +109,21 @@ textarea:not(.newsletter-input)::placeholder {
     color: #fff !important;
     opacity: 1 !important;
 }
-button:hover, a:hover {
-    color: #6B1A2A;
+button:focus-visible,
+a:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }

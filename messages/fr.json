@@ -26,12 +26,17 @@
         "cta": "EN LIRE PLUS"
     },
     "header": {
-        "collections": "ŒUVRES",
+        "collections": "COLLECTIONS",
         "distillation": "DISTILLATION",
         "experiences": "EXPÉRIENCES",
         "maison": "LA MAISON",
         "journal": "LE JOURNAL",
         "contact": "CONTACTER LA CONCIERGERIE",
+        "personalization": "PERSONNALISATION",
+        "concierge": "CONCIERGE",
+        "primaryNavigation": "Navigation principale",
+        "secondaryNavigation": "Navigation secondaire",
+        "mobileNavigation": "Navigation mobile",
         "menu": "MENU",
         "close": "FERMER"
     },
@@ -47,6 +52,8 @@
         "cgv": "CGV",
         "confidentialite": "CONFIDENTIALITÉ",
         "cookies": "COOKIES",
+        "signature": "L’art se boit.",
+        "follow": "SUIVRE LA MAISON",
         "alcool": "L'ABUS D'ALCOOL EST DANGEREUX POUR LA SANTÉ. À CONSOMMER AVEC MODÉRATION."
     },
     "hero": {
