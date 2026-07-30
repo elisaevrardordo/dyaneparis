@@ -2,8 +2,15 @@ import './globals.css'
 import { getLocale } from 'next-intl/server'
 import { fontVariables } from './fonts'
 import type { Metadata, Viewport } from 'next'
-import { absoluteUrl, imageObject, seoImages, serializeJsonLd, SITE_URL } from '@/lib/seo'
-import { Analytics } from "@vercel/analytics/next"
+import {
+  absoluteUrl,
+  imageObject,
+  seoImages,
+  serializeJsonLd,
+  SITE_URL,
+} from '@/lib/seo'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const OG_IMAGE = absoluteUrl(seoImages.home.url)
 
@@ -23,7 +30,7 @@ export const metadata: Metadata = {
   applicationName: 'Dyane Paris',
   keywords: [
     'Dyane Paris',
-    "Art Liquide",
+    'Art Liquide',
     'Luxury Cocktail',
     'Luxury Bottled Cocktail',
     'French Luxury House',
@@ -117,7 +124,9 @@ const jsonLd = {
       '@id': 'https://www.dyaneparis.com/#website',
       url: 'https://www.dyaneparis.com',
       name: 'Dyane Paris',
-      publisher: { '@id': 'https://www.dyaneparis.com/#organization' },
+      publisher: {
+        '@id': 'https://www.dyaneparis.com/#organization',
+      },
       image: imageObject(seoImages.home, true),
       inLanguage: ['fr', 'en'],
     },
@@ -130,16 +139,26 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const locale = await getLocale()
+
   return (
-    <html lang={locale} className={fontVariables} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={fontVariables}
+      suppressHydrationWarning
+    >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(jsonLd),
+          }}
         />
       </head>
-      <body>{children}
-      <Analytics />
+
+      <body>
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
