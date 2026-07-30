@@ -12,10 +12,12 @@ if TEMP_NUMPY.exists():
 import bmesh
 import bpy
 from mathutils import Matrix, Vector
+from mathutils.kdtree import KDTree
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL_GLB = Path('/Users/elisaevrard/Downloads/dyane.glb 3')
+SOURCE_BLEND = PROJECT_ROOT / 'assets/models/dyane-web-v2.blend'
 V2_GLB = PROJECT_ROOT / 'public/models/dyane-web-v2.glb'
 REFERENCE_FILES = {
     'front': Path('/Users/elisaevrard/Desktop/DYANE-FULL/1.png'),
@@ -65,6 +67,16 @@ def smoothstep(edge0, edge1, value):
 
 def bell(value, low, peak, high):
     return smoothstep(low, peak, value) * (1.0 - smoothstep(peak, high, value))
+
+
+def band(value, low, high, feather):
+    return smoothstep(low, low + feather, value) * (1.0 - smoothstep(high - feather, high, value))
+
+
+def gaussian3(coordinate, center, radii):
+    delta = coordinate - center
+    distance_squared = sum((delta[index] / radii[index]) ** 2 for index in range(3))
+    return math.exp(-0.5 * distance_squared)
 
 
 def ensure_directories():
@@ -155,6 +167,21 @@ def create_materials():
     }
 
 
+def duplicate_working_object(source, name, target_collection):
+    duplicate = source.copy()
+    duplicate.data = source.data.copy()
+    duplicate.name = name
+    duplicate.data.name = f'{name}_Geometry'
+    target_collection.objects.link(duplicate)
+    bake_world_transform(duplicate)
+    duplicate.hide_select = False
+    duplicate.hide_render = False
+    duplicate.hide_viewport = False
+    duplicate['source'] = 'assets/models/dyane-web-v2.blend'
+    duplicate['reconstruction_role'] = name
+    return duplicate
+
+
 def setup_working_objects():
     original_collection = collection('REFERENCE_ORIGINAL_LOCKED')
     v2_collection = collection('REFERENCE_V2_LOCKED')
@@ -163,26 +190,24 @@ def setup_working_objects():
     original_objects = imported_objects(ORIGINAL_GLB, original_collection)
     lock_reference(original_objects, 'ORIGINAL')
 
-    v2_objects = imported_objects(V2_GLB, v2_collection)
-    lock_reference(v2_objects, 'V2')
+    source_objects = {}
+    for name in ('Body', 'Scarf', 'Cap', 'Signature'):
+        source = bpy.data.objects.get(name)
+        if source is None or source.type != 'MESH':
+            raise RuntimeError(f'Missing required object in source blend: {name}')
+        source_objects[name] = source
 
-    working_import = imported_objects(V2_GLB, working_collection)
+    source_base_marker = bpy.data.objects.get('Base')
+    if source_base_marker is not None and source_base_marker.type != 'MESH':
+        bpy.data.objects.remove(source_base_marker, do_unlink=True)
+
+    for source in source_objects.values():
+        move_to_collection(source, v2_collection)
+    lock_reference(list(source_objects.values()), 'V2')
     working = {
-        'Body': find_working_mesh(working_import, 'Body_Geometry'),
-        'Scarf': find_working_mesh(working_import, 'Scarf_Geometry'),
-        'Cap': find_working_mesh(working_import, 'Cap_Geometry'),
-        'Signature': find_working_mesh(working_import, 'Signature_Geometry'),
+        name: duplicate_working_object(source, name, working_collection)
+        for name, source in source_objects.items()
     }
-    for name, obj in working.items():
-        bake_world_transform(obj)
-        obj.name = name
-        obj.data.name = f'{name}_Geometry'
-        obj['source'] = 'dyane-web-v2.glb'
-        obj['reconstruction_role'] = name
-
-    for obj in working_import:
-        if obj.type != 'MESH':
-            bpy.data.objects.remove(obj, do_unlink=True)
 
     return working, original_collection, v2_collection
 
@@ -317,6 +342,21 @@ def render_stage(stage, cameras, working):
         bpy.ops.render.render(write_still=True)
 
 
+def render_neutral_stage(stage, cameras, working):
+    neutral = build_material('Sculpture_Neutral_Clay', (0.63, 0.60, 0.57), 0.62, 0.0, 0.25)
+    view_layer = bpy.context.view_layer
+    previous_override = view_layer.material_override
+    view_layer.material_override = neutral
+    objects = visible_working_objects(working)
+    scene = bpy.context.scene
+    for angle, camera in cameras.items():
+        fit_camera(camera, camera['direction'], objects)
+        scene.camera = camera
+        scene.render.filepath = str(RENDER_ROOT / stage / f'neutral-{angle}.png')
+        bpy.ops.render.render(write_still=True)
+    view_layer.material_override = previous_override
+
+
 def render_closeups(stage, working, names=None):
     scene = bpy.context.scene
     previous_resolution = (scene.render.resolution_x, scene.render.resolution_y)
@@ -406,37 +446,431 @@ def adjacency_smooth(obj, predicate, factor=0.15, iterations=1):
 
 def phase_v01_proportions(working):
     body = working['Body']
-    body['anatomy_remodel_status'] = 'Preserved: disconnected surface islands require manual Blender sculpting.'
+    body_displaced = 0
+    for vertex in body.data.vertices:
+        original = vertex.co.copy()
+        co = vertex.co
+
+        if co.z > 0.22:
+            if co.z <= 1.20:
+                co.z = 0.22 + (co.z - 0.22) * 0.96
+            else:
+                co.z = 1.1608 + (co.z - 1.20) * 0.94
+
+        upper_body = smoothstep(0.82, 1.42, original.z)
+        waist_fill = bell(original.z, 0.92, 1.24, 1.56)
+        co.x *= 1.0 - 0.105 * upper_body + 0.055 * waist_fill
+
+        chest = bell(original.z, 1.38, 1.58, 1.78)
+        front = smoothstep(0.045, 0.17, -original.y)
+        center = 1.0 - smoothstep(0.12, 0.27, abs(original.x))
+        co.y += 0.040 * chest * front * center
+
+        abdomen = bell(original.z, 1.02, 1.26, 1.47)
+        co.y -= 0.014 * abdomen * front * center
+
+        back = smoothstep(0.025, 0.14, original.y)
+        co.y -= 0.012 * waist_fill * back
+
+        left_arm = smoothstep(0.16, 0.29, -original.x) * band(original.z, 0.84, 1.78, 0.16)
+        right_arm = smoothstep(0.15, 0.29, original.x) * band(original.z, 1.30, 1.82, 0.12)
+        co.x += 0.034 * left_arm
+        co.x -= 0.026 * right_arm
+
+        if (co - original).length > 1e-8:
+            body_displaced += 1
+    body.data.update()
+    body['anatomy_remodel_status'] = 'Silhouette, torso, shoulders, waist and arm envelope geometrically remodeled.'
+    body['v01_vertices_displaced'] = body_displaced
 
     cap = working['Cap']
-    pivot = Vector((0.008, 0.0, 1.91))
+    pivot = Vector((0.008, 0.0, 1.92))
+    cap_displaced = 0
     for vertex in cap.data.vertices:
+        original = vertex.co.copy()
         co = vertex.co
-        head_weight = smoothstep(1.70, 1.84, co.z)
+        head_weight = smoothstep(1.67, 1.86, co.z)
         relative = co - pivot
-        relative.x *= 1.0 + 0.018 * head_weight
-        relative.y *= 1.0 + 0.050 * head_weight
-        relative.z *= 1.0 - 0.016 * head_weight
+        relative.x *= 1.0 + 0.060 * head_weight
+        relative.y *= 1.0 + 0.045 * head_weight
+        relative.z *= 1.0 + 0.012 * head_weight
         adjusted = pivot + relative
-        adjusted.x -= 0.010 * smoothstep(1.80, 2.10, adjusted.z)
+        adjusted.x -= 0.008 * smoothstep(1.80, 2.10, adjusted.z)
         vertex.co = adjusted
+        if (adjusted - original).length > 1e-8:
+            cap_displaced += 1
     cap.data.update()
+    cap['v01_vertices_displaced'] = cap_displaced
 
     scarf = working['Scarf']
+    scarf_displaced = 0
     for vertex in scarf.data.vertices:
+        original = vertex.co.copy()
         co = vertex.co
+        if co.z > 0.22:
+            if co.z <= 1.20:
+                co.z = 0.22 + (co.z - 0.22) * 0.96
+            else:
+                co.z = 1.1608 + (co.z - 1.20) * 0.94
         mass = bell(co.z, 0.18, 0.74, 1.48)
-        co.x *= 1.0 + 0.030 * mass
+        co.x *= 1.0 + 0.045 * mass
         if co.y > 0.0:
-            co.y *= 1.0 + 0.065 * mass
+            co.y *= 1.0 + 0.075 * mass
         if co.x > 0.08:
-            co.x += 0.020 * mass
+            co.x += 0.028 * mass
+        if (co - original).length > 1e-8:
+            scarf_displaced += 1
     scarf.data.update()
+    scarf['v01_vertices_displaced'] = scarf_displaced
 
 
-def phase_v02_head_hands(working):
+def add_cap_body_join(working, materials):
+    cap = working['Cap']
+    bpy.ops.mesh.primitive_cylinder_add(vertices=96, radius=0.112, depth=0.022, location=(0.0, 0.002, 1.775))
+    collar = bpy.context.object
+    collar.name = 'Cap_Body_Join'
+    collar.scale.y = 0.72
+    bpy.context.view_layer.objects.active = collar
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    bevel = collar.modifiers.new('Rounded porcelain seam', 'BEVEL')
+    bevel.width = 0.004
+    bevel.segments = 2
+    bpy.context.view_layer.objects.active = collar
+    bpy.ops.object.modifier_apply(modifier=bevel.name)
+    assign_material(collar, materials['Cap'])
+    move_to_collection(collar, cap.users_collection[0])
+
+    bpy.ops.object.select_all(action='DESELECT')
+    cap.select_set(True)
+    collar.select_set(True)
+    bpy.context.view_layer.objects.active = cap
+    bpy.ops.object.join()
+    cap.name = 'Cap'
+    cap.data.name = 'Cap_Geometry'
+    cap['cap_body_join'] = 'Flattened elliptical porcelain seam, modeled as Cap geometry.'
+
+
+def add_ellipsoid(name, location, scale, target_collection, segments=48, rings=24, rotation=(0.0, 0.0, 0.0)):
+    bpy.ops.mesh.primitive_uv_sphere_add(
+        segments=segments,
+        ring_count=rings,
+        location=location,
+        rotation=rotation,
+    )
+    obj = bpy.context.object
+    obj.name = name
+    obj.scale = scale
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    move_to_collection(obj, target_collection)
+    return obj
+
+
+def join_mesh_objects(objects, active, name):
+    bpy.ops.object.select_all(action='DESELECT')
+    for obj in objects:
+        obj.select_set(True)
+    bpy.context.view_layer.objects.active = active
+    bpy.ops.object.join()
+    active.name = name
+    active.data.name = f'{name}_Geometry'
+    return active
+
+
+def voxel_union(obj, voxel_size):
+    bpy.ops.object.select_all(action='DESELECT')
+    obj.select_set(True)
+    bpy.context.view_layer.objects.active = obj
+    obj.data.remesh_voxel_size = voxel_size
+    obj.data.remesh_voxel_adaptivity = 0.0
+    bpy.ops.object.voxel_remesh()
+    for polygon in obj.data.polygons:
+        polygon.use_smooth = True
+    obj.data.update()
+
+
+def smart_project_uv(obj):
+    bpy.ops.object.select_all(action='DESELECT')
+    obj.select_set(True)
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.mode_set(mode='EDIT')
+    bpy.ops.mesh.select_all(action='SELECT')
+    try:
+        bpy.ops.uv.smart_project(angle_limit=math.radians(66.0), island_margin=0.02)
+    except TypeError:
+        bpy.ops.uv.smart_project(island_margin=0.02)
+    bpy.ops.object.mode_set(mode='OBJECT')
+    obj.select_set(False)
+
+
+def rebuild_cap_geometry(working, materials):
+    previous_cap = working['Cap']
+    target_collection = previous_cap.users_collection[0]
+    bpy.data.objects.remove(previous_cap, do_unlink=True)
+
+    parts = []
+    face = add_ellipsoid('Cap_Face', (0.0, -0.055, 1.975), (0.092, 0.070, 0.142), target_collection, 64, 32)
+    for vertex in face.data.vertices:
+        relative_z = (vertex.co.z - 1.975) / 0.145
+        lower = max(0.0, min(1.0, -relative_z))
+        vertex.co.x *= 1.0 - 0.18 * lower
+        if vertex.co.y > -0.055:
+            vertex.co.y = -0.055 + (vertex.co.y + 0.055) * 0.70
+    face.data.update()
+    parts.append(face)
+
+    parts.extend([
+        add_ellipsoid('Cap_Hair_Back', (0.0, 0.030, 2.015), (0.137, 0.098, 0.178), target_collection, 48, 24),
+        add_ellipsoid('Cap_Hair_Crown', (0.0, -0.005, 2.090), (0.135, 0.085, 0.102), target_collection, 56, 28),
+        add_ellipsoid('Cap_Hair_Left_Upper', (-0.098, -0.002, 2.020), (0.055, 0.064, 0.085), target_collection, rotation=(0.0, math.radians(-10), math.radians(-8))),
+        add_ellipsoid('Cap_Hair_Right_Upper', (0.098, -0.002, 2.020), (0.055, 0.064, 0.085), target_collection, rotation=(0.0, math.radians(10), math.radians(8))),
+        add_ellipsoid('Cap_Hair_Left_Mid', (-0.112, 0.006, 1.935), (0.049, 0.060, 0.092), target_collection, rotation=(0.0, math.radians(-12), math.radians(-7))),
+        add_ellipsoid('Cap_Hair_Right_Mid', (0.112, 0.006, 1.935), (0.049, 0.060, 0.092), target_collection, rotation=(0.0, math.radians(12), math.radians(7))),
+        add_ellipsoid('Cap_Hair_Left_Lower', (-0.122, 0.012, 1.845), (0.040, 0.052, 0.105), target_collection, rotation=(0.0, math.radians(-17), math.radians(-4))),
+        add_ellipsoid('Cap_Hair_Right_Lower', (0.122, 0.012, 1.845), (0.040, 0.052, 0.108), target_collection, rotation=(0.0, math.radians(17), math.radians(4))),
+        add_ellipsoid('Cap_Fringe_Left', (-0.045, -0.106, 2.080), (0.036, 0.020, 0.072), target_collection, rotation=(0.0, math.radians(-22), math.radians(-7))),
+        add_ellipsoid('Cap_Fringe_Right', (0.045, -0.106, 2.080), (0.036, 0.020, 0.072), target_collection, rotation=(0.0, math.radians(22), math.radians(7))),
+        add_ellipsoid('Cap_Neck', (0.0, 0.000, 1.795), (0.065, 0.052, 0.125), target_collection, 48, 24),
+    ])
+
+    bpy.ops.mesh.primitive_cylinder_add(vertices=96, radius=0.112, depth=0.022, location=(0.0, 0.002, 1.775))
+    collar = bpy.context.object
+    collar.name = 'Cap_Body_Join'
+    collar.scale.y = 0.72
+    bpy.context.view_layer.objects.active = collar
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    move_to_collection(collar, target_collection)
+    parts.append(collar)
+
+    cap = join_mesh_objects(parts, face, 'Cap')
+    voxel_union(cap, 0.0045)
+    adjacency_smooth(cap, lambda co: True, factor=0.12, iterations=2)
+    assign_material(cap, materials['Cap'])
+    facial_features = [
+        add_ellipsoid('Cap_Nose', (0.0, -0.127, 1.985), (0.008, 0.012, 0.023), target_collection, 32, 16),
+        add_ellipsoid('Cap_Eyelid_Left', (-0.031, -0.120, 2.018), (0.018, 0.0055, 0.004), target_collection, 32, 16, rotation=(math.radians(7), 0.0, math.radians(-4))),
+        add_ellipsoid('Cap_Eyelid_Right', (0.031, -0.120, 2.018), (0.018, 0.0055, 0.004), target_collection, 32, 16, rotation=(math.radians(7), 0.0, math.radians(4))),
+        add_ellipsoid('Cap_Lips', (0.0, -0.120, 1.944), (0.020, 0.005, 0.0045), target_collection, 32, 16),
+    ]
+    for feature in facial_features:
+        assign_material(feature, materials['Cap'])
+    join_mesh_objects([cap, *facial_features], cap, 'Cap')
+    smart_project_uv(cap)
+    cap['reconstruction_role'] = 'Cap'
+    cap['geometry_rebuild'] = 'Closed localized voxel union of modeled face, hair masses, neck and cap/body seam.'
+    cap['cap_body_join'] = 'Flattened elliptical porcelain seam integrated in Cap geometry.'
+    working['Cap'] = cap
+
+
+def remove_old_hand_geometry(body):
+    regions = [
+        (Vector((-0.250, -0.070, 1.000)), Vector((0.090, 0.125, 0.180)), 'left'),
+        (Vector((0.200, -0.155, 1.420)), Vector((0.095, 0.085, 0.115)), 'right'),
+    ]
+    bm = bmesh.new()
+    bm.from_mesh(body.data)
+    faces = []
+    for face in bm.faces:
+        center = face.calc_center_median()
+        def inside(region):
+            coordinate, radii, side = region
+            side_match = center.x < -0.17 if side == 'left' else center.x > 0.13 and center.y < -0.075
+            return side_match and sum(((center[axis] - coordinate[axis]) / radii[axis]) ** 2 for axis in range(3)) <= 1.0
+        if any(inside(region) for region in regions):
+            faces.append(face)
+    if faces:
+        bmesh.ops.delete(bm, geom=faces, context='FACES')
+    loose = [vertex for vertex in bm.verts if not vertex.link_faces]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context='VERTS')
+    bm.to_mesh(body.data)
+    bm.free()
+    body.data.update()
+    body['old_hand_faces_removed'] = len(faces)
+
+
+def build_hand(name, target_collection, center, side):
+    parts = []
+    if side == 'left':
+        palm = add_ellipsoid(f'{name}_Palm', center, (0.034, 0.025, 0.064), target_collection, 40, 20, rotation=(0.0, math.radians(-5), 0.0))
+        parts.append(palm)
+        parts.append(add_ellipsoid(f'{name}_Wrist', (center[0] + 0.005, center[1] + 0.010, center[2] + 0.105), (0.030, 0.027, 0.078), target_collection, 32, 16, rotation=(0.0, math.radians(-5), 0.0)))
+        for index, x_offset in enumerate((-0.023, -0.008, 0.008, 0.023)):
+            length = (0.050, 0.056, 0.052, 0.045)[index]
+            parts.append(add_ellipsoid(f'{name}_Finger_{index + 1}', (center[0] + x_offset, center[1] - 0.006, center[2] - 0.058), (0.008, 0.009, length), target_collection, 24, 12))
+        parts.append(add_ellipsoid(f'{name}_Thumb', (center[0] + 0.038, center[1] - 0.002, center[2] - 0.010), (0.010, 0.012, 0.038), target_collection, 24, 12, rotation=(0.0, math.radians(-28), 0.0)))
+    else:
+        palm = add_ellipsoid(f'{name}_Palm', center, (0.045, 0.020, 0.031), target_collection, 40, 20, rotation=(0.0, math.radians(-8), math.radians(-8)))
+        parts.append(palm)
+        parts.append(add_ellipsoid(f'{name}_Wrist', (center[0] + 0.006, center[1] + 0.030, center[2] + 0.060), (0.024, 0.022, 0.056), target_collection, 32, 16, rotation=(0.0, math.radians(-20), math.radians(-8))))
+        for index, x_offset in enumerate((-0.038, -0.014, 0.012, 0.036)):
+            length = (0.040, 0.047, 0.044, 0.037)[index]
+            parts.append(add_ellipsoid(f'{name}_Finger_{index + 1}', (center[0] + x_offset, center[1] - 0.008, center[2] - 0.035), (0.010, 0.010, length), target_collection, 24, 12, rotation=(0.0, math.radians(-12), 0.0)))
+        parts.append(add_ellipsoid(f'{name}_Thumb', (center[0] - 0.045, center[1], center[2] + 0.002), (0.009, 0.010, 0.028), target_collection, 24, 12, rotation=(0.0, math.radians(32), 0.0)))
+    hand = join_mesh_objects(parts, palm, name)
+    voxel_union(hand, 0.003)
+    adjacency_smooth(hand, lambda co: True, factor=0.11, iterations=2)
+    return hand
+
+
+def rebuild_hands(working, materials):
     body = working['Body']
-    body['detail_remodel_status'] = 'Face, hands and legs preserved for manual topology-aware sculpting.'
+    target_collection = body.users_collection[0]
+    remove_old_hand_geometry(body)
+    left = build_hand('Body_Left_Hand_Rebuild', target_collection, Vector((-0.242, -0.072, 1.010)), 'left')
+    right = build_hand('Body_Right_Hand_Rebuild', target_collection, Vector((0.190, -0.155, 1.410)), 'right')
+    assign_material(left, materials['Body'])
+    assign_material(right, materials['Body'])
+    join_mesh_objects([body, left, right], body, 'Body')
+    body['hand_geometry_rebuild'] = 'Both scanned hands replaced by simplified closed porcelain volumes with separated fingers.'
+    working['Body'] = body
+
+
+def remodel_original_cap(working, materials):
+    cap = working['Cap']
+    displaced = 0
+    for vertex in cap.data.vertices:
+        original = vertex.co.copy()
+        co = vertex.co
+        face_front = smoothstep(0.045, 0.155, -original.y)
+        cheek = bell(original.z, 1.87, 1.965, 2.055) * face_front
+        co.x *= 1.0 + 0.035 * cheek
+        nose = gaussian3(original, Vector((0.0, -0.158, 1.995)), Vector((0.055, 0.070, 0.075)))
+        co.y += 0.018 * nose
+        chin = gaussian3(original, Vector((0.0, -0.125, 1.870)), Vector((0.080, 0.080, 0.060)))
+        co.y += 0.007 * chin
+
+        hair_height = band(original.z, 1.68, 2.145, 0.055)
+        hair_side = smoothstep(0.060, 0.145, abs(original.x)) * hair_height
+        co.x += math.copysign(0.012 * hair_side, original.x if original.x else 1.0)
+        hair_back = smoothstep(-0.015, 0.120, original.y) * hair_height
+        co.y += 0.015 * hair_back
+        lower_hair = band(original.z, 1.67, 1.90, 0.045) * (1.0 - face_front)
+        co.x *= 1.0 + 0.035 * lower_hair
+        co.y *= 1.0 + 0.030 * lower_hair
+        if (co - original).length > 1e-8:
+            displaced += 1
+    cap.data.update()
+    cleanup_mesh(cap, smooth=True, weld_exact=True)
+    add_cap_body_join(working, materials)
+    cap = working['Cap']
+    voxel_union(cap, 0.0045)
+    adjacency_smooth(
+        cap,
+        lambda co: co.y < -0.035 and abs(co.x) < 0.145 and 1.82 < co.z < 2.11,
+        factor=0.15,
+        iterations=3,
+    )
+    assign_material(cap, materials['Cap'])
+    smart_project_uv(cap)
+    cap['v02_vertices_displaced_before_remesh'] = displaced
+    cap['face_remodel'] = 'Original likeness retained; nose, cheeks and chin adjusted before localized high-resolution Cap remesh.'
+    cap['hair_remodel'] = 'Original hair silhouette retained; lateral, rear and lower masses rounded before localized Cap remesh.'
+    cap['geometry_rebuild'] = 'Original Cap remodeled and locally voxel-remeshed at 0.0045 scene units; no generic replacement head.'
+    working['Cap'] = cap
+
+
+def extract_hand_region(body, name, predicate):
+    mesh = body.data
+    selected_polygons = [polygon for polygon in mesh.polygons if predicate(polygon.center)]
+    selected_indices = {polygon.index for polygon in selected_polygons}
+    vertex_indices = sorted({index for polygon in selected_polygons for index in polygon.vertices})
+    remap = {old: new for new, old in enumerate(vertex_indices)}
+    coordinates = [mesh.vertices[index].co.copy() for index in vertex_indices]
+    faces = [[remap[index] for index in polygon.vertices] for polygon in selected_polygons]
+
+    hand_mesh = bpy.data.meshes.new(f'{name}_Geometry')
+    hand_mesh.from_pydata(coordinates, [], faces)
+    hand_mesh.update()
+    hand = bpy.data.objects.new(name, hand_mesh)
+    body.users_collection[0].objects.link(hand)
+
+    bm = bmesh.new()
+    bm.from_mesh(mesh)
+    bm.faces.ensure_lookup_table()
+    delete_faces = [face for face in bm.faces if face.index in selected_indices]
+    if delete_faces:
+        bmesh.ops.delete(bm, geom=delete_faces, context='FACES')
+    loose = [vertex for vertex in bm.verts if not vertex.link_faces]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context='VERTS')
+    bm.to_mesh(mesh)
+    bm.free()
+    mesh.update()
+    return hand, len(selected_polygons)
+
+
+def remodel_original_hands(working, materials):
+    body = working['Body']
+    left, left_faces = extract_hand_region(
+        body,
+        'Body_Left_Hand_Remodel',
+        lambda co: co.x < -0.17 and 0.82 < co.z < 1.18 and co.y < 0.06,
+    )
+    right, right_faces = extract_hand_region(
+        body,
+        'Body_Right_Hand_Remodel',
+        lambda co: co.x > 0.13 and 1.30 < co.z < 1.53 and co.y < -0.07,
+    )
+    for hand in (left, right):
+        assign_material(hand, materials['Body'])
+        cleanup_mesh(hand, smooth=True, weld_exact=True)
+        voxel_union(hand, 0.0032)
+        adjacency_smooth(hand, lambda co: True, factor=0.12, iterations=2)
+        assign_material(hand, materials['Body'])
+    join_mesh_objects([body, left, right], body, 'Body')
+    body['hand_geometry_rebuild'] = 'Original hand silhouettes extracted, locally closed/remeshed, simplified and rejoined to Body.'
+    body['left_hand_source_faces'] = left_faces
+    body['right_hand_source_faces'] = right_faces
+    working['Body'] = body
+
+
+def phase_v02_head_hands(working, materials):
+    body = working['Body']
+    body_displaced = 0
+    for vertex in body.data.vertices:
+        original = vertex.co.copy()
+        co = vertex.co
+
+        left_arm = smoothstep(0.17, 0.28, -original.x) * band(original.z, 0.82, 1.74, 0.12)
+        right_arm = smoothstep(0.14, 0.27, original.x) * band(original.z, 1.30, 1.77, 0.10)
+        co.y = -0.055 + (co.y + 0.055) * (1.0 + 0.055 * left_arm)
+        co.y = -0.040 + (co.y + 0.040) * (1.0 + 0.060 * right_arm)
+
+        left_hand_weight = gaussian3(original, Vector((-0.265, -0.070, 0.985)), Vector((0.105, 0.145, 0.215)))
+        left_hand_center = Vector((-0.255, -0.070, 1.005))
+        left_relative = co - left_hand_center
+        left_target = left_hand_center + Vector((left_relative.x * 0.88, left_relative.y * 0.90, left_relative.z * 0.84))
+        co[:] = co.lerp(left_target, left_hand_weight)
+
+        right_hand_weight = gaussian3(original, Vector((0.205, -0.165, 1.425)), Vector((0.115, 0.105, 0.145)))
+        right_hand_center = Vector((0.200, -0.150, 1.430))
+        right_relative = co - right_hand_center
+        right_target = right_hand_center + Vector((right_relative.x * 0.84, right_relative.y * 0.80, right_relative.z * 0.82))
+        co[:] = co.lerp(right_target, right_hand_weight)
+
+        leg_band = band(original.z, 0.22, 1.04, 0.16)
+        if original.x < 0.0:
+            leg_center = -0.105
+        else:
+            leg_center = 0.110
+        co.x = leg_center + (co.x - leg_center) * (1.0 + 0.065 * leg_band)
+
+        foot = 1.0 - smoothstep(0.25, 0.39, original.z)
+        if original.x < 0.0:
+            co.x -= 0.010 * foot
+        else:
+            co.x += 0.012 * foot
+        co.y -= 0.008 * foot * smoothstep(0.02, 0.18, -original.y)
+
+        if (co - original).length > 1e-8:
+            body_displaced += 1
+    body.data.update()
+    body['detail_remodel_status'] = 'Both arms, hands, legs and feet geometrically remodeled with local continuous fields.'
+    body['v02_vertices_displaced'] = body_displaced
+
+    body['hand_geometry_rebuild'] = 'Original hands retained; proportions simplified by continuous local deformation and controlled smoothing.'
+    remodel_original_cap(working, materials)
 
 
 def separate_base(working, materials):
@@ -490,28 +924,40 @@ def separate_base(working, materials):
 
 def phase_v03_scarf_base(working, materials):
     scarf = working['Scarf']
+    scarf_displaced = 0
     for vertex in scarf.data.vertices:
+        original = vertex.co.copy()
         co = vertex.co
         hip = bell(co.z, 0.72, 1.04, 1.36)
         if co.y < 0.0:
             center_weight = max(0.0, 1.0 - abs(co.x) / 0.34)
-            co.z -= 0.052 * hip * center_weight
-            co.y -= 0.014 * hip
+            left_sweep = smoothstep(-0.02, 0.20, -co.x)
+            co.z -= (0.060 + 0.025 * left_sweep) * hip * center_weight
+            co.y -= 0.020 * hip
         right_mass = smoothstep(0.07, 0.22, co.x) * bell(co.z, 0.20, 0.76, 1.40)
-        co.x += 0.038 * right_mass
-        co.y *= 1.0 + 0.070 * right_mass
+        co.x += 0.052 * right_mass
+        co.y *= 1.0 + 0.095 * right_mass
         left_mass = smoothstep(0.07, 0.21, -co.x) * bell(co.z, 0.20, 0.78, 1.25)
-        co.x -= 0.022 * left_mass
+        co.x -= 0.032 * left_mass
         if co.y > 0.02:
             back_weight = bell(co.z, 0.20, 0.72, 1.25)
-            co.y += 0.042 * back_weight
-            co.x *= 1.0 + 0.035 * back_weight
+            co.y += 0.060 * back_weight
+            co.x *= 1.0 + 0.055 * back_weight
+            fold_a = math.exp(-((co.x + 0.125) / 0.055) ** 2)
+            fold_b = math.exp(-((co.x - 0.015) / 0.065) ** 2)
+            fold_c = math.exp(-((co.x - 0.155) / 0.060) ** 2)
+            vertical = band(co.z, 0.28, 1.12, 0.16)
+            co.y += vertical * (0.018 * fold_a - 0.012 * fold_b + 0.020 * fold_c)
         foot_spread = 1.0 - smoothstep(0.22, 0.48, co.z)
-        co.x *= 1.0 + 0.125 * foot_spread
-        co.y *= 1.0 + 0.105 * foot_spread
+        co.x *= 1.0 + 0.185 * foot_spread
+        co.y *= 1.0 + 0.155 * foot_spread
         if co.z < BASE_HEIGHT + 0.006:
             co.z = BASE_HEIGHT + 0.006
+        if (co - original).length > 1e-8:
+            scarf_displaced += 1
     scarf.data.update()
+    scarf['v03_vertices_displaced'] = scarf_displaced
+    scarf['geometry_remodel'] = 'Hip sweep, right fall, rear folds and foot spread geometrically remodeled.'
     separate_base(working, materials)
 
 
@@ -529,10 +975,12 @@ def create_scarf_uv(scarf):
     scarf.select_set(False)
 
 
-def cleanup_mesh(obj, smooth=True):
+def cleanup_mesh(obj, smooth=True, weld_exact=False):
     mesh = obj.data
     bm = bmesh.new()
     bm.from_mesh(mesh)
+    if weld_exact:
+        bmesh.ops.remove_doubles(bm, verts=list(bm.verts), dist=1e-7)
     bmesh.ops.dissolve_degenerate(bm, edges=list(bm.edges), dist=1e-9)
     loose = [vertex for vertex in bm.verts if not vertex.link_faces]
     if loose:
@@ -545,13 +993,115 @@ def cleanup_mesh(obj, smooth=True):
     mesh.update()
 
 
+def boundary_vertex_indices(obj):
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    indices = sorted({vertex.index for edge in bm.edges if edge.is_boundary for vertex in edge.verts})
+    bm.free()
+    return indices
+
+
+def snap_shared_scarf_seam(body, scarf, maximum_distance=0.12):
+    body_indices = boundary_vertex_indices(body)
+    scarf_indices = boundary_vertex_indices(scarf)
+    tree = KDTree(len(body_indices))
+    for index in body_indices:
+        tree.insert(body.data.vertices[index].co, index)
+    tree.balance()
+
+    distances = []
+    for scarf_index in scarf_indices:
+        coordinate = scarf.data.vertices[scarf_index].co
+        nearest, _, distance = tree.find(coordinate)
+        if distance <= maximum_distance:
+            scarf.data.vertices[scarf_index].co = nearest
+            distances.append(distance)
+    scarf.data.update()
+    scarf['shared_seam_vertices_snapped'] = len(distances)
+    scarf['shared_seam_maximum_source_gap'] = max(distances, default=0.0)
+    scarf['shared_seam_average_source_gap'] = sum(distances) / len(distances) if distances else 0.0
+
+
+def fill_small_boundary_loops(obj, maximum_vertices=24, maximum_span=0.08):
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    boundary_edges = [edge for edge in bm.edges if edge.is_boundary]
+    adjacency = {}
+    for edge in boundary_edges:
+        for vertex in edge.verts:
+            adjacency.setdefault(vertex, set()).update(other for other in edge.verts if other != vertex)
+
+    unseen = set(adjacency)
+    groups = []
+    while unseen:
+        seed = unseen.pop()
+        stack = [seed]
+        vertices = {seed}
+        while stack:
+            current = stack.pop()
+            for neighbor in adjacency[current]:
+                if neighbor in unseen:
+                    unseen.remove(neighbor)
+                    vertices.add(neighbor)
+                    stack.append(neighbor)
+        groups.append(vertices)
+
+    filled = 0
+    for vertices in groups:
+        if len(vertices) > maximum_vertices:
+            continue
+        coordinates = [vertex.co for vertex in vertices]
+        minimum = Vector(tuple(min(coordinate[axis] for coordinate in coordinates) for axis in range(3)))
+        maximum = Vector(tuple(max(coordinate[axis] for coordinate in coordinates) for axis in range(3)))
+        if (maximum - minimum).length > maximum_span:
+            continue
+        edges = [edge for edge in boundary_edges if all(vertex in vertices for vertex in edge.verts)]
+        if edges:
+            bmesh.ops.holes_fill(bm, edges=edges, sides=0)
+            filled += 1
+    bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
+    bm.to_mesh(obj.data)
+    bm.free()
+    obj.data.update()
+    obj['small_boundary_loops_filled'] = filled
+
+
 def phase_v04_topology(working):
     for name, obj in working.items():
-        if name in {'Body', 'Cap'}:
-            continue
-        cleanup_mesh(obj, smooth=name != 'Signature')
-    if not working['Scarf'].data.uv_layers:
-        create_scarf_uv(working['Scarf'])
+        before_vertices = len(obj.data.vertices)
+        cleanup_mesh(obj, smooth=name not in {'Signature', 'Base'}, weld_exact=name != 'Signature')
+        obj['v04_exact_duplicate_vertices_removed'] = before_vertices - len(obj.data.vertices)
+        obj['v04_weld_policy'] = 'Only vertices coincident within 1e-7 inside this same node; loop UVs preserved.'
+
+    if 'geometry_rebuild' not in working['Cap']:
+        adjacency_smooth(
+            working['Cap'],
+            lambda co: co.y < -0.035 and abs(co.x) < 0.145 and 1.82 < co.z < 2.11,
+            factor=0.24,
+            iterations=5,
+        )
+        adjacency_smooth(
+            working['Cap'],
+            lambda co: 1.68 < co.z < 2.15 and not (co.y < -0.035 and abs(co.x) < 0.145),
+            factor=0.09,
+            iterations=2,
+        )
+    adjacency_smooth(
+        working['Body'],
+        lambda co: (
+            ((co.x < -0.17) and 0.80 < co.z < 1.18)
+            or ((co.x > 0.12) and 1.30 < co.z < 1.52)
+        ),
+        factor=0.16,
+        iterations=3,
+    )
+    snap_shared_scarf_seam(working['Body'], working['Scarf'])
+    fill_small_boundary_loops(working['Body'])
+    fill_small_boundary_loops(working['Scarf'])
+    cleanup_mesh(working['Body'], smooth=True)
+    cleanup_mesh(working['Scarf'], smooth=True)
+    cleanup_mesh(working['Cap'], smooth=True)
+    create_scarf_uv(working['Scarf'])
 
 
 def scale_to_reference_height(working, target_height=0.42):
@@ -653,6 +1203,7 @@ def main():
     ensure_directories()
     for required in (
         ORIGINAL_GLB,
+        SOURCE_BLEND,
         V2_GLB,
         *REFERENCE_FILES.values(),
         *ADDITIONAL_REFERENCE_FILES.values(),
@@ -660,7 +1211,13 @@ def main():
         if not required.exists():
             raise FileNotFoundError(required)
 
-    bpy.ops.wm.read_factory_settings(use_empty=True)
+    previous_candidate = {
+        'sha256': 'acb436510e82b04e98e3dd2a80c4e72457182486c3d54bc5bb9535904832b01c',
+        'size_bytes': 1914644,
+        'git_backup_commit': 'bcb5030',
+    }
+
+    bpy.ops.wm.open_mainfile(filepath=str(SOURCE_BLEND))
     working, original_collection, v2_collection = setup_working_objects()
     materials = create_materials()
     for name, obj in working.items():
@@ -671,39 +1228,43 @@ def main():
 
     bpy.context.scene['model_policy'] = 'Original and V2 locked; WORKING_V3 is the only editable collection.'
     bpy.context.scene['reference_limit'] = 'No dedicated close-ups; local edits remain conservative.'
+    bpy.context.scene['source_blend'] = str(SOURCE_BLEND)
     snapshots.append(stage_snapshot('v00', working))
     render_stage('v00', cameras, working)
+    render_neutral_stage('v00', cameras, working)
     save_stage('v00')
-
-    remove_collection_and_objects(original_collection)
-    remove_collection_and_objects(v2_collection)
 
     phase_v01_proportions(working)
     snapshots.append(stage_snapshot('v01', working))
     render_stage('v01', cameras, working)
+    render_neutral_stage('v01', cameras, working)
     save_stage('v01')
 
-    phase_v02_head_hands(working)
+    phase_v02_head_hands(working, materials)
     snapshots.append(stage_snapshot('v02', working))
     render_stage('v02', cameras, working)
+    render_neutral_stage('v02', cameras, working)
     render_closeups('v02', working, names=('face', 'left-hand', 'right-hand'))
     save_stage('v02')
 
     phase_v03_scarf_base(working, materials)
     snapshots.append(stage_snapshot('v03', working))
     render_stage('v03', cameras, working)
+    render_neutral_stage('v03', cameras, working)
     render_closeups('v03', working, names=('face',))
     save_stage('v03')
 
     phase_v04_topology(working)
     snapshots.append(stage_snapshot('v04', working))
     render_stage('v04', cameras, working)
+    render_neutral_stage('v04', cameras, working)
     render_closeups('v04', working, names=('face',))
     save_stage('v04')
 
     scale_factor = scale_to_reference_height(working, 0.42)
     snapshots.append(stage_snapshot('v05', working))
     render_stage('v05', cameras, working)
+    render_neutral_stage('v05', cameras, working)
     render_closeups('v05', working)
     save_stage('v05')
     export_candidate(working)
@@ -711,8 +1272,10 @@ def main():
     validation = validate_reimport()
     report = {
         'blender_version': bpy.app.version_string,
+        'source_blend': {'path': str(SOURCE_BLEND), 'sha256': sha256(SOURCE_BLEND)},
         'original': {'path': str(ORIGINAL_GLB), 'sha256': sha256(ORIGINAL_GLB)},
         'v2': {'path': str(V2_GLB), 'sha256': sha256(V2_GLB)},
+        'previous_candidate': previous_candidate,
         'candidate': {
             'path': str(EXPORT_PATH),
             'sha256': sha256(EXPORT_PATH),

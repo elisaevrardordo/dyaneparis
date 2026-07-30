@@ -63,9 +63,10 @@ async function panel(input, label, extract) {
     .toBuffer()
 }
 
-async function buildAngle(angle, reference) {
-  const v2Path = path.join(sourceRoot, 'renders/v00', `${angle}.png`)
-  const v3Path = path.join(sourceRoot, 'renders/v05', `${angle}.png`)
+async function buildVariant(angle, reference, variant) {
+  const prefix = variant === 'neutral' ? 'neutral-' : ''
+  const v2Path = path.join(sourceRoot, 'renders/v00', `${prefix}${angle}.png`)
+  const v3Path = path.join(sourceRoot, 'renders/v05', `${prefix}${angle}.png`)
   const [photoPanel, v2Panel, v3Panel] = await Promise.all([
     panel(reference.path, 'PHOTOGRAPHIE', reference.crop),
     panel(v2Path, 'DYANE WEB V2'),
@@ -103,9 +104,19 @@ async function buildAngle(angle, reference) {
     .toBuffer()
 
   for (const outputRoot of outputRoots) {
-    await sharp(comparison).toFile(path.join(outputRoot, `${angle}.png`))
-    await sharp(overlay).toFile(path.join(outputRoot, `${angle}-overlay.png`))
+    await sharp(comparison).toFile(path.join(outputRoot, `${angle}-${variant}.png`))
+    if (variant === 'studio') {
+      await sharp(comparison).toFile(path.join(outputRoot, `${angle}.png`))
+      await sharp(overlay).toFile(path.join(outputRoot, `${angle}-overlay.png`))
+    }
   }
+}
+
+async function buildAngle(angle, reference) {
+  await Promise.all([
+    buildVariant(angle, reference, 'neutral'),
+    buildVariant(angle, reference, 'studio'),
+  ])
 }
 
 for (const outputRoot of outputRoots) await mkdir(outputRoot, { recursive: true })

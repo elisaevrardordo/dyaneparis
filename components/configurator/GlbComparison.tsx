@@ -15,12 +15,12 @@ type ComparisonPair = 'audit' | 'reconstruction'
 
 const ORIGINAL_PATH = '/models/dyane.glb'
 const V2_PATH = '/models/dyane-web-v2.glb'
-const V3_PATH = '/models/candidates/dyane-web-v3-candidate.glb?v=acb43651'
+const V3_PATH = '/models/candidates/dyane-web-v3-candidate.glb?v=d1673f88'
 
 const metrics = {
   original: { bytes: 1_597_996, triangles: 61_513, drawCalls: 4 },
   v2: { bytes: 1_599_028, triangles: 61_506, drawCalls: 4 },
-  v3: { bytes: 1_914_644, triangles: 61_792, drawCalls: 5 },
+  v3: { bytes: 3_045_440, triangles: 111_758, drawCalls: 5 },
 } as const
 
 function formatWeight(bytes: number) {
@@ -292,19 +292,24 @@ export default function GlbComparison({ locale }: { locale: string }) {
       <section className={styles.referenceSection} aria-labelledby="reference-comparison-title">
         <p className={styles.eyebrow}>Contrôle photographique</p>
         <h2 id="reference-comparison-title">Photographie / V2 / candidat V3</h2>
-        <div className={styles.referenceGrid}>
-          {(['front', 'profile', 'three-quarter', 'back'] as const).map((angle) => (
-            <figure key={angle}>
-              <Image
-                src={`/previews/dyane-reconstruction/${angle}.png`}
-                alt={`Comparaison ${angle} entre la photographie, Dyane Web V2 et le candidat V3`}
-                width={1440}
-                height={680}
-              />
-              <figcaption>{angle === 'three-quarter' ? 'Trois-quarts' : angle}</figcaption>
-            </figure>
-          ))}
-        </div>
+        {(['neutral', 'studio'] as const).map((variant) => (
+          <div key={variant}>
+            <h3>{variant === 'neutral' ? 'Géométrie neutre' : 'Porcelaine studio'}</h3>
+            <div className={styles.referenceGrid}>
+              {(['front', 'profile', 'three-quarter', 'back'] as const).map((angle) => (
+                <figure key={`${variant}-${angle}`}>
+                  <Image
+                    src={`/previews/dyane-reconstruction/${angle}-${variant}.png`}
+                    alt={`Comparaison ${angle} en ${variant} entre la photographie, Dyane Web V2 et le candidat V3`}
+                    width={1440}
+                    height={680}
+                  />
+                  <figcaption>{angle === 'three-quarter' ? 'Trois-quarts' : angle}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
     </main>
   )
