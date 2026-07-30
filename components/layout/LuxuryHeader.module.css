@@ -1,0 +1,249 @@
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 84px;
+  color: #fff;
+  transition: color 280ms ease, background-color 280ms ease, border-color 280ms ease;
+}
+
+.header[data-solid='true'],
+.header[data-menu-open='true'] {
+  color: #191816;
+  border-bottom: 1px solid rgba(25, 24, 22, 0.11);
+  background: rgba(248, 246, 241, 0.97);
+}
+
+.header[data-route-theme='dark'][data-solid='false'] {
+  color: #191816;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 clamp(22px, 2.8vw, 46px);
+}
+
+.desktopGroup {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: clamp(16px, 1.55vw, 29px);
+}
+
+.desktopGroup:last-child {
+  justify-content: flex-end;
+}
+
+.navLink,
+.languageLink,
+.menuButton {
+  position: relative;
+  color: inherit;
+  font-family: var(--font-lora), serif;
+  font-size: 8px;
+  letter-spacing: 0.19em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 1px;
+  content: '';
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms ease;
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 74px;
+  height: 62px;
+  color: inherit;
+  transform: translate(-50%, -50%);
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 280ms ease;
+}
+
+.header[data-solid='true'] .logoImage,
+.header[data-menu-open='true'] .logoImage,
+.header[data-route-theme='dark'][data-solid='false'] .logoImage {
+  filter: invert(1);
+}
+
+.mobileOnly,
+.menuButton {
+  display: none;
+}
+
+.mobileMenu {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 116px 24px max(36px, env(safe-area-inset-bottom));
+  color: #191816;
+  background: #f8f6f1;
+}
+
+.mobileNav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(20px, 3.4vh, 34px);
+  width: min(100%, 560px);
+  margin: auto;
+}
+
+.mobileNavLink {
+  color: inherit;
+  font-family: var(--font-cormorant), Garamond, serif;
+  font-size: clamp(35px, 10vw, 58px);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 0.9;
+  text-decoration: none;
+}
+
+.mobileMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(100%, 560px);
+  margin: 52px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(25, 24, 22, 0.18);
+}
+
+.mobileMeta a {
+  color: inherit;
+  font-family: var(--font-lora), serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menuButton {
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.menuIcon {
+  position: relative;
+  width: 21px;
+  height: 12px;
+}
+
+.menuIcon::before,
+.menuIcon::after {
+  position: absolute;
+  left: 0;
+  width: 21px;
+  height: 1px;
+  content: '';
+  background: currentColor;
+  transition: top 260ms ease, transform 260ms ease;
+}
+
+.menuIcon::before {
+  top: 2px;
+}
+
+.menuIcon::after {
+  top: 9px;
+}
+
+.header[data-menu-open='true'] .menuIcon::before {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.header[data-menu-open='true'] .menuIcon::after {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 1050px) {
+  .header {
+    height: 72px;
+  }
+
+  .desktopGroup {
+    display: none;
+  }
+
+  .mobileOnly,
+  .menuButton {
+    display: flex;
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 16px;
+  }
+
+  .menuButton {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .logo {
+    width: 64px;
+    height: 54px;
+  }
+
+  .languageLink {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .logoImage,
+  .navLink::after,
+  .menuIcon::before,
+  .menuIcon::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,1049 @@
+{
+  "blender_version": "5.2.0 LTS",
+  "source_blend": {
+    "path": "/Users/elisaevrard/projects/dyaneparis/assets/models/dyane-web-v2.blend",
+    "sha256": "9e26dd30718214501bde31282957c764c863acab103474acbdb5250c1469d1c8"
+  },
+  "original": {
+    "path": "/Users/elisaevrard/Downloads/dyane.glb 3",
+    "sha256": "2089d4cdaee37ebfa3a1a0095a10a1450d6270b06e586ded1e97c0fc6eb33464"
+  },
+  "v2": {
+    "path": "/Users/elisaevrard/projects/dyaneparis/public/models/dyane-web-v2.glb",
+    "sha256": "a62b7f91b6b47f57100bcf1233bebd5df004fe92fc342a19e2c2dfb364c1a83b"
+  },
+  "previous_candidate": {
+    "sha256": "acb436510e82b04e98e3dd2a80c4e72457182486c3d54bc5bb9535904832b01c",
+    "size_bytes": 1914644,
+    "git_backup_commit": "bcb5030"
+  },
+  "candidate": {
+    "path": "/Users/elisaevrard/projects/dyaneparis/assets/models/reconstruction/exports/dyane-web-v3-candidate.glb",
+    "sha256": "d1673f8817b34e1b00abd73fc34e949c15905f9a8675e3a2656591244876ed09",
+    "size_bytes": 3045440
+  },
+  "reference_files": {
+    "front": "/Users/elisaevrard/Desktop/DYANE-FULL/1.png",
+    "profile": "/Users/elisaevrard/Desktop/DYANE-FULL/2.png",
+    "three-quarter": "/Users/elisaevrard/Desktop/DYANE-FULL/3.png",
+    "back": "/Users/elisaevrard/Desktop/DYANE-FULL/4.png",
+    "front-studio": "/Users/elisaevrard/projects/dyaneparis/public/dyane-no1.webp"
+  },
+  "scale_to_42cm": 0.19295702058834546,
+  "snapshots": [
+    {
+      "stage": "v00",
+      "bounds": {
+        "min": [
+          -0.3175099492073059,
+          -0.23603455722332,
+          0.013805031776428223
+        ],
+        "max": [
+          0.3448640704154968,
+          0.23789595067501068,
+          2.1738157272338867
+        ]
+      },
+      "dimensions": [
+        0.6623740196228027,
+        0.4739305078983307,
+        2.160010814666748
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 10207,
+          "triangles": 15310,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 4928,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.3175099492073059,
+              -0.23572754859924316,
+              0.013805031776428223
+            ],
+            "max": [
+              0.3435099720954895,
+              0.23789595067501068,
+              1.851884126663208
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9932,
+          "triangles": 19110,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [],
+          "degenerate_faces": 0,
+          "boundary_edges": 766,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.21639013290405273,
+              -0.2297126203775406,
+              0.20724332332611084
+            ],
+            "max": [
+              0.3448640704154968,
+              0.23391276597976685,
+              1.5516945123672485
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 19110,
+          "triangles": 25636,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 9722,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.13625596463680267,
+              -0.17450129985809326,
+              1.6787678003311157
+            ],
+            "max": [
+              0.1957423835992813,
+              0.17818892002105713,
+              2.1738157272338867
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.04451286047697067,
+              -0.23603455722332,
+              0.05856778472661972
+            ],
+            "max": [
+              0.07790659368038177,
+              -0.2360345423221588,
+              0.17956757545471191
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "v01",
+      "bounds": {
+        "min": [
+          -0.27873265743255615,
+          -0.23603455722332,
+          0.013805031776428223
+        ],
+        "max": [
+          0.37571626901626587,
+          0.23789595067501068,
+          2.1766958236694336
+        ]
+      },
+      "dimensions": [
+        0.654448926448822,
+        0.4739305078983307,
+        2.162890911102295
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 10207,
+          "triangles": 15310,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 4928,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.27873265743255615,
+              -0.23572754859924316,
+              0.013805031776428223
+            ],
+            "max": [
+              0.2865699529647827,
+              0.23789595067501068,
+              1.7743993997573853
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9932,
+          "triangles": 19110,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [],
+          "degenerate_faces": 0,
+          "boundary_edges": 766,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.221933051943779,
+              -0.2297126203775406,
+              0.20724332332611084
+            ],
+            "max": [
+              0.37571626901626587,
+              0.23460040986537933,
+              1.4922211170196533
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 19110,
+          "triangles": 25636,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 9722,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.14366520941257477,
+              -0.18239574134349823,
+              1.6787678003311157
+            ],
+            "max": [
+              0.20396344363689423,
+              0.18266767263412476,
+              2.1766958236694336
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.04451286047697067,
+              -0.23603455722332,
+              0.05856778472661972
+            ],
+            "max": [
+              0.07790659368038177,
+              -0.2360345423221588,
+              0.17956757545471191
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "v02",
+      "bounds": {
+        "min": [
+          -0.27824002504348755,
+          -0.24372753500938416,
+          0.013805299997329712
+        ],
+        "max": [
+          0.37571626901626587,
+          0.2378959357738495,
+          2.1766505241394043
+        ]
+      },
+      "dimensions": [
+        0.6539562940597534,
+        0.48162347078323364,
+        2.1628451347351074
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 10207,
+          "triangles": 15310,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 4928,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.27824002504348755,
+              -0.24372753500938416,
+              0.013805299997329712
+            ],
+            "max": [
+              0.28349846601486206,
+              0.2378959357738495,
+              1.7743568420410156
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9932,
+          "triangles": 19110,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [],
+          "degenerate_faces": 0,
+          "boundary_edges": 766,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.221933051943779,
+              -0.2297126203775406,
+              0.20724332332611084
+            ],
+            "max": [
+              0.37571626901626587,
+              0.23460040986537933,
+              1.4922211170196533
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 37882,
+          "triangles": 75760,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.16113834083080292,
+              -0.17466416954994202,
+              1.6790610551834106
+            ],
+            "max": [
+              0.22276683151721954,
+              0.2031809240579605,
+              2.1766505241394043
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.04451286047697067,
+              -0.23603455722332,
+              0.05856778472661972
+            ],
+            "max": [
+              0.07790659368038177,
+              -0.2360345423221588,
+              0.17956757545471191
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "v03",
+      "bounds": {
+        "min": [
+          -0.3100000023841858,
+          -0.3100692927837372,
+          0.0
+        ],
+        "max": [
+          0.4500877857208252,
+          0.3100000023841858,
+          2.1766505241394043
+        ]
+      },
+      "dimensions": [
+        0.760087788105011,
+        0.6200692653656006,
+        2.1766505241394043
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 9065,
+          "triangles": 13552,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 4404,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.27824002504348755,
+              -0.233384370803833,
+              0.2288050353527069
+            ],
+            "max": [
+              0.28349846601486206,
+              0.13906721770763397,
+              1.7743568420410156
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9932,
+          "triangles": 19110,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [],
+          "degenerate_faces": 0,
+          "boundary_edges": 766,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.2619122266769409,
+              -0.23774747550487518,
+              0.23480503261089325
+            ],
+            "max": [
+              0.4500877857208252,
+              0.2713157832622528,
+              1.4922211170196533
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 37882,
+          "triangles": 75760,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.16113834083080292,
+              -0.17466416954994202,
+              1.6790610551834106
+            ],
+            "max": [
+              0.22276683151721954,
+              0.2031809240579605,
+              2.1766505241394043
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.04451286047697067,
+              -0.3100692927837372,
+              0.05856778472661972
+            ],
+            "max": [
+              0.07790659368038177,
+              -0.3100692927837372,
+              0.17956757545471191
+            ]
+          }
+        },
+        {
+          "name": "Base",
+          "vertices": 1024,
+          "triangles": 2044,
+          "materials": [
+            "Porcelain_Base"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.3100000023841858,
+              -0.3100000023841858,
+              0.0
+            ],
+            "max": [
+              0.3100000023841858,
+              0.3100000023841858,
+              0.2150000035762787
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "v04",
+      "bounds": {
+        "min": [
+          -0.3100000023841858,
+          -0.3100692927837372,
+          0.0
+        ],
+        "max": [
+          0.4500877857208252,
+          0.3100000023841858,
+          2.1766505241394043
+        ]
+      },
+      "dimensions": [
+        0.760087788105011,
+        0.6200692653656006,
+        2.1766505241394043
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 7114,
+          "triangles": 13571,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 646,
+          "non_manifold_edges_excluding_boundaries": 1,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.27749645709991455,
+              -0.233384370803833,
+              0.2288050353527069
+            ],
+            "max": [
+              0.28294825553894043,
+              0.13906721770763397,
+              1.7743568420410156
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9648,
+          "triangles": 18934,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 370,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.2619122266769409,
+              -0.23774747550487518,
+              0.2288050353527069
+            ],
+            "max": [
+              0.4500877857208252,
+              0.2713157832622528,
+              1.4922211170196533
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 37882,
+          "triangles": 75760,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.16113834083080292,
+              -0.17466416954994202,
+              1.6790610551834106
+            ],
+            "max": [
+              0.22276683151721954,
+              0.2031809240579605,
+              2.1766505241394043
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.04451286047697067,
+              -0.3100692927837372,
+              0.05856778472661972
+            ],
+            "max": [
+              0.07790659368038177,
+              -0.3100692927837372,
+              0.17956757545471191
+            ]
+          }
+        },
+        {
+          "name": "Base",
+          "vertices": 1024,
+          "triangles": 2044,
+          "materials": [
+            "Porcelain_Base"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.3100000023841858,
+              -0.3100000023841858,
+              0.0
+            ],
+            "max": [
+              0.3100000023841858,
+              0.3100000023841858,
+              0.2150000035762787
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "v05",
+      "bounds": {
+        "min": [
+          -0.05981667712330818,
+          -0.05983004719018936,
+          0.0
+        ],
+        "max": [
+          0.08684759587049484,
+          0.05981667712330818,
+          0.41999998688697815
+        ]
+      },
+      "dimensions": [
+        0.14666427671909332,
+        0.11964672803878784,
+        0.41999998688697815
+      ],
+      "objects": [
+        {
+          "name": "Body",
+          "vertices": 7114,
+          "triangles": 13571,
+          "materials": [
+            "Porcelain_Ivory"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 646,
+          "non_manifold_edges_excluding_boundaries": 1,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.053544893860816956,
+              -0.045033153146505356,
+              0.04414953663945198
+            ],
+            "max": [
+              0.054596852511167526,
+              0.026833996176719666,
+              0.34237462282180786
+            ]
+          }
+        },
+        {
+          "name": "Scarf",
+          "vertices": 9648,
+          "triangles": 18934,
+          "materials": [
+            "Glaze_Bordeaux"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 370,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.050537802278995514,
+              -0.04587504267692566,
+              0.04414953663945198
+            ],
+            "max": [
+              0.08684759587049484,
+              0.052352286875247955,
+              0.2879345417022705
+            ]
+          }
+        },
+        {
+          "name": "Cap",
+          "vertices": 37882,
+          "triangles": 75760,
+          "materials": [
+            "Porcelain_Cap"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.031092774122953415,
+              -0.033702678978443146,
+              0.32398661971092224
+            ],
+            "max": [
+              0.04298442229628563,
+              0.03920518606901169,
+              0.41999998688697815
+            ]
+          }
+        },
+        {
+          "name": "Signature",
+          "vertices": 1498,
+          "triangles": 1450,
+          "materials": [
+            "Signature_Dark"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 1498,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.008589070290327072,
+              -0.05983004719018936,
+              0.011301064863801003
+            ],
+            "max": [
+              0.015032623894512653,
+              -0.05983004719018936,
+              0.034648824483156204
+            ]
+          }
+        },
+        {
+          "name": "Base",
+          "vertices": 1024,
+          "triangles": 2044,
+          "materials": [
+            "Porcelain_Base"
+          ],
+          "uv_layers": [
+            "UVMap"
+          ],
+          "degenerate_faces": 0,
+          "boundary_edges": 0,
+          "non_manifold_edges_excluding_boundaries": 0,
+          "loose_vertices": 0,
+          "bounds": {
+            "min": [
+              -0.05981667712330818,
+              -0.05981667712330818,
+              0.0
+            ],
+            "max": [
+              0.05981667712330818,
+              0.05981667712330818,
+              0.04148576036095619
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "missing_nodes": [],
+    "nodes": [
+      "Base",
+      "Body",
+      "Cap",
+      "Scarf",
+      "Signature"
+    ],
+    "materials": [
+      "Glaze_Bordeaux",
+      "Porcelain_Base",
+      "Porcelain_Cap",
+      "Porcelain_Ivory",
+      "Signature_Dark"
+    ],
+    "dimensions": [
+      0.14666427671909332,
+      0.11964672803878784,
+      0.41999998688697815
+    ],
+    "base_on_ground": true,
+    "height_42cm": true,
+    "objects": [
+      {
+        "name": "Base",
+        "vertices": 3840,
+        "triangles": 2044,
+        "materials": [
+          "Porcelain_Base"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ],
+        "degenerate_faces": 0,
+        "boundary_edges": 3840,
+        "non_manifold_edges_excluding_boundaries": 0,
+        "loose_vertices": 0,
+        "bounds": {
+          "min": [
+            -0.05981667712330818,
+            -0.05981667712330818,
+            0.0
+          ],
+          "max": [
+            0.05981667712330818,
+            0.05981667712330818,
+            0.04148576036095619
+          ]
+        }
+      },
+      {
+        "name": "Body",
+        "vertices": 9070,
+        "triangles": 13570,
+        "materials": [
+          "Porcelain_Ivory"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ],
+        "degenerate_faces": 0,
+        "boundary_edges": 4399,
+        "non_manifold_edges_excluding_boundaries": 1,
+        "loose_vertices": 0,
+        "bounds": {
+          "min": [
+            -0.053544893860816956,
+            -0.045033153146505356,
+            0.04414953663945198
+          ],
+          "max": [
+            0.054596852511167526,
+            0.026833996176719666,
+            0.34237462282180786
+          ]
+        }
+      },
+      {
+        "name": "Cap",
+        "vertices": 44633,
+        "triangles": 75760,
+        "materials": [
+          "Porcelain_Cap"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ],
+        "degenerate_faces": 0,
+        "boundary_edges": 13048,
+        "non_manifold_edges_excluding_boundaries": 0,
+        "loose_vertices": 0,
+        "bounds": {
+          "min": [
+            -0.031092774122953415,
+            -0.033702678978443146,
+            0.32398661971092224
+          ],
+          "max": [
+            0.04298442229628563,
+            0.03920518606901169,
+            0.41999998688697815
+          ]
+        }
+      },
+      {
+        "name": "Scarf",
+        "vertices": 13639,
+        "triangles": 18934,
+        "materials": [
+          "Glaze_Bordeaux"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ],
+        "degenerate_faces": 0,
+        "boundary_edges": 7402,
+        "non_manifold_edges_excluding_boundaries": 0,
+        "loose_vertices": 0,
+        "bounds": {
+          "min": [
+            -0.050537802278995514,
+            -0.04587504267692566,
+            0.04414953663945198
+          ],
+          "max": [
+            0.08684759587049484,
+            0.052352286875247955,
+            0.2879345417022705
+          ]
+        }
+      },
+      {
+        "name": "Signature",
+        "vertices": 2834,
+        "triangles": 1450,
+        "materials": [
+          "Signature_Dark"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ],
+        "degenerate_faces": 0,
+        "boundary_edges": 3174,
+        "non_manifold_edges_excluding_boundaries": 0,
+        "loose_vertices": 0,
+        "bounds": {
+          "min": [
+            -0.008589070290327072,
+            -0.05983004719018936,
+            0.011301064863801003
+          ],
+          "max": [
+            0.015032623894512653,
+            -0.05983004719018936,
+            0.034648824483156204
+          ]
+        }
+      }
+    ]
+  }
+}
