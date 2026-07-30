@@ -16,3 +16,4 @@ coverage
 *.blend1
 __pycache__/
 .next
+.vercel
