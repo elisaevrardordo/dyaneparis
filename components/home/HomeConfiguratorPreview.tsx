@@ -15,8 +15,19 @@ export default function HomeConfiguratorPreview({ fallback }: { fallback: HomeIm
   const containerRef = useRef<HTMLDivElement>(null)
   const [nearViewport, setNearViewport] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(true)
+  const [deviceCanRender3D, setDeviceCanRender3D] = useState(false)
 
   useEffect(() => {
+    const device = navigator as Navigator & {
+      connection?: { saveData?: boolean }
+      deviceMemory?: number
+    }
+    const constrainedDevice =
+      device.connection?.saveData === true ||
+      (device.deviceMemory !== undefined && device.deviceMemory <= 4) ||
+      (device.hardwareConcurrency !== undefined && device.hardwareConcurrency <= 4)
+    setDeviceCanRender3D(!constrainedDevice)
+
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
     const syncMotion = () => setReducedMotion(media.matches)
     syncMotion()
@@ -50,7 +61,7 @@ export default function HomeConfiguratorPreview({ fallback }: { fallback: HomeIm
         sizes="(max-width: 980px) 100vw, 70vw"
         style={{ objectPosition: fallback.objectPosition }}
       />
-      {nearViewport ? (
+      {nearViewport && deviceCanRender3D ? (
         <div className={styles.customizationCanvas}>
           <DyaneCanvas
             activeStep="format"
