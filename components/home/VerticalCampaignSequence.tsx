@@ -83,12 +83,14 @@ function FutureImageSlide({
   label,
   caption,
   cta,
+  description,
   href,
 }: {
   src: string
   label: string
   caption: string
   cta: string
+  description?: string
   href: string
 }) {
   return (
@@ -99,7 +101,7 @@ function FutureImageSlide({
       aria-label={label}
     >
       {src ? <Image className={styles.fullMedia} src={src} alt={label} fill sizes="100vw" /> : null}
-      <CampaignCaption cta={cta} href={href} lines={[caption]} />
+      <CampaignCaption cta={cta} description={description} href={href} lines={[caption]} />
     </section>
   )
 }
@@ -177,14 +179,8 @@ export default function VerticalCampaignSequence({
         ) : null}
         <CampaignCaption
           cta={isEnglish ? 'DISCOVER' : 'DÉCOUVRIR'}
-          description={isEnglish
-            ? 'Dyane Paris is a French premium cocktail House and a House of Liquid Art. It creates ready-to-serve cocktails presented in hand-painted porcelain sculptures. At the meeting point of mixology, fine craft and hospitality, each creation is conceived as both a tasting experience and a collectible object.'
-            : 'Dyane Paris est une Maison française de cocktails premium et une Maison d’Art Liquide. Elle crée des cocktails prêts à servir, présentés dans des sculptures en porcelaine peintes à la main. À la rencontre de la mixologie, des métiers d’art et de l’hospitality, chaque création devient une expérience de dégustation et un objet à collectionner.'}
           href={localizedPath(locale, '/la-maison')}
-          lines={[
-            isEnglish ? 'DYANE PARIS — HOUSE OF LIQUID ART' : 'DYANE PARIS — MAISON D’ART LIQUIDE',
-            isEnglish ? 'ART, NOW DRINKABLE.' : 'DÉSORMAIS, L’ART SE BOIT.',
-          ]}
+          lines={[isEnglish ? 'DYANE PARIS — HOUSE OF LIQUID ART' : 'DYANE PARIS — MAISON D’ART LIQUIDE']}
           titleElement="h1"
         />
       </section>
@@ -194,6 +190,9 @@ export default function VerticalCampaignSequence({
         label={isEnglish ? 'Dyane Paris porcelain cocktail sculpture campaign' : 'Campagne Dyane Paris autour des cocktails en sculptures de porcelaine'}
         caption={isEnglish ? 'THE DYANE UNIVERSE' : 'L’UNIVERS DYANE'}
         cta={isEnglish ? 'DISCOVER' : 'DÉCOUVRIR'}
+        description={isEnglish
+          ? 'Dyane Paris is a French House of Liquid Art. It imagines exceptional ready-to-serve cocktails, presented in hand-painted porcelain sculptures. At the meeting point of mixology and fine craft, each creation becomes a tasting experience and a collectible object.'
+          : 'Dyane Paris est une Maison française d’Art Liquide. Elle imagine des cocktails d’exception prêts à servir, présentés dans des sculptures en porcelaine peintes à la main. À la rencontre de la mixologie et des métiers d’art, chaque création devient une expérience de dégustation et un objet à collectionner.'}
         href={localizedPath(locale, '/le-journal')}
       />
 
