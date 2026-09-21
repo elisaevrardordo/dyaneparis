@@ -1,0 +1,50 @@
+.page {
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  color: #111;
+  background: #fff;
+  font-family: var(--font-editorial), Georgia, serif;
+  text-align: center;
+}
+
+.inner {
+  width: min(560px, 100%);
+}
+
+.kicker,
+.link {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 20px 0 18px;
+  font-family: inherit;
+  font-size: clamp(64px, 12vw, 144px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.copy {
+  margin: 0 auto 34px;
+  color: rgba(17, 17, 17, 0.68);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.link {
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 5px;
+}

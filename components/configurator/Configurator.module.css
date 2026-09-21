@@ -2,7 +2,7 @@
   --ink: #25211e;
   --muted: #77716b;
   --line: rgba(37, 33, 30, 0.16);
-  --paper: #e7e1db;
+  --paper: var(--background-house);
   position: relative;
   min-height: 100svh;
   overflow: hidden;
@@ -26,13 +26,13 @@
 .atelierMark {
   position: absolute;
   z-index: 2;
-  top: 38px;
+  top: calc(var(--header-height) + 38px);
   right: 48px;
   display: flex;
   align-items: center;
   gap: 20px;
   color: rgba(37, 33, 30, 0.5);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 9px;
   letter-spacing: 0.19em;
   text-transform: uppercase;
@@ -52,7 +52,7 @@
   z-index: 3;
   height: 250px;
   padding: 0 44px 22px;
-  background: linear-gradient(180deg, rgba(231, 225, 219, 0) 0, rgba(231, 225, 219, 0.95) 14%, var(--paper) 28%);
+  background: linear-gradient(180deg, rgba(248, 246, 242, 0) 0, rgba(248, 246, 242, 0.95) 14%, var(--paper) 28%);
   animation: interfaceIn 600ms ease both;
 }
 
@@ -70,7 +70,7 @@
 .paletteName,
 .paletteMeta,
 .interactionHint {
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
 }
 
 .stepLabel {
@@ -84,7 +84,7 @@
 .formatTitle,
 .paletteTitle {
   margin: 0;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-weight: 400;
   letter-spacing: -0.015em;
 }
@@ -156,7 +156,7 @@
 }
 
 .formatLabel {
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: 20px;
   line-height: 1;
 }
@@ -256,7 +256,7 @@
   max-width: 340px;
   margin: 22px 0 0;
   color: var(--muted);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 11px;
   line-height: 1.75;
 }
@@ -361,7 +361,7 @@
   bottom: 24px;
   margin: 0;
   color: rgba(37, 33, 30, 0.52);
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-quote);
   font-size: 17px;
   font-style: italic;
   letter-spacing: 0.04em;
@@ -381,7 +381,7 @@
   gap: 15px;
   color: rgba(37, 33, 30, 0.5);
   background: var(--paper);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -467,7 +467,7 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 9px;
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -534,7 +534,7 @@
     padding: 20px 16px calc(14px + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(37, 33, 30, 0.12);
     border-radius: 20px 20px 0 0;
-    background: rgba(238, 233, 227, 0.97);
+    background: rgba(248, 246, 242, 0.97);
     box-shadow: 0 -18px 60px rgba(55, 49, 44, 0.08);
   }
 
@@ -591,7 +591,7 @@
     padding: 18px 22px calc(16px + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(37, 33, 30, 0.12);
     border-radius: 20px 20px 0 0;
-    background: rgba(238, 233, 227, 0.97);
+    background: rgba(248, 246, 242, 0.97);
     box-shadow: 0 -18px 60px rgba(55, 49, 44, 0.09);
     transform: none;
     animation: mobileSheetIn 720ms 180ms cubic-bezier(0.22, 0.68, 0.2, 1) both;

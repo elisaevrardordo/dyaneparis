@@ -6,9 +6,14 @@ type Editorial = ReturnType<typeof getHomeContent>['editorial']
 
 export default function EditorialDiptych({ images }: { images: Editorial }) {
   return (
-    <section className={styles.diptych} aria-label="Dyane Paris — études sculpturales">
-      {images.map((image) => (
-        <figure className={styles.editorialPanel} key={image.src}>
+    <section
+      className={styles.diptych}
+      data-scroll-section
+      data-header-foreground="white"
+      aria-label="Dyane Paris — études sculpturales"
+    >
+      {images.map((image, index) => (
+        <figure className={styles.editorialPanel} key={`${image.src}-${index}`}>
           <Image
             className={styles.mediaImage}
             src={image.src}

@@ -6,26 +6,51 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { localizedPath } from '@/i18n/paths'
+import { getSiteTheme } from '@/lib/siteTheme'
 import styles from './LuxuryHeader.module.css'
+
+type HeaderMode = 'hero' | 'solid'
+type HeaderForeground = 'white' | 'black'
+
+type HeaderState = {
+  path: string
+  mode: HeaderMode
+  foreground: HeaderForeground
+}
+
+function initialHeaderState(pathname: string): HeaderState {
+  const theme = getSiteTheme(pathname)
+  const route = pathname.replace(/^\/(?:en|fr)(?=\/|$)/, '') || '/'
+  const isJournalIndex = route === '/le-journal' || route === '/journal'
+  const isExperiencesPage = route === '/experiences'
+  return {
+    path: pathname,
+    mode: (theme === 'journal' && !isJournalIndex) || theme === 'archive' ? 'solid' : 'hero',
+    foreground: isExperiencesPage || isJournalIndex ? 'white' : 'black',
+  }
+}
 
 export default function LuxuryHeader() {
   const pathname = usePathname()
   const t = useTranslations('header')
   const locale = pathname.startsWith('/en') ? 'en' : 'fr'
+  const pageTheme = getSiteTheme(pathname)
   const otherLocale = locale === 'en' ? 'fr' : 'en'
-  const localePath = locale === 'en' ? pathname.replace(/^\/en(?=\/|$)/, '') || '/' : `/en${pathname === '/' ? '' : pathname}`
+  const pathWithoutLocale = pathname.replace(/^\/(?:en|fr)(?=\/|$)/, '') || '/'
+  const localePath = locale === 'en'
+    ? pathWithoutLocale
+    : `/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [surfaceTheme, setSurfaceTheme] = useState<'light' | 'dark'>(
-    pathname.includes('/configurateur') ? 'dark' : 'light',
-  )
+  const [headerState, setHeaderState] = useState<HeaderState>(() => initialHeaderState(pathname))
+  const resolvedHeaderState = headerState.path === pathname ? headerState : initialHeaderState(pathname)
+  const headerRef = useRef<HTMLElement>(null)
   const menuRef = useRef<HTMLElement>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   const leftLinks = [
     { label: t('collections'), href: '/oeuvres' },
     { label: t('maison'), href: '/la-maison' },
-    { label: t('personalization'), href: '/configurateur' },
+    { label: t('personalization'), href: '/fabrication' },
   ]
   const rightLinks = [
     { label: t('experiences'), href: '/experiences' },
@@ -35,32 +60,89 @@ export default function LuxuryHeader() {
   const mobileLinks = [...leftLinks, ...rightLinks]
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    let updateFrame = 0
 
-  useEffect(() => {
-    const themedSections = Array.from(document.querySelectorAll<HTMLElement>('[data-header-theme]'))
-    if (themedSections.length === 0) {
-      setSurfaceTheme(pathname.includes('/configurateur') ? 'dark' : 'light')
-      return
+    const commitHeaderState = (mode: HeaderMode, foreground: HeaderForeground) => {
+      setHeaderState((current) => {
+        if (current.path === pathname && current.mode === mode && current.foreground === foreground) {
+          return current
+        }
+        return { path: pathname, mode, foreground }
+      })
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const active = entries.find((entry) => entry.isIntersecting)
-        const theme = active?.target.getAttribute('data-header-theme')
-        if (theme === 'light' || theme === 'dark') setSurfaceTheme(theme)
-      },
-      { rootMargin: '0px 0px -88% 0px', threshold: 0 },
-    )
-    themedSections.forEach((section) => {
-      observer.observe(section)
-    })
-    return () => observer.disconnect()
-  }, [pathname])
+    const updateHeaderMode = () => {
+      updateFrame = 0
+      if (pageTheme === 'archive') {
+        commitHeaderState('solid', 'black')
+        return
+      }
+
+      const hero = document.querySelector<HTMLElement>('[data-page-hero]')
+      if (!hero) {
+        commitHeaderState('solid', 'black')
+        return
+      }
+
+      const bounds = hero.getBoundingClientRect()
+      const headerHeight = headerRef.current?.getBoundingClientRect().height
+        ?? Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height'))
+        ?? 112
+      const heroIsBehindHeader = bounds.bottom > headerHeight
+      const declaredForeground = hero.getAttribute('data-header-foreground')
+      const foreground: HeaderForeground = declaredForeground === 'black' ? 'black' : 'white'
+
+      const route = pathname.replace(/^\/(?:en|fr)(?=\/|$)/, '') || '/'
+      const isHomePage = route === '/'
+      if (isHomePage) {
+        const sampleY = headerHeight / 2
+        const home = document.querySelector<HTMLElement>('main[data-section-scroll]')
+        const sections = Array.from(
+          home?.querySelectorAll<HTMLElement>('[data-scroll-section]') ?? [],
+        )
+        const controlledIndex = Number(home?.dataset.activeSlide ?? 0)
+        const activeSection = home?.dataset.controlledScroll === 'true'
+          ? sections[controlledIndex]
+          : sections.find((section) => {
+              const sectionBounds = section.getBoundingClientRect()
+              return sectionBounds.top <= sampleY && sectionBounds.bottom > sampleY
+            })
+        const activeForeground = activeSection?.getAttribute('data-header-foreground')
+
+        commitHeaderState('hero', activeForeground === 'white' ? 'white' : 'black')
+        return
+      }
+
+      commitHeaderState(
+        heroIsBehindHeader ? 'hero' : 'solid',
+        heroIsBehindHeader ? foreground : 'black',
+      )
+    }
+
+    const scheduleHeaderUpdate = () => {
+      if (updateFrame) return
+      updateFrame = window.requestAnimationFrame(updateHeaderMode)
+    }
+
+    scheduleHeaderUpdate()
+    const homeScrollContainer = document.querySelector<HTMLElement>('[data-home-scroll-container]')
+    homeScrollContainer?.addEventListener('scroll', scheduleHeaderUpdate, { passive: true })
+    window.addEventListener('home-slide-change', scheduleHeaderUpdate)
+    window.addEventListener('scroll', scheduleHeaderUpdate, { passive: true })
+    window.addEventListener('resize', scheduleHeaderUpdate, { passive: true })
+    window.addEventListener('orientationchange', scheduleHeaderUpdate, { passive: true })
+    window.addEventListener('pageshow', scheduleHeaderUpdate)
+
+    return () => {
+      window.cancelAnimationFrame(updateFrame)
+      homeScrollContainer?.removeEventListener('scroll', scheduleHeaderUpdate)
+      window.removeEventListener('home-slide-change', scheduleHeaderUpdate)
+      window.removeEventListener('scroll', scheduleHeaderUpdate)
+      window.removeEventListener('resize', scheduleHeaderUpdate)
+      window.removeEventListener('orientationchange', scheduleHeaderUpdate)
+      window.removeEventListener('pageshow', scheduleHeaderUpdate)
+    }
+  }, [pageTheme, pathname])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -98,12 +180,13 @@ export default function LuxuryHeader() {
 
   return (
     <header
-      className={styles.header}
-      data-solid={scrolled}
+      ref={headerRef}
+      className={`${styles.header}${resolvedHeaderState.mode === 'solid' ? ' is-solid' : ''}`}
       data-menu-open={menuOpen}
-      data-route-theme={surfaceTheme}
+      data-foreground={resolvedHeaderState.foreground}
+      data-theme={pageTheme}
     >
-      <div className={styles.bar}>
+      <div className={`${styles.bar}${pageTheme === 'archive' ? ` ${styles.archiveBar}` : ''}`}>
         <nav className={styles.desktopGroup} aria-label={t('primaryNavigation')}>
           {leftLinks.map((link) => (
             <Link className={styles.navLink} href={localizedPath(locale, link.href)} key={link.href}>
@@ -124,21 +207,25 @@ export default function LuxuryHeader() {
           <span className={styles.menuIcon} aria-hidden="true" />
         </button>
 
-        <Link className={styles.logo} href={localizedPath(locale)} aria-label="Dyane Paris — accueil">
+        <Link
+          className={`${styles.logo}${pageTheme === 'archive' ? ` ${styles.archiveLogo}` : ''}`}
+          href={localizedPath(locale)}
+          aria-label="Dyane Paris — accueil"
+        >
           <Image
             className={styles.logoImage}
             src="/LogoDYANE_blanc.png"
             alt="Dyane Paris"
             width={1554}
             height={1389}
-            sizes="74px"
+            sizes="98px"
             priority
           />
         </Link>
 
-        <Link className={`${styles.languageLink} ${styles.mobileOnly}`} href={localePath} hrefLang={otherLocale}>
+        <a className={`${styles.languageLink} ${styles.mobileOnly}`} href={localePath} hrefLang={otherLocale}>
           {otherLocale.toUpperCase()}
-        </Link>
+        </a>
 
         <nav className={styles.desktopGroup} aria-label={t('secondaryNavigation')}>
           {rightLinks.map((link) => (
@@ -146,9 +233,9 @@ export default function LuxuryHeader() {
               {link.label}
             </Link>
           ))}
-          <Link className={styles.languageLink} href={localePath} hrefLang={otherLocale}>
+          <a className={styles.languageLink} href={localePath} hrefLang={otherLocale}>
             {locale === 'fr' ? 'FR / EN' : 'EN / FR'}
-          </Link>
+          </a>
         </nav>
       </div>
 
@@ -172,9 +259,9 @@ export default function LuxuryHeader() {
             ))}
           </div>
           <div className={styles.mobileMeta}>
-            <Link href={localePath} hrefLang={otherLocale} onClick={() => setMenuOpen(false)}>
+            <a href={localePath} hrefLang={otherLocale} onClick={() => setMenuOpen(false)}>
               {otherLocale === 'en' ? 'English' : 'Français'}
-            </Link>
+            </a>
             <a href="https://www.instagram.com/dyaneparis_/" rel="noreferrer" target="_blank">Instagram</a>
           </div>
         </nav>

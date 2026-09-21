@@ -14,7 +14,12 @@ export default function ArtisticCustomizationSection({
   locale: string
 }) {
   return (
-    <section className={styles.customization} data-header-theme="dark" aria-labelledby="customization-title">
+    <section
+      className={styles.customization}
+      data-scroll-section
+      data-header-foreground="black"
+      aria-labelledby="customization-title"
+    >
       <HomeConfiguratorPreview fallback={content.fallback} />
       <div className={styles.customizationCopy}>
         <p className={styles.eyebrow}>{content.eyebrow}</p>

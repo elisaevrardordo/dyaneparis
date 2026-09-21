@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import {
@@ -9,9 +10,10 @@ import {
     seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
+import { localizedPath } from '@/i18n/paths'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
-const lora = { fontFamily: 'var(--font-lora), serif' }
+const font = { fontFamily: 'var(--font-editorial), serif' }
+const lora = { fontFamily: 'var(--font-editorial), serif' }
 
 export async function generateMetadata({
     params,
@@ -77,19 +79,25 @@ export default async function DistillationPage({
                     .dist-final { height: 50vh !important; }
                 }
             `}</style>
-            <main style={{ background: '#FAF8F5' }}>
+            <main className="theme-page" style={{ background: 'transparent' }}>
 
                 {/* Image hero */}
-                <section className="dist-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
+                <section data-page-hero data-header-foreground="white" className="dist-hero" style={{ position: 'relative', width: '100%', height: '80vh', overflow: 'hidden' }}>
                     <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg" alt="Distillation artisanale des cocktails Dyane Paris" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
                 </section>
 
                 {/* Intro */}
                 <section className="dist-intro" style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                    <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
+                    <p className="font-quote" data-font="quote" style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
                     <h1 style={{ ...font, fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
+                    <p style={{ ...lora, fontSize: '15px', lineHeight: 1.8, marginBottom: '20px' }}>{t('definition')}</p>
                     <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('intro1')}</p>
                     <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>{t('intro2')}</p>
+                    <p style={{ ...lora, fontSize: '11px', lineHeight: 1.8, letterSpacing: '0.08em', marginTop: '24px', textTransform: 'uppercase' }}>
+                        <Link href={localizedPath(locale, '/oeuvres')}>{locale === 'en' ? 'Discover the works' : 'Découvrir les œuvres'}</Link>{' · '}
+                        <Link href={localizedPath(locale, '/le-journal/point-de-vue-distillateur')}>{locale === 'en' ? 'The distiller’s perspective' : 'Le point de vue du distillateur'}</Link>{' · '}
+                        <Link href={localizedPath(locale, '/le-journal/ingredients-locaux-francais')}>{locale === 'en' ? 'French ingredients' : 'Les ingrédients français'}</Link>
+                    </p>
                 </section>
 
                 {/* Origine 3 colonnes */}
@@ -148,8 +156,8 @@ export default async function DistillationPage({
                 </section>
 
                 {/* Citation */}
-                <section className="dist-citation" style={{ padding: '60px 24px', textAlign: 'center', borderTop: '1px solid rgba(0,0,0,0.08)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                    <p style={{ ...font, fontSize: 'clamp(13px, 2vw, 18px)', letterSpacing: '0.06em', textTransform: 'uppercase', maxWidth: '900px', margin: '0 auto 16px' }}>{t('citation')}</p>
+                <section className="dist-citation" style={{ padding: '60px 24px', textAlign: 'center' }}>
+                    <p className="editorial-quote" data-font="quote" style={{ ...font, fontSize: 'clamp(13px, 2vw, 18px)', letterSpacing: '0.06em', textTransform: 'uppercase', maxWidth: '900px', margin: '0 auto 16px' }}>{t('citation')}</p>
                     <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>{t('citation_nom')}</p>
                     <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5 }}>{t('citation_titre')}</p>
                 </section>

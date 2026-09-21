@@ -31,8 +31,8 @@ export default function InstagramGrid() {
             <section className="insta-wrap" style={{ background: '#fff', padding: '4px 24px 80px' }}>
                 <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', padding: '14px 0 26px' }}>
-                        <p style={{ fontFamily: 'var(--font-playfair), serif', margin: '0 0 8px', fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.75 }}>INSTAGRAM</p>
-                        <a href="https://instagram.com/dyaneparis_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#000', fontFamily: 'var(--font-playfair), serif', fontWeight: 500, fontSize: '20px' }}>@DYANEPARIS_</a>
+                        <p style={{ fontFamily: 'var(--font-editorial), serif', margin: '0 0 8px', fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.75 }}>INSTAGRAM</p>
+                        <a href="https://instagram.com/dyaneparis_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#000', fontFamily: 'var(--font-editorial), serif', fontWeight: 500, fontSize: '20px' }}>@DYANEPARIS_</a>
                     </div>
                     <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '28px' }}>
                         {instaImages.map(({ src, alt }) => (

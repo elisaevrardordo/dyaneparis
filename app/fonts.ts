@@ -1,20 +1,4 @@
-import { Bodoni_Moda, Cormorant_Garamond, Lora, Playfair_Display } from 'next/font/google'
-
-export const playfair = Playfair_Display({
-    subsets: ['latin'],
-    weight: ['400', '500', '600'],
-    style: ['normal', 'italic'],
-    variable: '--font-playfair',
-    display: 'swap',
-})
-
-export const cormorant = Cormorant_Garamond({
-    subsets: ['latin'],
-    weight: ['300', '400', '500'],
-    style: ['normal', 'italic'],
-    variable: '--font-cormorant',
-    display: 'swap',
-})
+import { Bodoni_Moda, Playfair_Display } from 'next/font/google'
 
 export const bodoni = Bodoni_Moda({
     subsets: ['latin'],
@@ -25,12 +9,16 @@ export const bodoni = Bodoni_Moda({
     adjustFontFallback: false,
 })
 
-export const lora = Lora({
+export const playfair = Playfair_Display({
     subsets: ['latin'],
-    weight: ['400', '500', '600'],
-    style: ['normal', 'italic'],
-    variable: '--font-lora',
+    weight: ['400'],
+    style: ['normal'],
+    variable: '--font-playfair',
     display: 'swap',
+    adjustFontFallback: false,
 })
 
-export const fontVariables = `${playfair.variable} ${cormorant.variable} ${bodoni.variable} ${lora.variable}`
+// Noe Display and Austin are commercial typefaces and are not bundled in this
+// repository. Add the licensed files under app/fonts/, then load them here with
+// next/font/local while keeping the public CSS variables defined in globals.css.
+export const fontVariables = `${bodoni.variable} ${playfair.variable}`

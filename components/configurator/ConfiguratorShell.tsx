@@ -216,7 +216,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
         </section>
       )}
 
-      <p className={styles.signature}>L’art se boit.</p>
+      <p className={`${styles.signature} font-quote`} data-font="quote">L’art se boit.</p>
     </main>
   )
 }

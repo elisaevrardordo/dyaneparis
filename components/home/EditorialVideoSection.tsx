@@ -46,7 +46,8 @@ export default function EditorialVideoSection({ film }: { film: Film }) {
     <section
       ref={sectionRef}
       className={styles.film}
-      data-header-theme={film.theme}
+      data-scroll-section
+      data-header-foreground="white"
       aria-labelledby="editorial-film-title"
     >
       {loadVideo && !reducedMotion && !videoFailed ? (
@@ -77,7 +78,13 @@ export default function EditorialVideoSection({ film }: { film: Film }) {
         />
       )}
       <div className={styles.filmCopy}>
-        <h2 id="editorial-film-title" className={styles.filmTitle}>{film.title}</h2>
+        <h2
+          id="editorial-film-title"
+          className={`${styles.filmTitle} font-quote`}
+          data-font="quote"
+        >
+          {film.title}
+        </h2>
       </div>
     </section>
   )

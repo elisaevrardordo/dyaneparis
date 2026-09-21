@@ -32,8 +32,8 @@
         "maison": "LA MAISON",
         "journal": "LE JOURNAL",
         "contact": "CONTACTER LA CONCIERGERIE",
-        "personalization": "PERSONNALISATION",
-        "concierge": "CONCIERGE",
+        "personalization": "FABRICATION",
+        "concierge": "CONCIERGERIE",
         "primaryNavigation": "Navigation principale",
         "secondaryNavigation": "Navigation secondaire",
         "mobileNavigation": "Navigation mobile",
@@ -42,6 +42,9 @@
     },
     "footer": {
         "collections": "COLLECTIONS",
+        "chapter1": "CHAPITRE I",
+        "chapter2": "CHAPITRE II",
+        "teo": "TEO FOR DYANE",
         "maison": "LA MAISON",
         "journal": "LE JOURNAL",
         "experiences": "EXPÉRIENCES",
@@ -67,9 +70,10 @@
     "distillation": {
         "kicker": "L'EXCELLENCE DE LA MAISON DYANE",
         "titre": "LA CUVÉE PRESTIGE",
+        "definition": "La mixologie selon Dyane Paris repose sur des ingrédients bruts, un alcool vinique français et des infusions lentes. Chaque recette recherche un équilibre précis entre intensité, fraîcheur, texture et longueur, afin de créer un cocktail d’exception prêt à servir qui dialogue avec sa sculpture en porcelaine.",
         "intro1": "Chaque création Dyane naît d'une exigence rare : atteindre un équilibre que peu approchent, et que l'on reconnaît immédiatement.",
         "intro2": "Élaborées en France, au cœur du Vaucluse, nos cuvées prennent vie dans un territoire où la lumière, la matière et le temps façonnent chaque détail.",
-        "origine_titre": "L'ORIGINE : UNE MATIÈRE NOBLE, UNE TERRE D'EXIGENCE",
+    "origine_titre": "LA MIXOLOGIE SELON DYANE PARIS",
         "origine_p1": "Nous sélectionnons exclusivement des ingrédients bruts: gingembre frais, gousses de vanille entières, zestes d'agrumes, pour préserver la pureté des arômes.",
         "origine_p2": "Chaque élément est choisi pour sa capacité à s'exprimer avec justesse, sans artifice ni correction.",
         "origine_p3": "Cette rigueur dans la sélection constitue la base de chaque cuvée.",
@@ -90,30 +94,43 @@
     },
     "experiences": {
         "kicker": "L'EXPÉRIENCE DYANE",
-        "titre": "EXPÉRIENCES",
-        "intro1": "Dyane Paris est une Maison d'Art Liquide française dédiée à révister des saveurs de cocktails exclusives sous forme de spiritueux raffinés.",
-        "intro2": "Sa vocation est claire : préserver la maîtrise du goût, du geste et du temps dans un univers dominé par l'industrialisation. Chaque création est issue d'une production volontairement contenue, conduite avec méthode et discernement.",
-        "mesure_titre": "LE CHOIX DE LA MESURE",
-        "mesure_p1": "La Maison s'inscrit à rebours des logiques de volume. La production n'est jamais standardisée.",
-        "mesure_p2": "Elle est définie selon la nature du projet, l'identité du lieu, l'exigence du partenaire. Chaque lot fait l'objet d'un suivi précis, depuis l'assemblage jusqu'à la mise en bouteille. La constance prévaut sur la cadence. La précision sur la quantité.",
-        "mesure_p3": "Chaque série est réalisée à la commande, dans une temporalité maîtrisée. Cette organisation garantit l'intégrité des arômes, la cohérence des assemblages et l'adaptation exacte des formats, du 70 cL au 12 L. La production demeure ajustée pour ne jamais devenir mécanisée à grande échelle.",
-        "perso_titre": "LA PERSONNALISATION DES BOUTEILLES DYANE.",
-        "perso_p1": "La personnalisation constitue l'une des expressions les plus abouties du savoir-faire de la Maison. Chaque projet fait l'objet d'une étude attentive, afin d'assurer une parfaite cohérence entre contenu et le contenant.",
-        "perso_p2": "Les recettes peuvent être ajustées dans leurs équilibres, leur intensité, leur signature aromatique, pour répondre aux attentes les plus spécifiques.",
-        "perso_p3": "Le contenant est développé avec le même niveau d'exigence. Formats, finitions, interventions artistiques : chaque détail est envisagé comme une composante essentielle de l'ensemble.",
-        "perso_p4": "Elle engage la Maison dans une démarche d'écoute et de précision afin d'accompagner les demandes de nos partenaires les plus exigeants.",
-        "ancrages_titre": "DEUX ANCRAGES, UNE MÊME EXIGENCE",
-        "ancrages_p1": "La Maison opère sur deux sites de production en France.",
-        "ancrages_p2": "En Île-de-France, au cœur d'un écosystème culturel et hôtelier d'excellence, où sont conduites les productions événementielles et les séries sur mesure. Dans la région d'Avignon, territoire de tradition artisanale, dédié aux assemblages et à la stabilité des infusions.",
-        "ancrages_p3": "Deux implantations complémentaires, guidées par une même discipline.",
-        "citation": "\"MA COLLABORATION AVEC DYANE EST NÉE D'UN RESPECT MUTUEL ET D'UNE AMBITION PARTAGÉE : PROPOSER DES COCKTAILS PREMIUM QUI ALLIENT AUTHENTICITÉ, ÉLÉGANCE ET MODERNITÉ. CHAQUE SPIRITUEUX EST IMAGINÉ ET ASSEMBLÉ AVEC UNE PRÉCISION D'ORFÈVRE AFIN DE SUBLIMER LES MATIÈRES PREMIÈRES ET RÉVÉLER LA PURETÉ DES ARÔMES.\"",
-        "citation_nom": "JULIEN DUCRUET",
-        "citation_titre": "NEZ, DISTILLATEUR, PRODUCTEUR FRANÇAIS",
-        "citation_cta": "CONTACTER LA CONCIERGERIE"
+        "titre": "COCKTAILS POUR HÔTELS ET ÉVÉNEMENTS D’EXCEPTION",
+        "video_label": "Cocktails prêts à servir et expériences sur mesure Dyane Paris pour l'hospitality",
+        "definition_titre": "QUELLE SOLUTION DE COCKTAIL PREMIUM POUR UN HÔTEL DE LUXE ?",
+        "definition": "Dyane Paris propose aux hôtels de luxe une solution française de cocktails premium prêts à servir, déclinable du minibar au bar, au room service et aux événements. La Maison peut adapter la signature aromatique, le format et la présentation au lieu, tout en préservant une recette constante et un rituel de service propre à l’établissement.",
+        "intro1": "La préparation et l’assemblage sont réalisés en amont en France. Au moment du service, les équipes restent libres de choisir la température, la glace, la verrerie, la garniture et la mise en scène.",
+        "intro2": "Cette approche offre une alternative premium à la préparation complète à la minute : elle simplifie les opérations sans effacer le geste du bartender ni la relation avec l’hôte.",
+        "signature_titre": "COCKTAILS SIGNATURE POUR HÔTELS ET MAISONS D’EXCEPTION",
+        "signature_p1": "Un cocktail signature Dyane part de l’identité du lieu, de son rythme de service et de l’expérience recherchée. La recette peut être ajustée dans son équilibre, son intensité et son expression aromatique afin de former une proposition cohérente avec la Maison partenaire.",
+        "signature_p2": "Au bar ou au backbar, le cocktail arrive composé. Le bartender conserve la main sur la finition et la présentation, tandis que le travail effectué en amont aide à restituer la même intention d’un verre à l’autre.",
+        "signature_p3": "Chaque lot est suivi depuis l’assemblage jusqu’à la mise en bouteille. La production reste volontairement contenue et réalisée à la commande, avec la constance pour priorité.",
+        "service_titre": "UNE SOLUTION PRÊTE À SERVIR POUR LE MINIBAR ET LE ROOM SERVICE",
+        "service_p1": "Le format individuel de 25 cL est pensé pour la chambre, la suite, le minibar premium ou le plateau de bienvenue. Il met à disposition un cocktail déjà composé, que l’hôtel accompagne de sa verrerie et de son propre rituel.",
+        "service_p2": "En room service, cette préparation en amont permet de proposer une expérience précise sans dépendre de la présence permanente d’un bartender dans chaque espace. La température, l’accompagnement et la présentation demeurent sous le contrôle de l’établissement.",
+        "service_p3": "La sculpture en porcelaine participe à l’attention : elle donne une présence au plateau et peut être conservée après la dégustation comme souvenir du séjour.",
+        "sur_mesure_titre": "DES CRÉATIONS SUR MESURE POUR L’HOSPITALITY",
+        "sur_mesure_p1": "Dyane Paris étudie avec chaque partenaire la recette, le contenant et le contexte de service. Équilibre aromatique, finitions, interventions artistiques et formats sont envisagés ensemble afin de relier le liquide à l’identité du lieu.",
+        "sur_mesure_p2": "Les usages existants vont du format individuel 25 cL au 70 cL pour le service et le backbar. Pour les réceptions, des formats professionnels Bag-in-Box de 3 L, 5 L et 10 L facilitent une mise en place régulière ; les projets sculpturaux peuvent être adaptés jusqu’à 12 L.",
+        "sur_mesure_p3": "Chaque demande fait l’objet d’un échange avec la Maison pour définir ce qui peut être personnalisé et choisir une échelle compatible avec le projet.",
+        "evenement_titre": "COCKTAILS ET ŒUVRES POUR ÉVÉNEMENTS PRIVÉS",
+        "evenement_p1": "Pour une réception, un dîner ou un temps de banqueting, Dyane Paris peut articuler cocktail prêt à servir, sculpture et scénographie autour d’un même langage. Les grands formats préservent la régularité de l’assemblage quand plusieurs convives doivent être servis avec la même attention.",
+        "evenement_p2": "Les équipes gardent la maîtrise de la cadence, de la verrerie, de la garniture et du geste final. La préparation en amont rend le service plus fluide ; elle ne remplace ni l’accueil ni la finition devant le convive.",
+        "evenement_p3": "La Conciergerie étudie les projets d’hôtels, de restaurants, de maisons et d’événements privés en France et à l’international.",
+        "cta_oeuvres": "DÉCOUVRIR LES ŒUVRES",
+        "cta_bar": "LIRE : LE COCKTAIL AU BAR D’HÔTEL",
+        "cta_minibar": "LIRE : LE COCKTAIL POUR MINIBAR",
+        "cta_sur_mesure": "CONCEVOIR UNE CRÉATION SUR MESURE",
+        "citation_cta": "CONTACTER LA CONCIERGERIE",
+        "link_hotel": "COCKTAIL SIGNATURE POUR HÔTEL",
+        "link_minibar": "COCKTAIL POUR MINIBAR",
+        "link_event": "COCKTAILS ÉVÉNEMENTIELS",
+        "link_commission": "COMMANDER UNE SCULPTURE"
     },
     "maison": {
         "kicker": "L'ART SE BOIT.",
-        "titre": "L'HISTOIRE DE LA MAISON",
+        "titre": "DYANE PARIS, MAISON D’ART LIQUIDE",
+        "definition_titre": "QU’EST-CE QU’UNE MAISON D’ART LIQUIDE ?",
+        "definition": "La Maison d’Art Liquide est le territoire créatif développé par Dyane Paris pour réunir mixologie, sculpture et métiers d’art. Chaque cocktail d’exception prend place dans une sculpture en porcelaine peinte à la main, élaborée pour demeurer comme objet à collectionner après la dégustation.",
         "intro": "Dyane Paris naît à Paris en 2025 d'une intuition fondatrice : faire du cocktail une œuvre à part entière. La Maison s'est construite autour d'une idée précise. Réconcilier le geste, la matière et le goût. Transformer l'instant de dégustation en expérience esthétique durable.",
         "genese_kicker": "GENÈSE",
         "genese_titre": "LE NOM, DYANE.",
@@ -122,7 +139,7 @@
         "genese_p3": "La chasse n'est pas ici prédation mais devient quête. Quête de justesse, Quête d'équilibre, Quête de beauté.",
         "art_kicker": "ART & SPIRITS",
         "art_titre": "LA NAISSANCE D'UNE MAISON D'ART LIQUIDE",
-        "art_p1": "Dyane ne se définit ni comme une marque de spiritueux, ni comme une simple catégorie Ready-To-Drink.",
+        "art_p1": "Dyane Paris est une Maison française qui associe art et mixologie. Elle ne se définit ni comme une simple marque de spiritueux, ni comme une catégorie Ready-To-Drink.",
         "art_p2": "La Maison revendique une identité propre : l'Art Liquide. Chaque création associe un cocktail signature, élaboré avec exigence, à un contenant artistique conçu pour être conservé. Boire devient un geste. Conserver devient une mémoire.",
         "art_p3": "La rupture est volontaire. Dyane abandonne la bouteille de verre traditionnelle pour la porcelaine. Une matière noble, pérenne, sculpturale. La forme évoque une présence.",
         "art_p4": "Elle s'inscrit dans un espace comme une œuvre autonome. Une fois le cocktail dégusté, l'objet demeure. Il traverse le temps et s'inscrit dans un intérieur.",
@@ -131,12 +148,24 @@
         "temps_p2": "Les cocktails sont élaborés à partir d'alcool vinique français, produit après les vendanges puis travaillés par infusion. Chaque création Dyane mobilise plus de 70 mains de la poudre de kaolin à la dégustation finale. La production est volontairement limitée.",
         "temps_p3": "La lenteur est assumée.",
         "contemporaine_titre": "UNE MAISON CONTEMPORAINE",
-        "contemporaine_p": "Dyane s'inscrit dans une évolution du luxe. Un luxe plus rare que démonstratif. Plus durable que consommable."
+        "contemporaine_p": "Dyane s'inscrit dans une évolution du luxe. Un luxe plus rare que démonstratif. Plus durable que consommable.",
+        "link_oeuvres": "DÉCOUVRIR LES ŒUVRES",
+        "link_fabrication": "EXPLORER LA FABRICATION",
+        "link_distillation": "COMPRENDRE LA MIXOLOGIE DYANE"
     },
     "journal": {
         "titre": "RETROUVEZ TOUTES LES ACTUALITÉS DE LA MAISON DYANE"
     },
     "oeuvres": {
+        "intro_eyebrow": "DYANE PARIS — MAISON D’ART LIQUIDE",
+        "intro_title": "LES COCKTAILS D’EXCEPTION DE DYANE PARIS",
+        "intro_lead": "Un cocktail de luxe Dyane Paris associe une recette prête à servir, élaborée en France, à une sculpture en porcelaine peinte à la main. La dégustation devient un rituel et le flacon, conçu pour demeurer, rejoint l’univers des objets d’art à collectionner.",
+        "collector_title": "LE COCKTAIL DE LUXE COMME ŒUVRE À COLLECTIONNER",
+        "collector_body": "Dyane No.1 réinterprète le Pornstar Martini et Dyane No.2 le Moscow Mule. Chaque création réunit mixologie, sculpture et porcelaine dans une forme signature, tandis que les collaborations et commandes sur mesure prolongent la collection.",
+        "intro_links_label": "Découvrir les œuvres Dyane Paris",
+        "no1_link": "DÉCOUVRIR DYANE NO.1",
+        "no2_link": "DÉCOUVRIR DYANE NO.2",
+        "commission_link": "COMMANDER UNE SCULPTURE",
         "decouvrir_intro": "Découvrez les créations",
         "decouvrir": "DÉCOUVRIR",
         "no1_sous_titre": "L'audace du Pornstar Martini sublimée dans une création aux nuances gourmandes.",
@@ -144,57 +173,97 @@
         "teo_sous_titre": "En collaboration avec le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay."
     },
     "contact": {
-        "kicker": "CONCIERGERIE DYANE",
-        "titre": "CONTACTER LA MAISON",
-        "intro": "Pour toute demande de collaboration, commande privée, partenariat ou presse, notre conciergerie vous répondra dans les meilleurs délais.",
-        "nom": "Nom",
-        "email": "Adresse e-mail",
-        "sujet": "Sujet",
-        "message": "Votre message",
+        "kicker": "DYANE PARIS",
+        "titre": "CONTACTER LA CONCIERGERIE",
+        "intro": "Nous vous invitons à compléter le formulaire ci‑dessous. Notre équipe vous répondra dans les meilleurs délais.",
+        "availability": "Du lundi au vendredi — de 10h00 à 18h00, heure de Paris.",
+        "requiredNote": "Les champs marqués * sont obligatoires",
+        "fields": {
+            "honorific": "Civilité",
+            "firstName": "Prénom *",
+            "lastName": "Nom *",
+            "email": "Adresse e-mail *",
+            "phone": "Téléphone",
+            "country": "Pays ou région *",
+            "subject": "Objet *",
+            "message": "Votre message *",
+            "select": "Veuillez sélectionner"
+        },
+        "honorifics": {
+            "mr": "M.",
+            "mrs": "Mme",
+            "mx": "Mx"
+        },
+        "countries": [
+            { "value": "France", "label": "France" },
+            { "value": "Belgique", "label": "Belgique" },
+            { "value": "Suisse", "label": "Suisse" },
+            { "value": "Luxembourg", "label": "Luxembourg" },
+            { "value": "Monaco", "label": "Monaco" },
+            { "value": "Royaume-Uni", "label": "Royaume-Uni" },
+            { "value": "États-Unis", "label": "États-Unis" },
+            { "value": "Émirats arabes unis", "label": "Émirats arabes unis" },
+            { "value": "Japon", "label": "Japon" },
+            { "value": "Autre", "label": "Autre" }
+        ],
+        "subjects": [
+            { "value": "Commande privée", "label": "Commande privée" },
+            { "value": "Partenariat hôtelier", "label": "Partenariat hôtelier" },
+            { "value": "Collaboration artistique", "label": "Collaboration artistique" },
+            { "value": "Expérience privée", "label": "Expérience privée" },
+            { "value": "Distribution", "label": "Distribution" },
+            { "value": "Presse et médias", "label": "Presse et médias" },
+            { "value": "Autre", "label": "Autre" }
+        ],
+        "privacyBefore": "Vos données personnelles sont traitées par Dyane Paris uniquement afin de répondre à votre demande. Consultez notre",
+        "privacyLink": "Politique de confidentialité",
+        "privacyAfter": ".",
+        "consentBefore": "J’ai lu et j’accepte la",
+        "consentAfter": ".",
         "envoyer": "ENVOYER",
-        "merci": "Votre message a bien été envoyé. Nous vous répondrons sous 48h.",
-        "options": [
-            "Commande privée",
-            "Partenariat",
-            "Suivi de commande",
-            "Recrutement",
-            "Collaboration artistique",
-            "Presse & médias",
-            "Autre"
-        ]
+        "sending": "ENVOI…",
+        "successEyebrow": "MESSAGE ENVOYÉ",
+        "successTitle": "MERCI",
+        "merci": "Votre message a bien été envoyé. Notre équipe reviendra vers vous prochainement.",
+        "errors": {
+            "required": "Ce champ est obligatoire.",
+            "email": "Veuillez saisir une adresse e-mail valide.",
+            "consent": "Veuillez accepter la Politique de confidentialité.",
+            "send": "Le message n’a pas pu être envoyé. Veuillez réessayer dans quelques instants."
+        }
     },
     "seo": {
         "home": {
             "title": "Dyane Paris | Maison Française d'Art Liquide — Cocktails de Luxe en Porcelaine",
-            "description": "Dyane Paris, Maison française d'Art Liquide, crée des cocktails prêts à déguster dans des flacons sculpturaux en porcelaine peints à la main. Artisanat français et séries limitées."
+            "description": "Dyane Paris est une Maison française de cocktails premium prêts à servir, présentés dans des sculptures en porcelaine peintes à la main. Découvrez l'Art Liquide."
         },
         "laMaison": {
-            "title": "La Maison | Histoire, Artisanat et Art Liquide",
+            "title": "Maison d’Art Liquide | L’Histoire de Dyane Paris",
             "description": "Découvrez l'histoire de Dyane Paris : la genèse du nom, la naissance de l'Art Liquide et le savoir-faire artisanal français derrière chaque flacon en porcelaine peint à la main."
         },
         "oeuvres": {
-            "title": "Les Œuvres | Collection de Cocktails en Porcelaine",
+            "title": "Cocktails de Luxe en Porcelaine",
             "description": "Explorez la collection Dyane Paris : cocktails signature Pornstar Martini et Moscow Mule, présentés dans des flacons en porcelaine peints à la main en séries limitées."
         },
         "experiences": {
-            "title": "Expériences | Événements Privés & Partenariats de Luxe",
-            "description": "Dyane Paris accompagne hôtels palaces, restaurants gastronomiques et événements d'exception avec des expériences d'Art Liquide sur-mesure, en France et à l'international."
+            "title": "Cocktails pour Hôtels & Événements de Luxe",
+            "description": "Cocktails premium prêts à servir pour hôtels de luxe : signature sur mesure, bar, minibar, room service et événements, du format 25 cL aux grands volumes."
         },
         "distillation": {
             "title": "La Distillation | Savoir-Faire Français & Alcool Vinique",
             "description": "Chaque cocktail Dyane Paris est élaboré à partir d'alcool vinique français et de matières premières sélectionnées, selon un processus artisanal exigeant mené dans le Vaucluse."
         },
         "contact": {
-            "title": "Contact | Dyane Paris",
-            "description": "Contactez la Maison Dyane Paris pour toute demande commerciale, partenariat hôtelier ou presse autour de nos créations d'Art Liquide en porcelaine peinte à la main."
+            "title": "Contacter la Conciergerie | Dyane Paris",
+            "description": "Contactez Dyane Paris pour toute demande concernant nos collections, collaborations artistiques et expériences privées."
         },
         "faq": {
             "title": "Foire aux Questions | Dyane Paris",
             "description": "Toutes les réponses à vos questions sur les créations Dyane Paris : composition, conservation, livraison et art de la dégustation de nos cocktails en porcelaine."
         },
         "journal": {
-            "title": "Le Journal | Actualités de la Maison Dyane Paris",
-            "description": "Suivez les actualités de Dyane Paris : collaborations artistiques, présences au Ritz Paris et au Café de l'Homme, coulisses de l'artisanat et de la distillation."
+            "title": "Le Journal | Dyane Paris",
+            "description": "Découvrez les collaborations artistiques, expériences privées et histoires de Dyane Paris."
         },
         "cgv": {
             "title": "Conditions Générales de Vente | Dyane Paris",

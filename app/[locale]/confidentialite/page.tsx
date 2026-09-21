@@ -23,7 +23,7 @@ export async function generateMetadata({
     }
 }
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
+const font = { fontFamily: 'var(--font-editorial), serif' }
 
 const sections = [
     {
@@ -45,7 +45,7 @@ const sections = [
 
 export default function ConfidentialitePage() {
     return (
-        <main style={{ background: '#FAF8F5' }}>
+        <main className="theme-page" style={{ background: 'transparent' }}>
             <div style={{ maxWidth: '780px', margin: '0 auto', padding: '80px 24px 120px' }}>
 
                 <div style={{ textAlign: 'center', marginBottom: '60px' }}>

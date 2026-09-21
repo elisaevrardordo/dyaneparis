@@ -1,10 +1,20 @@
 .home {
-  --paper: #f2efe9;
-  --ivory: #f8f6f1;
+  --paper: #fff;
+  --ivory: #fff;
   --ink: #171614;
   --muted: rgba(23, 22, 20, 0.62);
+  --section-header-space: calc(var(--header-height) + clamp(36px, 5svh, 64px));
   color: var(--ink);
   background: var(--paper);
+}
+
+.home [data-scroll-section] {
+  position: relative;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .hero,
@@ -44,7 +54,6 @@
 
 .hero::after,
 .film::after,
-.productPanel::after,
 .editorialPanel::after {
   position: absolute;
   inset: 0;
@@ -73,7 +82,7 @@
 .cta,
 .presenceMeta,
 .caption {
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 9px;
   letter-spacing: 0.24em;
   line-height: 1.5;
@@ -87,7 +96,7 @@
 
 .heroTitle {
   margin: 0;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: clamp(28px, 3.2vw, 52px);
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -126,53 +135,133 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  background: #dad6cf;
+  background: #fff;
 }
 
-.productPanel,
 .editorialPanel {
   position: relative;
   min-width: 0;
   overflow: hidden;
-  background: #dfddd8;
+  background: #fff;
+}
+
+.productSection {
+  color: var(--ink);
+  background: #fff;
+}
+
+.productInner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--section-header-space) clamp(72px, 8vw, 160px) clamp(60px, 8svh, 100px);
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(54px, 6vw, 96px);
+  width: 100%;
+  max-width: min(1380px, calc(160svh - 500px));
+  margin: 0 auto;
 }
 
 .productPanel {
-  height: clamp(720px, 94svh, 1100px);
+  min-width: 0;
 }
 
-.productPanel::after {
-  background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.36));
-}
-
-.productPanel .mediaImage,
 .presenceImage {
   transition: transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.productPanel:hover .mediaImage,
 .presenceCard:hover .presenceImage {
   transform: scale(1.02);
 }
 
 .productLink {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 42px 34px;
-  color: #fff;
+  display: block;
+  color: inherit;
   text-decoration: none;
 }
 
+.productMedia {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #fff;
+  cursor: pointer;
+}
+
+.productImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  transition: opacity 240ms ease;
+}
+
+.productVideo {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.productMediaActive .productImage {
+  opacity: 0;
+}
+
+.productMediaActive .productVideo {
+  opacity: 1;
+}
+
+.productDetails {
+  padding-top: 18px;
+  color: var(--ink);
+  text-align: center;
+}
+
 .productTitle {
-  margin: 0 0 4px;
-  font-family: var(--font-cormorant), Garamond, serif;
-  font-size: clamp(26px, 2.2vw, 40px);
-  font-weight: 300;
-  letter-spacing: 0.04em;
+  margin: 0;
+  font-family: var(--font-editorial), Garamond, serif;
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.productDetails .smallMeta {
+  margin-top: 3px;
+  font-size: clamp(11px, 0.8vw, 12px);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+}
+
+.productCta {
+  display: block;
+  margin: 8px auto 0;
+}
+
+.productStatement {
+  margin-top: auto;
 }
 
 .smallMeta {
@@ -183,6 +272,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(300px, 1fr);
   min-height: min(82svh, 920px);
+  padding-top: var(--section-header-space);
   background: var(--paper);
 }
 
@@ -190,7 +280,7 @@
   position: relative;
   min-height: 680px;
   overflow: hidden;
-  background: #e7e1db;
+  background: #fff;
 }
 
 .customizationCanvas {
@@ -214,7 +304,7 @@
 .sectionTitle {
   max-width: 620px;
   margin: 16px 0 0;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: clamp(34px, 4.2vw, 72px);
   font-weight: 300;
   letter-spacing: -0.02em;
@@ -230,13 +320,13 @@
   max-width: 360px;
   margin-top: 28px;
   color: var(--muted);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.25;
 }
 
 .presences {
-  padding: clamp(90px, 11vw, 170px) clamp(20px, 3.5vw, 56px);
+  padding: var(--section-header-space) clamp(20px, 3.5vw, 56px) clamp(90px, 11vw, 170px);
   background: var(--ivory);
 }
 
@@ -276,7 +366,7 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 3 / 4;
-  background: #ddd7cf;
+  background: #fff;
 }
 
 .presenceCard:nth-child(2) .presenceMedia {
@@ -296,7 +386,7 @@
 
 .presencePlace {
   margin-top: 4px;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: clamp(21px, 2vw, 30px);
   font-weight: 400;
   line-height: 1.1;
@@ -309,7 +399,8 @@
 }
 
 .editorialPanel {
-  height: clamp(760px, 100svh, 1180px);
+  height: 100svh;
+  min-height: 640px;
 }
 
 .editorialPanel::after {
@@ -341,7 +432,7 @@
 
 .filmTitle {
   margin: 0;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-quote);
   font-size: clamp(38px, 6vw, 92px);
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -353,7 +444,7 @@
   inset: auto 22px 18px auto;
   z-index: 2;
   color: rgba(255, 255, 255, 0.65);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 8px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -387,6 +478,32 @@
   }
 }
 
+@media (min-width: 1101px) {
+  .presences {
+    height: 100svh;
+    padding-top: var(--section-header-space);
+    padding-bottom: 34px;
+  }
+
+  .presences .sectionHeading {
+    margin-bottom: clamp(26px, 3.8svh, 42px);
+  }
+
+  .presenceMedia,
+  .presenceCard:nth-child(2) .presenceMedia {
+    height: clamp(340px, 53svh, 570px);
+    aspect-ratio: auto;
+  }
+
+  .presenceCard:nth-child(2) {
+    margin-top: 4svh;
+  }
+
+  .presenceCard:nth-child(3) {
+    margin-top: 1.5svh;
+  }
+}
+
 @media (max-width: 340px) {
   .customization .sectionTitle {
     font-size: 30px;
@@ -408,13 +525,22 @@
     grid-template-columns: 1fr;
   }
 
-  .productPanel {
-    height: min(88svh, 820px);
-    min-height: 620px;
+  .productSection {
+    padding: 0;
   }
 
-  .productLink {
-    padding: 30px 22px;
+  .productInner {
+    padding: var(--section-header-space) 20px 76px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    max-width: none;
+  }
+
+  .productDetails {
+    padding-top: 16px;
   }
 
   .customizationVisual {
@@ -426,7 +552,7 @@
   }
 
   .presences {
-    padding: 86px 18px 110px;
+    padding: var(--section-header-space) 18px 110px;
   }
 
   .sectionHeading {
@@ -461,13 +587,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .productPanel .mediaImage,
   .presenceImage,
   .cta::after {
     transition: none;
   }
 
-  .productPanel:hover .mediaImage,
   .presenceCard:hover .presenceImage {
     transform: none;
   }

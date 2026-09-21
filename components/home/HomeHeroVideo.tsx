@@ -11,27 +11,38 @@ type Hero = ReturnType<typeof getHomeContent>['hero']
 
 export default function HomeHeroVideo({ hero, locale }: { hero: Hero; locale: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [motionAllowed, setMotionAllowed] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
 
   useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => setMotionAllowed(!preference.matches)
-    update()
-    preference.addEventListener('change', update)
-    return () => preference.removeEventListener('change', update)
-  }, [])
+    const video = videoRef.current
+    if (!video) return
 
-  useEffect(() => {
-    if (!motionAllowed || !videoRef.current) return
-    videoRef.current.play().catch(() => setVideoFailed(true))
-  }, [motionAllowed])
+    const playVideo = () => {
+      video.muted = true
+      video.play().catch(() => undefined)
+    }
+
+    playVideo()
+    video.addEventListener('canplay', playVideo)
+    window.addEventListener('focus', playVideo)
+
+    return () => {
+      video.removeEventListener('canplay', playVideo)
+      window.removeEventListener('focus', playVideo)
+    }
+  }, [])
 
   if (!hero.enabled) return null
 
   return (
-    <section className={styles.hero} data-header-theme={hero.theme} aria-labelledby="home-hero-title">
-      {motionAllowed && !videoFailed ? (
+    <section
+      className={styles.hero}
+      data-scroll-section
+      data-page-hero
+      data-header-foreground="white"
+      aria-labelledby="home-hero-title"
+    >
+      {!videoFailed ? (
         <video
           ref={videoRef}
           className={styles.video}
@@ -39,7 +50,7 @@ export default function HomeHeroVideo({ hero, locale }: { hero: Hero; locale: st
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={hero.poster}
           aria-hidden="true"
           tabIndex={-1}

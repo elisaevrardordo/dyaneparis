@@ -1,0 +1,100 @@
+.slide {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.mediaSlide {
+  height: 100svh;
+  min-height: 560px;
+  background: #090909;
+}
+
+.futureImageSlide {
+  display: grid;
+  height: 100svh;
+  min-height: 560px;
+  place-items: center;
+  background: #fff;
+}
+
+.fullMedia {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.craftSlide {
+  display: grid;
+  place-items: center;
+  color: #111;
+  background: #fff;
+}
+
+.craftContent {
+  display: flex;
+  width: 100%;
+  padding: calc(var(--header-height) + clamp(18px, 3svh, 38px)) 5vw clamp(104px, 14svh, 156px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.craftMedia {
+  position: relative;
+  width: clamp(483px, 48.3vw, 1035px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.craftVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .mediaSlide,
+  .futureImageSlide {
+    min-height: 100svh;
+  }
+
+  .craftContent {
+    padding: calc(var(--header-height) + 16px) 8vw max(104px, calc(env(safe-area-inset-bottom) + 82px));
+  }
+
+  .craftMedia {
+    width: min(87.4vw, 598px);
+    margin-bottom: 24px;
+  }
+
+}
+
+@media (max-height: 640px) and (min-width: 701px) {
+  .craftMedia {
+    width: min(39.1vw, 598px);
+  }
+
+  .craftContent {
+    padding-bottom: 24px;
+  }
+}

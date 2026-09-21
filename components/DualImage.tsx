@@ -5,8 +5,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { localizedPath } from '@/i18n/paths'
 
-const bodoni = { fontFamily: '"Bodoni Moda", "Playfair Display", serif' }
-const lora = { fontFamily: 'Lora, serif' }
+const editorial = { fontFamily: 'var(--font-editorial), serif' }
 
 export default function DualImage() {
     const t = useTranslations('dualimage')
@@ -51,7 +50,7 @@ export default function DualImage() {
             </section>
 
             {/* Section carousel — hauteur fixe uniforme */}
-            <section style={{ background: '#FAF8F5', overflow: 'hidden', position: 'relative' }}>
+            <section style={{ background: 'var(--background-house)', overflow: 'hidden', position: 'relative' }}>
 
                 <div style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.4s ease' }}>
 
@@ -80,10 +79,10 @@ export default function DualImage() {
                                     </div>
                                 </div>
                                 <div>
-                                    <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 16px' }}>{t('label')}</p>
-                                    <h2 style={{ ...bodoni, fontWeight: 400, fontSize: 'clamp(22px, 2.8vw, 40px)', lineHeight: 1.15, margin: '0 0 24px', textTransform: 'uppercase' }}>{t('titre')}</h2>
-                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7, marginBottom: '28px' }}>{t('texte')}</p>
-                                    <Link href={localizedPath(locale, '/distillation')} style={{ ...lora, display: 'inline-block', fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.35)', textDecoration: 'none', color: '#000', paddingBottom: '5px' }}>{t('cta')}</Link>
+                                    <p style={{ ...editorial, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4, margin: '0 0 16px' }}>{t('label')}</p>
+                                    <h2 style={{ ...editorial, fontWeight: 400, fontSize: 'clamp(22px, 2.8vw, 40px)', lineHeight: 1.15, margin: '0 0 24px', textTransform: 'uppercase' }}>{t('titre')}</h2>
+                                    <p style={{ ...editorial, fontSize: '13px', lineHeight: 1.7, opacity: 0.7, marginBottom: '28px' }}>{t('texte')}</p>
+                                    <Link href={localizedPath(locale, '/distillation')} style={{ ...editorial, display: 'inline-block', fontSize: '9px', letterSpacing: '0.28em', textTransform: 'uppercase', borderBottom: '1px solid rgba(0,0,0,0.35)', textDecoration: 'none', color: '#000', paddingBottom: '5px' }}>{t('cta')}</Link>
                                 </div>
                             </div>
                         </div>
@@ -115,8 +114,8 @@ export default function DualImage() {
                                             style={{ objectFit: 'cover' }}
                                         />
                                     </div>
-                                    <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Infusion</p>
-                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Nos créations reposent sur une infusion lente d'ingrédients nobles : gingembre frais, vanille, fruits et épices, dans un alcool vinique d'exception, révélant une profondeur aromatique intense et raffinée.</p>
+                                    <p style={{ ...editorial, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Infusion</p>
+                                    <p style={{ ...editorial, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Nos créations reposent sur une infusion lente d'ingrédients nobles : gingembre frais, vanille, fruits et épices, dans un alcool vinique d'exception, révélant une profondeur aromatique intense et raffinée.</p>
                                 </div>
                                 <div>
                                     <div style={{ position: 'relative', width: '100%', height: '600px' }}>
@@ -128,8 +127,8 @@ export default function DualImage() {
                                             style={{ objectFit: 'cover' }}
                                         />
                                     </div>
-                                    <p style={{ ...lora, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Assemblage</p>
-                                    <p style={{ ...lora, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Chaque cocktail est minutieusement assemblé comme une œuvre d'art, équilibrant puissance, texture et élégance.</p>
+                                    <p style={{ ...editorial, fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', margin: '24px 0 12px', opacity: 0.45 }}>Assemblage</p>
+                                    <p style={{ ...editorial, fontSize: '13px', lineHeight: 1.7, opacity: 0.7 }}>Chaque cocktail est minutieusement assemblé comme une œuvre d'art, équilibrant puissance, texture et élégance.</p>
                                 </div>
                             </div>
                         </div>

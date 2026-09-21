@@ -1,123 +1,130 @@
 'use client'
-import Image from 'next/image'
+
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
+import DyaneEditorialPage, { type DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
 import { localizedPath } from '@/i18n/paths'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
-const lora = { fontFamily: 'var(--font-lora), serif' }
-const BG = 'rgb(252, 250, 247)'
+const media = {
+  heroVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788699063/COCKTAIL_pcevej.mp4',
+  heroPoster: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg',
+}
+
+const galleries: Record<'gallery3' | 'gallery2' | 'gallery6' | 'gallery8', DyaneEditorialMedia[]> = {
+  gallery3: [
+    { src: '/editorial/experiences/BAR%202.png', alt: 'Œuvre Dyane au cœur d’un bar parisien' },
+    { src: '/editorial/experiences/EVENT%207.png', alt: 'Invités découvrant une œuvre Dyane Paris' },
+    { src: '/editorial/experiences/EVENT.png', alt: 'Expérience Dyane Paris face à la Tour Eiffel' },
+  ],
+  gallery2: [
+    { src: '/editorial/experiences/EVENT%206.png', alt: 'Bar scénographié pour une expérience Dyane' },
+    { src: '/editorial/experiences/BAR%201.png', alt: 'Sculpture et cocktail Dyane présentés au bar' },
+  ],
+  gallery6: [
+    { src: '/editorial/experiences/7.png', alt: 'Mise en scène artistique de l’œuvre Dyane' },
+    { src: '/editorial/experiences/ART%201.png', alt: 'Dessin d’une personnalisation Dyane' },
+    { src: '/editorial/experiences/ART%202.png', alt: 'Sceau de cire de la Maison Dyane' },
+    { src: '/editorial/experiences/ART%203.png', alt: 'Illustration florale et cocktail Dyane' },
+    { src: '/editorial/experiences/PERSO%202.png', alt: 'Peinture personnalisée sur une sculpture Dyane' },
+    { src: '/editorial/experiences/PERSO%203.png', alt: 'Décor textile personnalisé sur une sculpture Dyane' },
+  ],
+  gallery8: [
+    { src: '/editorial/experiences/EVENT%203.png', alt: 'Invitation Dyane Paris lors d’un événement privé' },
+    { src: '/editorial/experiences/EVENT%204.png', alt: 'Performance artistique lors d’une expérience Dyane' },
+    { src: '/editorial/experiences/BAR%204.png', alt: 'Cocktail floral imaginé par Dyane Paris' },
+    { src: '/editorial/experiences/BAR%206.png', alt: 'Cocktail Dyane présenté sur un plateau' },
+    { src: '/editorial/experiences/BAR%205.png', alt: 'Attention personnalisée de la Maison Dyane' },
+    { src: '/editorial/experiences/EVENT%202%20.png', alt: 'Service de cocktails lors d’un événement Dyane' },
+    { src: '/editorial/experiences/BAR%203.png', alt: 'Geste de service d’un cocktail Dyane' },
+    { src: '/editorial/experiences/EVENT%205.png', alt: 'Œuvre Dyane installée dans un bar de collection' },
+  ],
+}
 
 export default function ExperiencesClient() {
-    const t = useTranslations('experiences')
-    const pathname = usePathname()
-    const locale = pathname.startsWith('/en') ? 'en' : 'fr'
+  const t = useTranslations('experiences')
+  const pathname = usePathname()
+  const locale = pathname.startsWith('/en') ? 'en' : 'fr'
+  const articlePath = (slug: string) => localizedPath(locale, `/le-journal/${slug}`)
 
-    return (
-        <>
-            <style>{`
-                @media (max-width: 768px) {
-                    .exp-hero { height: 55vh !important; }
-                    .exp-intro { padding: 40px 20px !important; }
-                    .exp-3col { grid-template-columns: 1fr !important; gap: 24px !important; padding: 48px 20px !important; }
-                    .exp-duo { grid-template-columns: 1fr !important; gap: 24px !important; padding: 0 20px 60px !important; margin-bottom: 0 !important; }
-                    .exp-duo-img1 { height: 300px !important; }
-                    .exp-duo-img2 { height: 360px !important; }
-                    .exp-2col { grid-template-columns: 1fr !important; gap: 32px !important; padding: 0 20px 60px !important; }
-                    .exp-2col-img { height: 340px !important; }
-                    .exp-perso-inner { grid-template-columns: 1fr !important; gap: 16px !important; }
-                    .exp-citation { padding: 48px 20px !important; }
-                    .exp-final { height: 50vh !important; }
-                }
-            `}</style>
-
-            <div style={{ background: BG }}>
-
-                {/* Hero */}
-                <section className="exp-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg" alt="Expériences et événements sur mesure Dyane Paris" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
-                </section>
-
-                {/* Intro */}
-                <section className="exp-intro" style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                    <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
-                    <h1 style={{ ...font, fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
-                    <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('intro1')}</p>
-                    <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>{t('intro2')}</p>
-                </section>
-
-                {/* Mesure 3 colonnes */}
-                <section className="exp-3col" style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
-                    <div>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4 }}>{t('mesure_titre')}</h2>
-                    </div>
-                    <div>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('mesure_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('mesure_p2')}</p>
-                    </div>
-                    <div>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('mesure_p3')}</p>
-                    </div>
-                </section>
-
-                {/* Duo images */}
-                <section className="exp-duo" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
-                    <div className="exp-duo-img1" style={{ position: 'relative', height: '500px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777413089/DSC00084_1_mjztqk.jpg" alt="Expérience de dégustation des cocktails Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                    <div className="exp-duo-img2" style={{ position: 'relative', height: '680px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445376/DSC00189_2_evwuct.jpg" alt="Coffret et présentation des cocktails Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                </section>
-
-                {/* Personnalisation */}
-                <section className="exp-2col" style={{ padding: '0 80px 140px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
-                    <div>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4, marginBottom: '28px' }}>{t('perso_titre')}</h2>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('perso_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '36px' }}>{t('perso_p2')}</p>
-                        <div className="exp-perso-inner" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                            <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('perso_p3')}</p>
-                            <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('perso_p4')}</p>
-                        </div>
-                    </div>
-                    <div className="exp-2col-img" style={{ position: 'relative', height: '720px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445572/13_qpfuhh.png" alt="Personnalisation des flacons en porcelaine Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                </section>
-
-                {/* Ancrages */}
-                <section className="exp-2col" style={{ padding: '0 80px 140px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
-                    <div>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1.4, marginBottom: '28px' }}>{t('ancrages_titre')}</h2>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('ancrages_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('ancrages_p2')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('ancrages_p3')}</p>
-                    </div>
-                    <div className="exp-2col-img" style={{ position: 'relative', height: '620px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777445589/Capture_d_ecran_2026-04-26_a_11.55.45_areo1l.png" alt="Expérience exclusive Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                </section>
-
-                {/* Citation */}
-                <section className="exp-citation" style={{ padding: '100px 24px', textAlign: 'center', borderTop: '1px solid rgba(0,0,0,0.08)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                        <p style={{ ...lora, fontSize: 'clamp(11px, 1.3vw, 15px)', letterSpacing: '0.05em', textTransform: 'uppercase', lineHeight: 1.7, marginBottom: '36px' }}>{t('citation')}</p>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '8px' }}>{t('citation_nom')}</p>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '48px' }}>{t('citation_titre')}</p>
-                        <Link href={localizedPath(locale, '/contact')} style={{ ...lora, fontSize: '11px', letterSpacing: '0.24em', textTransform: 'uppercase', color: '#000', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.4)', paddingBottom: '4px' }}>
-                            {t('citation_cta')}
-                        </Link>
-                    </div>
-                </section>
-
-                {/* Image finale */}
-                <section className="exp-final" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                    <Image src="/dyane-paris-cocktails-porcelaine.webp" alt="Cocktails d'exception Dyane Paris en flacon de porcelaine" fill sizes="100vw" style={{ objectFit: 'cover' }} />
-                </section>
-
-            </div>
-        </>
-    )
+  return (
+    <DyaneEditorialPage
+      eyebrow={t('kicker')}
+      title={t('titre')}
+      compactTitle
+      video={{
+        src: media.heroVideo,
+        poster: media.heroPoster,
+        label: t('video_label'),
+      }}
+      textBlocks={[
+        {
+          eyebrow: t('kicker'),
+          title: t('definition_titre'),
+          body: (
+            <>
+              <p>{t('definition')}</p>
+              <p>{t('intro1')}</p>
+              <p>{t('intro2')}</p>
+              <Link href={localizedPath(locale, '/oeuvres')}>{t('cta_oeuvres')}</Link>
+            </>
+          ),
+        },
+        {
+          title: t('signature_titre'),
+          body: (
+            <>
+              <p>{t('signature_p1')}</p>
+              <p>{t('signature_p2')}</p>
+              <p>{t('signature_p3')}</p>
+              <Link href={articlePath('heure-du-bar-cocktail-hotel')}>{t('cta_bar')}</Link>
+            </>
+          ),
+        },
+        {
+          title: t('service_titre'),
+          body: (
+            <>
+              <p>{t('service_p1')}</p>
+              <p>{t('service_p2')}</p>
+              <p>{t('service_p3')}</p>
+              <Link href={articlePath('cocktail-minibar-hotel')}>{t('cta_minibar')}</Link>
+            </>
+          ),
+        },
+        {
+          title: t('sur_mesure_titre'),
+          body: (
+            <>
+              <p>{t('sur_mesure_p1')}</p>
+              <p>{t('sur_mesure_p2')}</p>
+              <p>{t('sur_mesure_p3')}</p>
+              <Link href={localizedPath(locale, '/commission-a-sculpture')}>{t('cta_sur_mesure')}</Link>
+            </>
+          ),
+        },
+        {
+          title: t('evenement_titre'),
+          body: (
+            <>
+              <p>{t('evenement_p1')}</p>
+              <p>{t('evenement_p2')}</p>
+              <p>{t('evenement_p3')}</p>
+              <Link href={localizedPath(locale, '/contact')}>{t('citation_cta')}</Link>
+              <p>
+                <Link href={localizedPath(locale, '/le-journal/art-de-recevoir-cocktail-hotel')}>{t('link_hotel')}</Link>{' · '}
+                <Link href={localizedPath(locale, '/le-journal/cocktail-minibar-hotel')}>{t('link_minibar')}</Link>{' · '}
+                <Link href={localizedPath(locale, '/le-journal/cocktail-evenementiel-grands-volumes')}>{t('link_event')}</Link>{' · '}
+                <Link href={localizedPath(locale, '/commission-a-sculpture')}>{t('link_commission')}</Link>
+              </p>
+            </>
+          ),
+        },
+      ]}
+      gallery3={galleries.gallery3}
+      gallery2={galleries.gallery2}
+      gallery6={galleries.gallery6}
+      gallery8={galleries.gallery8}
+    />
+  )
 }

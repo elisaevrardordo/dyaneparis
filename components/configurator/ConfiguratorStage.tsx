@@ -48,7 +48,12 @@ export default function ConfiguratorStage({
   }, [])
 
   return (
-    <div className={styles.stage} data-step={activeStep}>
+    <div
+      className={styles.stage}
+      data-step={activeStep}
+      data-page-hero
+      data-header-foreground="black"
+    >
       <DyaneCanvas
         activeStep={activeStep}
         selectedFormatId={selectedFormatId}

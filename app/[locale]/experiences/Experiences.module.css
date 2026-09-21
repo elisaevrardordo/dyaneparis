@@ -1,0 +1,97 @@
+.page { background: #fff; }
+.hero { height: 82svh; }
+
+.cover,
+.contain {
+  width: 100%;
+  height: 100%;
+}
+
+.cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+.contain {
+  object-fit: contain;
+  object-position: center;
+}
+
+.openingPair { padding-block: clamp(32px, 5vw, 82px); }
+
+.tasting,
+.presentation {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.tasting { aspect-ratio: 4 / 5; }
+.presentation { aspect-ratio: 3 / 4; }
+
+.personalisation {
+  width: min(70vw, 1080px);
+  max-height: 920px;
+  background: #fff;
+}
+
+.location {
+  width: min(calc(100% - clamp(40px, 14vw, 240px)), 1320px);
+  margin-right: clamp(20px, 5vw, 92px);
+  background: #fff;
+}
+
+.quote {
+  width: min(920px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: clamp(110px, 12vw, 190px);
+  text-align: center;
+}
+
+.quote > p { margin: 0; }
+
+.quote > p:first-child {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(13px, 1.15vw, 17px);
+  letter-spacing: .04em;
+  line-height: 1.75;
+  text-transform: uppercase;
+}
+
+.quoteName {
+  margin-top: 38px !important;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.quoteTitle {
+  margin-top: 8px !important;
+  color: rgba(17, 17, 17, .52);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.quote a {
+  display: inline-block;
+  margin-top: 44px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.closing { margin-top: 0; }
+
+@media (max-width: 760px) {
+  .hero { height: 58svh; }
+  .tasting,
+  .presentation { aspect-ratio: 4 / 5; }
+  .personalisation { width: calc(100% - 24px); }
+  .location { width: calc(100% - 24px); margin-inline: auto; }
+  .quote { width: calc(100% - 40px); padding-block: 88px; }
+}

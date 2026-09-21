@@ -1,113 +1,120 @@
 'use client'
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
-const lora = { fontFamily: 'var(--font-lora), serif' }
-const BG = 'rgb(252, 250, 247)'
+import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
+import DyaneEditorialPage, { type DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
+import { localizedPath } from '@/i18n/paths'
+
+const media = {
+  film: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788775590/OEUVRES_ntymti.mov',
+  filmPoster: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1600,so_0/v1788775590/OEUVRES_ntymti.jpg',
+}
+
+const galleries: Record<'gallery3' | 'gallery2' | 'gallery6' | 'gallery8', DyaneEditorialMedia[]> = {
+  gallery3: [
+    { src: '/editorial/la-maison/STATUE%202.png', alt: 'Portrait sculptural de Dyane Paris' },
+    { src: '/editorial/la-maison/ART%201.png', alt: 'Recherches artistiques autour de la silhouette Dyane' },
+    { src: '/editorial/la-maison/STATUE%201.png', alt: 'Œuvre Dyane Paris présentée en lumière naturelle' },
+  ],
+  gallery2: [
+    { src: '/editorial/la-maison/ART%202.png', alt: 'Composition picturale inspirant la Maison Dyane' },
+    { src: '/editorial/la-maison/17.png', alt: 'Détail de la sculpture en porcelaine Dyane Paris' },
+  ],
+  gallery6: [
+    { src: '/editorial/la-maison/COCKTAIL%203.png', alt: 'Service d’un cocktail Dyane Paris' },
+    { src: '/editorial/la-maison/PROD%204.mp4', alt: 'Fleur aromatique de la composition Dyane', type: 'video' },
+    { src: '/editorial/la-maison/PROD%202.png', alt: 'Geste de production du liquide Dyane' },
+    { src: '/editorial/la-maison/PROD%204.png', alt: 'Travail manuel de la porcelaine Dyane' },
+    { src: '/editorial/la-maison/PROD%203.png', alt: 'Artisan au cœur de la production Dyane' },
+    { src: '/editorial/la-maison/COCKTAIL%204.png', alt: 'Verre Dyane dans un intérieur parisien' },
+  ],
+  gallery8: [
+    { src: '/editorial/la-maison/PROD%205.mp4', alt: 'Agrume sélectionné pour une composition Dyane', type: 'video' },
+    { src: '/editorial/la-maison/DRINK.png', alt: 'Dégustation d’un cocktail Dyane Paris' },
+    { src: '/editorial/la-maison/PROD%205.png', alt: 'Finition manuelle d’une sculpture Dyane' },
+    { src: '/editorial/la-maison/COCKTAIL%202%20.png', alt: 'Détail ambré d’un cocktail Dyane' },
+    { src: '/editorial/la-maison/DRINK%202.mp4', alt: 'Service d’une œuvre Dyane Paris', type: 'video' },
+    { src: '/editorial/la-maison/PROD%206.png', alt: 'Coulage de la porcelaine dans un moule Dyane' },
+    { src: '/editorial/la-maison/PROD.png', alt: 'Alambic de la Maison Dyane' },
+    { src: '/editorial/la-maison/COCKTAIL%201%20.png', alt: 'Cocktail doré servi par Dyane Paris' },
+  ],
+}
 
 export default function LaMaisonClient() {
-    const t = useTranslations('maison')
-    return (
-        <>
-            <style>{`
-                @media (max-width: 768px) {
-                    .maison-hero { height: 55vh !important; }
-                    .maison-intro { padding: 40px 20px !important; }
-                    .maison-genese { grid-template-columns: 1fr !important; gap: 32px !important; padding: 48px 20px !important; }
-                    .maison-genese-img { height: 340px !important; }
-                    .maison-duo { grid-template-columns: 1fr !important; gap: 24px !important; padding: 0 20px 60px !important; margin-bottom: 0 !important; }
-                    .maison-duo-img1 { height: 260px !important; }
-                    .maison-duo-video { height: 300px !important; }
-                    .maison-art { grid-template-columns: 1fr !important; gap: 24px !important; padding: 48px 20px !important; }
-                    .maison-fullimg { height: 50vh !important; }
-                    .maison-temps { grid-template-columns: 1fr !important; gap: 32px !important; padding: 48px 20px !important; }
-                    .maison-temps-img { height: 300px !important; }
-                    .maison-final { height: 50vh !important; }
-                }
-            `}</style>
-            <div style={{ background: BG }}>
+  const t = useTranslations('maison')
+  const locale = useLocale()
 
-                {/* Hero */}
-                <section className="maison-hero" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '80vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png" alt="Dyane Paris — flacon de cocktail en porcelaine peinte à la main" fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
-                </section>
-
-                {/* Intro */}
-                <section className="maison-intro" style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                    <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
-                    <h1 style={{ ...font, fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
-                    <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8 }}>{t('intro')}</p>
-                </section>
-
-                {/* Genèse */}
-                <section className="maison-genese" style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
-                    <div className="maison-genese-img" style={{ position: 'relative', height: '640px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447494/Capture_d_ecran_2026-03-07_a_10.28.26_nfqwck.png" alt="Sculpture Diane chasseresse, inspiration du nom Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                    <div>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '14px' }}>{t('genese_kicker')}</p>
-                        <h2 style={{ ...font, fontSize: 'clamp(20px, 2.5vw, 32px)', fontWeight: 500, textTransform: 'uppercase', marginBottom: '28px' }}>{t('genese_titre')}</h2>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('genese_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('genese_p2')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('genese_p3')}</p>
-                    </div>
-                </section>
-
-                {/* Duo image + vidéo */}
-                <section className="maison-duo" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', padding: '0 80px', maxWidth: '1400px', margin: '0 auto 140px', alignItems: 'end' }}>
-                    <div className="maison-duo-img1" style={{ position: 'relative', height: '420px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447526/Capture_d_ecran_2026-04-26_a_17.49.30_bsje3p.png" alt="Atelier de porcelaine français, façonnage artisanal des flacons Dyane Paris" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                    <div className="maison-duo-video" style={{ position: 'relative', height: '620px' }}>
-                        <video autoPlay muted loop playsInline preload="metadata" poster="https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_900/v1777448171/download_8_1_qv3jyo.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
-                            <source src="https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto/v1777448171/download_8_1_qv3jyo.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                </section>
-
-                {/* Art 3 colonnes */}
-                <section className="maison-art" style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '64px' }}>
-                    <div>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.5, marginBottom: '14px' }}>{t('art_kicker')}</p>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', lineHeight: 1.4 }}>{t('art_titre')}</h2>
-                    </div>
-                    <div>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('art_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('art_p2')}</p>
-                    </div>
-                    <div>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('art_p3')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('art_p4')}</p>
-                    </div>
-                </section>
-
-                {/* Image plein écran */}
-                <section className="maison-fullimg" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777447558/Capture_d_ecran_2026-04-02_a_14.59.51_ko7wku.png" alt="Artisan français peignant à la main un flacon de porcelaine Dyane Paris" fill sizes="100vw" style={{ objectFit: 'cover' }} />
-                </section>
-
-                {/* Temps */}
-                <section className="maison-temps" style={{ padding: '120px 80px', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'end' }}>
-                    <div className="maison-temps-img" style={{ position: 'relative', height: '560px' }}>
-                        <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777443867/Capture_d_ecran_2026-04-26_a_11.52.38_bllfjq.png" alt="Détail sculptural d'un flacon Dyane Paris, cocktail de luxe en porcelaine" fill sizes="100vw" style={{ objectFit: 'contain', objectPosition: 'bottom' }} />
-                    </div>
-                    <div>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '28px' }}>{t('temps_titre')}</h2>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('temps_p1')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '16px' }}>{t('temps_p2')}</p>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '48px' }}>{t('temps_p3')}</p>
-                        <h2 style={{ ...font, fontSize: 'clamp(14px, 1.2vw, 18px)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '16px' }}>{t('contemporaine_titre')}</h2>
-                        <p style={{ ...lora, fontSize: '13px', lineHeight: 1.9, opacity: 0.8 }}>{t('contemporaine_p')}</p>
-                    </div>
-                </section>
-
-                {/* Image finale */}
-                <section className="maison-final" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                    <Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777448070/DSC00561_nfjdeh.jpg" alt="Cocktail Dyane Paris présenté dans son flacon en porcelaine, Art Liquide français" fill sizes="100vw" style={{ objectFit: 'cover' }} />
-                </section>
-
-            </div>
-        </>
-    )
+  return (
+    <DyaneEditorialPage
+      eyebrow={t('kicker')}
+      title={t('titre')}
+      video={{
+        src: media.film,
+        poster: media.filmPoster,
+        label: "Film de l'histoire et du savoir-faire Dyane Paris",
+      }}
+      textBlocks={[
+        {
+          eyebrow: t('kicker'),
+          title: t('definition_titre'),
+          body: (
+            <>
+              <p>{t('definition')}</p>
+              <p>{t('intro')}</p>
+            </>
+          ),
+        },
+        {
+          eyebrow: t('genese_kicker'),
+          title: t('genese_titre'),
+          body: (
+            <>
+              <p>{t('genese_p1')}</p>
+              <p>{t('genese_p2')}</p>
+              <p>{t('genese_p3')}</p>
+            </>
+          ),
+        },
+        {
+          eyebrow: t('art_kicker'),
+          title: t('art_titre'),
+          body: (
+            <>
+              <p>{t('art_p1')}</p>
+              <p>{t('art_p2')}</p>
+              <p>{t('art_p3')}</p>
+              <p>{t('art_p4')}</p>
+            </>
+          ),
+        },
+        {
+          title: t('temps_titre'),
+          body: (
+            <>
+              <p>{t('temps_p1')}</p>
+              <p>{t('temps_p2')}</p>
+              <p>{t('temps_p3')}</p>
+            </>
+          ),
+        },
+        {
+          title: t('contemporaine_titre'),
+          body: (
+            <>
+              <p>{t('contemporaine_p')}</p>
+              <p>
+                <Link href={localizedPath(locale, '/oeuvres')}>{t('link_oeuvres')}</Link>{' · '}
+                <Link href={localizedPath(locale, '/fabrication')}>{t('link_fabrication')}</Link>{' · '}
+                <Link href={localizedPath(locale, '/distillation')}>{t('link_distillation')}</Link>
+              </p>
+            </>
+          ),
+        },
+      ]}
+      gallery3={galleries.gallery3}
+      gallery2={galleries.gallery2}
+      gallery6={galleries.gallery6}
+      gallery8={galleries.gallery8}
+    />
+  )
 }

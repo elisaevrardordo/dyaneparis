@@ -1,14 +1,22 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import {
+    clientIp,
+    createMemoryRateLimiter,
+    isTrustedSameOrigin,
+    requestBodyTooLarge,
+} from '@/lib/requestSecurity'
 
 type NewsletterPayload = {
     email?: unknown
     firstName?: unknown
     locale?: unknown
     source?: unknown
+    website?: unknown
 }
 
 const defaultFrom = 'Dyane Paris <website@mail.dyaneparis.com>'
+const isRateLimited = createMemoryRateLimiter(60 * 60 * 1000, 6)
 
 function asString(value: unknown, maxLength: number) {
     return typeof value === 'string' ? value.trim().slice(0, maxLength) : ''
@@ -58,6 +66,21 @@ function welcomeHtml(locale: 'fr' | 'en') {
 }
 
 export async function POST(request: Request) {
+    if (!isTrustedSameOrigin(request)) {
+        return NextResponse.json({ error: 'Forbidden origin.' }, { status: 403 })
+    }
+
+    if (requestBodyTooLarge(request, 4_000)) {
+        return NextResponse.json({ error: 'Request body too large.' }, { status: 413 })
+    }
+
+    if (isRateLimited(clientIp(request))) {
+        return NextResponse.json(
+            { error: 'Too many requests.' },
+            { status: 429, headers: { 'Retry-After': '3600' } },
+        )
+    }
+
     let payload: NewsletterPayload
 
     try {
@@ -65,6 +88,8 @@ export async function POST(request: Request) {
     } catch {
         return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
     }
+
+    if (asString(payload.website, 200)) return NextResponse.json({ ok: true })
 
     const email = asString(payload.email, 180).toLowerCase()
     const firstName = asString(payload.firstName, 120)

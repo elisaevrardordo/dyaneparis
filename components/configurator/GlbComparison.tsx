@@ -163,7 +163,7 @@ function ComparisonScene({
 
   return (
     <>
-      <color attach="background" args={[mode === 'studio' ? '#e7e1db' : '#d8d4cf']} />
+      <color attach="background" args={[mode === 'studio' ? '#f8f6f2' : '#d8d4cf']} />
       <CameraCalibration />
       <ambientLight intensity={mode === 'studio' ? 0.28 : 0.72} color="#fff7eb" />
       <directionalLight
@@ -184,7 +184,7 @@ function ComparisonScene({
 
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.006, 0]}>
         <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color={mode === 'studio' ? '#ebe5de' : '#d2ceca'} roughness={0.96} />
+        <meshStandardMaterial color={mode === 'studio' ? '#f8f6f2' : '#d2ceca'} roughness={0.96} />
       </mesh>
 
       {mode === 'studio' ? (

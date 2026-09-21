@@ -1,0 +1,66 @@
+.page { background: #fff; }
+
+.opening { height: 82svh; }
+
+.cover,
+.contain {
+  width: 100%;
+  height: 100%;
+}
+
+.cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+.contain {
+  object-fit: contain;
+  object-position: center;
+}
+
+.diana {
+  width: min(72vw, 1040px);
+  max-height: 900px;
+  background: #fff;
+}
+
+.workshop {
+  width: min(calc(100% - clamp(40px, 12vw, 210px)), 1380px);
+  margin-left: clamp(20px, 5vw, 92px);
+  background: #fff;
+}
+
+.film {
+  width: min(calc(100% - clamp(28px, 5vw, 90px)), 1660px);
+  margin-top: clamp(82px, 10vw, 168px);
+  background: #111;
+}
+
+.craftPair { padding-block: clamp(36px, 6vw, 96px); }
+
+.artisan,
+.detail {
+  position: relative;
+  overflow: hidden;
+  background: #f6f6f4;
+}
+
+.artisan { aspect-ratio: 4 / 5; }
+.detail { aspect-ratio: 3 / 4; }
+
+.slow {
+  margin-top: clamp(32px, 4vw, 58px) !important;
+  color: #111;
+  font-size: clamp(18px, 1.5vw, 23px);
+}
+
+.closing { margin-top: clamp(24px, 4vw, 64px); }
+
+@media (max-width: 760px) {
+  .opening { height: 58svh; }
+  .diana { width: calc(100% - 24px); }
+  .workshop { width: calc(100% - 24px); margin-inline: auto; }
+  .film { width: 100%; margin-top: 72px; }
+  .artisan,
+  .detail { aspect-ratio: 4 / 5; }
+}

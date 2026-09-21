@@ -1,8 +1,8 @@
 'use client'
 import Image from 'next/image'
 
-const lora = { fontFamily: 'var(--font-lora), serif' }
-const playfair = { fontFamily: 'var(--font-playfair), serif' }
+const lora = { fontFamily: 'var(--font-editorial), serif' }
+const playfair = { fontFamily: 'var(--font-editorial), serif' }
 
 export default function Manifeste() {
     return (

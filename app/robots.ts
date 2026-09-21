@@ -11,6 +11,12 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: 'Googlebot-Image',
                 allow: '/',
+                disallow: ['/api/'],
+            },
+            {
+                userAgent: ['Googlebot', 'Bingbot', 'OAI-SearchBot'],
+                allow: '/',
+                disallow: ['/api/'],
             },
         ],
         sitemap: 'https://www.dyaneparis.com/sitemap.xml',

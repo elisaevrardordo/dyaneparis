@@ -11,14 +11,14 @@ export const products: Product[] = [
         name: 'Dyane No.1 — Pornstar Martini',
         slug: 'dyane-paris-pornstar-martini-70-cl',
         subtitle: 'Chapitre I',
-        image: '/dyane-no1.webp',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
         alt: 'Sculpture-bouteille Dyane No.1 en porcelaine contenant un cocktail Pornstar Martini',
     },
     {
         name: 'Dyane No.2 — Moscow Mule',
         slug: 'dyane-no2-moscow-mule',
         subtitle: 'Chapitre II',
-        image: '/dyane-no2.webp',
+        image: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
         alt: 'Sculpture-bouteille Dyane No.2 en porcelaine contenant un cocktail Moscow Mule',
     },
     {

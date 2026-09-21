@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import NewsletterForm from '@/components/NewsletterForm'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
+const font = { fontFamily: 'var(--font-editorial), serif' }
 
 const faqs = [
     {
@@ -36,10 +36,13 @@ export default function FaqClient() {
     const [open, setOpen] = useState<number | null>(null)
 
     return (
-        <div style={{ background: '#FAF8F5' }}>
+        <div className="theme-page" style={{ background: 'transparent' }}>
 
             {/* Hero image — edge to edge, 100vh */}
-            <section style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
+            <section data-page-hero data-header-foreground="white" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
+                <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0 }}>
+                    FAQ — Dyane Paris
+                </h1>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
                     alt="Sculpture en porcelaine Dyane Paris accompagnant la foire aux questions"
@@ -61,17 +64,24 @@ export default function FaqClient() {
                         <button
                             type="button"
                             onClick={() => setOpen(open === i ? null : i)}
+                            id={`faq-trigger-${i}`}
+                            aria-expanded={open === i}
+                            aria-controls={`faq-panel-${i}`}
                             style={{ ...font, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                         >
                             <span style={{ fontSize: '13px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 400 }}>{faq.question}</span>
                             <span style={{ fontSize: '18px', opacity: 0.4, transition: 'transform 0.2s', transform: open === i ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0, marginLeft: '24px' }}>∨</span>
                         </button>
                         {open === i && (
-                            <div style={{ paddingBottom: '28px' }}>
+                            <section
+                                id={`faq-panel-${i}`}
+                                aria-labelledby={`faq-trigger-${i}`}
+                                style={{ paddingBottom: '28px' }}
+                            >
                                 {faq.reponse.split('\n\n').map((para, j) => (
                                     <p key={j} style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, marginBottom: '12px' }}>{para}</p>
                                 ))}
-                            </div>
+                            </section>
                         )}
                     </div>
                 ))}

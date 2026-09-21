@@ -24,6 +24,7 @@ type HomeContent = {
     subtitle: string
     cta: string
     href: string
+    hoverVideo: string
     theme: HeaderTheme
   }>
   customization: {
@@ -56,11 +57,20 @@ type HomeContent = {
 
 const sharedMedia = {
   hero: {
-    poster: '/home/hero/hero-dyane-poster.webp',
-    desktopVideo: '/home/hero/hero-dyane-desktop.mp4',
-    mobileVideo: '/home/hero/hero-dyane-mobile.mp4',
+    poster: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1920,so_0/v1785493082/0315_1_4_ndykz6.jpg',
+    desktopVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/0315_1_4_ndykz6.mp4',
+    mobileVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/0315_1_4_ndykz6.mp4',
   },
-  products: ['/home/products/dyane-no1.webp', '/home/products/dyane-no2.webp'],
+  products: [
+    {
+      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708147/Sans_titre_Publication_Instagram_4_5_pr3obf.mp4',
+    },
+    {
+      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
+      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708474/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflora._zsisam.mp4',
+    },
+  ],
   presence: [
     '/home/presences/presence-paris.webp',
     '/home/presences/presence-mediterranee.webp',
@@ -94,7 +104,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         subtitle: 'PORNSTAR MARTINI',
         cta: 'DÉCOUVRIR',
         href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
-        src: sharedMedia.products[0],
+        src: sharedMedia.products[0].src,
+        hoverVideo: sharedMedia.products[0].hoverVideo,
         alt: 'Dyane No.1, flacon sculptural en porcelaine pour cocktail Pornstar Martini',
         objectPosition: '50% 50%',
         theme: 'dark',
@@ -104,7 +115,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         subtitle: 'MOSCOW MULE',
         cta: 'DÉCOUVRIR',
         href: '/oeuvres/dyane-no2-moscow-mule',
-        src: sharedMedia.products[1],
+        src: sharedMedia.products[1].src,
+        hoverVideo: sharedMedia.products[1].hoverVideo,
         alt: 'Dyane No.2, flacon sculptural en porcelaine pour cocktail Moscow Mule',
         objectPosition: '50% 50%',
         theme: 'dark',
@@ -157,15 +169,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     editorial: [
       {
         src: sharedMedia.editorial[0],
-        alt: 'Sculpture Dyane Paris en pied, drapée de rouge profond',
+        alt: 'Dyane No.1, sculpture en porcelaine de la Maison Dyane Paris',
         objectPosition: '50% 50%',
-        caption: 'DYANE — ÉTUDE I',
+        caption: 'DYANE NO.1',
       },
       {
         src: sharedMedia.editorial[1],
-        alt: 'Sculpture Dyane Paris en pied, drapée de bleu nocturne',
+        alt: 'Dyane No.2, sculpture en porcelaine de la Maison Dyane Paris',
         objectPosition: '50% 50%',
-        caption: 'DYANE — ÉTUDE II',
+        caption: 'DYANE NO.2',
       },
     ],
     film: {
@@ -190,7 +202,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         subtitle: 'PORNSTAR MARTINI',
         cta: 'DISCOVER',
         href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
-        src: sharedMedia.products[0],
+        src: sharedMedia.products[0].src,
+        hoverVideo: sharedMedia.products[0].hoverVideo,
         alt: 'Dyane No.1 sculptural porcelain bottle for a Pornstar Martini cocktail',
         objectPosition: '50% 50%',
         theme: 'dark',
@@ -200,7 +213,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         subtitle: 'MOSCOW MULE',
         cta: 'DISCOVER',
         href: '/oeuvres/dyane-no2-moscow-mule',
-        src: sharedMedia.products[1],
+        src: sharedMedia.products[1].src,
+        hoverVideo: sharedMedia.products[1].hoverVideo,
         alt: 'Dyane No.2 sculptural porcelain bottle for a Moscow Mule cocktail',
         objectPosition: '50% 50%',
         theme: 'dark',
@@ -253,15 +267,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     editorial: [
       {
         src: sharedMedia.editorial[0],
-        alt: 'Full-length Dyane Paris sculpture draped in deep red',
+        alt: 'Dyane No.1 porcelain sculpture by the Dyane Paris Maison',
         objectPosition: '50% 50%',
-        caption: 'DYANE — STUDY I',
+        caption: 'DYANE NO.1',
       },
       {
         src: sharedMedia.editorial[1],
-        alt: 'Full-length Dyane Paris sculpture draped in nocturnal blue',
+        alt: 'Dyane No.2 porcelain sculpture by the Dyane Paris Maison',
         objectPosition: '50% 50%',
-        caption: 'DYANE — STUDY II',
+        caption: 'DYANE NO.2',
       },
     ],
     film: {

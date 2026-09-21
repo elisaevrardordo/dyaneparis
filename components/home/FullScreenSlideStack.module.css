@@ -1,0 +1,32 @@
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.track {
+  width: 100%;
+  will-change: transform;
+  transition: transform 360ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .viewport {
+    height: auto;
+    overflow: visible;
+  }
+
+  .track {
+    transform: none !important;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition-duration: 1ms;
+  }
+}

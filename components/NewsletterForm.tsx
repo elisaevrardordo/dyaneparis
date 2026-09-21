@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
+const font = { fontFamily: 'var(--font-editorial), serif' }
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -37,6 +37,7 @@ export default function NewsletterForm() {
     const t = copy[locale]
 
     const [email, setEmail] = useState('')
+    const [website, setWebsite] = useState('')
     const [status, setStatus] = useState<Status>('idle')
 
     async function handleSubmit(e: React.FormEvent) {
@@ -47,7 +48,7 @@ export default function NewsletterForm() {
             const res = await fetch('/api/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, locale, source: 'newsletter_section' }),
+                body: JSON.stringify({ email, website, locale, source: 'newsletter_section' }),
             })
             if (!res.ok) throw new Error('request failed')
             setStatus('success')
@@ -69,8 +70,19 @@ export default function NewsletterForm() {
                     <p style={{ ...font, fontSize: '13px', color: 'rgba(255,255,255,0.8)', letterSpacing: '0.1em' }}>{t.success}</p>
                 ) : (
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                            <label htmlFor="newsletter-website">Website</label>
+                            <input
+                                id="newsletter-website"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                value={website}
+                                onChange={(event) => setWebsite(event.target.value)}
+                            />
+                        </div>
                         <div style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.3)', marginBottom: '32px' }}>
                             <input
+                                aria-label={t.placeholder}
                                 type="email"
                                 placeholder={t.placeholder}
                                 required

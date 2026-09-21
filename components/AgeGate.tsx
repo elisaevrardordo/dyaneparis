@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { localizedPath } from '@/i18n/paths'
 
-const cormorant = 'var(--font-cormorant), Garamond, serif'
-const lora = 'var(--font-lora), serif'
-const playfair = 'var(--font-playfair), serif'
+const editorial = 'var(--font-editorial), serif'
 const bordeaux = '#6B1A2A'
 
 export default function AgeGate({ currentLocale }: { currentLocale: string }) {
@@ -64,7 +62,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                 background: '#0d0d0d',
             }}>
                 <Image
-                    src="/dyane-paris-cocktails-porcelaine.webp"
+                    src="https://res.cloudinary.com/dazhkrimv/image/upload/v1785915125/Capture_d_e%CC%81cran_2026-08-05_a%CC%80_09.31.55_yelyk6.png"
                     alt=""
                     fill
                     priority
@@ -99,7 +97,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
 
                     {/* Headline */}
                     <h1 className="agegate-headline" style={{
-                        fontFamily: cormorant,
+                        fontFamily: editorial,
                         fontSize: 'clamp(20px, 3.5vw, 28px)',
                         fontWeight: 400,
                         lineHeight: 1.45,
@@ -112,7 +110,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
 
                     {/* Subline */}
                     <p className="agegate-sub" style={{
-                        fontFamily: lora,
+                        fontFamily: editorial,
                         fontSize: '12px',
                         color: '#aaa',
                         marginBottom: '28px',
@@ -130,7 +128,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                             onMouseEnter={() => setHovering('yes')}
                             onMouseLeave={() => setHovering(null)}
                             style={{
-                                fontFamily: playfair,
+                                fontFamily: editorial,
                                 background: hovering === 'yes' ? bordeaux : 'transparent',
                                 color: hovering === 'yes' ? '#fff' : bordeaux,
                                 border: `1px solid ${bordeaux}`,
@@ -153,7 +151,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                             onMouseEnter={() => setHovering('no')}
                             onMouseLeave={() => setHovering(null)}
                             style={{
-                                fontFamily: playfair,
+                                fontFamily: editorial,
                                 background: 'transparent',
                                 color: hovering === 'no' ? '#555' : '#ccc',
                                 border: '1px solid #eee',
@@ -172,7 +170,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
 
                     {/* Legal */}
                     <p className="agegate-legal" style={{
-                        fontFamily: lora,
+                        fontFamily: editorial,
                         color: '#ccc',
                         fontSize: '10px',
                         lineHeight: 1.9,

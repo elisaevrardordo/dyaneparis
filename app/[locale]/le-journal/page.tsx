@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import LeJournalClient from './LeJournalClient'
+import JournalIndex from '@/components/journal/JournalIndex'
 import {
     breadcrumbJsonLd,
     buildPageMetadata,
@@ -53,7 +53,7 @@ export default async function LeJournalPage({ params }: { params: Promise<{ loca
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-            <LeJournalClient />
+            <JournalIndex locale={locale} />
         </>
     )
 }

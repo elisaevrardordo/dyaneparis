@@ -17,8 +17,8 @@ export default function ProductGrid() {
                         <Link href={localizedPath(locale, `/oeuvres/${p.slug}`)} style={{ display: 'block', width: '100%', aspectRatio: '3/4', position: 'relative', marginBottom: '12px', overflow: 'hidden', textDecoration: 'none' }}>
                             <Image src={p.image} alt={p.alt} fill sizes="(max-width: 768px) calc(100vw - 48px), 360px" style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }} />
                         </Link>
-                        <p style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 8px' }}>{p.name}</p>
-                        <Link href={localizedPath(locale, '/contact')} style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#000', textDecoration: 'none' }}>{t('cta')}</Link>
+                        <p style={{ fontFamily: 'var(--font-editorial), serif', fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', margin: '0 0 8px' }}>{p.name}</p>
+                        <Link href={localizedPath(locale, '/contact')} style={{ fontFamily: 'var(--font-editorial), serif', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#000', textDecoration: 'none' }}>{t('cta')}</Link>
                     </div>
                 ))}
             </div>

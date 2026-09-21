@@ -1,9 +1,9 @@
 .page {
   box-sizing: border-box;
   min-height: 100svh;
-  padding-top: 88px;
+  padding-top: calc(var(--header-height) + clamp(36px, 5svh, 64px));
   color: #25211e;
-  background: #e7e1db;
+  background: var(--background-house);
 }
 
 .header {
@@ -23,7 +23,7 @@
 .controls,
 .modelLabel,
 .note {
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
 }
 
 .referenceSection {
@@ -38,7 +38,7 @@
 
 .referenceSection h2 {
   margin: 0 0 36px;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: clamp(28px, 3vw, 42px);
   font-weight: 400;
 }
@@ -65,7 +65,7 @@
 .referenceGrid figcaption {
   margin-top: 9px;
   color: rgba(37, 33, 30, 0.56);
-  font-family: var(--font-lora), serif;
+  font-family: var(--font-editorial), serif;
   font-size: 8px;
   letter-spacing: 0.12em;
   text-align: center;
@@ -94,7 +94,7 @@
 
 .header h1 {
   margin: 0;
-  font-family: var(--font-cormorant), Garamond, serif;
+  font-family: var(--font-editorial), Garamond, serif;
   font-size: clamp(28px, 3vw, 43px);
   font-weight: 400;
 }

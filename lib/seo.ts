@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 export const SITE_URL = 'https://www.dyaneparis.com'
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`
+export const WEBSITE_ID = `${SITE_URL}/#website`
 
 export type SeoImage = {
     url: string
@@ -13,23 +15,23 @@ export type SeoImage = {
 
 export const seoImages = {
     home: {
-        url: '/dyane-paris-cocktails-porcelaine.webp',
-        width: 1920,
-        height: 1080,
+        url: '/home/hero/hero-dyane-website-vdef-poster.jpg',
+        width: 1800,
+        height: 1350,
         alt: 'Sculptures-bouteilles Dyane Paris contenant des cocktails prêts à déguster',
         caption: "Dyane Paris, Maison française d'Art Liquide",
         description: 'Cocktails prêts à déguster présentés dans des sculptures en porcelaine peintes à la main.',
     },
     collection: {
-        url: '/dyane-paris-collection-oeuvres.webp',
-        width: 1920,
-        height: 1080,
+        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+        width: 1080,
+        height: 1350,
         alt: 'Collection de cocktails Dyane Paris en sculptures de porcelaine peintes à la main',
         caption: 'Collection des œuvres Dyane Paris',
         description: 'Collection de cocktails signature Dyane Paris présentés dans des flacons sculpturaux en porcelaine.',
     },
     pornstarMartini: {
-        url: '/dyane-no1.webp',
+        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
         width: 1080,
         height: 1350,
         alt: 'Sculpture-bouteille Dyane No.1 contenant le cocktail Pornstar Martini',
@@ -37,7 +39,7 @@ export const seoImages = {
         description: 'Cocktail Pornstar Martini Dyane Paris présenté dans un flacon sculptural en porcelaine.',
     },
     moscowMule: {
-        url: '/dyane-no2.webp',
+        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
         width: 1080,
         height: 1350,
         alt: 'Sculpture-bouteille Dyane No.2 contenant le cocktail Moscow Mule',
@@ -53,31 +55,41 @@ export const seoImages = {
         description: 'Édition artistique Teo for Dyane Paris, peinte à la main en série confidentielle.',
     },
     maison: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779745931/Design_sans_titre_63_nbwcnv.png',
+        url: '/editorial/la-maison/STATUE%202.png',
+        width: 1080,
+        height: 1350,
         alt: "Cocktail Dyane Paris présenté dans une sculpture en porcelaine peinte à la main",
         caption: "La Maison Dyane Paris et son savoir-faire d'Art Liquide",
         description: "Une création Dyane Paris réunissant sculpture en porcelaine, artisanat français et cocktail prêt à déguster.",
     },
     experiences: {
         url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg',
+        width: 6000,
+        height: 4000,
         alt: 'Création Dyane Paris présentée lors d’une expérience sur mesure',
         caption: 'Expériences et collaborations Dyane Paris',
         description: 'Expérience de dégustation et création sur mesure imaginée par la Maison Dyane Paris.',
     },
     distillation: {
         url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg',
+        width: 1200,
+        height: 800,
         alt: 'Élaboration artisanale des cocktails Dyane Paris en France',
         caption: 'Distillation artisanale française Dyane Paris',
         description: 'Savoir-faire de la Maison Dyane Paris autour des infusions et de l’assemblage de cocktails.',
     },
     journal: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1779701616/Sans_titre_1920_x_550_px_amjdym.png',
+        url: '/journal/dyane-paris-cocktail-hotel.webp',
+        width: 1920,
+        height: 1080,
         alt: 'Le Journal de la Maison Dyane Paris',
         caption: 'Le Journal Dyane Paris',
         description: 'Actualités, collaborations et savoir-faire de la Maison Dyane Paris.',
     },
     contact: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1781513624/CONTACTER_LA_CONCIERGERIE_zwmuhm.png',
+        url: '/contact/rock2-poster.jpg',
+        width: 1200,
+        height: 675,
         alt: 'La Conciergerie de la Maison Dyane Paris',
         caption: 'Contacter la Conciergerie Dyane Paris',
         description: 'La Conciergerie Dyane Paris accompagne les commandes privées, collaborations et demandes presse.',
@@ -172,7 +184,7 @@ export function imageObject(image: SeoImage, representativeOfPage = false) {
         ...(image.width ? { width: image.width } : {}),
         ...(image.height ? { height: image.height } : {}),
         creditText: 'Dyane Paris',
-        creator: { '@type': 'Organization', name: 'Dyane Paris' },
+        creator: { '@id': ORGANIZATION_ID },
         copyrightNotice: 'Dyane Paris',
         ...(representativeOfPage ? { representativeOfPage: true } : {}),
     }

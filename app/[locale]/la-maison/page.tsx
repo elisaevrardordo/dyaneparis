@@ -24,6 +24,7 @@ export async function generateMetadata({
         title: t('title'),
         description: t('description'),
         image: seoImages.maison,
+        absoluteTitle: true,
     })
 }
 

@@ -8,7 +8,12 @@ type Presences = ReturnType<typeof getHomeContent>['presences']
 
 export default function LatestPresencesSection({ content, locale }: { content: Presences; locale: string }) {
   return (
-    <section className={styles.presences} data-header-theme="dark" aria-labelledby="presences-title">
+    <section
+      className={styles.presences}
+      data-scroll-section
+      data-header-foreground="black"
+      aria-labelledby="presences-title"
+    >
       <header className={styles.sectionHeading}>
         <div>
           <p className={styles.eyebrow}>{content.eyebrow}</p>

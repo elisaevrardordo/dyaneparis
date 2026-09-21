@@ -1,10 +1,6 @@
-import ArtisticCustomizationSection from '@/components/home/ArtisticCustomizationSection'
-import EditorialDiptych from '@/components/home/EditorialDiptych'
-import EditorialVideoSection from '@/components/home/EditorialVideoSection'
-import HomeHeroVideo from '@/components/home/HomeHeroVideo'
-import LatestPresencesSection from '@/components/home/LatestPresencesSection'
-import ProductDiptych from '@/components/home/ProductDiptych'
 import styles from '@/components/home/Home.module.css'
+import FullScreenSlideStack from '@/components/home/FullScreenSlideStack'
+import VerticalCampaignSequence from '@/components/home/VerticalCampaignSequence'
 import { getHomeContent } from '@/content/home'
 import { imageObject, localizedUrl, seoImages, serializeJsonLd } from '@/lib/seo'
 
@@ -38,14 +34,9 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <main className={styles.home}>
-        <HomeHeroVideo hero={content.hero} locale={locale} />
-        <ProductDiptych products={content.products} locale={locale} />
-        <ArtisticCustomizationSection content={content.customization} locale={locale} />
-        <LatestPresencesSection content={content.presences} locale={locale} />
-        <EditorialDiptych images={content.editorial} />
-        <EditorialVideoSection film={content.film} />
-      </main>
+      <FullScreenSlideStack className={styles.home}>
+        <VerticalCampaignSequence locale={locale} hero={content.hero} products={content.products} />
+      </FullScreenSlideStack>
     </>
   )
 }

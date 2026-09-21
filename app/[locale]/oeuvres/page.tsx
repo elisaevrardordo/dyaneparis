@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import OeuvresClient from './OeuvresClient'
 import { products } from '@/components/data/products'
 import {
     absoluteUrl,
@@ -8,9 +7,11 @@ import {
     buildPageMetadata,
     imageObject,
     localizedUrl,
+    ORGANIZATION_ID,
     seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
+import OeuvresEditorial from './OeuvresEditorial'
 
 export async function generateMetadata({
     params,
@@ -58,7 +59,7 @@ export default async function OeuvresPage({
                             name: p.name,
                             url: localizedUrl(locale, `/oeuvres/${p.slug}`),
                             image: absoluteUrl(p.image),
-                            brand: { '@type': 'Brand', name: 'Dyane Paris' },
+                            brand: { '@id': ORGANIZATION_ID },
                         },
                     })),
                 },
@@ -76,7 +77,7 @@ export default async function OeuvresPage({
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
-            <OeuvresClient />
+            <OeuvresEditorial locale={locale} />
         </>
     )
 }

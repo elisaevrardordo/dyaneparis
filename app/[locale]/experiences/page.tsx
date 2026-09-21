@@ -36,7 +36,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
             {
                 '@type': 'WebPage',
                 '@id': `${pageUrl}#webpage`,
-                name: locale === 'en' ? 'Dyane Paris Experiences' : 'Expériences Dyane Paris',
+                name: locale === 'en'
+                    ? 'Cocktails for luxury hotels and exceptional events'
+                    : 'Cocktails pour hôtels et événements d’exception',
+                description: locale === 'en'
+                    ? 'Dyane Paris creates premium ready-to-serve cocktails for hotel bars, minibars, room service and events, with bespoke recipes and formats.'
+                    : 'Dyane Paris conçoit des cocktails premium prêts à servir pour le bar, le minibar, le room service et les événements, avec recettes et formats sur mesure.',
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 about: { '@id': 'https://www.dyaneparis.com/#organization' },

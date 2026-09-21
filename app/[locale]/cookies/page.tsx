@@ -23,7 +23,7 @@ export async function generateMetadata({
     }
 }
 
-const font = { fontFamily: 'var(--font-playfair), serif' }
+const font = { fontFamily: 'var(--font-editorial), serif' }
 
 const sections = [
     {
@@ -80,7 +80,7 @@ const sections = [
 
 export default function CookiesPage() {
     return (
-        <main style={{ background: '#FAF8F5' }}>
+        <main className="theme-page" style={{ background: 'transparent' }}>
             <div style={{ maxWidth: '780px', margin: '0 auto', padding: '80px 24px 120px' }}>
 
                 <div style={{ textAlign: 'center', marginBottom: '60px' }}>
@@ -89,7 +89,7 @@ export default function CookiesPage() {
                     <p style={{ ...font, fontSize: '11px', letterSpacing: '0.16em', textTransform: 'uppercase', opacity: 0.5 }}>Dernière mise à jour : 23 février 2026</p>
                 </div>
 
-                <div style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.08)', padding: '24px 32px', marginBottom: '48px' }}>
+                <div style={{ background: 'transparent', border: '1px solid var(--page-border)', padding: '24px 32px', marginBottom: '48px' }}>
                     <p style={{ ...font, fontSize: '13px', lineHeight: 1.9, opacity: 0.8, textAlign: 'center' }}>
                         En naviguant sur dyaneparis.com, vous acceptez l'utilisation de cookies conformément à la présente politique.<br />
                         Vous pouvez modifier vos préférences à tout moment.
