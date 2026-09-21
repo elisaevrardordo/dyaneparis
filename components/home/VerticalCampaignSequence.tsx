@@ -8,8 +8,9 @@ import CampaignCaption from './CampaignCaption'
 import ProductDiptych from './ProductDiptych'
 import styles from './VerticalCampaignSequence.module.css'
 
-export const NEW_HERO_VIDEO = '/home/hero/hero-dyane-website-vdef.mp4'
-export const NEW_HERO_VIDEO_POSTER = ''
+export const NEW_HERO_VIDEO = 'https://res.cloudinary.com/dazhkrimv/video/upload/v1789996394/dyane-paris/maison/dyane-paris-maison-art-liquide-hero.mp4'
+export const NEW_HERO_VIDEO_MOBILE = 'https://res.cloudinary.com/dazhkrimv/video/upload/v1789996394/dyane-paris/maison/dyane-paris-maison-art-liquide-hero.mp4'
+export const NEW_HERO_VIDEO_POSTER = '/home/hero/hero-dyane-website-vdef-poster.jpg'
 export const HOME_IMAGE_01 = 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788728025/Ajouter_un_titre_1_yk7tmn.png'
 export const HOME_IMAGE_02 = 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788784346/Ajouter_un_titre_3_ebsgyz.png'
 
@@ -170,7 +171,8 @@ export default function VerticalCampaignSequence({
             aria-hidden="true"
             tabIndex={-1}
           >
-            <source src={NEW_HERO_VIDEO} />
+            <source src={NEW_HERO_VIDEO_MOBILE} type="video/mp4" media="(max-width: 700px)" />
+            <source src={NEW_HERO_VIDEO} type="video/mp4" />
           </video>
         ) : null}
         <CampaignCaption
