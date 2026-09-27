@@ -1,0 +1,155 @@
+.page {
+    min-height: 100vh;
+    background: #faf9f6;
+    color: #111;
+}
+
+.content {
+    width: min(100% - 48px, 840px);
+    margin: 0 auto;
+    padding: 112px 0 72px;
+}
+
+.introduction,
+.section {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.introduction {
+    padding-bottom: 64px;
+}
+
+.eyebrow,
+.sectionLabel,
+.updated {
+    margin: 0;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.eyebrow,
+.sectionLabel {
+    color: rgba(17, 17, 17, 0.58);
+}
+
+.introduction h1,
+.section h2 {
+    margin: 18px 0 0;
+    font-family: var(--font-editorial), serif;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+.introduction h1 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 0.98;
+}
+
+.section h2 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.05;
+}
+
+.lead {
+    max-width: 38rem;
+    margin: 32px 0 20px;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.5;
+}
+
+.introduction > p:not(.eyebrow):not(.lead),
+.copy {
+    max-width: 42rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.introduction > p:not(.eyebrow):not(.lead) {
+    margin: 0 0 16px;
+}
+
+.sectionLinks,
+.localFooter nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.sectionLinks {
+    margin-top: 32px;
+}
+
+.sectionLinks a,
+.localFooter a {
+    color: inherit;
+    font-size: 0.8125rem;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+}
+
+.section {
+    scroll-margin-top: 32px;
+    padding: 72px 0;
+}
+
+.updated {
+    margin-top: 14px;
+    color: rgba(17, 17, 17, 0.58);
+}
+
+.copy {
+    margin-top: 36px;
+}
+
+.copy p {
+    margin: 0 0 20px;
+}
+
+.copy ul {
+    margin: 0 0 24px;
+    padding-left: 1.25rem;
+}
+
+.copy li {
+    margin: 0 0 7px;
+    padding-left: 0.25rem;
+}
+
+.localFooter {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding-top: 40px;
+    color: rgba(17, 17, 17, 0.72);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+}
+
+.localFooter p {
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .content {
+        width: min(100% - 40px, 840px);
+        padding-top: 72px;
+    }
+
+    .introduction {
+        padding-bottom: 48px;
+    }
+
+    .section {
+        padding: 56px 0;
+    }
+
+    .localFooter {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+    }
+}
