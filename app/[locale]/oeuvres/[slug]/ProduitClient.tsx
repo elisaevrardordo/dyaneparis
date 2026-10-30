@@ -1,11 +1,18 @@
 'use client'
 import Image from 'next/image'
+import EditorialImage from '@/components/editorial/EditorialImage'
+import ProductLightbox from '@/components/product/ProductLightbox'
+import ProductGallery from '@/components/product/ProductGallery'
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { localizedPath } from '@/i18n/paths'
-import { heroImages, produits, productVideos, type ProductDetails } from '@/components/data/productDetails'
+import { heroImages, produits, productVideos, productMediaDimensions, type ProductDetails } from '@/components/data/productDetails'
 import layout from './ProduitLayout.module.css'
+import { ChevronIcon, ArrowLeftIcon } from '@/components/icons/EditorialIcons'
+import { cloudinaryVideo, cloudinaryVideoPoster } from '@/lib/cloudinary'
+import EditorialEmblem from '@/components/editorial/EditorialEmblem'
+import { availabilityLabel, type PublicOffer } from '@/lib/productStructuredData'
 
 const font = { fontFamily: 'var(--font-editorial), serif' }
 const lora = { fontFamily: 'var(--font-editorial), serif' }
@@ -35,7 +42,7 @@ function Accordion({ titre, contenu, semanticHeading = false }: { titre: string,
                 {semanticHeading
                     ? <h2 style={{ margin: 0, font: 'inherit', fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>{titre}</h2>
                     : <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>{titre}</span>}
-                <span style={{ fontSize: '16px', opacity: 0.5 }}>{open ? '∧' : '›'}</span>
+                <ChevronIcon direction="right" className={open ? layout.accordionChevronOpen : layout.accordionChevron} />
             </button>
             {open && (
                 <div id={panelId} style={{ paddingBottom: '16px' }}>
@@ -73,14 +80,14 @@ type ProductEditorialCopy = {
 }
 
 const productEditorial: Record<string, Record<'fr' | 'en', ProductEditorialCopy>> = {
-    'dyane-paris-pornstar-martini-70-cl': {
+    'dyane-no1-pornstar-martini': {
         fr: {
             definitionTitle: 'QU’EST-CE QUE DYANE NO.1 ?',
-            definition: 'Dyane No.1 est la première création de la Maison d’Art Liquide Dyane Paris. Elle réinterprète le Pornstar Martini autour du fruit de la passion, de la vanille et de la framboise sauvage, dans un cocktail prêt à servir présenté au sein d’une sculpture en porcelaine peinte à la main.',
+            definition: 'Dyane No.1 est la première création de la Maison d’Art Liquide Dyane Paris. Elle réinterprète le Pornstar Martini autour du fruit de la passion, de la vanille et de la framboise sauvage, dans un cocktail prêt à servir présenté au sein d’une sculpture en porcelaine peinte à la main. L’œuvre principale est présentée en 1,5 L. Un format 25 cl est prévu pour la future boutique ; il n’est pas encore proposé à l’achat en ligne.',
             porcelainTitle: 'UNE SCULPTURE EN PORCELAINE',
             porcelain: 'Le contenant abandonne les codes de la bouteille traditionnelle pour adopter la silhouette sculpturale de Dyane. Sa porcelaine et ses finitions peintes à la main donnent à chaque création une présence conçue pour demeurer après la dégustation.',
             franceTitle: 'UNE ÉLABORATION FRANÇAISE',
-            france: 'Le cocktail est élaboré et embouteillé en France, dans la région d’Avignon, à partir d’un alcool vinique travaillé par infusion. La recette recherche un équilibre entre l’intensité du fruit de la passion, l’acidité et la rondeur de la vanille.',
+            france: 'Le cocktail est élaboré et embouteillé en France, dans la région d’Avignon, à partir d’une vodka artisanale française travaillée par infusion. La recette recherche un équilibre entre l’intensité du fruit de la passion, l’acidité et la rondeur de la vanille.',
             serviceTitle: 'À SERVIR, PUIS À COLLECTIONNER',
             service: 'Prête à déguster, la composition est pensée pour préserver la constance du service. Une fois le cocktail savouré, la sculpture conserve sa fonction d’objet d’art et peut rejoindre une collection ou un intérieur.',
             articleHref: '/le-journal/pornstar-martini',
@@ -91,11 +98,11 @@ const productEditorial: Record<string, Record<'fr' | 'en', ProductEditorialCopy>
         },
         en: {
             definitionTitle: 'WHAT IS DYANE NO.1?',
-            definition: 'Dyane No.1 is the first creation by the Dyane Paris House of Liquid Art. It reinterprets the Pornstar Martini through passion fruit, vanilla and wild raspberry, in a ready-to-serve cocktail presented within a hand-painted porcelain sculpture.',
+            definition: 'Dyane No.1 is the first creation by the Dyane Paris House of Liquid Art. It reinterprets the Pornstar Martini through passion fruit, vanilla and wild raspberry, in a ready-to-serve cocktail presented within a hand-painted porcelain sculpture. The main work is presented in 1.5 L. A 25 cl format is planned for the future online shop and is not yet available to buy online.',
             porcelainTitle: 'A PORCELAIN SCULPTURE',
             porcelain: 'The vessel leaves behind the codes of the traditional bottle for Dyane’s sculptural silhouette. Its porcelain body and hand-painted finishes give every creation a presence designed to remain after the tasting experience.',
             franceTitle: 'CRAFTED IN FRANCE',
-            france: 'The cocktail is crafted and bottled in France, near Avignon, using an infused wine spirit. Its recipe seeks balance between the intensity of passion fruit, bright acidity and the rounded character of vanilla.',
+            france: 'The cocktail is crafted and bottled in France, near Avignon, using an infused artisanal French vodka. Its recipe seeks balance between the intensity of passion fruit, bright acidity and the rounded character of vanilla.',
             serviceTitle: 'TO SERVE, THEN COLLECT',
             service: 'Ready to taste, the composition is designed to preserve consistency of service. Once the cocktail has been enjoyed, the sculpture remains as an art object for a collection or interior.',
             articleHref: '/le-journal/pornstar-martini',
@@ -105,33 +112,33 @@ const productEditorial: Record<string, Record<'fr' | 'en', ProductEditorialCopy>
             commissionLabel: 'COMMISSION A SCULPTURE',
         },
     },
-    'dyane-no2-moscow-mule': {
+    'dyane-no2-basil-smash': {
         fr: {
             definitionTitle: 'QU’EST-CE QUE DYANE NO.2 ?',
-            definition: 'Dyane No.2 est l’interprétation du Moscow Mule par la Maison d’Art Liquide Dyane Paris. Gingembre et citron composent un cocktail prêt à servir, élaboré et embouteillé en France, puis présenté dans une sculpture en porcelaine peinte à la main destinée à être conservée.',
+            definition: 'Dyane No.2 Basil Smash est une création de la Maison d’Art Liquide Dyane Paris. Gin, sirop maison de basilic et yuzu, liqueur de sureau sauvage, sour maison. Ce cocktail prêt à servir est élaboré et embouteillé en France, puis présenté dans une sculpture en porcelaine peinte à la main destinée à être conservée.',
             porcelainTitle: 'UNE SCULPTURE EN PORCELAINE',
             porcelain: 'La forme signature de Dyane transforme le flacon en présence sculpturale. La porcelaine met en valeur les volumes et les finitions peintes à la main, pour un objet qui prolonge l’expérience au-delà du cocktail.',
             franceTitle: 'UNE ÉLABORATION FRANÇAISE',
-            france: 'La recette est élaborée et embouteillée en France autour d’un alcool vinique infusé au gingembre et d’un jus de citron. Sa structure recherche une attaque tonique, une fraîcheur nette et une finale précise.',
+            france: 'La recette est élaborée et embouteillée en France. Sa composition : gin, sirop maison de basilic et yuzu, liqueur de sureau sauvage, sour maison. La sculpture en porcelaine prolonge cette création de la Maison.',
             serviceTitle: 'À SERVIR, PUIS À COLLECTIONNER',
             service: 'La composition prête à déguster facilite un service régulier, sans dissocier le liquide de sa mise en scène. Après dégustation, la sculpture demeure et devient un objet à collectionner.',
-            articleHref: '/le-journal/moscow-mule',
-            articleLabel: 'LIRE L’HISTOIRE DU MOSCOW MULE',
+            articleHref: '/le-journal/basil-smash',
+            articleLabel: 'DÉCOUVRIR LE BASIL SMASH',
             fabricationLabel: 'DÉCOUVRIR LA FABRICATION',
             distillationLabel: 'EXPLORER LA MIXOLOGIE DYANE',
             commissionLabel: 'COMMANDER UNE SCULPTURE',
         },
         en: {
             definitionTitle: 'WHAT IS DYANE NO.2?',
-            definition: 'Dyane No.2 is the Moscow Mule interpreted by the Dyane Paris House of Liquid Art. Ginger and lemon shape a ready-to-serve cocktail crafted and bottled in France, then presented in a hand-painted porcelain sculpture designed to be kept.',
+            definition: 'Dyane No.2 Basil Smash is a creation by the Dyane Paris House of Liquid Art. Gin, house-made basil and yuzu syrup, wild elderflower liqueur, house-made sour. This ready-to-serve cocktail is crafted and bottled in France, then presented in a hand-painted porcelain sculpture designed to be kept.',
             porcelainTitle: 'A PORCELAIN SCULPTURE',
             porcelain: 'Dyane’s signature form turns the vessel into a sculptural presence. Porcelain reveals its volumes and hand-painted finishes, creating an object that extends the experience beyond the cocktail.',
             franceTitle: 'CRAFTED IN FRANCE',
-            france: 'The recipe is crafted and bottled in France around ginger-infused wine spirit and lemon juice. Its structure seeks an energetic opening, clear freshness and a precise finish.',
+            france: 'The recipe is crafted and bottled in France. Its composition: gin, house-made basil and yuzu syrup, wild elderflower liqueur, house-made sour. The porcelain sculpture extends this creation by the House.',
             serviceTitle: 'TO SERVE, THEN COLLECT',
             service: 'The ready-to-taste composition supports a consistent service without separating the liquid from its presentation. After tasting, the sculpture remains as a collectible object.',
-            articleHref: '/le-journal/moscow-mule',
-            articleLabel: 'READ THE STORY OF THE MOSCOW MULE',
+            articleHref: '/le-journal/basil-smash',
+            articleLabel: 'DISCOVER THE BASIL SMASH',
             fabricationLabel: 'DISCOVER THE MAKING',
             distillationLabel: 'EXPLORE DYANE MIXOLOGY',
             commissionLabel: 'COMMISSION A SCULPTURE',
@@ -140,61 +147,55 @@ const productEditorial: Record<string, Record<'fr' | 'en', ProductEditorialCopy>
 }
 
 const productMediaAlts: Record<string, Record<'fr' | 'en', string[]>> = {
-    'dyane-paris-pornstar-martini-70-cl': {
+    'dyane-no1-pornstar-martini': {
         fr: [
-            'Film de Dyane No.1, cocktail Pornstar Martini et sculpture en porcelaine',
-            'Dyane No.1, cocktail Pornstar Martini dans sa sculpture en porcelaine',
-            'Composition éditoriale autour de la sculpture Dyane No.1',
-            'Détail de la porcelaine peinte à la main de Dyane No.1',
-            'Flacon sculptural Dyane No.1 et cocktail prêt à servir',
-            'Fleur de la passion, inspiration aromatique de Dyane No.1',
+            'Portrait de Dyane No.1, sculpture en porcelaine au drapé rouge',
+            'Film du service et du rituel du cocktail Dyane Paris',
+            'Sculpture en porcelaine rouge Dyane No.1 accompagnée d’un cocktail',
+            'Dyane No.1 au drapé rouge dans un intérieur',
         ],
         en: [
-            'Film of Dyane No.1, Pornstar Martini cocktail and porcelain sculpture',
-            'Dyane No.1 Pornstar Martini cocktail in its porcelain sculpture',
-            'Editorial composition featuring the Dyane No.1 sculpture',
-            'Detail of the hand-painted porcelain on Dyane No.1',
-            'Dyane No.1 sculptural vessel and ready-to-serve cocktail',
-            'Passion flower, an aromatic inspiration for Dyane No.1',
+            'Portrait of Dyane No.1, porcelain sculpture with red drapery',
+            'Film of the Dyane Paris cocktail service and ritual',
+            'Red-draped Dyane No.1 porcelain sculpture alongside a cocktail',
+            'Dyane No.1 with red drapery in an interior',
         ],
     },
-    'dyane-no2-moscow-mule': {
+    'dyane-no2-basil-smash': {
         fr: [
-            'Film de Dyane No.2, cocktail Moscow Mule et sculpture en porcelaine',
-            'Dyane No.2, cocktail Moscow Mule dans sa sculpture en porcelaine',
-            'Composition éditoriale autour de la sculpture Dyane No.2',
-            'Détail artistique de la création en porcelaine Dyane No.2',
-            'Dyane No.2 dans l’univers de la Maison d’Art Liquide',
+            'Portrait de Dyane No.2, sculpture en porcelaine au drapé vert',
+            'Film de Jérémy Bacquet au bar, mixologie Dyane Paris',
+            'Sculpture en porcelaine Dyane No.2 et cocktail',
+            'Dyane No.2 au drapé vert dans un intérieur',
         ],
         en: [
-            'Film of Dyane No.2, Moscow Mule cocktail and porcelain sculpture',
-            'Dyane No.2 Moscow Mule cocktail in its porcelain sculpture',
-            'Editorial composition featuring the Dyane No.2 sculpture',
-            'Artistic detail of the Dyane No.2 porcelain creation',
-            'Dyane No.2 in the House of Liquid Art universe',
+            'Portrait of Dyane No.2, porcelain sculpture with green drapery',
+            'Film of Jérémy Bacquet at the bar, Dyane Paris mixology',
+            'Dyane No.2 porcelain sculpture and cocktail',
+            'Dyane No.2 with green drapery in an interior',
         ],
     },
 }
 
 const englishProductDetails: Record<string, Partial<ProductDetails>> = {
-    'dyane-paris-pornstar-martini-70-cl': {
-        sousTitre: 'CONTACT THE CONCIERGE',
-        description: 'FRENCH WINE SPIRIT INFUSED WITH MADAGASCAR BOURBON GOLD VANILLA PODS. PASSION FRUIT PURÉE LIFTED BY WILD RASPBERRY AND ORGANIC LEMON JUICE. CRAFTED AND BOTTLED IN FRANCE, NEAR AVIGNON.',
-        plusInfos: 'VANILLA & PASSION FRUIT\nSUNLIT. SENSUAL. AN INTENSE INTERPRETATION OF PASSION FRUIT, INFUSED IN AN EXCEPTIONAL WINE SPIRIT. BRIGHT ACIDITY MEETS MEASURED SWEETNESS, WHILE MADAGASCAR BOURBON GOLD VANILLA BRINGS A SILKEN ROUNDNESS.\nDENSE. LUMINOUS. A LIQUID WORK OF ART.\n—\nSENSORY PROFILE\nCOLOUR — AMBER GOLD\nNOSE — FRESH PASSION FRUIT, WARM VANILLA\nPALATE — PULPY, BALANCED\nFINISH — LONG, SUNLIT.',
+    'dyane-no1-pornstar-martini': {
+        sousTitre: 'PLACE A PRIVATE ORDER',
+        description: 'ARTISANAL FRENCH VODKA INFUSED WITH MADAGASCAR BOURBON GOLD VANILLA PODS. PASSION FRUIT PURÉE LIFTED BY WILD RASPBERRY AND ORGANIC LEMON JUICE. BOTTLED IN FRANCE, IN THE AVIGNON REGION. MAIN WORK: 1.5 L.',
+        plusInfos: 'VANILLA & PASSION FRUIT\nSUNLIT. SENSUAL. AN INTENSE INTERPRETATION OF PASSION FRUIT, INFUSED IN AN ARTISANAL FRENCH VODKA. BRIGHT ACIDITY MEETS MEASURED SWEETNESS, WHILE MADAGASCAR BOURBON GOLD VANILLA BRINGS A SILKEN ROUNDNESS.\nDENSE. LUMINOUS. A LIQUID WORK OF ART.\n—\nSENSORY PROFILE\nCOLOUR — AMBER GOLD\nNOSE — FRESH PASSION FRUIT, WARM VANILLA\nPALATE — PULPY, BALANCED\nFINISH — LONG, SUNLIT.',
         livraison: 'ESTIMATED DELIVERY WITHIN TWO WEEKS.\nCOMPLIMENTARY DELIVERY FROM €300.',
-        disponibilite: 'BATCH 1.\n25 PIECES PER BATCH.\nJOIN OUR NEWSLETTER TO HEAR ABOUT FUTURE BATCHES.',
+        disponibilite: 'MAIN WORK: 1.5 L.\nA 25 CL FORMAT IS PLANNED FOR THE FUTURE ONLINE SHOP. IT IS NOT YET AVAILABLE TO BUY ONLINE.\nCONTACT THE CONCIERGE FOR ENQUIRIES ABOUT THE WORK.',
     },
-    'dyane-no2-moscow-mule': {
-        sousTitre: 'CONTACT THE CONCIERGE',
-        description: 'WINE SPIRIT INFUSED WITH GINGER. FRESH LEMON JUICE AND PURE WATER. CRAFTED AND BOTTLED IN FRANCE.',
-        plusInfos: 'GINGER & LIME\nBRIGHT. STRUCTURED. GINGER LEADS, SLOWLY INFUSED IN AN EXCEPTIONAL FRENCH WINE SPIRIT. LIME BRINGS A LUMINOUS FRESHNESS, WHILE VANILLA AND OAK COMPLETE THE BALANCE.\nDRY. ELEGANT. ALIVE. A WORK OF CONTRAST.\n—\nORIGIN: FRENCH WINE SPIRIT. GINGER INFUSION. ORGANIC LEMON JUICE. CRAFTED AND BOTTLED IN FRANCE, NEAR AVIGNON.\n—\nSENSORY PROFILE\nCOLOUR — CRYSTAL SILVER\nNOSE — FRESH GINGER, BRIGHT ZEST\nPALATE — ENERGETIC OPENING, SILKEN TEXTURE\nFINISH — DRY, PRECISE.',
+    'dyane-no2-basil-smash': {
+        sousTitre: 'PLACE A PRIVATE ORDER',
+        description: 'Gin, house-made basil and yuzu syrup, wild elderflower liqueur, house-made sour',
+        plusInfos: 'BASIL SMASH\nGin, house-made basil and yuzu syrup, wild elderflower liqueur, house-made sour',
         livraison: 'ESTIMATED DELIVERY WITHIN TWO WEEKS.\nCOMPLIMENTARY DELIVERY FROM €300.',
         disponibilite: 'BATCH 1.\n25 PIECES PER BATCH.\nJOIN OUR NEWSLETTER TO HEAR ABOUT FUTURE BATCHES.',
     },
     'bouteille-signee-teokaykay': {
-        sousTitre: 'CONTACT THE CONCIERGE',
+        sousTitre: 'PLACE A PRIVATE ORDER',
         description: 'DYANE PARIS AND TEO KAYKAY PRESENT A CONFIDENTIAL SERIES OF 25 WORKS. EACH PORCELAIN SCULPTURE IS HAND-PAINTED BY THE ARTIST AND HOLDS A DYANE SIGNATURE COCKTAIL, UNITING CONTEMPORARY ART WITH HIGH MIXOLOGY.',
-        plusInfos: 'A CONFIDENTIAL SERIES OF 25 WORKS BY DYANE PARIS AND TEO KAYKAY. EACH PORCELAIN SCULPTURE IS HAND-PAINTED BY THE ARTIST, MAKING EVERY PIECE UNIQUE. INSIDE, A DYANE SIGNATURE COCKTAIL EXTENDS THE WORK THROUGH A PRECISE TASTING EXPERIENCE. ART IS DRUNK, THEN KEPT. CHOOSE BETWEEN PORNSTAR MARTINI AND MOSCOW MULE.',
+        plusInfos: 'A CONFIDENTIAL SERIES OF 25 WORKS BY DYANE PARIS AND TEO KAYKAY. EACH PORCELAIN SCULPTURE IS HAND-PAINTED BY THE ARTIST, MAKING EVERY PIECE UNIQUE. INSIDE, A DYANE SIGNATURE COCKTAIL EXTENDS THE WORK THROUGH A PRECISE TASTING EXPERIENCE. ART IS DRUNK, THEN KEPT. CHOOSE BETWEEN PORNSTAR MARTINI AND BASIL SMASH.',
         livraison: 'MADE TO ORDER. ESTIMATED DELIVERY WITHIN THREE WEEKS.\nCOMPLIMENTARY DELIVERY FROM €300.',
         disponibilite: 'BATCH 1.\n25 PIECES PER BATCH.\nJOIN OUR NEWSLETTER TO HEAR ABOUT FUTURE BATCHES.',
     },
@@ -204,23 +205,28 @@ function mediaAlt(slug: string, index: number, locale: 'fr' | 'en', fallback: st
     return productMediaAlts[slug]?.[locale]?.[index] ?? `${fallback} — ${locale === 'en' ? 'Dyane Paris artwork' : 'œuvre Dyane Paris'}`
 }
 
-function ProductEditorial({ copy, locale }: { copy: ProductEditorialCopy; locale: string }) {
+function ProductEditorial({ copy, locale, title }: { copy: ProductEditorialCopy; locale: string; title: string }) {
     return (
         <section className={layout.seoEditorial} aria-labelledby="product-definition-title">
+            <h1 className={layout.editorialTitle}>{title}</h1>
             <div className={layout.seoGrid}>
-                <article>
+                <article className={layout.editorialCard}>
+                    <EditorialEmblem />
                     <h2 id="product-definition-title">{copy.definitionTitle}</h2>
                     <p>{copy.definition}</p>
                 </article>
-                <article>
+                <article className={layout.editorialCard}>
+                    <EditorialEmblem />
                     <h2>{copy.porcelainTitle}</h2>
                     <p>{copy.porcelain}</p>
                 </article>
-                <article>
+                <article className={layout.editorialCard}>
+                    <EditorialEmblem />
                     <h2>{copy.franceTitle}</h2>
                     <p>{copy.france}</p>
                 </article>
-                <article>
+                <article className={layout.editorialCard}>
+                    <EditorialEmblem />
                     <h2>{copy.serviceTitle}</h2>
                     <p>{copy.service}</p>
                 </article>
@@ -235,62 +241,86 @@ function ProductEditorial({ copy, locale }: { copy: ProductEditorialCopy; locale
     )
 }
 
-function ProductMedia({ media, alt, caption = videoCaption, priority = false, sizes, sourceMedia }: {
+function ProductMedia({ media, alt, caption = videoCaption, priority = false, sizes, sourceMedia, onOpen, locale, natural = false }: {
     media: GalleryMedia
     alt: string
     caption?: string
     priority?: boolean
     sizes: string
     sourceMedia?: string
+    onOpen?: () => void
+    locale: 'fr' | 'en'
+    natural?: boolean
 }) {
+    const dimensions = productMediaDimensions[media.src]
+    const openLabel = `${locale === 'en' ? 'Open gallery' : 'Ouvrir la galerie'} — ${alt}`
     if (media.type === 'video') {
         return (
-            <div className={layout.mediaSurface}>
+            <div className={`${layout.mediaSurface}${natural ? ` ${layout.naturalMedia}` : ''}`}>
                 <video
                     className={layout.galleryVideo}
+                    width={natural ? dimensions?.width : undefined}
+                    height={natural ? dimensions?.height : undefined}
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="metadata"
+                    poster={cloudinaryVideoPoster(media.src, 900)}
                     aria-label={alt}
                 >
-                    <source src={media.src} type="video/mp4" media={sourceMedia} />
+                    <source src={cloudinaryVideo(media.src, 900)} type="video/mp4" media={sourceMedia} />
                 </video>
+                {natural && <button type="button" className={layout.videoOpen} onClick={onOpen} aria-label={openLabel} aria-haspopup="dialog" />}
                 <p className={layout.videoCaption}>{caption}</p>
             </div>
         )
     }
 
     return (
-        <Image
-            className={layout.galleryImage}
-            src={media.src}
-            alt={alt}
-            fill
-            priority={priority}
-            sizes={sizes}
-        />
+        <button type="button" className={`${layout.photoButton}${natural ? ` ${layout.naturalMedia}` : ''}`} onClick={onOpen} aria-label={openLabel} aria-haspopup="dialog">
+            {natural && dimensions ? <EditorialImage
+                className={layout.galleryImage}
+                src={media.src}
+                alt={alt}
+                width={dimensions.width}
+                height={dimensions.height}
+                quality={85}
+                priority={priority}
+                sizes={sizes}
+            /> : <Image
+                className={layout.galleryImage}
+                src={media.src}
+                alt={alt}
+                fill
+                quality={85}
+                priority={priority}
+                sizes={sizes}
+            />}
+        </button>
     )
 }
 
-function MobileMediaCarousel({ media, nom, slug, locale }: { media: GalleryMedia[], nom: string, slug: string, locale: 'fr' | 'en' }) {
-    const [current, setCurrent] = useState(0)
+function MobileMediaCarousel({ media, nom, slug, locale, onOpen, natural = false }: { media: GalleryMedia[], nom: string, slug: string, locale: 'fr' | 'en', onOpen: (src: string) => void, natural?: boolean }) {
+    const [current, setCurrent] = useState(media[0]?.type === 'video' ? 1 : 0)
     return (
         <div style={{ position: 'relative', width: '100%', marginBottom: '24px' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
+            <div className={`${layout.mobileFrame}${natural ? ` ${layout.naturalFrame}` : ''}`}>
                 <ProductMedia
                     key={`${current}-${media[current].src}`}
                     media={media[current]}
+                    natural={natural}
+                    locale={locale}
                     alt={mediaAlt(slug, current, locale, nom)}
                     caption={locale === 'en' ? 'DYANE X JEREMY BACQUET, MIXOLOGY AS ART' : videoCaption}
-                    priority={current === 1}
+                    priority={current === (media[0]?.type === 'video' ? 1 : 0)}
+                    onOpen={() => onOpen(media[current].src)}
                     sizes="100vw"
                     sourceMedia="(max-width: 768px)"
                 />
             </div>
-            <button type="button" aria-label={locale === 'en' ? 'Previous media' : 'Média précédent'} onClick={() => setCurrent((current - 1 + media.length) % media.length)} style={{ position: 'absolute', top: '50%', left: '4px', transform: 'translateY(-50%)', display: 'grid', placeItems: 'center', width: '44px', height: '44px', color: '#111', background: 'transparent', border: 'none', boxShadow: 'none', cursor: 'pointer', padding: 0, fontSize: '22px' }}><span aria-hidden="true">‹</span></button>
-            <button type="button" aria-label={locale === 'en' ? 'Next media' : 'Média suivant'} onClick={() => setCurrent((current + 1) % media.length)} style={{ position: 'absolute', top: '50%', right: '4px', transform: 'translateY(-50%)', display: 'grid', placeItems: 'center', width: '44px', height: '44px', color: '#111', background: 'transparent', border: 'none', boxShadow: 'none', cursor: 'pointer', padding: 0, fontSize: '22px' }}><span aria-hidden="true">›</span></button>
+            <button type="button" aria-label={locale === 'en' ? 'Previous media' : 'Média précédent'} onClick={() => setCurrent((current - 1 + media.length) % media.length)} style={{ position: 'absolute', top: '50%', left: '4px', transform: 'translateY(-50%)', display: 'grid', placeItems: 'center', width: '44px', height: '44px', color: '#111', background: 'transparent', border: 'none', boxShadow: 'none', cursor: 'pointer', padding: 0, fontSize: '22px' }}><ChevronIcon direction="left" /></button>
+            <button type="button" aria-label={locale === 'en' ? 'Next media' : 'Média suivant'} onClick={() => setCurrent((current + 1) % media.length)} style={{ position: 'absolute', top: '50%', right: '4px', transform: 'translateY(-50%)', display: 'grid', placeItems: 'center', width: '44px', height: '44px', color: '#111', background: 'transparent', border: 'none', boxShadow: 'none', cursor: 'pointer', padding: 0, fontSize: '22px' }}><ChevronIcon direction="right" /></button>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px' }}>
                 {media.map((item, i) => (
                     <button type="button" key={`${item.type}-${item.src}`} aria-label={`${locale === 'en' ? 'Show media' : 'Afficher le média'} ${i + 1}`} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '2px', background: i === current ? '#111' : 'rgba(0,0,0,0.2)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s ease' }} />
@@ -300,10 +330,10 @@ function MobileMediaCarousel({ media, nom, slug, locale }: { media: GalleryMedia
     )
 }
 
-export default function ProduitClient({ params }: { params: { slug: string } }) {
+export default function ProduitClient({ params, publicOffer = null }: { params: { slug: string }; publicOffer?: PublicOffer | null }) {
     const { slug } = params
     const baseProduit = produits[slug]
-    const directLayout = slug === 'dyane-paris-pornstar-martini-70-cl' || slug === 'dyane-no2-moscow-mule'
+    const directLayout = slug === 'dyane-no1-pornstar-martini' || slug === 'dyane-no2-basil-smash'
     const pathname = usePathname()
     const locale: 'fr' | 'en' = pathname.startsWith('/en') ? 'en' : 'fr'
     const produit = baseProduit && locale === 'en'
@@ -313,6 +343,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
     const productRef = useRef<HTMLDivElement>(null)
     const infoRef = useRef<HTMLDivElement>(null)
     const [infoFitsViewport, setInfoFitsViewport] = useState(false)
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
     useEffect(() => {
         const info = infoRef.current
@@ -406,16 +437,20 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
     if (!produit) return (
         <main style={{ padding: '60px 24px', textAlign: 'center', fontFamily: 'var(--font-editorial), serif' }}>
             <p>{locale === 'en' ? 'Product not found' : 'Produit non trouvé'}</p>
-            <Link href={localizedPath(locale, '/oeuvres')}>← {locale === 'en' ? 'Back to the works' : 'Retour aux œuvres'}</Link>
+            <Link href={localizedPath(locale, '/oeuvres')}><ArrowLeftIcon /> {locale === 'en' ? 'Back to the works' : 'Retour aux œuvres'}</Link>
         </main>
     )
 
     const heroImg = heroImages[slug]
     const productVideo = productVideos[slug]
     const galleryMedia: GalleryMedia[] = [
+        ...produit.images.slice(0, 1).map((src) => ({ type: 'image' as const, src })),
         ...(productVideo ? [{ type: 'video' as const, src: productVideo }] : []),
-        ...produit.images.map((src) => ({ type: 'image' as const, src })),
+        ...produit.images.slice(1).map((src) => ({ type: 'image' as const, src })),
     ]
+    const openMedia = (src: string) => setLightboxIndex(directLayout ? galleryMedia.findIndex(item => item.src === src) : produit.images.indexOf(src))
+    const fullscreenMedia = galleryMedia.map((item, index) => ({ ...item, alt: mediaAlt(slug, index, locale, produit.nom) }))
+    const photos = produit.images.map(src => ({ src, alt: mediaAlt(slug, galleryMedia.findIndex(media => media.src === src), locale, produit.nom) }))
     const editorialCopy = productEditorial[slug]?.[locale]
 
     return (
@@ -473,7 +508,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                 {/* Hero */}
                 {heroImg && !directLayout && (
                     <section ref={heroRef} data-page-hero data-header-foreground="white" className="produit-hero" style={{ position: 'relative', width: '100%', height: '60vh', overflow: 'hidden', color: '#fff' }}>
-                        <Image src={heroImg} alt={`${produit.nom} — cocktail Dyane Paris en sculpture de porcelaine`} fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
+                        <Image src={heroImg} alt={`${produit.nom} — cocktail Dyane Paris en sculpture de porcelaine`} fill priority quality={85} sizes="100vw" style={{ objectFit: 'cover' }} />
                         <button className="produit-scroll-prompt" type="button" onClick={revealProduct}>
                             {locale === 'en' ? 'View the piece' : 'Voir l’œuvre'}
                         </button>
@@ -482,15 +517,22 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
 
                 <div ref={productRef} className={`produit-grid${directLayout ? ` ${layout.grid}` : ''}`} style={directLayout ? undefined : { maxWidth: '1400px', margin: '0 auto', padding: '40px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
+                    {directLayout ? (
+                        <ProductGallery items={fullscreenMedia} name={produit.nom} locale={locale}
+                            videoCaption={locale === 'en' ? 'DYANE X JEREMY BACQUET, MIXOLOGY AS ART' : videoCaption} />
+                    ) : <>
                     {/* Galerie desktop */}
                     <div className={`produit-galerie-desktop${directLayout ? ` ${layout.gallery}` : ''}`}>
                         {galleryMedia.map((media, i) => (
-                            <div key={`${media.type}-${media.src}`} className={directLayout ? layout.imageFrame : undefined} style={directLayout ? undefined : { position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
+                            <div key={`${media.type}-${media.src}`} className={directLayout ? `${layout.imageFrame} ${layout.naturalFrame}` : undefined} style={directLayout ? undefined : { position: 'relative', width: '100%', aspectRatio: '3/4', marginBottom: '8px', overflow: 'hidden' }}>
                                 <ProductMedia
                                     media={media}
+                                    natural={directLayout}
+                                    locale={locale}
                                     alt={mediaAlt(slug, i, locale, produit.nom)}
                                     caption={locale === 'en' ? 'DYANE X JEREMY BACQUET, MIXOLOGY AS ART' : videoCaption}
-                                    priority={directLayout && i === 1}
+                                    priority={directLayout && i === 0}
+                                    onOpen={() => openMedia(media.src)}
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     sourceMedia="(min-width: 769px)"
                                 />
@@ -500,15 +542,29 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
 
                     {/* Carousel mobile */}
                     <div className={`produit-galerie-mobile${directLayout ? ` ${layout.mobileGallery}` : ''}`} style={directLayout ? undefined : { display: 'none' }}>
-                        <MobileMediaCarousel media={galleryMedia} nom={produit.nom} slug={slug} locale={locale} />
+                        <MobileMediaCarousel media={galleryMedia} nom={produit.nom} slug={slug} locale={locale} onOpen={openMedia} natural={directLayout} />
                     </div>
+
+                    </>}
 
                     {/* Infos droite */}
                     <div ref={infoRef} className={`produit-sticky${directLayout ? ` ${layout.information}` : ''}`} data-sticky={directLayout ? infoFitsViewport : undefined} style={directLayout ? undefined : { position: 'sticky', top: '120px' }}>
                         <div>
-                        <h1 style={{ ...font, fontSize: '14px', fontWeight: 400, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>{produit.nom}</h1>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '24px' }}>{produit.sousTitre}</p>
-                        <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.12em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase', marginBottom: '24px' }}>{produit.description}</p>
+                        <div className={directLayout ? layout.productSummary : layout.productIntroduction}>
+                        {!directLayout && <EditorialEmblem />}
+                        {!directLayout && <h1 style={{ ...font, fontSize: '14px', fontWeight: 400, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '8px' }}>{produit.nom}</h1>}
+                        {!directLayout && <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '24px' }}>{produit.sousTitre}</p>}
+                        <p className={directLayout ? layout.productDescription : undefined} style={directLayout ? undefined : { ...lora, fontSize: '11px', letterSpacing: '0.12em', lineHeight: 1.8, opacity: 0.8, textTransform: 'uppercase', marginBottom: '24px' }}>{produit.description}</p>
+                        </div>
+                        {directLayout && <Link className={layout.secondaryOrder} href={localizedPath(locale, '/commission-a-sculpture')}>{locale === 'en' ? 'COMMISSION A SCULPTURE' : 'COMMANDER UNE SCULPTURE'}</Link>}
+
+                        {publicOffer && (
+                            <div style={{ ...font, fontSize: '12px', marginBottom: '20px' }}>
+                                <p>{new Intl.NumberFormat(locale, { style: 'currency', currency: publicOffer.priceCurrency }).format(Number(publicOffer.price))}</p>
+                                <p>{availabilityLabel(publicOffer, locale)}</p>
+                                <a href={publicOffer.url}>{locale === 'en' ? 'VIEW ONLINE SHOP' : 'VOIR LA BOUTIQUE EN LIGNE'}</a>
+                            </div>
+                        )}
 
                         {produit.formats && (
                             <div style={{ marginBottom: '20px' }}>
@@ -520,7 +576,7 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                         )}
 
                         <Link href={localizedPath(locale, '/contact')} style={{ display: 'block', background: '#000', color: '#fff', textAlign: 'center', padding: '18px 24px', ...font, fontSize: '11px', letterSpacing: '0.26em', textTransform: 'uppercase', textDecoration: 'none', marginBottom: '40px' }}>
-                            {locale === 'en' ? 'CONTACT THE CONCIERGE' : 'CONTACTER LA CONCIERGERIE'}
+                            {locale === 'en' ? 'PLACE A PRIVATE ORDER' : 'PASSER UNE COMMANDE PRIVÉE'}
                         </Link>
 
                         <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>{locale === 'en' ? 'ESTIMATED DELIVERY:' : 'DATE ESTIMÉE DE LIVRAISON :'}</p>
@@ -538,7 +594,20 @@ export default function ProduitClient({ params }: { params: { slug: string } }) 
                         </div>
                     </div>
                 </div>
-                {editorialCopy ? <ProductEditorial copy={editorialCopy} locale={locale} /> : null}
+                {lightboxIndex !== null && lightboxIndex >= 0 ? <ProductLightbox media={directLayout ? fullscreenMedia : undefined} photos={directLayout ? undefined : photos} initialIndex={lightboxIndex} locale={locale} onClose={() => setLightboxIndex(null)} /> : null}
+                {directLayout ? (
+                    <aside className={layout.commissionInvitation} aria-labelledby="sculpture-invitation-title">
+                        <EditorialEmblem />
+                        <h2 id="sculpture-invitation-title">{locale === 'en' ? 'A WORK IN YOUR IMAGE' : 'UNE ŒUVRE À VOTRE IMAGE'}</h2>
+                        <p>{locale === 'en'
+                            ? 'Discover the individual creations and sculptures commissioned from the House of Dyane Paris.'
+                            : 'Découvrez les créations particulières et les sculptures réalisées sur commande par la Maison Dyane Paris.'}</p>
+                        <Link href={localizedPath(locale, '/commission-a-sculpture')}>
+                            {locale === 'en' ? 'DISCOVER SCULPTURE COMMISSIONS' : 'DÉCOUVRIR LES COMMANDES DE SCULPTURES'}
+                        </Link>
+                    </aside>
+                ) : null}
+                {editorialCopy ? <ProductEditorial copy={editorialCopy} locale={locale} title={produit.nom} /> : null}
             </div>
         </>
     )

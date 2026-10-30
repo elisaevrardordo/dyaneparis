@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import * as THREE from 'three'
 import styles from './GlbComparison.module.css'
+import { ArrowLeftIcon } from '@/components/icons/EditorialIcons'
 import { glazePresets, porcelainPresets } from './data'
 
 type ComparisonMode = 'geometry' | 'studio'
@@ -214,7 +215,7 @@ export default function GlbComparison({ locale }: { locale: string }) {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link href={configuratorHref} className={styles.backLink}>
-          ← Retour au configurateur
+          <ArrowLeftIcon /> Retour au configurateur
         </Link>
         <div>
           <p className={styles.eyebrow}>Audit technique — Preview uniquement</p>

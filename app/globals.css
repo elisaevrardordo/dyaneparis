@@ -90,39 +90,6 @@ main {
         color 600ms ease;
 }
 
-.site-shell[data-home-page='true'] {
-    height: 100svh;
-    min-height: 0;
-    overflow: hidden;
-}
-
-.site-shell[data-home-page='true'] .site-page-transition {
-    height: 100svh;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: none;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .site-shell[data-home-page='true'] .site-page-transition {
-        scroll-snap-type: none;
-    }
-}
-
-.site-shell[data-home-page='true'] .site-page-transition::-webkit-scrollbar {
-    display: none;
-}
-
-.site-shell[data-home-page='true'] footer {
-    scroll-snap-align: end;
-    scroll-snap-stop: always;
-}
-
 .theme-page {
     min-height: 100svh;
     color: inherit;

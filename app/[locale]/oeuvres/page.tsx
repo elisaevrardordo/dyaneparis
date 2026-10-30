@@ -7,11 +7,11 @@ import {
     buildPageMetadata,
     imageObject,
     localizedUrl,
-    ORGANIZATION_ID,
     seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
 import OeuvresEditorial from './OeuvresEditorial'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
 
 export async function generateMetadata({
     params,
@@ -55,11 +55,11 @@ export default async function OeuvresPage({
                         '@type': 'ListItem',
                         position: i + 1,
                         item: {
-                            '@type': 'Product',
+                            '@type': 'WebPage',
+                            '@id': `${localizedUrl(locale, `/oeuvres/${p.slug}`)}#webpage`,
                             name: p.name,
                             url: localizedUrl(locale, `/oeuvres/${p.slug}`),
                             image: absoluteUrl(p.image),
-                            brand: { '@id': ORGANIZATION_ID },
                         },
                     })),
                 },
@@ -78,6 +78,7 @@ export default async function OeuvresPage({
                 dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
             <OeuvresEditorial locale={locale} />
+            <DiscoveryLinks locale={locale} />
         </>
     )
 }

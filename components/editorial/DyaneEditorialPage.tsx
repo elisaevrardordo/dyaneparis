@@ -1,10 +1,13 @@
-import Image from 'next/image'
+import EditorialImage from './EditorialImage'
 import type { ReactNode } from 'react'
 import ViewportVideo from './ViewportVideo'
+import EditorialHero from './EditorialHero'
+import EditorialEmblem from './EditorialEmblem'
 import styles from './DyaneEditorialPage.module.css'
 
 export type DyaneEditorialMedia = {
   src?: string
+  poster?: string
   alt?: string
   type?: 'image' | 'video'
   fit?: 'cover' | 'contain'
@@ -14,13 +17,16 @@ export type DyaneEditorialMedia = {
 export type DyaneEditorialTextBlock = {
   eyebrow?: ReactNode
   title?: ReactNode
+  titleAsEyebrow?: boolean
   body: ReactNode
+  labelledBy?: string
+  className?: string
 }
 
 type DyaneEditorialPageProps = {
   eyebrow?: ReactNode
   title: ReactNode
-  compactTitle?: boolean
+  openingAtEnd?: boolean
   video?: {
     src?: string
     poster?: string
@@ -42,12 +48,13 @@ type DyaneEditorialPageProps = {
 
 const classes = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(' ')
 
-function EditorialText({ eyebrow, title, body }: DyaneEditorialTextBlock) {
+function EditorialText({ eyebrow, title, titleAsEyebrow, body, labelledBy, className }: DyaneEditorialTextBlock) {
   return (
-    <section className={styles.copy}>
+    <section className={classes(styles.copy, className)} aria-labelledby={labelledBy}>
       <div className={styles.copyInner}>
-        {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
-        {title ? <h2 className={styles.copyTitle}>{title}</h2> : null}
+        <EditorialEmblem />
+        {eyebrow ? <p className={styles.eyebrow} data-editorial-label>{eyebrow}</p> : null}
+        {title ? <h2 className={titleAsEyebrow ? styles.eyebrow : styles.copyTitle}>{title}</h2> : null}
         <div className={styles.body}>{body}</div>
       </div>
     </section>
@@ -72,16 +79,20 @@ function MediaGrid({
           {item.src && item.type === 'video' ? (
             <ViewportVideo
               src={item.src}
+              poster={item.poster}
+              sizes={variant === 'two' ? '(max-width: 600px) 100vw, 50vw' : variant === 'eight' ? '(max-width: 430px) 100vw, (max-width: 900px) 50vw, 25vw' : '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 34vw'}
               label={item.alt ?? ''}
               className={item.fit === 'contain' ? styles.contain : styles.cover}
               style={{ objectPosition: item.position ?? 'center top' }}
             />
           ) : item.src ? (
-            <Image
+            <EditorialImage
               src={item.src}
               alt={item.alt ?? ''}
               fill
-              sizes={variant === 'two' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 50vw, 34vw'}
+              quality={85}
+              loading="lazy"
+              sizes={variant === 'two' ? '(max-width: 600px) 100vw, 50vw' : variant === 'eight' ? '(max-width: 430px) 100vw, (max-width: 900px) 50vw, 25vw' : '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 34vw'}
               className={item.fit === 'contain' ? styles.contain : styles.cover}
               style={{ objectPosition: item.position ?? 'center top' }}
             />
@@ -95,7 +106,7 @@ function MediaGrid({
 export default function DyaneEditorialPage({
   eyebrow,
   title,
-  compactTitle = false,
+  openingAtEnd = false,
   video,
   textBlocks,
   gallery3,
@@ -104,26 +115,17 @@ export default function DyaneEditorialPage({
   gallery8,
   className,
 }: DyaneEditorialPageProps) {
+  const opening = <EditorialText
+    {...textBlocks[0]}
+    title={textBlocks[0].title === title ? undefined : textBlocks[0].title}
+    labelledBy={textBlocks[0].title === title ? 'editorial-hero-title' : undefined}
+  />
+
   return (
     <main className={classes(styles.page, className)}>
-      <header className={classes(styles.pageTitle, compactTitle && styles.pageTitleCompact)} data-page-hero data-header-foreground="black">
-        <div>
-          {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
-          <h1>{title}</h1>
-        </div>
-      </header>
+      <EditorialHero eyebrow={eyebrow} title={title} video={video} />
 
-      <section className={styles.video} aria-label={video?.label}>
-        {video?.src ? (
-          <video autoPlay muted loop playsInline preload="metadata" poster={video.poster || undefined}>
-            <source src={video.src} />
-          </video>
-        ) : (
-          <div className={styles.videoPlaceholder} aria-hidden="true" />
-        )}
-      </section>
-
-      <EditorialText {...textBlocks[0]} />
+      {!openingAtEnd ? opening : null}
       <MediaGrid items={gallery3} count={3} variant="three" />
       <EditorialText {...textBlocks[1]} />
       <MediaGrid items={gallery2} count={2} variant="two" />
@@ -132,6 +134,7 @@ export default function DyaneEditorialPage({
       <EditorialText {...textBlocks[3]} />
       <MediaGrid items={gallery8} count={8} variant="eight" />
       <EditorialText {...textBlocks[4]} />
+      {openingAtEnd ? opening : null}
     </main>
   )
 }

@@ -1,15 +1,8 @@
 import type { Metadata } from 'next'
 import FabricationPage from '@/components/fabrication/FabricationPage'
-import { buildPageMetadata } from '@/lib/seo'
-
-const fabricationImage = {
-  url: '/editorial/fabrication/DESSIN.png',
-  width: 1080,
-  height: 1350,
-  alt: 'Dessin préparatoire de la sculpture Dyane Paris',
-  caption: 'La fabrication des œuvres Dyane Paris',
-  description: 'De la sculpture en porcelaine à la composition liquide, les gestes de fabrication Dyane Paris.',
-}
+import { breadcrumbJsonLd, buildPageMetadata, imageObject, localizedUrl, ORGANIZATION_ID, serializeJsonLd, WEBSITE_ID } from '@/lib/seo'
+import { officialSeoImage } from '@/content/officialImages'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -22,12 +15,30 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isEnglish
       ? 'Discover how Dyane Paris works are made, from the creation of the porcelain sculpture to the composition of its cocktails.'
       : 'Découvrez la fabrication des œuvres Dyane Paris, de la création de la sculpture en porcelaine à l’élaboration de ses cocktails.',
-    image: fabricationImage,
+    image: officialSeoImage('fabrication', locale),
     absoluteTitle: true,
   })
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  return <FabricationPage locale={locale} />
+  const url = localizedUrl(locale, '/fabrication')
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebPage', '@id': `${url}#webpage`, url,
+        name: locale === 'en' ? 'The Making — Dyane Paris' : 'La Fabrication — Dyane Paris',
+        inLanguage: locale, isPartOf: { '@id': WEBSITE_ID }, about: { '@id': ORGANIZATION_ID },
+        primaryImageOfPage: imageObject(officialSeoImage('fabrication', locale), true) },
+      breadcrumbJsonLd(locale, [
+        { name: locale === 'en' ? 'Home' : 'Accueil', path: '' },
+        { name: locale === 'en' ? 'The making' : 'La fabrication', path: '/fabrication' },
+      ]),
+    ],
+  }
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+    <FabricationPage locale={locale} />
+    <DiscoveryLinks locale={locale} />
+  </>
 }

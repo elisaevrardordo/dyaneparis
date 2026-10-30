@@ -7,19 +7,29 @@ const editorial = 'var(--font-editorial), serif'
 const bordeaux = '#6B1A2A'
 
 export default function AgeGate({ currentLocale }: { currentLocale: string }) {
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
     const [hovering, setHovering] = useState<string | null>(null)
     const lang = currentLocale === 'en' ? 'en' : 'fr'
 
     useEffect(() => {
-        const confirmed = sessionStorage.getItem('age-confirmed')
-        sessionStorage.removeItem('age-lang')
-        if (!confirmed) setVisible(true)
+        try {
+            const confirmed = sessionStorage.getItem('age-confirmed')
+            sessionStorage.removeItem('age-lang')
+            setVisible(!confirmed)
+        } catch {
+            // Keep verification available when session storage is disabled.
+        }
     }, [])
 
     function confirm() {
-        sessionStorage.setItem('age-confirmed', 'true')
+        try {
+            sessionStorage.setItem('age-confirmed', 'true')
+        } catch {
+            // Verification still works for this page when storage is unavailable.
+        }
+        document.documentElement.dataset.ageConfirmed = 'true'
         setVisible(false)
+        window.dispatchEvent(new Event('dyane-age-confirmed'))
     }
 
     function deny() {
@@ -43,6 +53,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
     return (
         <>
             <style>{`
+                html[data-age-confirmed="true"] [data-age-gate] { display: none; }
                 @media (max-width: 768px) {
                     .agegate-card {
                         padding: 28px 24px 24px !important;
@@ -56,13 +67,13 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     .agegate-legal { font-size: 9px !important; margin-top: 18px !important; }
                 }
             `}</style>
-            <div style={{
+            <div data-age-gate role="dialog" aria-modal="true" aria-labelledby="age-gate-headline" style={{
                 position: 'fixed', inset: 0, zIndex: 9999,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 background: '#0d0d0d',
             }}>
                 <Image
-                    src="https://res.cloudinary.com/dazhkrimv/image/upload/v1785915125/Capture_d_e%CC%81cran_2026-08-05_a%CC%80_09.31.55_yelyk6.png"
+                    src="https://res.cloudinary.com/dazhkrimv/image/upload/v1788728025/dyane-paris-maison-art-liquide-campagne-noir-blanc.png"
                     alt=""
                     fill
                     priority
@@ -96,7 +107,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="agegate-headline" style={{
+                    <h2 id="age-gate-headline" className="agegate-headline" style={{
                         fontFamily: editorial,
                         fontSize: 'clamp(20px, 3.5vw, 28px)',
                         fontWeight: 400,
@@ -106,7 +117,7 @@ export default function AgeGate({ currentLocale }: { currentLocale: string }) {
                         letterSpacing: '0.02em',
                     }}>
                         {t.headline}
-                    </h1>
+                    </h2>
 
                     {/* Subline */}
                     <p className="agegate-sub" style={{

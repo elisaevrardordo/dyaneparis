@@ -1,4 +1,5 @@
 import type { JournalArticle, JournalImage, LocalizedText } from './journal'
+import { officialImageUrl } from './officialImages'
 
 const t = (fr: string, en: string): LocalizedText => ({ fr, en })
 
@@ -9,7 +10,7 @@ const image = (
     ratio: JournalImage['ratio'] = 'landscape',
     position?: string,
     caption?: LocalizedText,
-): JournalImage => ({ kind: 'image', src, alt: t(fr, en), caption, ratio, position })
+): JournalImage => ({ kind: 'image', src: officialImageUrl(src), alt: t(fr, en), caption, ratio, position })
 
 const JOURNAL = '/journal'
 
@@ -170,12 +171,12 @@ export const journalEditorialDrafts = [
         excerpt: t("Servir un cocktail à une personne relève du geste. En servir cent relève de la chorégraphie.", 'Serving a cocktail to one person is a gesture. Serving one hundred is choreography.'),
         category: t('Hospitalité', 'Hospitality'),
         status: 'published',
-        cover: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_33_zsbpg0.png', "Service de cocktails Dyane Paris lors d'une réception", 'Dyane Paris cocktail service during a reception', 'wide'),
+        cover: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/dyane-paris-cocktail-signature-dyaneno1.png', "Service de cocktails Dyane Paris lors d'une réception", 'Dyane Paris cocktail service during a reception', 'wide'),
         indexLayout: 'landscape-portrait',
-        indexSecondary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_16.58.37_sjcazn.png', "Sculptures Dyane Paris présentées dans un environnement professionnel", 'Dyane Paris sculptures presented in a professional setting', 'portrait'),
-        indexTertiary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_34_svsno8.png', 'Composition événementielle Dyane Paris', 'Dyane Paris event composition', 'landscape'),
+        indexSecondary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/dyane-paris-cocktail-pret-a-servir-service-shaker.png', "Sculptures Dyane Paris présentées dans un environnement professionnel", 'Dyane Paris sculptures presented in a professional setting', 'portrait'),
+        indexTertiary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/dyane-paris-cocktail-dyaneno1-detail.png', 'Composition événementielle Dyane Paris', 'Dyane Paris event composition', 'landscape'),
         heroStyle: 'landscape-portrait',
-        heroSecondary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_16.58.37_sjcazn.png', "Installation de bar autour des créations Dyane Paris", 'Bar installation around Dyane Paris creations', 'portrait'),
+        heroSecondary: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/dyane-paris-cocktail-pret-a-servir-service-shaker.png', "Installation de bar autour des créations Dyane Paris", 'Bar installation around Dyane Paris creations', 'portrait'),
         chapters: [
             { title: t('La chorégraphie du service', 'The choreography of service'), start: 1 },
             { title: t('Le volume comme outil', 'Volume as a tool'), start: 3 },
@@ -186,7 +187,7 @@ export const journalEditorialDrafts = [
                 t("Pour une réception haut de gamme, Dyane Paris propose des cocktails prêts à servir en formats professionnels Bag-in-Box de 3 L, 5 L et 10 L. L’assemblage est préparé en amont pour préserver sa régularité ; sur place, les équipes gardent la maîtrise de la température, de la glace, de la verrerie, de la garniture et de la cadence.", 'For a high-end reception, Dyane Paris offers ready-to-serve cocktails in professional 3 L, 5 L and 10 L Bag-in-Box formats. The blend is prepared upstream to preserve consistency; on site, teams retain control of temperature, ice, glassware, garnish and pace.'),
                 t("Lors d'un événement, la rapidité n'a de valeur que si elle préserve la régularité. Le temps gagné doit bénéficier à la précision, à l'accueil et à la capacité de servir plusieurs convives avec la même attention.", 'At an event, speed only has value when it preserves consistency. Time saved should benefit precision, welcome and the ability to serve several guests with the same attention.'),
             ] },
-            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_33_zsbpg0.png', "Cocktails Dyane Paris disposés pour un service événementiel", 'Dyane Paris cocktails arranged for an event service', 'wide'), size: 'full' },
+            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/dyane-paris-cocktail-signature-dyaneno1.png', "Cocktails Dyane Paris disposés pour un service événementiel", 'Dyane Paris cocktails arranged for an event service', 'wide'), size: 'full' },
             { kind: 'text', heading: t('Préparer sans simplifier', 'Preparing without simplifying'), paragraphs: [
                 t("Les formats Bag-in-Box Dyane Paris de 3 L, 5 L et 10 L répondent à cette logique professionnelle. Sur une base de service de 10 cL, le format 3 L représente environ trente cocktails. Les volumes supérieurs permettent d'adapter la mise en place à la taille et au rythme de la réception.", 'Dyane Paris 3 L, 5 L and 10 L Bag-in-Box formats respond to this professional logic. Based on a 10 cL serve, the 3 L format represents approximately thirty cocktails. Larger volumes allow preparation to be adapted to the scale and pace of the reception.'),
                 t("Le BIB n'est pas ici un signe de réduction. C'est un outil : il facilite la préparation, protège la constance de l'assemblage et permet au contenant technique de s'effacer derrière la qualité du cocktail et du service.", 'Here, Bag-in-Box is not a sign of reduction. It is a tool: it facilitates preparation, protects the consistency of the blend and allows the technical container to disappear behind the quality of the cocktail and service.'),
@@ -196,7 +197,7 @@ export const journalEditorialDrafts = [
                 t("Une fois l'assemblage prêt, l'équipe reprend la main sur tout ce qui appartient à l'instant : température, glace, verrerie, garniture, cadence et présentation. La finition reste visible ; elle donne à chaque verre son individualité.", 'Once the blend is ready, the team takes control of everything belonging to the moment: temperature, ice, glassware, garnish, pace and presentation. The finish remains visible and gives each glass its individuality.'),
                 t("L'organisation en amont ne remplace donc pas le service. Elle lui donne la disponibilité nécessaire pour rester attentif, fluide et constant, même lorsque cent convives attendent le même geste.", 'Upstream organisation therefore does not replace service. It gives service the availability required to remain attentive, fluid and consistent, even when one hundred guests await the same gesture.'),
             ] },
-            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_34_svsno8.png', "Créations Dyane Paris dans un décor de bar préparé pour le service", 'Dyane Paris creations in a bar setting prepared for service', 'wide'), size: 'large', align: 'right' },
+            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/dyane-paris-cocktail-dyaneno1-detail.png', "Créations Dyane Paris dans un décor de bar préparé pour le service", 'Dyane Paris creations in a bar setting prepared for service', 'wide'), size: 'large', align: 'right' },
             { kind: 'text', paragraphs: [t("Du bar au flacon, cette méthode défend une même idée : la préparation doit rendre le geste plus juste, jamais plus anonyme.", 'From bar to bottle, this method defends the same idea: preparation should make the gesture more exact, never more anonymous.')] },
         ],
         relatedLinks: [
@@ -222,7 +223,7 @@ export const journalEditorialDrafts = [
         location: t('Paris', 'Paris'),
         status: 'published',
         cover: image(
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/7_keuzyt.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/dyane-paris-hospitality-cocktail-bar-luxe.png',
             'PRESSIAT × Dyane Paris pendant la Fashion Week',
             'PRESSIAT × Dyane Paris during Fashion Week',
             'wide',
@@ -231,7 +232,7 @@ export const journalEditorialDrafts = [
         ),
         indexLayout: 'landscape-portrait',
         indexSecondary: image(
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/2_zqzaem.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/dyane-paris-art-de-recevoir-cocktail-cameliajordana.png',
             'Dîner PRESSIAT × Dyane Paris',
             'PRESSIAT × Dyane Paris dinner',
             'portrait',
@@ -240,7 +241,7 @@ export const journalEditorialDrafts = [
         ),
         heroStyle: 'landscape-portrait',
         heroSecondary: image(
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/2_zqzaem.png',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/dyane-paris-art-de-recevoir-cocktail-cameliajordana.png',
             'Dîner PRESSIAT × Dyane Paris',
             'PRESSIAT × Dyane Paris dinner',
             'portrait',
@@ -257,14 +258,14 @@ export const journalEditorialDrafts = [
                     'For the duration of a dinner, the boundaries between fashion, art and mixology dissolved. At Vincent Pressiat’s invitation, DYANE PARIS joined the table of Maison PRESSIAT, transforming the cocktail into an object of the stage and porcelain into an extension of the creative gesture.',
                 ),
             ] },
-            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/7_keuzyt.png', 'PRESSIAT × Dyane Paris pendant la Fashion Week', 'PRESSIAT × Dyane Paris during Fashion Week', 'wide', '50% 40%'), size: 'large', align: 'left' },
+            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/dyane-paris-hospitality-cocktail-bar-luxe.png', 'PRESSIAT × Dyane Paris pendant la Fashion Week', 'PRESSIAT × Dyane Paris during Fashion Week', 'wide', '50% 40%'), size: 'large', align: 'left' },
             { kind: 'text', paragraphs: [
                 t(
                     'Dans cette rencontre, chaque discipline conservait son langage tout en laissant apparaître des correspondances : la coupe d’une silhouette, le modelé de la porcelaine, la couleur d’un cocktail et le rythme d’un service.',
                     'In this encounter, each discipline retained its own language while revealing correspondences: the cut of a silhouette, the modelling of porcelain, the colour of a cocktail and the rhythm of service.',
                 ),
             ] },
-            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/2_zqzaem.png', 'Dîner PRESSIAT × Dyane Paris', 'PRESSIAT × Dyane Paris dinner', 'wide', '50% 42%'), size: 'large', align: 'right' },
+            { kind: 'media', media: image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/dyane-paris-art-de-recevoir-cocktail-cameliajordana.png', 'Dîner PRESSIAT × Dyane Paris', 'PRESSIAT × Dyane Paris dinner', 'wide', '50% 42%'), size: 'large', align: 'right' },
             { kind: 'text', paragraphs: [
                 t(
                     'Fashion Week Around Art raconte ainsi moins une association qu’un dialogue. Un moment parisien où le vêtement, l’objet et la dégustation composent ensemble une même présence.',
@@ -275,7 +276,7 @@ export const journalEditorialDrafts = [
     },
     {
         slug: 'pornstar-martini',
-        title: t("Pornstar Martini — Anatomie d'une Icône", 'Pornstar Martini — Anatomy of an Icon'),
+        title: t("Pornstar Martini, Anatomie d'une Icône", 'Pornstar Martini, Anatomy of an Icon'),
         seoTitle: t("Pornstar Martini : Anatomie d'une Icône | Dyane Paris", 'Pornstar Martini: Anatomy of an Icon | Dyane Paris'),
         seoDescription: t("Histoire et architecture aromatique du Pornstar Martini : passion, vanille, vodka, acidité et interprétation en porcelaine par Dyane Paris.", 'The history and aromatic architecture of the Pornstar Martini: passion fruit, vanilla, vodka, acidity and Dyane Paris porcelain interpretation.'),
         excerpt: t("Certaines créations deviennent des icônes parce qu'elles réunissent en un seul geste une couleur, un parfum et une époque.", 'Some creations become icons because they bring together a colour, a scent and an era in a single gesture.'),
@@ -310,23 +311,23 @@ export const journalEditorialDrafts = [
             { kind: 'text', paragraphs: [t("Dans Dyane No.1, le Pornstar Martini demeure une icône du bar tout en devenant un objet que l'on peut contempler, servir puis conserver.", 'In Dyane No.1, the Pornstar Martini remains a bar icon while becoming an object to contemplate, serve and keep.')] },
         ],
         relatedLinks: [
-            { href: '/oeuvres/dyane-paris-pornstar-martini-70-cl', label: t('Découvrir Dyane No.1', 'Discover Dyane No.1') },
+            { href: '/oeuvres/dyane-no1-pornstar-martini', label: t('Découvrir Dyane No.1', 'Discover Dyane No.1') },
             { href: '/le-journal/cocktail-pret-a-deguster', label: t('Du Bar au Flacon', 'From Bar to Bottle') },
         ],
     },
     {
         slug: 'moscow-mule',
-        title: t("Moscow Mule — L'Éclat du Gingembre", 'Moscow Mule — The Brightness of Ginger'),
+        title: t("Moscow Mule, L'Éclat du Gingembre", 'Moscow Mule, The Brightness of Ginger'),
         seoTitle: t("Moscow Mule : Gingembre, Fraîcheur & Équilibre | Dyane Paris", 'Moscow Mule: Ginger, Freshness & Balance | Dyane Paris'),
         seoDescription: t("Le Moscow Mule lu par Dyane Paris : gingembre, citron vert, vodka, tension et défi d'un cocktail prêt à déguster fidèle à sa sensation.", 'The Moscow Mule interpreted by Dyane Paris: ginger, lime, vodka, tension and the challenge of a ready-to-serve cocktail true to its sensation.'),
         excerpt: t("Le Moscow Mule semble tenir en quelques lignes : la vodka, le gingembre, le citron vert et le froid. Sa simplicité est pourtant une discipline.", 'The Moscow Mule seems to fit into a few lines: vodka, ginger, lime and cold. Yet its simplicity is a discipline.'),
         category: t("L'Art Liquide", 'Liquid Art'),
         status: 'published',
-        cover: image(`${JOURNAL}/dyane-paris-moscow-mule.webp`, "Dyane No.2, sculpture-flacon du Moscow Mule de Dyane Paris", 'Dyane No.2, the bottle sculpture for the Dyane Paris Moscow Mule', 'portrait'),
+        cover: image(`${JOURNAL}/dyane-paris-moscow-mule.webp`, "Dyane No.2, sculpture-flacon pour Basil Smash de Dyane Paris", 'Dyane No.2, the Basil Smash bottle sculpture by Dyane Paris', 'portrait'),
         indexLayout: 'portrait-pair',
-        indexSecondary: image(`${JOURNAL}/dyane-paris-cocktail-bar-hotel.webp`, "Dyane No.2 présentée dans un environnement de bar", 'Dyane No.2 presented in a bar setting', 'landscape'),
+        indexSecondary: image(`${JOURNAL}/dyane-paris-cocktail-bar-hotel.webp`, "Dyane No.2 Basil Smash présentée dans un environnement de bar", 'Dyane No.2 Basil Smash presented in a bar setting', 'landscape'),
         heroStyle: 'portrait-pair',
-        heroSecondary: image(`${JOURNAL}/dyane-paris-cocktail-bar-hotel.webp`, "Univers du bar autour du Moscow Mule Dyane Paris", 'Bar atmosphere surrounding the Dyane Paris Moscow Mule', 'landscape'),
+        heroSecondary: image(`${JOURNAL}/dyane-paris-cocktail-bar-hotel.webp`, "Univers du bar et histoire du Moscow Mule", 'Bar atmosphere and the history of the Moscow Mule', 'landscape'),
         chapters: [
             { title: t('La simplicité comme discipline', 'Simplicity as discipline'), start: 1 },
             { title: t("L'éclat du gingembre", 'The brightness of ginger'), start: 3 },
@@ -337,27 +338,27 @@ export const journalEditorialDrafts = [
                 t("Le Moscow Mule semble tenir en quelques lignes : la vodka, le gingembre, le citron vert et le froid. Sa simplicité est pourtant une discipline. Aucun élément ne peut se dissimuler derrière une architecture trop complexe.", 'The Moscow Mule seems to fit into a few lines: vodka, ginger, lime and cold. Yet its simplicity is a discipline. No element can hide behind an overly complex architecture.'),
                 t("Son identité naît moins de l'accumulation que de la tension entre chaleur et fraîcheur. Le cocktail doit être direct, vif et suffisamment long pour que le gingembre continue de résonner après la première impression.", 'Its identity comes less from accumulation than from the tension between heat and freshness. The cocktail must be direct, vivid and long enough for ginger to continue resonating after the first impression.'),
             ] },
-            { kind: 'media', media: image(`${JOURNAL}/dyane-paris-moscow-mule.webp`, "Détail de la sculpture Dyane No.2 dédiée au Moscow Mule", 'Detail of the Dyane No.2 sculpture dedicated to the Moscow Mule', 'portrait'), size: 'portrait', align: 'left' },
+            { kind: 'media', media: image(`${JOURNAL}/dyane-paris-moscow-mule.webp`, "Détail de la sculpture Dyane No.2 Basil Smash", 'Detail of the Dyane No.2 Basil Smash sculpture', 'portrait'), size: 'portrait', align: 'left' },
             { kind: 'text', heading: t('Chaleur, acidité, fraîcheur', 'Heat, acidity, freshness'), paragraphs: [
                 t("Le gingembre donne l'impulsion. Sa chaleur doit rester nette, jamais lourde. Le citron vert trace une acidité lumineuse qui ouvre le cocktail et maintient sa fraîcheur, tandis que la vodka lui apporte une structure claire.", 'Ginger gives the impulse. Its heat must remain clean, never heavy. Lime draws a bright acidity that opens the cocktail and maintains freshness, while vodka gives it a clear structure.'),
                 t("L'équilibre se mesure dans la longueur : assez de tension pour prolonger la sensation, assez de rondeur pour ne pas réduire le cocktail à son piquant, et une finale précise qui appelle le second geste.", 'Balance is measured in length: enough tension to extend the sensation, enough roundness not to reduce the cocktail to heat alone, and a precise finish that invites the next gesture.'),
             ], width: 'medium' },
             { kind: 'quote', text: t("« LA FRAÎCHEUR N'EST PAS UNE TEMPÉRATURE : C'EST UNE LIGNE. »", '“FRESHNESS IS NOT A TEMPERATURE: IT IS A LINE.”') },
-            { kind: 'text', heading: t('Du bar à Dyane No.2', 'From bar to Dyane No.2'), paragraphs: [
+            { kind: 'text', heading: t('Du bar au flacon', 'From bar to bottle'), paragraphs: [
                 t("Passer du bar au flacon demande de préserver cette sensation dans le temps. L'enjeu n'est pas seulement de réunir les saveurs, mais de conserver leur ordre d'apparition : l'éclat, la chaleur, puis la longueur.", 'Moving from bar to bottle requires preserving that sensation over time. The challenge is not only to bring flavours together, but to retain their order of appearance: brightness, warmth and then length.'),
-                t("Dans Dyane No.2, la porcelaine donne au Moscow Mule un corps sculptural. Au moment du service, le froid, la glace et la verrerie réactivent sa vivacité ; l'objet demeure lorsque la sensation s'estompe.", 'In Dyane No.2, porcelain gives the Moscow Mule a sculptural body. At service, cold, ice and glassware reactivate its vitality; the object remains when the sensation fades.'),
+                t("Cet article aborde le Moscow Mule comme sujet éditorial et ne décrit pas la recette actuelle de Dyane No.2. Dyane No.2 est un Basil Smash : gin, sirop maison de basilic et yuzu, liqueur de sureau sauvage, sour maison. La porcelaine lui donne un corps sculptural ; l’objet demeure après la dégustation.", 'This article explores the Moscow Mule as an editorial subject and does not describe the current recipe of Dyane No.2. Dyane No.2 is a Basil Smash: gin, house-made basil and yuzu syrup, wild elderflower liqueur, house-made sour. Porcelain gives it a sculptural body; the object remains after tasting.'),
             ] },
             { kind: 'media', media: image(`${JOURNAL}/dyane-paris-cocktail-bar-hotel.webp`, "Sculptures Dyane Paris au cœur d'un bar de spiritueux", 'Dyane Paris sculptures at the heart of a spirits bar', 'wide'), size: 'full' },
             { kind: 'text', paragraphs: [t("La simplicité apparente du Moscow Mule devient ainsi une épreuve de précision : faire peu, mais faire apparaître chaque chose au moment juste.", 'The apparent simplicity of the Moscow Mule thus becomes a test of precision: doing little, while allowing each element to appear at exactly the right moment.')] },
         ],
         relatedLinks: [
-            { href: '/oeuvres/dyane-no2-moscow-mule', label: t('Découvrir Dyane No.2', 'Discover Dyane No.2') },
+            { href: '/oeuvres/dyane-no2-basil-smash', label: t('Découvrir Dyane No.2 Basil Smash', 'Discover Dyane No.2 Basil Smash') },
             { href: '/le-journal/cocktail-pret-a-deguster', label: t('Du Bar au Flacon', 'From Bar to Bottle') },
         ],
     },
     {
         slug: 'basil-smash',
-        title: t('Basil Smash — Le Vert comme Signature', 'Basil Smash — Green as a Signature'),
+        title: t('Basil Smash, Le Vert comme Signature', 'Basil Smash, Green as a Signature'),
         seoTitle: t("Basil Smash : Le Cocktail au Basilic | Dyane Paris", 'Basil Smash: The Basil Cocktail | Dyane Paris'),
         seoDescription: t("Le Basil Smash de Dyane Paris, retravaillé avec Thibaud Sauvet : basilic, gin, acidité, fraîcheur et couleur comme expérience visuelle.", 'The Dyane Paris Basil Smash, reworked with Thibaud Sauvet: basil, gin, acidity, freshness and colour as a visual experience.'),
         excerpt: t("Avant même d'être une saveur, le Basil Smash est une couleur. Un vert franc qui annonce la fraîcheur avant le premier parfum.", 'Before it is a flavour, the Basil Smash is a colour. A vivid green that announces freshness before the first aroma.'),

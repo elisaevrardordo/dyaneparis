@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { fontVariables } from '../fonts'
+import { AGE_GATE_BOOTSTRAP } from '@/lib/ageGate'
 import {
     buildPageMetadata,
     imageObject,
@@ -159,6 +160,8 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={fontVariables} suppressHydrationWarning>
             <head>
+                <script id="age-gate-session" dangerouslySetInnerHTML={{ __html: AGE_GATE_BOOTSTRAP }} />
+                <link rel="preconnect" href="https://res.cloudinary.com" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}

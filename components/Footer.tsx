@@ -12,8 +12,8 @@ export default function Footer() {
   const locale = pathname.startsWith('/en') ? 'en' : 'fr'
 
   const collectionLinks = [
-    { label: t('chapter1'), href: '/oeuvres/dyane-paris-pornstar-martini-70-cl' },
-    { label: t('chapter2'), href: '/oeuvres/dyane-no2-moscow-mule' },
+    { label: t('chapter1'), href: '/oeuvres/dyane-no1-pornstar-martini' },
+    { label: t('chapter2'), href: '/oeuvres/dyane-no2-basil-smash' },
     { label: t('teo'), href: '/oeuvres/bouteille-signee-teokaykay' },
   ]
   const houseLinks = [
@@ -53,7 +53,7 @@ export default function Footer() {
         </nav>
 
         <nav className={`${styles.column} ${styles.help}`} aria-label={t('aide_titre')}>
-          <p className={styles.columnTitle}>{t('aide_titre')}</p>
+          <p className={styles.columnTitle}><Link href={localizedPath(locale, '/commission-a-sculpture')}>{t('aide_titre')}</Link></p>
           {helpLinks.map((link) => (
             <Link className={styles.link} href={localizedPath(locale, link.href)} key={link.href}>
               {link.label}

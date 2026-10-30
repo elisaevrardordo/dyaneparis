@@ -1,23 +1,10 @@
 .page {
   overflow-x: clip;
-  padding-top: var(--header-height);
+  padding-top: 0;
   color: #111;
   background: #fff;
   font-family: var(--font-editorial), Georgia, serif;
-}
-
-.pageTitle {
-  display: flex;
-  min-height: clamp(300px, 42svh, 500px);
-  align-items: center;
-  justify-content: center;
-  padding: clamp(64px, 8vw, 120px) 24px;
-  text-align: center;
-}
-
-.pageTitleCompact {
-  min-height: clamp(144px, 20.16svh, 240px);
-  padding-block: clamp(30.4px, 3.84vw, 57.6px);
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -30,7 +17,6 @@
   text-transform: uppercase;
 }
 
-.pageTitle h1,
 .copyTitle {
   margin: 0;
   font-family: inherit;
@@ -39,60 +25,43 @@
   text-transform: uppercase;
 }
 
-.pageTitle h1 {
-  font-size: clamp(34px, 4vw, 62px);
-  line-height: 1.04;
-}
-
-.video {
-  width: 85%;
-  aspect-ratio: 16 / 9;
-  margin: clamp(24px, 3.4vw, 56px) auto;
-  overflow: hidden;
-  background: #fff;
-}
-
-.video video,
-.videoPlaceholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.video video {
-  object-fit: cover;
-  object-position: center;
-}
-
 .copy {
   display: flex;
   min-height: clamp(300px, 32vw, 420px);
   align-items: center;
   justify-content: center;
-  padding: clamp(54px, 6vw, 96px) 24px;
+  padding: clamp(64.8px, 7.2vw, 115.2px) 24px;
   text-align: center;
 }
 
 .copyInner {
+  composes: statement from './EditorialStatement.module.css';
   width: min(850px, 90vw);
   margin-inline: auto;
 }
 
-.copyTitle {
-  font-size: clamp(27px, 2.8vw, 44px);
+.copyTitle,
+.copyInner > h2.eyebrow {
+  margin: 0;
+  color: #111;
+  font-family: inherit;
+  font-size: clamp(20px, 1.8vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
   line-height: 1.08;
 }
 
 .body {
   max-width: 760px;
-  margin: clamp(24px, 2.2vw, 34px) auto 0;
+  margin: 16px auto 0;
   color: rgba(17, 17, 17, 0.78);
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.75;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
 }
 
 .copyTitle + .body {
-  margin-top: clamp(24px, 2.2vw, 34px);
+  margin-top: 16px;
 }
 
 .body:first-child {
@@ -116,7 +85,7 @@
   margin-bottom: 12px;
   color: #111;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -133,15 +102,29 @@
 
 .body a {
   display: inline-block;
-  margin-top: 34px;
+  margin-top: 18px;
   padding-bottom: 4px;
   border-bottom: 1px solid currentColor;
   color: #111;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-decoration: none;
   text-transform: uppercase;
 }
+
+.page > .copy:last-child {
+  min-height: 0;
+  padding: 38.4px 24px;
+}
+
+.page > .copy:last-child .body {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.page > .copy:last-child .body:first-child { margin-top: 0; }
+.page > .copy:last-child .body a { margin-top: 18px; font-size: 10px; }
 
 .gallery {
   display: grid;
@@ -205,10 +188,6 @@
 }
 
 @media (max-width: 900px) {
-  .pageTitle {
-    min-height: clamp(280px, 38svh, 400px);
-  }
-
   .three,
   .six,
   .eight {
@@ -224,36 +203,13 @@
 }
 
 @media (max-width: 600px) {
-  .pageTitle {
-    min-height: 300px;
-    padding: 64px 20px;
-  }
-
-  .pageTitleCompact {
-    min-height: 144px;
-    padding-block: 30.4px;
-  }
-
-  .pageTitle h1 {
-    font-size: clamp(31px, 10vw, 42px);
-  }
-
-  .video {
-    width: 85%;
-  }
-
   .copy {
     min-height: 280px;
-    padding: 54px 20px;
+    padding: 64.8px 20px;
   }
 
   .copyInner {
     width: 100%;
-  }
-
-  .body {
-    font-size: 14px;
-    line-height: 1.65;
   }
 
   .three,
@@ -276,4 +232,16 @@
   .eight {
     grid-template-columns: 1fr;
   }
+}
+
+/* Experiences keeps its gallery layout with the shared editorial typography. */
+.compact .gallery { gap: 0; }
+
+.compact > [data-page-hero] + .gallery {
+  margin-top: clamp(24px, 3vw, 48px);
+}
+
+.compact .copy {
+  min-height: 0;
+  padding: 48px 24px;
 }

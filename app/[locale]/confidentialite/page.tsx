@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { titleWithoutBrand } from '@/lib/seo'
 
 export async function generateMetadata({
     params,
@@ -10,7 +11,7 @@ export async function generateMetadata({
     const t = await getTranslations({ locale, namespace: 'seo.confidentialite' })
     const path = locale === 'fr' ? '/confidentialite' : `/${locale}/confidentialite`
     return {
-        title: t('title'),
+        title: titleWithoutBrand(t('title')),
         description: t('description'),
         alternates: {
             canonical: `https://www.dyaneparis.com${path}`,

@@ -1,0 +1,140 @@
+{
+  "no1-catalogue": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1229909,
+    "sha256": "4b80d4926ab0bfb479f6d83348d5fe007c53112be8e157033d3491240e63b61b"
+  },
+  "no2-catalogue": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1736913,
+    "sha256": "08fc302ccc530c04c917e7990ec82357df5e5a32097d9786bafcd4ffa426d1c2"
+  },
+  "no1": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1432595,
+    "sha256": "7a1d52a5d40219e4233b985e17048884d464674d7aa0ea235d395537ea59c49c"
+  },
+  "no1-portrait": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1443061,
+    "sha256": "00791df52a487b138433335dcd6aecd0555fbe24f0cd34d6c1082e31b9032aea"
+  },
+  "no2": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1327928,
+    "sha256": "9ab95db69c391dc276cdc23a40c3ddb3458fe81762c364a3716bc81baa206565"
+  },
+  "no2-portrait": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1246458,
+    "sha256": "a7a775eb17e4566bf1c462cb0e1b2c6b247d72a0db35aca5a545a71837e74f88"
+  },
+  "teo": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 87440,
+    "sha256": "e7563000d49774c2648c92b1992f1dfcdd857f7ea1a28e487920488629f161a0"
+  },
+  "no2-service": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 72460,
+    "sha256": "91a361f2bfbd7ef16f9a6d66355237dd4adb6f291a92876509d4be92b06d94d0"
+  },
+  "teo-detail": {
+    "width": 3616,
+    "height": 4822,
+    "bytes": 9090564,
+    "sha256": "5c2b3421044d97200e00d789c238d803a886412810b09ac3715c537a686f91f3"
+  },
+  "maison": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 549110,
+    "sha256": "30f6cd5ccb0ea4b179df61a41f7a7b0444add8f109aea071eb0d0c718de142e3"
+  },
+  "maison-art": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1058402,
+    "sha256": "e24ad5a107b6dde434e0dab0fa8241250889c995609a9a9f9e593672b7ff4443"
+  },
+  "maison-sculpture": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 928576,
+    "sha256": "0682805480b7c3c7fb6a8094fb9d4b6f8a9c7377c9bf53ede8f971bc87537c92"
+  },
+  "maison-service": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 470520,
+    "sha256": "26ae18f16593d5fae2e279c820f7d5a103d4063a222ab15050b64390675ba9af"
+  },
+  "fabrication": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1621269,
+    "sha256": "91418560fab76839b35c0f9f5a9d52cca3a2fe42381e79bd636ea410302cf518"
+  },
+  "porcelaine": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1310384,
+    "sha256": "726a3f5dfa25f00cbeb51270ff5b137d27e8bd42ef8780d0dff80721ef22b695"
+  },
+  "peinture": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 733690,
+    "sha256": "f1dbc7d823221cbb2debddc2fc062acabdc293c299f6d08ebe4369e42a8f95dc"
+  },
+  "ingredients": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1044645,
+    "sha256": "38008e8f5addc0f2c92e975a0694e59ce29f959e6638364cb6eac81899f23efd"
+  },
+  "experiences": {
+    "width": 6000,
+    "height": 4000,
+    "bytes": 2611316,
+    "sha256": "c41877f9c670f1af1c9bc371307ae864acc6d3830d055963e04a8a6580507518"
+  },
+  "bar": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 834886,
+    "sha256": "d95fb683c4b4fa36d587f9092475fd4ff896d2f5713820f5a70aa252afe4fc48"
+  },
+  "evenement": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1955903,
+    "sha256": "a324faea343198f9a84359fdcc99ee4516bf600f65d477c0d063757607c3871f"
+  },
+  "personnalisation": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1852700,
+    "sha256": "2fbd0ec6d768758184eeb824e1aadd08a27103c221d40247d5ceefd2eb017fe5"
+  },
+  "collaboration": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1582261,
+    "sha256": "092aae4d3ff3b1084625829e6415db92773bdd6b5e1984b90471a131207f4fcf"
+  },
+  "cadeau": {
+    "width": 1080,
+    "height": 1350,
+    "bytes": 1378888,
+    "sha256": "15e088207016804431b019099c3675008e2fcfbdf05712ea3bbdbf2d6032121b"
+  }
+}

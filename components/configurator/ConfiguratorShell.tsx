@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import styles from './Configurator.module.css'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons/EditorialIcons'
 import ConfiguratorStage from './ConfiguratorStage'
 import {
   type ConfiguratorStep,
@@ -168,7 +169,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
                 onClick={continueToPalette}
               >
                 {text.continue}
-                <span aria-hidden="true">→</span>
+                <ArrowRightIcon />
               </button>
             </div>
           </div>
@@ -176,7 +177,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
       ) : (
         <section className={styles.palettePanel} aria-labelledby="palette-title">
           <button type="button" className={styles.backButton} onClick={() => setActiveStep('format')}>
-            <span aria-hidden="true">←</span>
+            <ArrowLeftIcon />
             {text.back}
           </button>
           <p className={styles.stepLabel}>{text.paletteStep}</p>

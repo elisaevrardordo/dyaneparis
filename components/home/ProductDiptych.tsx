@@ -7,11 +7,12 @@ import type { getHomeContent } from '@/content/home'
 import { localizedPath } from '@/i18n/paths'
 import CampaignCaption from './CampaignCaption'
 import styles from './Home.module.css'
+import { cloudinaryVideo, cloudinaryVideoPoster } from '@/lib/cloudinary'
 
 type Products = ReturnType<typeof getHomeContent>['products']
 type Product = Products[number]
 
-function ProductCard({ product, locale }: { product: Product; locale: string }) {
+function ProductCard({ product, locale, priority }: { product: Product; locale: string; priority: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -57,6 +58,8 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
           src={product.src}
           alt={product.alt}
           fill
+          quality={85}
+          priority={priority}
           sizes="(max-width: 700px) calc(100vw - 40px), 40vw"
         />
         <video
@@ -65,12 +68,12 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
           muted
           loop
           playsInline
-          preload="metadata"
-          poster={product.src}
+          preload="none"
+          poster={cloudinaryVideoPoster(product.hoverVideo, 900) || product.src}
           aria-hidden="true"
           tabIndex={-1}
         >
-          <source src={product.hoverVideo} type="video/mp4" />
+          <source src={cloudinaryVideo(product.hoverVideo, 900)} type="video/mp4" />
         </video>
       </button>
       <Link
@@ -89,7 +92,7 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   )
 }
 
-export default function ProductDiptych({ products, locale }: { products: Products; locale: string }) {
+export default function ProductDiptych({ products, locale, priority = false }: { products: Products; locale: string; priority?: boolean }) {
   return (
     <section
       className={styles.productSection}
@@ -99,8 +102,8 @@ export default function ProductDiptych({ products, locale }: { products: Product
     >
       <div className={styles.productInner}>
         <div className={styles.productGrid}>
-          {products.map((product) => (
-            <ProductCard product={product} locale={locale} key={product.title} />
+          {products.map((product, index) => (
+            <ProductCard product={product} locale={locale} priority={priority && index === 0} key={product.title} />
           ))}
         </div>
         <div className={styles.productStatement}>

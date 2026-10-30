@@ -54,7 +54,7 @@ function JournalEditorialRow({ story, index, locale }: { story: Story; index: nu
                 {story.subtitle && <p className={styles.storySubtitle}>{journalText(story.subtitle, locale)}</p>}
                 <p className={styles.storyExcerpt}>{journalText(story.excerpt, locale)}</p>
                 <Link className={styles.readLink} href={href}>
-                    {isEnglish ? 'Read the story' : 'Lire le récit'} <span aria-hidden="true">↗</span>
+                    {isEnglish ? 'Read the story' : 'Lire le récit'}
                 </Link>
             </div>
 
@@ -85,7 +85,7 @@ function JournalEditorialRow({ story, index, locale }: { story: Story; index: nu
                                 media={item}
                                 locale={locale}
                                 priority={index === 0 && mediaIndex === 0}
-                                sizes="(max-width: 800px) 100vw, 38vw"
+                                sizes="(max-width: 800px) 82vw, 38vw"
                             />
                         </div>
                     )

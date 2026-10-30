@@ -2,6 +2,9 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import NewsletterForm from '@/components/NewsletterForm'
+import captionStyles from '@/components/home/CampaignCaption.module.css'
+import styles from './Faq.module.css'
+import EditorialEmblem from '@/components/editorial/EditorialEmblem'
 
 const font = { fontFamily: 'var(--font-editorial), serif' }
 
@@ -40,9 +43,6 @@ export default function FaqClient() {
 
             {/* Hero image — edge to edge, 100vh */}
             <section data-page-hero data-header-foreground="white" style={{ position: 'relative', width: '100vw', marginLeft: 'calc(50% - 50vw)', height: '100vh', overflow: 'hidden' }}>
-                <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0 }}>
-                    FAQ — Dyane Paris
-                </h1>
                 <Image
                     src="https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg"
                     alt="Sculpture en porcelaine Dyane Paris accompagnant la foire aux questions"
@@ -51,11 +51,15 @@ export default function FaqClient() {
                     sizes="100vw"
                     style={{ objectFit: 'cover' }}
                 />
+                <h1 className={`${captionStyles.caption} ${captionStyles.overlay} ${captionStyles.white} ${styles.heroTitle}`}>
+                    SERVICE D'AIDE
+                </h1>
             </section>
 
             {/* FAQ */}
-            <section style={{ maxWidth: '900px', margin: '0 auto', padding: '80px 24px' }}>
-                <p style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, textAlign: 'center', marginBottom: '64px' }}>
+            <section className={styles.editorialCopy} style={{ maxWidth: '900px', margin: '0 auto', padding: '80px 24px' }}>
+                <EditorialEmblem />
+                <p data-editorial-label style={{ ...font, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, textAlign: 'center', marginBottom: '64px' }}>
                     RETROUVEZ RÉPONSES À VOS QUESTIONS JUSTE ICI.
                 </p>
 

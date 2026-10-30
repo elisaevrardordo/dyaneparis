@@ -2,43 +2,12 @@
 
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
-import DyaneEditorialPage, { type DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
+import DyaneEditorialPage from '@/components/editorial/DyaneEditorialPage'
 import { localizedPath } from '@/i18n/paths'
+import { cloudinaryVideo } from '@/lib/cloudinary'
+import { officialEditorialMedia } from '@/content/officialImages'
 
-const media = {
-  film: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788775590/OEUVRES_ntymti.mov',
-  filmPoster: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1600,so_0/v1788775590/OEUVRES_ntymti.jpg',
-}
-
-const galleries: Record<'gallery3' | 'gallery2' | 'gallery6' | 'gallery8', DyaneEditorialMedia[]> = {
-  gallery3: [
-    { src: '/editorial/la-maison/STATUE%202.png', alt: 'Portrait sculptural de Dyane Paris' },
-    { src: '/editorial/la-maison/ART%201.png', alt: 'Recherches artistiques autour de la silhouette Dyane' },
-    { src: '/editorial/la-maison/STATUE%201.png', alt: 'Œuvre Dyane Paris présentée en lumière naturelle' },
-  ],
-  gallery2: [
-    { src: '/editorial/la-maison/ART%202.png', alt: 'Composition picturale inspirant la Maison Dyane' },
-    { src: '/editorial/la-maison/17.png', alt: 'Détail de la sculpture en porcelaine Dyane Paris' },
-  ],
-  gallery6: [
-    { src: '/editorial/la-maison/COCKTAIL%203.png', alt: 'Service d’un cocktail Dyane Paris' },
-    { src: '/editorial/la-maison/PROD%204.mp4', alt: 'Fleur aromatique de la composition Dyane', type: 'video' },
-    { src: '/editorial/la-maison/PROD%202.png', alt: 'Geste de production du liquide Dyane' },
-    { src: '/editorial/la-maison/PROD%204.png', alt: 'Travail manuel de la porcelaine Dyane' },
-    { src: '/editorial/la-maison/PROD%203.png', alt: 'Artisan au cœur de la production Dyane' },
-    { src: '/editorial/la-maison/COCKTAIL%204.png', alt: 'Verre Dyane dans un intérieur parisien' },
-  ],
-  gallery8: [
-    { src: '/editorial/la-maison/PROD%205.mp4', alt: 'Agrume sélectionné pour une composition Dyane', type: 'video' },
-    { src: '/editorial/la-maison/DRINK.png', alt: 'Dégustation d’un cocktail Dyane Paris' },
-    { src: '/editorial/la-maison/PROD%205.png', alt: 'Finition manuelle d’une sculpture Dyane' },
-    { src: '/editorial/la-maison/COCKTAIL%202%20.png', alt: 'Détail ambré d’un cocktail Dyane' },
-    { src: '/editorial/la-maison/DRINK%202.mp4', alt: 'Service d’une œuvre Dyane Paris', type: 'video' },
-    { src: '/editorial/la-maison/PROD%206.png', alt: 'Coulage de la porcelaine dans un moule Dyane' },
-    { src: '/editorial/la-maison/PROD.png', alt: 'Alambic de la Maison Dyane' },
-    { src: '/editorial/la-maison/COCKTAIL%201%20.png', alt: 'Cocktail doré servi par Dyane Paris' },
-  ],
-}
+import { maisonMedia as media, maisonGalleries as galleries } from '@/content/editorialMedia'
 
 export default function LaMaisonClient() {
   const t = useTranslations('maison')
@@ -47,9 +16,9 @@ export default function LaMaisonClient() {
   return (
     <DyaneEditorialPage
       eyebrow={t('kicker')}
-      title={t('titre')}
+      title={t('definition_titre')}
       video={{
-        src: media.film,
+        src: cloudinaryVideo(media.film, 1600),
         poster: media.filmPoster,
         label: "Film de l'histoire et du savoir-faire Dyane Paris",
       }}
@@ -111,10 +80,10 @@ export default function LaMaisonClient() {
           ),
         },
       ]}
-      gallery3={galleries.gallery3}
-      gallery2={galleries.gallery2}
-      gallery6={galleries.gallery6}
-      gallery8={galleries.gallery8}
+      gallery3={galleries.gallery3.map((item) => officialEditorialMedia(item, locale))}
+      gallery2={galleries.gallery2.map((item) => officialEditorialMedia(item, locale))}
+      gallery6={galleries.gallery6.map((item) => officialEditorialMedia(item, locale))}
+      gallery8={galleries.gallery8.map((item) => officialEditorialMedia(item, locale))}
     />
   )
 }

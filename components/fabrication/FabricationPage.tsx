@@ -1,38 +1,10 @@
 import Link from 'next/link'
-import DyaneEditorialPage, { type DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
+import DyaneEditorialPage from '@/components/editorial/DyaneEditorialPage'
 import { localizedPath } from '@/i18n/paths'
+import { cloudinaryVideo, cloudinaryVideoPoster } from '@/lib/cloudinary'
+import { officialEditorialMedia } from '@/content/officialImages'
 
-export const FABRICATION_VIDEO_URL = 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788697399/VIDEO_FABRICATION_d7nezn.mp4'
-
-const galleries: Record<'gallery3' | 'gallery2' | 'gallery6' | 'gallery8', DyaneEditorialMedia[]> = {
-  gallery3: [
-    { src: '/editorial/fabrication/DESSIN.png', alt: 'Dessin préparatoire de la sculpture Dyane Paris' },
-    { src: '/editorial/fabrication/PORCELAINE%202.png', alt: 'Préparation de la porcelaine Dyane Paris' },
-    { src: '/editorial/fabrication/PEINTURE.png', alt: 'Silhouette Dyane révélée par la lumière' },
-  ],
-  gallery2: [
-    { src: '/editorial/fabrication/PORCELAINE.png', alt: 'Modelage du visage de la sculpture Dyane' },
-    { src: '/editorial/fabrication/PEINTURE%202.png', alt: 'Peinture manuelle du drapé Dyane' },
-  ],
-  gallery6: [
-    { src: '/editorial/fabrication/PORCELAINE%203.mp4', alt: 'Préparation de la matière en atelier', type: 'video' },
-    { src: '/editorial/fabrication/PORCELAINE%206.png', alt: 'Outils de sculpture sur porcelaine' },
-    { src: '/editorial/fabrication/PORCELAINE%204.mp4', alt: 'Coulage de la porcelaine Dyane', type: 'video' },
-    { src: '/editorial/fabrication/PEINTURE%203.png', alt: 'Pigment rouge de la sculpture Dyane' },
-    { src: '/editorial/fabrication/PORCELAINE%205.mp4', alt: 'Gestes de précision sur la porcelaine', type: 'video' },
-    { src: '/editorial/fabrication/PORCELAINE%208.png', alt: 'Atelier et outils des artisans Dyane' },
-  ],
-  gallery8: [
-    { src: '/editorial/fabrication/INGREDIENTS.png', alt: 'Framboises sélectionnées pour une composition Dyane' },
-    { src: '/editorial/fabrication/INGREDIENTS%202.mp4', alt: 'Sélection des ingrédients au cœur des cultures', type: 'video' },
-    { src: '/editorial/fabrication/PEINTURE%202%20.png', alt: 'Pinceaux de finition de la Maison Dyane' },
-    { src: '/editorial/fabrication/INGREDIENTS%205.mp4', alt: 'Lavande choisie pour ses qualités aromatiques', type: 'video' },
-    { src: '/editorial/fabrication/PORCELAINE%207.png', alt: 'Outils de modelage dans l’atelier Dyane' },
-    { src: '/editorial/fabrication/PRODUCTION%201.mp4', alt: 'Contrôle d’une composition liquide Dyane', type: 'video' },
-    { src: '/editorial/fabrication/PRODUCTION%202%20.png', alt: 'Fûts de la production française Dyane' },
-    { src: '/editorial/fabrication/PRODUCTION%203.mp4', alt: 'Élaboration du liquide Dyane', type: 'video' },
-  ],
-}
+import { FABRICATION_VIDEO_URL, fabricationGalleries as galleries } from '@/content/editorialMedia'
 
 type SectionCopy = { title: string; body: string }
 
@@ -123,9 +95,10 @@ export default function FabricationPage({ locale }: { locale: string }) {
   return (
     <DyaneEditorialPage
       eyebrow={isFrench ? 'FABRICATION' : 'THE MAKING'}
-      title={isFrench ? 'LE SAVOIR-FAIRE DYANE' : 'DYANE SAVOIR-FAIRE'}
+      title={isFrench ? 'DE LA SCULPTURE AU FLACON DE PORCELAINE' : 'FROM SCULPTURE TO PORCELAIN VESSEL'}
       video={{
-        src: FABRICATION_VIDEO_URL,
+        src: cloudinaryVideo(FABRICATION_VIDEO_URL, 1600),
+        poster: cloudinaryVideoPoster(FABRICATION_VIDEO_URL, 1600),
         label: isFrench ? 'Film de la fabrication Dyane Paris' : 'The making of Dyane Paris',
       }}
       textBlocks={[
@@ -190,10 +163,10 @@ export default function FabricationPage({ locale }: { locale: string }) {
           ),
         },
       ]}
-      gallery3={galleries.gallery3}
-      gallery2={galleries.gallery2}
-      gallery6={galleries.gallery6}
-      gallery8={galleries.gallery8}
+      gallery3={galleries.gallery3.map((item) => officialEditorialMedia(item, locale))}
+      gallery2={galleries.gallery2.map((item) => officialEditorialMedia(item, locale))}
+      gallery6={galleries.gallery6.map((item) => officialEditorialMedia(item, locale))}
+      gallery8={galleries.gallery8.map((item) => officialEditorialMedia(item, locale))}
     />
   )
 }

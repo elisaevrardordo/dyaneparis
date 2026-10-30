@@ -1,3 +1,5 @@
+import { officialImageUrl } from './officialImages'
+
 export type OeuvresLocale = 'fr' | 'en'
 
 export type LocalizedText = Readonly<Record<OeuvresLocale, string>>
@@ -50,7 +52,7 @@ const image = (
     options: Omit<OeuvreImage, 'type' | 'src' | 'alt'> = {},
 ): OeuvreImage => ({
     type: 'image',
-    src,
+    src: officialImageUrl(src),
     alt: localized(fr, en),
     ...options,
 })
@@ -58,53 +60,51 @@ const image = (
 export const oeuvreChapters: readonly OeuvreChapter[] = [
     {
         id: 'no1',
-        href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
+        href: '/oeuvres/dyane-no1-pornstar-martini',
         title: 'DYANE NO.1',
         descriptionKey: 'no1_sous_titre',
         eyebrow: localized('CHAPITRE I', 'CHAPTER I'),
         note: localized('PORNSTAR MARTINI', 'PORNSTAR MARTINI'),
         media: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
-                'Sculpture-bouteille Dyane No.1 en porcelaine',
-                'Dyane No.1 porcelain bottle sculpture',
-                { objectFit: 'contain' },
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792596559/dyane-paris-sculpture-porcelaine-detail-visage.png',
+                'Détail du visage de la sculpture en porcelaine Dyane No.1',
+                'Face detail of the Dyane No.1 porcelain sculpture',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687757/63_fimus0.png',
-                'Composition éditoriale autour de Dyane No.1',
-                'Editorial composition featuring Dyane No.1',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792596557/dyane-paris-sculpture-porcelaine-voile-rouge-detail.png',
+                'Détail du drapé rouge de la sculpture Dyane No.1',
+                'Red drapery detail of the Dyane No.1 sculpture',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788645250/DYANE_PARIS_MAISON_D_ART_LIQUIDE_1_deqhfs.png',
-                'Dyane No.1 dans l’univers de la Maison d’Art Liquide',
-                'Dyane No.1 in the House of Liquid Art universe',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792596556/dyane-paris-cocktail-signature-pornstar-martini-dyaneno1.png',
+                'Cocktail Pornstar Martini, signature de Dyane No.1',
+                'Pornstar Martini cocktail, Dyane No.1 signature',
             ),
         ],
     },
     {
         id: 'no2',
-        href: '/oeuvres/dyane-no2-moscow-mule',
+        href: '/oeuvres/dyane-no2-basil-smash',
         title: 'DYANE NO.2',
         descriptionKey: 'no2_sous_titre',
         eyebrow: localized('CHAPITRE II', 'CHAPTER II'),
-        note: localized('MOSCOW MULE', 'MOSCOW MULE'),
+        note: localized('BASIL SMASH', 'BASIL SMASH'),
         media: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
-                'Sculpture-bouteille Dyane No.2 en porcelaine',
-                'Dyane No.2 porcelain bottle sculpture',
-                { objectFit: 'contain' },
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792596559/dyane-paris-sculpture-porcelaine-detail-visage.png',
+                'Détail du visage de la sculpture en porcelaine Dyane No.2',
+                'Face detail of the Dyane No.2 porcelain sculpture',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687756/61_xv2x3w.png',
-                'Composition éditoriale autour de Dyane No.2',
-                'Editorial composition featuring Dyane No.2',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792664334/dyaneparis-details-drape-vert-dyaneno2.png',
+                'Détail du drapé vert de la sculpture Dyane No.2',
+                'Green drapery detail of the Dyane No.2 sculpture',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644548/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_15_xsolas.png',
-                'Fleur de la passion, signature aromatique de la Maison Dyane Paris',
-                'Passion flower, an aromatic signature of Maison Dyane Paris',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1792664326/dyane-paris-cocktail-luxe-basilsmash-dyaneno2.png',
+                'Cocktail Basil Smash, signature de Dyane No.2',
+                'Basil Smash cocktail, Dyane No.2 signature',
             ),
         ],
     },

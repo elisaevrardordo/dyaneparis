@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import LaMaisonClient from './LaMaisonClient'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
+import { officialSeoImage } from '@/content/officialImages'
 import {
     breadcrumbJsonLd,
     buildPageMetadata,
     imageObject,
     localizedUrl,
-    seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
 
@@ -23,7 +24,7 @@ export async function generateMetadata({
         path: '/la-maison',
         title: t('title'),
         description: t('description'),
-        image: seoImages.maison,
+        image: officialSeoImage('maison', locale),
         absoluteTitle: true,
     })
 }
@@ -45,7 +46,7 @@ export default async function LaMaisonPage({
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 about: { '@id': 'https://www.dyaneparis.com/#organization' },
-                primaryImageOfPage: imageObject(seoImages.maison, true),
+                primaryImageOfPage: imageObject(officialSeoImage('maison', locale), true),
                 description: locale === 'en'
                     ? 'The story of Dyane Paris, its porcelain craftsmanship and French Liquid Art savoir-faire.'
                     : "L'histoire de Dyane Paris, son artisanat de la porcelaine et son savoir-faire français d'Art Liquide.",
@@ -65,6 +66,7 @@ export default async function LaMaisonPage({
                 dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
             <LaMaisonClient />
+            <DiscoveryLinks locale={locale} />
         </>
     )
 }

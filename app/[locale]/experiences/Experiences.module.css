@@ -95,3 +95,9 @@
   .location { width: calc(100% - 24px); margin-inline: auto; }
   .quote { width: calc(100% - 40px); padding-block: 88px; }
 }
+
+/* A little more space around the hotel signature introduction only. */
+.experiencesPage > section.signatureIntroduction { padding-block: 64px; }
+@media (max-width: 600px) {
+  .experiencesPage > section.signatureIntroduction { padding-block: 56px; }
+}

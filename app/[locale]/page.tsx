@@ -1,5 +1,5 @@
 import styles from '@/components/home/Home.module.css'
-import FullScreenSlideStack from '@/components/home/FullScreenSlideStack'
+import CollectionChapters from '@/components/collection/CollectionChapters'
 import VerticalCampaignSequence from '@/components/home/VerticalCampaignSequence'
 import { getHomeContent } from '@/content/home'
 import { imageObject, localizedUrl, seoImages, serializeJsonLd } from '@/lib/seo'
@@ -30,13 +30,14 @@ export default async function HomePage({
 
   return (
     <>
+      <link rel="preload" as="image" href="/home/hero/hero-dyane-website-vdef-poster.jpg" fetchPriority="high" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <FullScreenSlideStack className={styles.home}>
-        <VerticalCampaignSequence locale={locale} hero={content.hero} products={content.products} />
-      </FullScreenSlideStack>
+      <main className={styles.home} data-section-scroll>
+        <VerticalCampaignSequence locale={locale} hero={content.hero} chapters={<CollectionChapters locale={locale} ids={['no1', 'no2']} naturalScroll />} />
+      </main>
     </>
   )
 }

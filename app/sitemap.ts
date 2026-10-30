@@ -1,12 +1,23 @@
 import type { MetadataRoute } from 'next'
-import { heroImages, produits } from '@/components/data/productDetails'
+import { produits } from '@/components/data/productDetails'
 import { products } from '@/components/data/products'
-import { journalPublishedArticles, type JournalBlock, type JournalMedia } from '@/content/journal'
+import { journalPublishedArticles, type JournalMedia } from '@/content/journal'
+import { journalIndexStories } from '@/content/journalIndex'
+import { articleImages as renderedArticleImages } from '@/content/journalImages'
+import { oeuvreChapters } from '@/content/oeuvres'
+import { maisonMedia, maisonGalleries, experiencesMedia, experiencesGalleries, fabricationGalleries, FABRICATION_VIDEO_URL } from '@/content/editorialMedia'
+import type { DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
+import { officialEditorialMedia } from '@/content/officialImages'
+import { cloudinaryVideoPoster } from '@/lib/cloudinary'
+import { getHomeContent } from '@/content/home'
+import { officialImage, officialImagePath, officialImageUrl } from '@/content/officialImages'
+import { galleryImages } from '@/content/galleryImages'
+import { giftingPages, giftingSlugs } from '@/content/gifting'
 
 const BASE = 'https://www.dyaneparis.com'
 const locales = ['fr', 'en'] as const
 
-const abs = (src: string) => new URL(src, BASE).toString()
+const abs = (src: string) => new URL(officialImageUrl(src), BASE).toString()
 const uniqueImages = (images: readonly string[]) => Array.from(new Set(images.map(abs)))
 
 function imagesFromMedia(media?: JournalMedia): string[] {
@@ -15,57 +26,50 @@ function imagesFromMedia(media?: JournalMedia): string[] {
     return media.poster ? [media.poster] : []
 }
 
-function imagesFromBlock(block: JournalBlock): string[] {
-    if (block.kind === 'media' || block.kind === 'image-text') return imagesFromMedia(block.media)
-    if (block.kind === 'diptych') return [...imagesFromMedia(block.left), ...imagesFromMedia(block.right)]
-    if (block.kind === 'triptych' || block.kind === 'gallery-strip') {
-        return block.media.flatMap(imagesFromMedia)
-    }
-    return []
+function articleImages(article: (typeof journalPublishedArticles)[number]) {
+    return uniqueImages(renderedArticleImages(article).map((image) => image.src))
 }
 
-function articleImages(article: (typeof journalPublishedArticles)[number]) {
-    return uniqueImages([
-        ...imagesFromMedia(article.cover),
-        ...imagesFromMedia(article.indexSecondary),
-        ...imagesFromMedia(article.indexTertiary),
-        ...imagesFromMedia(article.heroSecondary),
-        ...article.blocks.flatMap(imagesFromBlock),
-    ])
+function editorialImages(galleries: Record<string, DyaneEditorialMedia[]>) {
+    return Object.values(galleries).flat().flatMap((item) => {
+        const media = officialEditorialMedia(item, 'fr')
+        const image = media.type === 'video' ? media.poster : media.src
+        return image ? [image] : []
+    })
 }
 
 // Curated, crawlable images per section so they can be discovered and ranked in
 // Google Images. Each image must actually appear on the corresponding page.
 const CLD = 'https://res.cloudinary.com/dazhkrimv/image/upload'
 
-const productImages = products.map((p) => abs(p.image))
+const home = getHomeContent('fr')
 
 const routeImages: Record<string, string[]> = {
+    '/galerie': galleryImages.map((image) => image.url),
+    ...Object.fromEntries(giftingSlugs.map((slug) => [
+        `/${slug}`, [officialImagePath(officialImage(giftingPages[slug].image))],
+    ])),
     '': [
+        `${CLD}/v1788728025/dyane-paris-maison-art-liquide-campagne-noir-blanc.png`,
         abs('/home/hero/hero-dyane-website-vdef-poster.jpg'),
-        `${CLD}/v1788728025/Ajouter_un_titre_1_yk7tmn.png`,
-        `${CLD}/v1788784346/Ajouter_un_titre_3_ebsgyz.png`,
-        `${CLD}/v1788691447/COCKTAIL_5_jox1dv.png`,
-        ...productImages,
+        `${CLD}/v1788784346/dyane-paris-sculpture-rouge-cocktail-signature-bar.png`,
+        `${CLD}/v1788691447/dyane-paris-fabrication-sculpture-modelage-main2.png`,
+        ...oeuvreChapters.filter((chapter) => chapter.id === 'no1' || chapter.id === 'no2')
+            .flatMap((chapter) => chapter.media.flatMap((media) =>
+                media.type === 'image' ? [media.src] : media.type === 'video' ? [media.poster] : [])),
     ],
-    '/la-maison': [
-        '/editorial/la-maison/STATUE%202.png',
-        '/editorial/la-maison/ART%201.png',
-        '/editorial/la-maison/STATUE%201.png',
-        '/editorial/la-maison/COCKTAIL%201%20.png',
-        '/editorial/la-maison/PROD%202.png',
-    ],
+    '/la-maison': [maisonMedia.filmPoster, ...editorialImages(maisonGalleries)],
     '/oeuvres': [
-        abs(produits['dyane-paris-pornstar-martini-70-cl'].images[0]),
-        abs(produits['dyane-no2-moscow-mule'].images[0]),
-        abs(produits['bouteille-signee-teokaykay'].images[0]),
+        ...home.products.map((product) => product.src),
+        ...oeuvreChapters.filter((chapter) => chapter.id === 'teo')
+            .flatMap((chapter) => chapter.media.flatMap((media) =>
+                media.type === 'image' ? [media.src] : media.type === 'video' ? [media.poster] : [])),
     ],
-    '/experiences': [
-        `${CLD}/v1777445316/DSC00599_copie_2_o518xt.jpg`,
-        '/editorial/experiences/ART%201.png',
-        '/editorial/experiences/BAR%201.png',
-        '/editorial/experiences/EVENT.png',
+    '/commission-a-sculpture': [
+        `${CLD}/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png`,
+        `${CLD}/v1788365386/dyane-paris-sculpture-argent-voile-rouge-portrait.png`,
     ],
+    '/experiences': [experiencesMedia.heroPoster, ...editorialImages(experiencesGalleries)],
     '/distillation': [
         `${CLD}/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg`,
         `${CLD}/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg`,
@@ -74,18 +78,8 @@ const routeImages: Record<string, string[]> = {
         `${CLD}/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg`,
         `${CLD}/v1777444815/Design_sans_titre_41_sens76.png`,
     ],
-    '/fabrication': [
-        '/editorial/fabrication/DESSIN.png',
-        '/editorial/fabrication/PORCELAINE%202.png',
-        '/editorial/fabrication/PEINTURE.png',
-        '/editorial/fabrication/INGREDIENTS.png',
-        '/editorial/fabrication/PRODUCTION%202%20.png',
-    ],
-    '/le-journal': journalPublishedArticles.flatMap((article) => [
-        ...imagesFromMedia(article.cover),
-        ...imagesFromMedia(article.indexSecondary),
-        ...imagesFromMedia(article.indexTertiary),
-    ]),
+    '/fabrication': [cloudinaryVideoPoster(FABRICATION_VIDEO_URL), ...editorialImages(fabricationGalleries)],
+    '/le-journal': journalIndexStories.flatMap((story) => story.images.flatMap(imagesFromMedia)),
     '/contact': [abs('/contact/rock2-poster.jpg')],
     '/faq': [`${CLD}/v1777492634/DSC00107_copie_1_yps0ji.jpg`],
 }
@@ -93,11 +87,13 @@ const routeImages: Record<string, string[]> = {
 const productImagesBySlug: Record<string, string[]> = Object.fromEntries(
     Object.entries(produits).map(([slug, product]) => [
         slug,
-        Array.from(new Set([heroImages[slug], ...product.images].filter(Boolean))).map(abs),
+        uniqueImages(product.images),
     ])
 )
 
 const staticRoutes = [
+    { path: '/galerie', priority: 0.7, changeFrequency: 'monthly' as const },
+    ...giftingSlugs.map((slug) => ({ path: `/${slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { path: '/la-maison', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/oeuvres', priority: 0.9, changeFrequency: 'weekly' as const },

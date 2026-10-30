@@ -1,0 +1,142 @@
+{
+  "no1-catalogue": {
+    "publicId": "dyane-paris-sculpture-argent-voile-rouge-portrait",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/dyane-paris-sculpture-argent-voile-rouge-portrait.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "dad06150537e1366cd025f36e59cb6c2",
+    "version": 1788365386,
+    "format": "png",
+    "bytes": 1229909
+  },
+  "no2-catalogue": {
+    "publicId": "dyane-paris-sculpture-argent-voile-vert-portrait",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/dyane-paris-sculpture-argent-voile-vert-portrait.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "3cc3b5be3d029cda94e3a3c0152258a0",
+    "version": 1788365385,
+    "format": "png",
+    "bytes": 1736913
+  },
+  "no1": {
+    "publicId": "dyane-paris-sculpture-porcelaine-voile-rouge-interieur",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788687757/dyane-paris-sculpture-porcelaine-voile-rouge-interieur.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "d7e0f3c71dcc17a37e0d99f5b85e00b1",
+    "version": 1788687757,
+    "format": "png",
+    "bytes": 1432595
+  },
+  "no1-portrait": {
+    "publicId": "dyane-paris-sculpture-porcelaine-voile-rouge",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-porcelaine-voile-rouge.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "2ba237f155324991591112b8ffcb3159",
+    "version": 1791496575,
+    "format": "png",
+    "bytes": 1443061
+  },
+  "no2": {
+    "publicId": "dyane-paris-sculpture-porcelaine-voile-vert-interieur",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788687756/dyane-paris-sculpture-porcelaine-voile-vert-interieur.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "a21f5462357b5dae901f567a5040cd21",
+    "version": 1788687756,
+    "format": "png",
+    "bytes": 1327928
+  },
+  "no2-portrait": {
+    "publicId": "dyane-paris-sculpture-porcelaine-voile-vert",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-porcelaine-voile-vert.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "4b9beab66b8bcaedbcece876844e5c78",
+    "version": 1791496575,
+    "format": "png",
+    "bytes": 1246458
+  },
+  "teo-detail": {
+    "publicId": "img-39_lixyap",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg",
+    "width": 3616,
+    "height": 4822,
+    "assetId": "6216e4fb88cec7e0446285e5f4b55d82",
+    "version": 1777443951,
+    "format": "jpg",
+    "bytes": 9090564
+  },
+  "experiences": {
+    "publicId": "DSC00599_copie_2_o518xt",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg",
+    "width": 6000,
+    "height": 4000,
+    "assetId": "91d909a01a477b3df179a32983565adf",
+    "version": 1777445316,
+    "format": "jpg",
+    "bytes": 2611316
+  },
+  "maison-campagne": {
+    "publicId": "dyane-paris-maison-art-liquide-campagne-noir-blanc",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788728025/dyane-paris-maison-art-liquide-campagne-noir-blanc.png",
+    "width": 1920,
+    "height": 1080,
+    "assetId": "ed2e38b3089097d6d6b0bd48b3f63075",
+    "version": 1788728025,
+    "format": "png",
+    "bytes": 1035432
+  },
+  "collection-duo": {
+    "publicId": "dyane-paris-collection-sculptures-rouge-verte",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-collection-sculptures-rouge-verte.png",
+    "width": 1080,
+    "height": 1350,
+    "assetId": "695749a188a5f7ac7cac2cd94ce25052",
+    "version": 1788644545,
+    "format": "png",
+    "bytes": 2355863
+  },
+  "hospitality-service": {
+    "publicId": "dyane-paris-cocktail-luxe-service-hospitality",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788785764/dyane-paris-cocktail-luxe-service-hospitality.jpg",
+    "width": 736,
+    "height": 1104,
+    "assetId": "7c3933c63bc8babe1f7e534fed770585",
+    "version": 1788785764,
+    "format": "jpg",
+    "bytes": 51924
+  },
+  "hospitality-restaurant": {
+    "publicId": "dyane-paris-cocktail-signature-service-restaurant",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788785763/dyane-paris-cocktail-signature-service-restaurant.jpg",
+    "width": 1200,
+    "height": 1800,
+    "assetId": "2e1c126b74bb4b79495545c5cfce24cf",
+    "version": 1788785763,
+    "format": "jpg",
+    "bytes": 148686
+  },
+  "fabrication-modelage": {
+    "publicId": "dyane-paris-fabrication-sculpture-modelage-main2",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788691447/dyane-paris-fabrication-sculpture-modelage-main2.png",
+    "width": 1440,
+    "height": 1080,
+    "assetId": "16fc00c8c022b835122f734a09f82f61",
+    "version": 1788691447,
+    "format": "png",
+    "bytes": 3233583
+  },
+  "teo-corpus": {
+    "publicId": "dyane-paris-teo-kaykay-sculpture-porcelaine",
+    "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499965/dyane-paris-teo-kaykay-sculpture-porcelaine.jpg",
+    "width": 3471,
+    "height": 5207,
+    "assetId": "7eb2bdb7a58315f350f9e69f1c4eb952",
+    "version": 1791499965,
+    "format": "jpg",
+    "bytes": 5337505
+  }
+}

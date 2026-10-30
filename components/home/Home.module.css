@@ -10,11 +10,7 @@
 
 .home [data-scroll-section] {
   position: relative;
-  height: 100svh;
-  min-height: 100svh;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+
 }
 
 .hero,
@@ -146,6 +142,8 @@
 }
 
 .productSection {
+  --ink: #171614;
+  --section-header-space: calc(var(--header-height) + clamp(36px, 5svh, 64px));
   color: var(--ink);
   background: #fff;
 }

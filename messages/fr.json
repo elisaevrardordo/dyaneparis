@@ -33,7 +33,7 @@
         "journal": "LE JOURNAL",
         "contact": "CONTACTER LA CONCIERGERIE",
         "personalization": "FABRICATION",
-        "concierge": "CONCIERGERIE",
+        "concierge": "COMMANDE PRIVÉE",
         "primaryNavigation": "Navigation principale",
         "secondaryNavigation": "Navigation secondaire",
         "mobileNavigation": "Navigation mobile",
@@ -42,13 +42,13 @@
     },
     "footer": {
         "collections": "COLLECTIONS",
-        "chapter1": "CHAPITRE I",
-        "chapter2": "CHAPITRE II",
+        "chapter1": "DYANE NO.1",
+        "chapter2": "DYANE NO.2",
         "teo": "TEO FOR DYANE",
         "maison": "LA MAISON",
         "journal": "LE JOURNAL",
         "experiences": "EXPÉRIENCES",
-        "aide_titre": "BESOIN D'AIDE ?",
+        "aide_titre": "COMMANDER UNE STATUE",
         "aide_faq": "SERVICE D'AIDE",
         "aide_contact": "CONTACTEZ LA MAISON",
         "legal": "MENTIONS LÉGALES",
@@ -110,7 +110,7 @@
         "service_p3": "La sculpture en porcelaine participe à l’attention : elle donne une présence au plateau et peut être conservée après la dégustation comme souvenir du séjour.",
         "sur_mesure_titre": "DES CRÉATIONS SUR MESURE POUR L’HOSPITALITY",
         "sur_mesure_p1": "Dyane Paris étudie avec chaque partenaire la recette, le contenant et le contexte de service. Équilibre aromatique, finitions, interventions artistiques et formats sont envisagés ensemble afin de relier le liquide à l’identité du lieu.",
-        "sur_mesure_p2": "Les usages existants vont du format individuel 25 cL au 70 cL pour le service et le backbar. Pour les réceptions, des formats professionnels Bag-in-Box de 3 L, 5 L et 10 L facilitent une mise en place régulière ; les projets sculpturaux peuvent être adaptés jusqu’à 12 L.",
+        "sur_mesure_p2": "Les formats et les modalités de service sont étudiés avec la Conciergerie selon le projet. L’œuvre principale Dyane No.1 est présentée en 1,5 L ; un format 25 cl est prévu pour la future boutique, sans achat en ligne ouvert à ce jour. Pour les réceptions, des formats professionnels Bag-in-Box de 3 L, 5 L et 10 L facilitent une mise en place régulière ; les projets sculpturaux peuvent être adaptés jusqu’à 12 L.",
         "sur_mesure_p3": "Chaque demande fait l’objet d’un échange avec la Maison pour définir ce qui peut être personnalisé et choisir une échelle compatible avec le projet.",
         "evenement_titre": "COCKTAILS ET ŒUVRES POUR ÉVÉNEMENTS PRIVÉS",
         "evenement_p1": "Pour une réception, un dîner ou un temps de banqueting, Dyane Paris peut articuler cocktail prêt à servir, sculpture et scénographie autour d’un même langage. Les grands formats préservent la régularité de l’assemblage quand plusieurs convives doivent être servis avec la même attention.",
@@ -161,7 +161,7 @@
         "intro_title": "LES COCKTAILS D’EXCEPTION DE DYANE PARIS",
         "intro_lead": "Un cocktail de luxe Dyane Paris associe une recette prête à servir, élaborée en France, à une sculpture en porcelaine peinte à la main. La dégustation devient un rituel et le flacon, conçu pour demeurer, rejoint l’univers des objets d’art à collectionner.",
         "collector_title": "LE COCKTAIL DE LUXE COMME ŒUVRE À COLLECTIONNER",
-        "collector_body": "Dyane No.1 réinterprète le Pornstar Martini et Dyane No.2 le Moscow Mule. Chaque création réunit mixologie, sculpture et porcelaine dans une forme signature, tandis que les collaborations et commandes sur mesure prolongent la collection.",
+        "collector_body": "Dyane No.1 réinterprète le Pornstar Martini et Dyane No.2 le Basil Smash. Chaque création réunit mixologie, sculpture et porcelaine dans une forme signature, tandis que les collaborations et commandes sur mesure prolongent la collection.",
         "intro_links_label": "Découvrir les œuvres Dyane Paris",
         "no1_link": "DÉCOUVRIR DYANE NO.1",
         "no2_link": "DÉCOUVRIR DYANE NO.2",
@@ -169,13 +169,14 @@
         "decouvrir_intro": "Découvrez les créations",
         "decouvrir": "DÉCOUVRIR",
         "no1_sous_titre": "L'audace du Pornstar Martini sublimée dans une création aux nuances gourmandes.",
-        "no2_sous_titre": "Une interprétation sophistiquée du mythique Moscow Mule.",
+        "no2_sous_titre": "Gin, sirop maison de basilic et yuzu, liqueur de sureau sauvage, sour maison.",
         "teo_sous_titre": "En collaboration avec le peintre Matteo Mengacci, plus connu sous le nom de Teo Kaykay."
     },
     "contact": {
         "kicker": "DYANE PARIS",
-        "titre": "CONTACTER LA CONCIERGERIE",
-        "intro": "Nous vous invitons à compléter le formulaire ci‑dessous. Notre équipe vous répondra dans les meilleurs délais.",
+        "titre": "PASSER UNE COMMANDE PRIVÉE",
+        "intro": "Contactez directement la Maison pour vos commandes particulières et personnalisées. Complétez le formulaire ci‑dessous ou écrivez à contact@dyaneparis.com.",
+        "responseTime": "Retour et informations sous 24 h",
         "availability": "Du lundi au vendredi — de 10h00 à 18h00, heure de Paris.",
         "requiredNote": "Les champs marqués * sont obligatoires",
         "fields": {
@@ -243,7 +244,7 @@
         },
         "oeuvres": {
             "title": "Cocktails de Luxe en Porcelaine",
-            "description": "Explorez la collection Dyane Paris : cocktails signature Pornstar Martini et Moscow Mule, présentés dans des flacons en porcelaine peints à la main en séries limitées."
+            "description": "Explorez la collection Dyane Paris : cocktails signature Pornstar Martini et Basil Smash, présentés dans des flacons en porcelaine peints à la main en séries limitées."
         },
         "experiences": {
             "title": "Cocktails pour Hôtels & Événements de Luxe",

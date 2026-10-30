@@ -11,6 +11,8 @@ import {
     serializeJsonLd,
 } from '@/lib/seo'
 import { localizedPath } from '@/i18n/paths'
+import EditorialEmblem from '@/components/editorial/EditorialEmblem'
+import statementStyles from '@/components/editorial/EditorialStatement.module.css'
 
 const font = { fontFamily: 'var(--font-editorial), serif' }
 const lora = { fontFamily: 'var(--font-editorial), serif' }
@@ -87,8 +89,9 @@ export default async function DistillationPage({
                 </section>
 
                 {/* Intro */}
-                <section className="dist-intro" style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                    <p className="font-quote" data-font="quote" style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
+                <section className={`dist-intro ${statementStyles.statement}`} style={{ padding: '60px 24px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+                    <EditorialEmblem />
+                    <p className="font-quote" data-font="quote" data-editorial-label style={{ ...lora, fontSize: '11px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '16px' }}>{t('kicker')}</p>
                     <h1 style={{ ...font, fontSize: 'clamp(28px, 4vw, 52px)', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '32px' }}>{t('titre')}</h1>
                     <p style={{ ...lora, fontSize: '15px', lineHeight: 1.8, marginBottom: '20px' }}>{t('definition')}</p>
                     <p style={{ ...lora, fontSize: '14px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('intro1')}</p>
@@ -101,14 +104,15 @@ export default async function DistillationPage({
                 </section>
 
                 {/* Origine 3 colonnes */}
-                <section className="dist-3col" style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '48px' }}>
+                <section className={`dist-3col ${statementStyles.statement}`} style={{ padding: '80px 24px', maxWidth: '850px', margin: '0 auto' }}>
+                    <EditorialEmblem />
                     <div>
                         <h2 style={{ ...font, fontSize: '18px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '24px' }}>{t('origine_titre')}</h2>
                     </div>
-                    <div>
+                    <div style={{ marginTop: '18px' }}>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>{t('origine_p1')}</p>
                     </div>
-                    <div>
+                    <div style={{ marginTop: '16px' }}>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>{t('origine_p2')}</p>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginTop: '16px' }}>{t('origine_p3')}</p>
                     </div>
@@ -126,12 +130,14 @@ export default async function DistillationPage({
 
                 {/* Élaboration */}
                 <section className="dist-elab" style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '48px', alignItems: 'start' }}>
-                    <div>
+                    <div className={statementStyles.statement}>
+                        <EditorialEmblem />
                         <h2 style={{ ...font, fontSize: '18px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '24px' }}>{t('elaboration_titre')}</h2>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('elaboration_p1')}</p>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>{t('elaboration_p2')}</p>
                     </div>
-                    <div>
+                    <div className={statementStyles.statement}>
+                        <EditorialEmblem />
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('elaboration_p3')}</p>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8 }}>{t('elaboration_p4')}</p>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginTop: '16px' }}>{t('elaboration_p5')}</p>
@@ -143,7 +149,8 @@ export default async function DistillationPage({
 
                 {/* Signature */}
                 <section className="dist-sig" style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-                    <div>
+                    <div className={statementStyles.statement}>
+                        <EditorialEmblem />
                         <h2 style={{ ...font, fontSize: '18px', fontWeight: 500, textTransform: 'uppercase', marginBottom: '24px' }}>{t('signature_titre')}</h2>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('signature_p1')}</p>
                         <p style={{ ...lora, fontSize: '13px', lineHeight: 1.8, opacity: 0.8, marginBottom: '16px' }}>{t('signature_p2')}</p>
@@ -156,10 +163,11 @@ export default async function DistillationPage({
                 </section>
 
                 {/* Citation */}
-                <section className="dist-citation" style={{ padding: '60px 24px', textAlign: 'center' }}>
+                <section className={`dist-citation ${statementStyles.statement}`} style={{ padding: '60px 24px', textAlign: 'center' }}>
+                    <EditorialEmblem />
                     <p className="editorial-quote" data-font="quote" style={{ ...font, fontSize: 'clamp(13px, 2vw, 18px)', letterSpacing: '0.06em', textTransform: 'uppercase', maxWidth: '900px', margin: '0 auto 16px' }}>{t('citation')}</p>
-                    <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>{t('citation_nom')}</p>
-                    <p style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5 }}>{t('citation_titre')}</p>
+                    <p data-editorial-label style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>{t('citation_nom')}</p>
+                    <p data-editorial-label style={{ ...lora, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5 }}>{t('citation_titre')}</p>
                 </section>
 
                 {/* Image finale */}

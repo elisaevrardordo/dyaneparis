@@ -42,6 +42,7 @@ export default function JournalMediaView({ media, locale, priority = false, show
                 src={media.src}
                 alt={journalText(media.alt, locale)}
                 fill
+                quality={85}
                 priority={priority}
                 sizes={sizes}
                 className={styles.image}

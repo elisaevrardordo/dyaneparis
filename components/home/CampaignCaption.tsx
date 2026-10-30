@@ -12,6 +12,7 @@ type CampaignCaptionProps = {
   titleElement?: 'h1' | 'h2' | 'p'
   titleId?: string
   tone?: 'black' | 'white'
+  cinematic?: boolean
 }
 
 export default function CampaignCaption({
@@ -25,12 +26,13 @@ export default function CampaignCaption({
   titleElement = 'p',
   titleId,
   tone = 'white',
+  cinematic = false,
 }: CampaignCaptionProps) {
   const TitleElement = titleElement
 
   return (
     <div
-      className={`${styles.caption} ${styles[position]} ${styles[tone]}${singleLine ? ` ${styles.singleLine}` : ''}${spacing === 'generous' ? ` ${styles.generous}` : ''}`}
+      className={`${styles.caption} ${styles[position]} ${styles[tone]}${cinematic ? ` ${styles.cinematic}` : ''}${singleLine ? ` ${styles.singleLine}` : ''}${spacing === 'generous' ? ` ${styles.generous}` : ''}`}
     >
       <TitleElement className={styles.title} id={titleId}>
         {lines.map((line) => <span key={line}>{line}</span>)}

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import type { JournalRatio } from '@/content/journal'
 import styles from './Journal.module.css'
+import { ArrowUpRightIcon, PauseIcon, PlayIcon } from '@/components/icons/EditorialIcons'
+import { cloudinaryVideo } from '@/lib/cloudinary'
 
 type EditorialVideoProps = {
     src: string
@@ -54,7 +56,7 @@ export default function EditorialVideo({
                 setMuted(true)
                 void video.play().catch(() => undefined)
             }
-        }, { rootMargin: '160px 0px', threshold: 0.12 })
+        }, { rootMargin: '520px 0px', threshold: 0.08 })
 
         observer.observe(video)
         return () => observer.disconnect()
@@ -95,18 +97,18 @@ export default function EditorialVideo({
                 onPause={() => setPlaying(false)}
                 onVolumeChange={(event) => setMuted(event.currentTarget.muted)}
             >
-                {mobileSrc ? <source media="(max-width: 640px)" src={mobileSrc} /> : null}
-                <source src={src} />
+                {mobileSrc ? <source media="(max-width: 640px)" src={cloudinaryVideo(mobileSrc, 900)} type="video/mp4" /> : null}
+                <source src={cloudinaryVideo(src, 1440)} type="video/mp4" />
             </video>
             <fieldset className={styles.videoControls}>
                 <legend className={styles.srOnly}>{locale === 'en' ? 'Video controls' : 'Commandes vidéo'}</legend>
                 <button type="button" onClick={togglePlayback} aria-label={playing ? copy.pause : copy.play}>
-                    {playing ? 'Ⅱ' : '▶'}
+                    {playing ? <PauseIcon /> : <PlayIcon />}
                 </button>
                 <button type="button" onClick={toggleMute} aria-label={muted ? copy.unmute : copy.mute}>
                     {muted ? 'MUTE' : 'SOUND'}
                 </button>
-                <button type="button" onClick={enterFullscreen} aria-label={copy.fullscreen}>↗</button>
+                <button type="button" onClick={enterFullscreen} aria-label={copy.fullscreen}><ArrowUpRightIcon /></button>
             </fieldset>
         </div>
     )

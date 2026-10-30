@@ -3,43 +3,14 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
-import DyaneEditorialPage, { type DyaneEditorialMedia } from '@/components/editorial/DyaneEditorialPage'
+import DyaneEditorialPage from '@/components/editorial/DyaneEditorialPage'
 import { localizedPath } from '@/i18n/paths'
+import { cloudinaryVideo } from '@/lib/cloudinary'
+import { officialEditorialMedia, officialImageUrl } from '@/content/officialImages'
+import editorialStyles from '@/components/editorial/DyaneEditorialPage.module.css'
+import styles from './Experiences.module.css'
 
-const media = {
-  heroVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788699063/COCKTAIL_pcevej.mp4',
-  heroPoster: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg',
-}
-
-const galleries: Record<'gallery3' | 'gallery2' | 'gallery6' | 'gallery8', DyaneEditorialMedia[]> = {
-  gallery3: [
-    { src: '/editorial/experiences/BAR%202.png', alt: 'Œuvre Dyane au cœur d’un bar parisien' },
-    { src: '/editorial/experiences/EVENT%207.png', alt: 'Invités découvrant une œuvre Dyane Paris' },
-    { src: '/editorial/experiences/EVENT.png', alt: 'Expérience Dyane Paris face à la Tour Eiffel' },
-  ],
-  gallery2: [
-    { src: '/editorial/experiences/EVENT%206.png', alt: 'Bar scénographié pour une expérience Dyane' },
-    { src: '/editorial/experiences/BAR%201.png', alt: 'Sculpture et cocktail Dyane présentés au bar' },
-  ],
-  gallery6: [
-    { src: '/editorial/experiences/7.png', alt: 'Mise en scène artistique de l’œuvre Dyane' },
-    { src: '/editorial/experiences/ART%201.png', alt: 'Dessin d’une personnalisation Dyane' },
-    { src: '/editorial/experiences/ART%202.png', alt: 'Sceau de cire de la Maison Dyane' },
-    { src: '/editorial/experiences/ART%203.png', alt: 'Illustration florale et cocktail Dyane' },
-    { src: '/editorial/experiences/PERSO%202.png', alt: 'Peinture personnalisée sur une sculpture Dyane' },
-    { src: '/editorial/experiences/PERSO%203.png', alt: 'Décor textile personnalisé sur une sculpture Dyane' },
-  ],
-  gallery8: [
-    { src: '/editorial/experiences/EVENT%203.png', alt: 'Invitation Dyane Paris lors d’un événement privé' },
-    { src: '/editorial/experiences/EVENT%204.png', alt: 'Performance artistique lors d’une expérience Dyane' },
-    { src: '/editorial/experiences/BAR%204.png', alt: 'Cocktail floral imaginé par Dyane Paris' },
-    { src: '/editorial/experiences/BAR%206.png', alt: 'Cocktail Dyane présenté sur un plateau' },
-    { src: '/editorial/experiences/BAR%205.png', alt: 'Attention personnalisée de la Maison Dyane' },
-    { src: '/editorial/experiences/EVENT%202%20.png', alt: 'Service de cocktails lors d’un événement Dyane' },
-    { src: '/editorial/experiences/BAR%203.png', alt: 'Geste de service d’un cocktail Dyane' },
-    { src: '/editorial/experiences/EVENT%205.png', alt: 'Œuvre Dyane installée dans un bar de collection' },
-  ],
-}
+import { experiencesMedia as media, experiencesGalleries as galleries } from '@/content/editorialMedia'
 
 export default function ExperiencesClient() {
   const t = useTranslations('experiences')
@@ -49,12 +20,13 @@ export default function ExperiencesClient() {
 
   return (
     <DyaneEditorialPage
+      className={`${editorialStyles.compact} ${styles.experiencesPage}`}
       eyebrow={t('kicker')}
-      title={t('titre')}
-      compactTitle
+      title={t('definition_titre')}
+      openingAtEnd
       video={{
-        src: media.heroVideo,
-        poster: media.heroPoster,
+        src: cloudinaryVideo(media.heroVideo, 1600),
+        poster: officialImageUrl(media.heroPoster),
         label: t('video_label'),
       }}
       textBlocks={[
@@ -72,6 +44,7 @@ export default function ExperiencesClient() {
         },
         {
           title: t('signature_titre'),
+          className: styles.signatureIntroduction,
           body: (
             <>
               <p>{t('signature_p1')}</p>
@@ -105,6 +78,7 @@ export default function ExperiencesClient() {
         },
         {
           title: t('evenement_titre'),
+          titleAsEyebrow: true,
           body: (
             <>
               <p>{t('evenement_p1')}</p>
@@ -121,10 +95,10 @@ export default function ExperiencesClient() {
           ),
         },
       ]}
-      gallery3={galleries.gallery3}
-      gallery2={galleries.gallery2}
-      gallery6={galleries.gallery6}
-      gallery8={galleries.gallery8}
+      gallery3={galleries.gallery3.map((item) => officialEditorialMedia(item, locale))}
+      gallery2={galleries.gallery2.map((item) => officialEditorialMedia(item, locale))}
+      gallery6={galleries.gallery6.map((item) => officialEditorialMedia(item, locale))}
+      gallery8={galleries.gallery8.map((item) => officialEditorialMedia(item, locale))}
     />
   )
 }

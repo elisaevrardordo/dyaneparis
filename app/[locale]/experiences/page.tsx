@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import ExperiencesClient from './ExperiencesClient'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
+import { officialSeoImage } from '@/content/officialImages'
 import {
     breadcrumbJsonLd,
     buildPageMetadata,
     imageObject,
     localizedUrl,
-    seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
 
@@ -23,7 +24,7 @@ export async function generateMetadata({
         path: '/experiences',
         title: t('title'),
         description: t('description'),
-        image: seoImages.experiences,
+        image: officialSeoImage('experiences', locale),
     })
 }
 
@@ -45,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 about: { '@id': 'https://www.dyaneparis.com/#organization' },
-                primaryImageOfPage: imageObject(seoImages.experiences, true),
+                primaryImageOfPage: imageObject(officialSeoImage('experiences', locale), true),
                 inLanguage: locale,
             },
             breadcrumbJsonLd(locale, [
@@ -59,6 +60,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
             <ExperiencesClient />
+            <DiscoveryLinks locale={locale} />
         </>
     )
 }

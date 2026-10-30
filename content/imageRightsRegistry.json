@@ -1,0 +1,1317 @@
+{
+  "source": {
+    "file": "inventaire-images-dyane-paris-droits-final.csv",
+    "sha256": "9564e98d2cfcdc666b7f7f04b2f86d79620d0b8c8fa025a67527c6aa33fda2c2",
+    "readme": "README-droits-images-codex.md",
+    "readmeSha256": "5ac434300246172d73874f0720621d450a0a16a23d918ea424b77aabe3cc2c7f",
+    "validatedBy": "Elisa Evrard Ordonez",
+    "validationBasis": "Human declaration supplied by the founder; no author or sublicensing rights inferred."
+  },
+  "images": [
+    {
+      "id": "DYANE-001",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444782/12_nehhxv.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444782:12_nehhxv.png"
+      ]
+    },
+    {
+      "id": "DYANE-002",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/apple-icon.png",
+      "keys": [
+        "https://www.dyaneparis.com/apple-icon.png"
+      ]
+    },
+    {
+      "id": "DYANE-003",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444726/CREATION_m4wcwy.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444726:CREATION_m4wcwy.png"
+      ]
+    },
+    {
+      "id": "DYANE-004",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/dyane-editorial-icon.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/dyane-editorial-icon.png"
+      ]
+    },
+    {
+      "id": "DYANE-005",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596446/dyane-paris-art-de-recevoir-cocktail-signature.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596446:dyane-paris-art-de-recevoir-cocktail-signature.png"
+      ]
+    },
+    {
+      "id": "DYANE-006",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788644549/dyane-paris-atelier-sculpture-outils-artisan.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788644549:dyane-paris-atelier-sculpture-outils-artisan.png"
+      ]
+    },
+    {
+      "id": "DYANE-007",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788646118/dyane-paris-cocktail-jaune-ingredients-detail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788646118:dyane-paris-cocktail-jaune-ingredients-detail.png"
+      ]
+    },
+    {
+      "id": "DYANE-008",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596480/dyane-paris-cocktail-luxe-coupe-pornstar-martini-dyaneno1.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596480:dyane-paris-cocktail-luxe-coupe-pornstar-martini-dyaneno1.png"
+      ]
+    },
+    {
+      "id": "DYANE-009",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596444/dyane-paris-cocktail-luxe-jaune-art-de-recevoir.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596444:dyane-paris-cocktail-luxe-jaune-art-de-recevoir.png"
+      ]
+    },
+    {
+      "id": "DYANE-010",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-cocktail-service-art-liquide.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-cocktail-service-art-liquide.png"
+      ]
+    },
+    {
+      "id": "DYANE-011",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-cocktail-signature-coupe.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499959:dyane-paris-cocktail-signature-coupe.png"
+      ]
+    },
+    {
+      "id": "DYANE-012",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/dyane-paris-cocktail-signature-dyaneno1.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788706612:dyane-paris-cocktail-signature-dyaneno1.png"
+      ]
+    },
+    {
+      "id": "DYANE-013",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596556/dyane-paris-cocktail-signature-pornstar-martini-dyaneno1.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596556:dyane-paris-cocktail-signature-pornstar-martini-dyaneno1.png"
+      ]
+    },
+    {
+      "id": "DYANE-014",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596483/dyane-paris-cocktail-signature-rouge.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596483:dyane-paris-cocktail-signature-rouge.png"
+      ]
+    },
+    {
+      "id": "DYANE-015",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499963/dyane-paris-collection-sculptures-porcelaine-rouge-verte.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499963:dyane-paris-collection-sculptures-porcelaine-rouge-verte.png"
+      ]
+    },
+    {
+      "id": "DYANE-016",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-collection-sculptures-rouge-verte.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788644545:dyane-paris-collection-sculptures-rouge-verte.png"
+      ]
+    },
+    {
+      "id": "DYANE-017",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-dessin-sculpture-porcelaine.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-dessin-sculpture-porcelaine.png"
+      ]
+    },
+    {
+      "id": "DYANE-018",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792700959/dyane-paris-dyaneno2-statue-luxe-cocktail-prestige.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792700959:dyane-paris-dyaneno2-statue-luxe-cocktail-prestige.png"
+      ]
+    },
+    {
+      "id": "DYANE-019",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto:good,w_1200,so_0/f_auto,c_limit,w_3840,q_85/v1792664691/dyane-paris-fabrication-artisanale.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1792664691:dyane-paris-fabrication-artisanale.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-020",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788646558/dyane-paris-fabrication-porcelaine-matiere.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788646558:dyane-paris-fabrication-porcelaine-matiere.png"
+      ]
+    },
+    {
+      "id": "DYANE-021",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-fabrication-porcelaine-savoir-faire.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499959:dyane-paris-fabrication-porcelaine-savoir-faire.png"
+      ]
+    },
+    {
+      "id": "DYANE-022",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499963/dyane-paris-fabrication-sculpture-porcelaine.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499963:dyane-paris-fabrication-sculpture-porcelaine.png"
+      ]
+    },
+    {
+      "id": "DYANE-023",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792664670/dyane-paris-fabrication-ustensiles-porcelaine.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792664670:dyane-paris-fabrication-ustensiles-porcelaine.png"
+      ]
+    },
+    {
+      "id": "DYANE-024",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788793588/dyane-paris-ingredients-cocktail-gingembre.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788793588:dyane-paris-ingredients-cocktail-gingembre.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-025",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788789893/dyane-paris-ingredients-cocktail-vanille.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788789893:dyane-paris-ingredients-cocktail-vanille.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-026",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-ingredients-cocktails-framboises.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-ingredients-cocktails-framboises.png"
+      ]
+    },
+    {
+      "id": "DYANE-027",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788789847/dyane-paris-ingredients-gingembre-artisanal.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788789847:dyane-paris-ingredients-gingembre-artisanal.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-028",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788728025/dyane-paris-maison-art-liquide-campagne-noir-blanc.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788728025:dyane-paris-maison-art-liquide-campagne-noir-blanc.png"
+      ]
+    },
+    {
+      "id": "DYANE-029",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-maison-art-liquide-portrait-sculpture.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-maison-art-liquide-portrait-sculpture.png"
+      ]
+    },
+    {
+      "id": "DYANE-030",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/gifting/dyane-paris-personnalisation-sculpture-cadeau.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/gifting/dyane-paris-personnalisation-sculpture-cadeau.png"
+      ]
+    },
+    {
+      "id": "DYANE-031",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-recherche-artistique-silhouette.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/maison/dyane-paris-recherche-artistique-silhouette.png"
+      ]
+    },
+    {
+      "id": "DYANE-032",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-argent-voile-rouge-detail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791496575:dyane-paris-sculpture-argent-voile-rouge-detail.png"
+      ]
+    },
+    {
+      "id": "DYANE-033",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/dyane-paris-sculpture-argent-voile-rouge-portrait.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788365386:dyane-paris-sculpture-argent-voile-rouge-portrait.png"
+      ]
+    },
+    {
+      "id": "DYANE-034",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-argent-voile-vert-detail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791496575:dyane-paris-sculpture-argent-voile-vert-detail.png"
+      ]
+    },
+    {
+      "id": "DYANE-035",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/dyane-paris-sculpture-argent-voile-vert-portrait.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788365385:dyane-paris-sculpture-argent-voile-vert-portrait.png"
+      ]
+    },
+    {
+      "id": "DYANE-036",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788705759/dyane-paris-sculpture-cocktail-reflets.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788705759:dyane-paris-sculpture-cocktail-reflets.png"
+      ]
+    },
+    {
+      "id": "DYANE-037",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788706545:dyane-paris-sculpture-porcelaine-argent-portrait.png"
+      ]
+    },
+    {
+      "id": "DYANE-038",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499960/dyane-paris-sculpture-porcelaine-argent-voile-rouge.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499960:dyane-paris-sculpture-porcelaine-argent-voile-rouge.png"
+      ]
+    },
+    {
+      "id": "DYANE-039",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596559/dyane-paris-sculpture-porcelaine-detail-visage.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596559:dyane-paris-sculpture-porcelaine-detail-visage.png"
+      ]
+    },
+    {
+      "id": "DYANE-040",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1920,so_0/v1785493082/dyane-paris-sculpture-porcelaine-dyane-luxe.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1785493082:dyane-paris-sculpture-porcelaine-dyane-luxe.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-041",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499962/dyane-paris-sculpture-porcelaine-noire-detail.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499962:dyane-paris-sculpture-porcelaine-noire-detail.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-042",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1783102782/dyane-paris-sculpture-porcelaine-peinte-main.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1783102782:dyane-paris-sculpture-porcelaine-peinte-main.png"
+      ]
+    },
+    {
+      "id": "DYANE-043",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596466/dyane-paris-sculpture-porcelaine-rouge-art-floral.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596466:dyane-paris-sculpture-porcelaine-rouge-art-floral.png"
+      ]
+    },
+    {
+      "id": "DYANE-044",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499964/dyane-paris-sculpture-porcelaine-rouge-cocktail.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499964:dyane-paris-sculpture-porcelaine-rouge-cocktail.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-045",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788704863/dyane-paris-sculpture-porcelaine-rouge-exposition.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788704863:dyane-paris-sculpture-porcelaine-rouge-exposition.png"
+      ]
+    },
+    {
+      "id": "DYANE-046",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1785915125/dyane-paris-sculpture-porcelaine-rouge-studio.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1785915125:dyane-paris-sculpture-porcelaine-rouge-studio.png"
+      ]
+    },
+    {
+      "id": "DYANE-047",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788789744/dyane-paris-sculpture-porcelaine-voile-orange-dos.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788789744:dyane-paris-sculpture-porcelaine-voile-orange-dos.png"
+      ]
+    },
+    {
+      "id": "DYANE-048",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-porcelaine-voile-rouge.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791496575:dyane-paris-sculpture-porcelaine-voile-rouge.png"
+      ]
+    },
+    {
+      "id": "DYANE-049",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596557/dyane-paris-sculpture-porcelaine-voile-rouge-detail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596557:dyane-paris-sculpture-porcelaine-voile-rouge-detail.png"
+      ]
+    },
+    {
+      "id": "DYANE-050",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1600,so_0/f_auto,c_limit,w_3840,q_85/v1788775590/dyane-paris-sculpture-porcelaine-voile-rouge-detail.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1788775590:dyane-paris-sculpture-porcelaine-voile-rouge-detail.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-051",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-porcelaine-voile-vert.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791496575:dyane-paris-sculpture-porcelaine-voile-vert.png"
+      ]
+    },
+    {
+      "id": "DYANE-052",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788643773/dyane-paris-sculpture-rouge-art-floral.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788643773:dyane-paris-sculpture-rouge-art-floral.png"
+      ]
+    },
+    {
+      "id": "DYANE-053",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788784346/dyane-paris-sculpture-rouge-cocktail-signature-bar.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788784346:dyane-paris-sculpture-rouge-cocktail-signature-bar.png"
+      ]
+    },
+    {
+      "id": "DYANE-054",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788442898/dyane-paris-sculpture-verte-lumiere-ambree.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788442898:dyane-paris-sculpture-verte-lumiere-ambree.png"
+      ]
+    },
+    {
+      "id": "DYANE-055",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792664334/dyaneparis-details-drape-vert-dyaneno2.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792664334:dyaneparis-details-drape-vert-dyaneno2.png"
+      ]
+    },
+    {
+      "id": "DYANE-056",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/favicon.ico",
+      "keys": [
+        "https://www.dyaneparis.com/favicon.ico"
+      ]
+    },
+    {
+      "id": "DYANE-057",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/icon-192.png",
+      "keys": [
+        "https://www.dyaneparis.com/icon-192.png"
+      ]
+    },
+    {
+      "id": "DYANE-058",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/icon.png",
+      "keys": [
+        "https://www.dyaneparis.com/icon.png"
+      ]
+    },
+    {
+      "id": "DYANE-059",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/logo.png",
+      "keys": [
+        "https://www.dyaneparis.com/logo.png"
+      ]
+    },
+    {
+      "id": "DYANE-060",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/LogoDYANE_blanc.png",
+      "keys": [
+        "https://www.dyaneparis.com/LogoDYANE_blanc.png"
+      ]
+    },
+    {
+      "id": "DYANE-061",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PEINTURE%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PEINTURE 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-062",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/PERSO%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/PERSO 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-063",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE%206.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE 6.png"
+      ]
+    },
+    {
+      "id": "DYANE-064",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE%207.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE 7.png"
+      ]
+    },
+    {
+      "id": "DYANE-065",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE%208.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE 8.png"
+      ]
+    },
+    {
+      "id": "DYANE-066",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PORCELAINE.png"
+      ]
+    },
+    {
+      "id": "DYANE-067",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/PROD%204.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/PROD 4.png"
+      ]
+    },
+    {
+      "id": "DYANE-068",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/PROD%205.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/PROD 5.png"
+      ]
+    },
+    {
+      "id": "DYANE-069",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/dyane-paris-art-de-recevoir-cocktail-cameliajordana.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788706396:dyane-paris-art-de-recevoir-cocktail-cameliajordana.png"
+      ]
+    },
+    {
+      "id": "DYANE-070",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/dyane-paris-hospitality-cocktail-bar-luxe.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788706395:dyane-paris-hospitality-cocktail-bar-luxe.png"
+      ]
+    },
+    {
+      "id": "DYANE-071",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788789774/dyane-paris-pressiat-collaboration-cocktail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788789774:dyane-paris-pressiat-collaboration-cocktail.png"
+      ]
+    },
+    {
+      "id": "DYANE-072",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/collections/dyane-paris-teo-kaykay-sculpture-porcelaine.webp",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/collections/dyane-paris-teo-kaykay-sculpture-porcelaine.webp"
+      ]
+    },
+    {
+      "id": "DYANE-073",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792705861/dyaneparis-design-teokaykay.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792705861:dyaneparis-design-teokaykay.png"
+      ]
+    },
+    {
+      "id": "DYANE-074",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777443904:img-38_htkd1z.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-075",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777443951/img-39_lixyap.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777443951:img-39_lixyap.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-076",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1783102676/img-43_fbdih2.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1783102676:img-43_fbdih2.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-077",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_3_t40oxp.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:TEO_3_t40oxp.png"
+      ]
+    },
+    {
+      "id": "DYANE-078",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_mcxbuu.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:TEO_mcxbuu.png"
+      ]
+    },
+    {
+      "id": "DYANE-079",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto:good,w_1600,so_0/f_auto,c_limit,w_3840,q_85/v1788697399/dyane-paris-fabrication-sculpture-modelage-main.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1788697399:dyane-paris-fabrication-sculpture-modelage-main.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-080",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788691447/dyane-paris-fabrication-sculpture-modelage-main2.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788691447:dyane-paris-fabrication-sculpture-modelage-main2.png"
+      ]
+    },
+    {
+      "id": "DYANE-081",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499962/dyane-paris-jeremy-bacquet-cocktails-luxe-bar.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499962:dyane-paris-jeremy-bacquet-cocktails-luxe-bar.png"
+      ]
+    },
+    {
+      "id": "DYANE-082",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto:good,w_900,so_0/v1788708474/dyane-paris-jeremy-bacquet-mixologie-bar.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1788708474:dyane-paris-jeremy-bacquet-mixologie-bar.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-083",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-peinture-main-drape-porcelaine.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/fabrication/dyane-paris-peinture-main-drape-porcelaine.png"
+      ]
+    },
+    {
+      "id": "DYANE-084",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792596468/dyane-paris-peinture-main-sculpture-porcelaine.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792596468:dyane-paris-peinture-main-sculpture-porcelaine.png"
+      ]
+    },
+    {
+      "id": "DYANE-085",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/EVENT%207.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/EVENT 7.png"
+      ]
+    },
+    {
+      "id": "DYANE-086",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/ART%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/ART 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-087",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/BAR%204.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/BAR 4.png"
+      ]
+    },
+    {
+      "id": "DYANE-088",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/BAR%206.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/BAR 6.png"
+      ]
+    },
+    {
+      "id": "DYANE-089",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL%204.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL 4.png"
+      ]
+    },
+    {
+      "id": "DYANE-090",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777445316:DSC00599_copie_2_o518xt.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-091",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788787431/dyane-paris-art-de-recevoir-luxe-cocktail.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788787431:dyane-paris-art-de-recevoir-luxe-cocktail.png"
+      ]
+    },
+    {
+      "id": "DYANE-092",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/images/officielles/gifting/dyane-paris-attention-personnalisee-cadeau.png",
+      "keys": [
+        "https://www.dyaneparis.com/images/officielles/gifting/dyane-paris-attention-personnalisee-cadeau.png"
+      ]
+    },
+    {
+      "id": "DYANE-093",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792665186/dyane-paris-cocktail-bar-luxe.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792665186:dyane-paris-cocktail-bar-luxe.png"
+      ]
+    },
+    {
+      "id": "DYANE-094",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/journal/dyane-paris-cocktail-hotel.webp",
+      "keys": [
+        "https://www.dyaneparis.com/journal/dyane-paris-cocktail-hotel.webp"
+      ]
+    },
+    {
+      "id": "DYANE-095",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-cocktail-luxe-highball-bar.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499959:dyane-paris-cocktail-luxe-highball-bar.png"
+      ]
+    },
+    {
+      "id": "DYANE-096",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788785764/dyane-paris-cocktail-luxe-service-hospitality.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788785764:dyane-paris-cocktail-luxe-service-hospitality.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-097",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499962/dyane-paris-cocktail-pret-a-servir-service.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499962:dyane-paris-cocktail-pret-a-servir-service.png"
+      ]
+    },
+    {
+      "id": "DYANE-098",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788785763/dyane-paris-cocktail-signature-service-restaurant.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788785763:dyane-paris-cocktail-signature-service-restaurant.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-099",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499962/dyane-paris-cocktails-luxe-art-de-recevoir.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499962:dyane-paris-cocktails-luxe-art-de-recevoir.png"
+      ]
+    },
+    {
+      "id": "DYANE-100",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792665167/dyane-paris-evenements-fashion-week-art-basel.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792665167:dyane-paris-evenements-fashion-week-art-basel.png"
+      ]
+    },
+    {
+      "id": "DYANE-101",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-sculpture-porcelaine-objet-decoration.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499959:dyane-paris-sculpture-porcelaine-objet-decoration.png"
+      ]
+    },
+    {
+      "id": "DYANE-102",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1791499960/dyane-paris-sculpture-porcelaine-rouge-interieur-luxe.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1791499960:dyane-paris-sculpture-porcelaine-rouge-interieur-luxe.png"
+      ]
+    },
+    {
+      "id": "DYANE-103",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788687757/dyane-paris-sculpture-porcelaine-voile-rouge-interieur.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788687757:dyane-paris-sculpture-porcelaine-voile-rouge-interieur.png"
+      ]
+    },
+    {
+      "id": "DYANE-104",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788687756/dyane-paris-sculpture-porcelaine-voile-vert-interieur.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788687756:dyane-paris-sculpture-porcelaine-voile-vert-interieur.png"
+      ]
+    },
+    {
+      "id": "DYANE-105",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/EVENT%202%20.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/EVENT 2 .png"
+      ]
+    },
+    {
+      "id": "DYANE-106",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/EVENT%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/EVENT 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-107",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/EVENT%204.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/EVENT 4.png"
+      ]
+    },
+    {
+      "id": "DYANE-108",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/experiences/EVENT%205.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/experiences/EVENT 5.png"
+      ]
+    },
+    {
+      "id": "DYANE-109",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_2_dlipkw.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:RITZ_2_dlipkw.png"
+      ]
+    },
+    {
+      "id": "DYANE-110",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/RITZ_ukrb4s.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:RITZ_ukrb4s.png"
+      ]
+    },
+    {
+      "id": "DYANE-111",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788705330/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_31_flyp3u.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788705330:B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colorés._Pétales_clairs_étamines_saillantes_et_pistil_proéminent._Fleur_caractéristique_du_genre_Passiflo_31_flyp3u.png"
+      ]
+    },
+    {
+      "id": "DYANE-112",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713794/DISTILLATION_yjwtvq.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713794:DISTILLATION_yjwtvq.png"
+      ]
+    },
+    {
+      "id": "DYANE-113",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-art-de-recevoir-cocktails-vue-dessus.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788644545:dyane-paris-art-de-recevoir-cocktails-vue-dessus.png"
+      ]
+    },
+    {
+      "id": "DYANE-114",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788340449/dyane-paris-cocktail-dyaneno2-verre.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788340449:dyane-paris-cocktail-dyaneno2-verre.png"
+      ]
+    },
+    {
+      "id": "DYANE-115",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788646096/dyane-paris-cocktail-liquide-goutte-art.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788646096:dyane-paris-cocktail-liquide-goutte-art.png"
+      ]
+    },
+    {
+      "id": "DYANE-116",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788787454/dyane-paris-cocktail-luxe-art-de-recevoir.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788787454:dyane-paris-cocktail-luxe-art-de-recevoir.png"
+      ]
+    },
+    {
+      "id": "DYANE-117",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1792664326/dyane-paris-cocktail-luxe-basilsmash-dyaneno2.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1792664326:dyane-paris-cocktail-luxe-basilsmash-dyaneno2.png"
+      ]
+    },
+    {
+      "id": "DYANE-118",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1785936020/dyane-paris-cocktail-luxe-coupe-sombre.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1785936020:dyane-paris-cocktail-luxe-coupe-sombre.png"
+      ]
+    },
+    {
+      "id": "DYANE-119",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788508320/dyane-paris-cocktail-pret-a-servir-petit-verre.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788508320:dyane-paris-cocktail-pret-a-servir-petit-verre.png"
+      ]
+    },
+    {
+      "id": "DYANE-120",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788705296/dyane-paris-cocktail-pret-a-servir-shaker.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788705296:dyane-paris-cocktail-pret-a-servir-shaker.png"
+      ]
+    },
+    {
+      "id": "DYANE-121",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788679607/dyane-paris-cocktail-vert-citron-vue-dessus.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788679607:dyane-paris-cocktail-vert-citron-vue-dessus.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-122",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1788645247/dyane-paris-ingredient-cocktail-vanille.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1788645247:dyane-paris-ingredient-cocktail-vanille.png"
+      ]
+    },
+    {
+      "id": "DYANE-123",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1783102818/dyaneparis-fleurs-d%C3%A9coration-cocktail-luxe.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1783102818:dyaneparis-fleurs-décoration-cocktail-luxe.png"
+      ]
+    },
+    {
+      "id": "DYANE-124",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444666:188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-125",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444763:36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-126",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/ART%202.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/ART 2.png"
+      ]
+    },
+    {
+      "id": "DYANE-127",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_3_vzlzva.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:CAFE_3_vzlzva.png"
+      ]
+    },
+    {
+      "id": "DYANE-128",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/CAFE_rzj5qf.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1779713795:CAFE_rzj5qf.png"
+      ]
+    },
+    {
+      "id": "DYANE-129",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444695:cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-130",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL%202%20.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL 2 .png"
+      ]
+    },
+    {
+      "id": "DYANE-131",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/COCKTAIL 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-132",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777444815/Design_sans_titre_41_sens76.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777444815:Design_sans_titre_41_sens76.png"
+      ]
+    },
+    {
+      "id": "DYANE-133",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/DRINK.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/DRINK.png"
+      ]
+    },
+    {
+      "id": "DYANE-134",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777492634/DSC00107_copie_1_yps0ji.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777492634:DSC00107_copie_1_yps0ji.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-135",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777443739:DSC00193_copie_1_ulvcvq.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-136",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1777455978:DSC00429_lpmymt.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-137",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto:good,w_900,so_0/v1788708147/dyane-paris-service-cocktail-rituel.jpg",
+      "keys": [
+        "cloudinary:dazhkrimv:video:upload:v1788708147:dyane-paris-service-cocktail-rituel.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-138",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/home/hero/hero-dyane-website-vdef-poster.jpg",
+      "keys": [
+        "https://www.dyaneparis.com/home/hero/hero-dyane-website-vdef-poster.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-139",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PEINTURE%202%20.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PEINTURE 2 .png"
+      ]
+    },
+    {
+      "id": "DYANE-140",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/PROD%202.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/PROD 2.png"
+      ]
+    },
+    {
+      "id": "DYANE-141",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/PROD%203.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/PROD 3.png"
+      ]
+    },
+    {
+      "id": "DYANE-142",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/la-maison/PROD.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/la-maison/PROD.png"
+      ]
+    },
+    {
+      "id": "DYANE-143",
+      "classification": "DROITS",
+      "status": "CONFIRMED_DYANE_USE",
+      "url": "https://www.dyaneparis.com/editorial/fabrication/PRODUCTION%202%20.png",
+      "keys": [
+        "https://www.dyaneparis.com/editorial/fabrication/PRODUCTION 2 .png"
+      ]
+    },
+    {
+      "id": "DYANE-144",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://www.dyaneparis.com/contact/rock2-poster.jpg",
+      "keys": [
+        "https://www.dyaneparis.com/contact/rock2-poster.jpg"
+      ]
+    },
+    {
+      "id": "DYANE-145",
+      "classification": "DYANE",
+      "status": "CONFIRMED_DYANE",
+      "url": "https://res.cloudinary.com/dazhkrimv/image/upload/v1782315804/VISUEL1_xfkylg.png",
+      "keys": [
+        "cloudinary:dazhkrimv:image:upload:v1782315804:VISUEL1_xfkylg.png"
+      ]
+    }
+  ]
+}

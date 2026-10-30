@@ -1,4 +1,6 @@
-.page {
+.page:global(.theme-page) {
+  --background-house: #FFFFFF;
+  background: #FFFFFF !important;
   --product-viewport-height: calc(100svh - var(--header-height));
   padding-top: var(--header-height);
 }
@@ -19,8 +21,7 @@
 .imageFrame {
   position: relative;
   width: 100%;
-  height: var(--product-viewport-height);
-  margin-bottom: 8px;
+  margin-bottom: clamp(12px, 1.5vw, 24px);
   overflow: hidden;
 }
 
@@ -34,7 +35,11 @@
   overflow: hidden;
 }
 
-.galleryImage,
+.galleryImage {
+  object-fit: contain;
+  object-position: center;
+}
+
 .galleryVideo {
   width: 100%;
   height: 100%;
@@ -87,45 +92,45 @@
 .accordionChevronOpen { transform: rotate(90deg); }
 
 .seoEditorial {
-  padding: clamp(76px, 9vw, 140px) clamp(24px, 6vw, 100px);
+  padding: 28px 24px 40px;
   color: #111;
-  background: #f7f6f2;
+  background: #FFFFFF;
 }
 
 .seoGrid {
   display: grid;
-  width: min(1240px, 100%);
+  width: min(980px, 100%);
   margin: 0 auto;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(48px, 6vw, 88px);
+  gap: 28px 48px;
 }
 
 .seoGrid article { max-width: 58ch; }
 
 .seoGrid h2 {
-  margin: 0 0 18px;
+  margin: 0 0 8px;
   font-family: var(--font-editorial), serif;
-  font-size: clamp(16px, 1.5vw, 22px);
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.08em;
-  line-height: 1.25;
+  letter-spacing: 0.14em;
+  line-height: 1.5 !important;
   text-transform: uppercase;
 }
 
 .seoGrid p {
   margin: 0;
   font-family: var(--font-editorial), serif;
-  font-size: 14px;
-  line-height: 1.75;
+  font-size: 12px;
+  line-height: 1.6 !important;
 }
 
 .seoLinks {
   display: flex;
-  width: min(1240px, 100%);
-  margin: clamp(52px, 6vw, 84px) auto 0;
-  padding-top: 24px;
+  width: min(980px, 100%);
+  margin: 24px auto 0;
+  padding-top: 16px;
   flex-wrap: wrap;
-  gap: 14px 30px;
+  gap: 10px 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.18);
 }
 
@@ -164,16 +169,90 @@
     letter-spacing: 0.16em;
   }
 
-  .seoEditorial { padding: 64px 20px; }
+  .seoEditorial { padding: 24px 20px 32px; }
 
   .seoGrid {
     grid-template-columns: 1fr;
-    gap: 42px;
+    gap: 24px;
   }
 
   .seoLinks {
-    margin-top: 52px;
+    margin-top: 24px;
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+.photoButton {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.photoButton:focus-visible { outline: 1px solid #111; outline-offset: -4px; }
+
+.mobileFrame { position: relative; width: 100%; height: var(--product-image-height, 400px); overflow: hidden; }
+.commissionInvitation {
+  composes: statement from '../../../../components/editorial/EditorialStatement.module.css';
+  padding: 32px 24px 16px;
+  text-align: center;
+}
+.commissionInvitation h2 { margin: 0 0 10px; font-size: 11px; font-weight: 400; letter-spacing: .14em; line-height: 1.5 !important; }
+.commissionInvitation p { max-width: 60ch; margin: 0 auto; font-size: 12px; line-height: 1.6 !important; }
+.commissionInvitation a { display: inline-block; margin-top: 14px; font-size: 9px; letter-spacing: .12em; text-underline-offset: 5px; }
+
+.naturalFrame { height: auto; overflow: visible; }
+.naturalMedia { position: relative; inset: auto; width: 100%; height: auto; display: block; }
+.naturalMedia .galleryImage,
+.naturalMedia .galleryVideo { display: block; width: 100%; height: auto; object-fit: contain; }
+.gallery { padding-inline: clamp(20px, 3vw, 48px); }
+.videoOpen { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.videoOpen:focus-visible { outline: 1px solid #111; outline-offset: -4px; }
+.secondaryOrder { display: inline-block; margin: 0 0 28px; color: inherit; font-family: var(--font-editorial), serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; text-underline-offset: 4px; opacity: .65; }
+.commissionInvitation + .seoEditorial { padding-top: 24px; }
+@media (max-width: 768px) {
+  .commissionInvitation { padding: 28px 20px 16px; }
+  .commissionInvitation + .seoEditorial { padding-top: 24px; }
+}
+
+.secondaryOrder { transition: opacity 180ms ease; }
+.secondaryOrder:hover, .secondaryOrder:focus-visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .secondaryOrder { transition: none; } }
+
+.editorialCard {
+  composes: statement from '../../../../components/editorial/EditorialStatement.module.css';
+}
+
+.productIntroduction {
+  composes: statement from '../../../../components/editorial/EditorialStatement.module.css';
+}
+
+.editorialTitle {
+  width: min(980px, 100%);
+  margin: 0 auto 24px;
+  font-family: var(--font-editorial), serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* The principal works use a generous image zone and a separate information column. */
+.page .grid { grid-template-columns: minmax(0, 1.5fr) minmax(340px, .85fr); max-width: 1800px; min-height: 0; margin-inline: auto; padding: 32px clamp(32px, 4vw, 88px) 64px; gap: clamp(40px, 5vw, 100px); }
+.page .information { width: 100%; max-width: 440px; min-height: 0; margin-inline: auto; padding: 36px 0 0; justify-content: flex-start; }
+.page .information[data-sticky='true'] { top: calc(var(--header-height) + 24px); }
+.productSummary { font-family: var(--font-editorial), serif; }
+.productSummary .productDescription { margin: 0 0 28px; color: rgba(17, 17, 17, .78); font-family: inherit; font-size: 13px; font-weight: 400; letter-spacing: .055em; line-height: 1.8 !important; text-align: left; text-transform: uppercase; }
+.page .secondaryOrder { margin-bottom: 26px; line-height: 1.6; }
+@media (min-width: 769px) and (max-width: 1100px) { .page .grid { grid-template-columns: minmax(0, 1.25fr) minmax(290px, 1fr); gap: 32px; padding-inline: 24px; } }
+@media (max-width: 768px) {
+  .page .grid { grid-template-columns: minmax(0, 1fr); padding: 20px 20px 40px; gap: 32px; }
+  .page .information { max-width: 520px; padding: 0; }
+  .productSummary .productDescription { font-size: 12px; line-height: 1.75 !important; }
 }

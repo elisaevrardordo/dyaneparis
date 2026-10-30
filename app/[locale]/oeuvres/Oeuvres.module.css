@@ -1,68 +1,79 @@
-.page {
+.page:global(.theme-page) {
+  display: flow-root;
   overflow-x: clip;
-  padding-top: calc(82px + clamp(72px, 7.5vw, 120px));
+  padding-top: 0;
   color: #111;
   background: #fff !important;
 }
 
 .intro {
-  width: min(920px, calc(100% - 48px));
-  margin: 0 auto clamp(72px, 9vw, 140px);
+  composes: statement from '../../../components/editorial/EditorialStatement.module.css';
+  width: min(700px, calc(100% - 48px));
+  margin: 0 auto;
   text-align: center;
 }
 
-.introEyebrow {
-  margin: 0 0 18px;
+.intro .introEyebrow {
+  margin: 0 0 10px;
   color: #757575;
   font-family: var(--font-editorial), Georgia, serif;
-  font-size: 9px;
-  letter-spacing: 0.24em;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  line-height: 1.35 !important;
   text-transform: uppercase;
 }
 
 .intro h1 {
-  max-width: 18ch;
+  max-width: 680px;
   margin: 0 auto;
   font-family: var(--font-editorial), Georgia, serif;
-  font-size: clamp(34px, 5vw, 72px);
+  color: rgba(17, 17, 17, 0.58);
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
-}
-
-.introLead,
-.introBody {
-  max-width: 66ch;
-  margin: 28px auto 0;
-  font-family: var(--font-editorial), Georgia, serif;
-  font-size: clamp(13px, 1.05vw, 16px);
-  line-height: 1.75;
-}
-
-.intro h2 {
-  margin: clamp(48px, 6vw, 84px) auto 0;
-  font-family: var(--font-editorial), Georgia, serif;
-  font-size: clamp(19px, 2vw, 28px);
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.25em;
+  line-height: 1.35 !important;
   text-transform: uppercase;
 }
 
-.introBody { margin-top: 18px; }
+.intro .introLead,
+.intro .introBody {
+  max-width: 700px;
+  margin: 16px auto 0;
+  color: rgba(17, 17, 17, 0.78);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 13px;
+  line-height: 1.6 !important;
+}
+
+.intro h2 {
+  max-width: 680px;
+  margin: 18px auto 0;
+  font-family: var(--font-editorial), Georgia, serif;
+  color: rgba(17, 17, 17, 0.58);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  line-height: 1.35 !important;
+  text-transform: uppercase;
+}
+
+.intro .introBody { margin-top: 10px; }
 
 .introLinks {
   display: flex;
-  margin-top: 28px;
+  margin-top: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 14px 28px;
+  gap: 10px 20px;
 }
 
 .introLinks a {
+  max-width: 100%;
   color: inherit;
   font-family: var(--font-editorial), Georgia, serif;
-  font-size: 9px;
-  letter-spacing: 0.16em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
   text-transform: uppercase;
@@ -171,7 +182,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   color: #111;
-  background: #f4f4f2;
+  background: #fff;
   text-decoration: none;
 }
 
@@ -220,12 +231,12 @@
 
 @media (max-width: 1100px) {
   .page {
-    padding-top: calc(82px + clamp(52px, 7vw, 76px));
+    padding-top: 0;
   }
 
   .intro {
     width: min(760px, calc(100% - 40px));
-    margin-bottom: 72px;
+    margin-bottom: 0;
   }
 
   .collectionRow {
@@ -266,18 +277,22 @@
 
 @media (max-width: 700px) {
   .page {
-    padding-top: calc(72px + clamp(42px, 12vw, 58px));
+    padding-top: 0;
   }
 
   .intro {
     width: calc(100% - 32px);
-    margin-bottom: 58px;
+    margin-bottom: 0;
   }
 
-  .intro h1 { font-size: clamp(34px, 11vw, 48px); }
+  .intro h1 { font-size: 11px; }
 
-  .introLead,
-  .introBody { font-size: 13px; }
+  .intro h2 { font-size: 11px; margin-top: 16px; }
+
+  .intro .introLead,
+  .intro .introBody { font-size: 13px; }
+
+  .introLinks { gap: 10px 20px; }
 
   .collectionRow {
     display: block;
@@ -339,3 +354,14 @@
     transition: none;
   }
 }
+
+.intro.seoCopy {
+  margin-block: 0;
+  padding-block: 24px 20px;
+}
+
+.naturalChapters {
+  padding-block: clamp(36px, 5vw, 72px);
+}
+.naturalChapters .mediaRail { scroll-snap-type: none; }
+.naturalChapters .mediaLink { scroll-snap-align: none; }

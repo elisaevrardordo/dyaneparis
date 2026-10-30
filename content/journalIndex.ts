@@ -29,7 +29,7 @@ type JournalIndexStoryDraft = Omit<JournalIndexStory, 'filter' | 'indexLayout'>
 type JournalIndexEntryConfig = JournalIndexLayout & Readonly<{
     filter: JournalIndexCategory
     order?: readonly [0 | 1 | 2, 0 | 1 | 2, 0 | 1 | 2]
-    sources?: readonly [string | null, string | null, string | null]
+    sources?: readonly [string | JournalMedia | null, string | JournalMedia | null, string | JournalMedia | null]
 }>
 
 const t = (fr: string, en: string): LocalizedText => ({ fr, en })
@@ -55,7 +55,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788643773/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_t60txv.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788643773/dyane-paris-sculpture-rouge-art-floral.png',
                 'L’art de recevoir selon Dyane Paris',
                 'The art of hosting according to Dyane Paris',
             ),
@@ -78,12 +78,12 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704866/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_28_svgs6u.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704866/dyane-paris-cocktail-service-detail.png',
                 'L’heure du bar avec Dyane Paris',
                 'The bar hour with Dyane Paris',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788705296/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_16.34.52_xupwsi.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788705296/dyane-paris-cocktail-pret-a-servir-shaker.png',
                 'Atmosphère d’un bar Dyane Paris',
                 'A Dyane Paris bar atmosphere',
             ),
@@ -101,12 +101,12 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704863/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_16.27.20_fzaegc.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704863/dyane-paris-sculpture-porcelaine-rouge-exposition.png',
                 'Dyane Paris dans l’intimité d’une chambre',
                 'Dyane Paris in the privacy of a room',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704992/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_29_en69r7.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704992/dyane-paris-sculpture-silhouette-lumiere-doree.png',
                 'Le minibar selon Dyane Paris',
                 'The minibar according to Dyane Paris',
             ),
@@ -116,7 +116,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
     {
         category: t('COCKTAILS', 'COCKTAILS'),
         rubric: t('LES SIGNATURES', 'SIGNATURES'),
-        title: t('Pornstar Martini — Anatomie d’une Icône', 'Pornstar Martini — Anatomy of an Icon'),
+        title: t('Pornstar Martini, Anatomie d’une Icône', 'Pornstar Martini, Anatomy of an Icon'),
         href: '/le-journal/pornstar-martini',
         excerpt: t(
             'Certaines créations deviennent des icônes parce qu’elles réunissent en un seul geste une couleur, un parfum et une époque.',
@@ -124,12 +124,12 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788646118/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_00.08.34_pjwzrw.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788646118/dyane-paris-cocktail-jaune-ingredients-detail.png',
                 'Pornstar Martini, une icône Dyane Paris',
                 'Pornstar Martini, a Dyane Paris icon',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788645247/DYANE_PARIS_MAISON_D_ART_LIQUIDE_ukqxku.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788645247/dyane-paris-ingredient-cocktail-vanille.png',
                 'Dyane No.1 et le Pornstar Martini',
                 'Dyane No.1 and the Pornstar Martini',
             ),
@@ -139,7 +139,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
     {
         category: t('COCKTAILS', 'COCKTAILS'),
         rubric: t('LES SIGNATURES', 'SIGNATURES'),
-        title: t('Moscow Mule — L’Éclat du Gingembre', 'Moscow Mule — The Brightness of Ginger'),
+        title: t('Moscow Mule, L’Éclat du Gingembre', 'Moscow Mule, The Brightness of Ginger'),
         href: '/le-journal/moscow-mule',
         excerpt: t(
             'Le Moscow Mule semble tenir en quelques lignes : la vodka, le gingembre, le citron vert et le froid. Sa simplicité est pourtant une discipline.',
@@ -147,9 +147,9 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788340449/image_2_wfe5tp.png',
-                'Moscow Mule Dyane Paris',
-                'Dyane Paris Moscow Mule',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788340449/dyane-paris-cocktail-dyaneno2-verre.png',
+                'Histoire du Moscow Mule',
+                'History of the Moscow Mule',
             ),
             image(
                 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788704671/32507171a9d356f9bebf96606989d6c3_r0n5zd.jpg',
@@ -162,7 +162,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
     {
         category: t('COCKTAILS', 'COCKTAILS'),
         rubric: t('LES SIGNATURES', 'SIGNATURES'),
-        title: t('Basil Smash — Le Vert comme Signature', 'Basil Smash — Green as a Signature'),
+        title: t('Basil Smash, Le Vert comme Signature', 'Basil Smash, Green as a Signature'),
         href: '/le-journal/basil-smash',
         excerpt: t(
             'Avant même d’être une saveur, le Basil Smash est une couleur. Un vert franc qui annonce la fraîcheur avant le premier parfum.',
@@ -170,7 +170,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788442840/864f80c9b9c1ffb5bac5708afd485f19_xq8g8j.jpg',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788442840/dyane-paris-cocktail-vert-art-de-recevoir.jpg',
                 'Basil Smash, le vert comme signature',
                 'Basil Smash, green as a signature',
             ),
@@ -216,12 +216,12 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788646553/image_1_kjpn7v.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788646553/dyane-paris-fabrication-moule-porcelaine-atelier.png',
                 'La porcelaine, matière d’éternité',
                 'Porcelain, a material of eternity',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644554/ChatGPT_Image_5_sept._2026_23_34_54_ncchqh.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644554/dyane-paris-fabrication-sculpture-brute-atelier-face.png',
                 'Le façonnage de la porcelaine Dyane Paris',
                 'The shaping of Dyane Paris porcelain',
             ),
@@ -239,18 +239,18 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_33_zsbpg0.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706612/dyane-paris-cocktail-signature-dyaneno1.png',
                 'Service Dyane Paris pour cent convives',
                 'Dyane Paris service for one hundred guests',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/Capture_d_e%CC%81cran_2026-09-06_a%CC%80_16.58.37_sjcazn.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706723/dyane-paris-cocktail-pret-a-servir-service-shaker.png',
                 'Geste de service lors d’une réception',
                 'Service gesture during a reception',
                 '50% 45%',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_34_svsno8.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706614/dyane-paris-cocktail-dyaneno1-detail.png',
                 'Composition événementielle Dyane Paris',
                 'Dyane Paris event composition',
             ),
@@ -260,7 +260,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
     {
         category: t('COLLABORATIONS', 'COLLABORATIONS'),
         rubric: t('JOURNAL DE BORD', 'FIELD NOTES'),
-        title: t('Journal de bord — Frivole', 'Field notes — Frivole'),
+        title: t('Journal de bord, Frivole', 'Field notes — Frivole'),
         href: '/le-journal/journal-de-bord-frivole',
         excerpt: t(
             'Certaines rencontres semblent écrites d’avance. Notre arrivée chez Frivole marque le début d’un nouveau chapitre dans l’histoire de Dyane.',
@@ -316,7 +316,7 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788705759/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_32_cufevu.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788705759/dyane-paris-sculpture-cocktail-reflets.png',
                 'Le point de vue du distillateur',
                 'The distiller’s point of view',
             ),
@@ -368,13 +368,13 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644549/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_11_j654ix.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644549/dyane-paris-sculpture-porcelaine-visage-detail.png',
                 'Le cocktail comme œuvre à collectionner',
                 'The cocktail as a work to collect',
                 '50% 42%',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788645239/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_25_hnwa5c.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788645239/dyane-paris-porcelaine-sculpture-matiere-detail.png',
                 'Sculpture Dyane Paris à collectionner',
                 'Collectible Dyane Paris sculpture',
                 '50% 42%',
@@ -409,13 +409,13 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788442898/Capture_d_e%CC%81cran_2026-09-03_a%CC%80_15.41.35_radfc7.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788442898/dyane-paris-sculpture-verte-lumiere-ambree.png',
                 'L’art de la porcelaine Dyane Paris',
                 'The art of Dyane Paris porcelain',
                 '50% 44%',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706545/Capture_d_e%CC%81cran_2026-09-04_a%CC%80_15.28.55_kqbnp3.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png',
                 'Le contenant devient œuvre',
                 'The vessel becomes a work',
                 '50% 44%',
@@ -435,13 +435,13 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
         ),
         images: [
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/7_keuzyt.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706395/dyane-paris-hospitality-cocktail-bar-luxe.png',
                 'PRESSIAT × Dyane Paris pendant la Fashion Week',
                 'PRESSIAT × Dyane Paris during Fashion Week',
                 '50% 40%',
             ),
             image(
-                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/2_zqzaem.png',
+                'https://res.cloudinary.com/dazhkrimv/image/upload/v1788706396/dyane-paris-art-de-recevoir-cocktail-cameliajordana.png',
                 'Dîner PRESSIAT × Dyane Paris',
                 'PRESSIAT × Dyane Paris dinner',
                 '50% 42%',
@@ -452,23 +452,23 @@ const journalIndexStoryDrafts: readonly JournalIndexStoryDraft[] = [
 ] as const satisfies readonly JournalIndexStoryDraft[]
 
 const additionalIndexImages = [
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785842/DSC00258_an7jlw.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785825/DSC00771_r1czyz.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785764/54b1797fe8b992fd8511acaaaa616c8f_fejzox.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785763/5efd282034cab8d744e50db7cd2c73e9_kaionv.jpg',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644544/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_16_rfvqi6.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_19_udnoge.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1785936020/1_sbjr8k.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1783102782/Capture_d_e%CC%81cran_2026-03-16_a%CC%80_22.40.46_jvzwyd.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787477/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.24.34_drhgjs.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787454/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.24.10_gby13r.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787431/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.23.47_eygxbr.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787402/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.23.18_tfkvmi.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787619/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.26.56_dz4pbr.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787591/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.26.28_tjeu3l.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787561/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.25.58_hlgokz.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787528/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_15.25.25_qbjs1a.png',
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789774/Capture_d_e%CC%81cran_2026-09-07_a%CC%80_16.02.50_ugjcpn.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785842/dyane-paris-collection-sculptures-cocktails-luxe.jpg',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785825/dyane-paris-sculpture-porcelaine-rouge-fond-noir.jpg',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785764/dyane-paris-cocktail-luxe-service-hospitality.jpg',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788785763/dyane-paris-cocktail-signature-service-restaurant.jpg',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644544/dyane-paris-sculpture-drape-porcelaine-detail.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-collection-sculptures-rouge-verte.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1785936020/dyane-paris-cocktail-luxe-coupe-sombre.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1783102782/dyane-paris-sculpture-porcelaine-peinte-main.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787477/dyane-paris-sculpture-porcelaine-design-art.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787454/dyane-paris-cocktail-luxe-art-de-recevoir.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787431/dyane-paris-art-de-recevoir-luxe-cocktail.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788646096/dyane-paris-cocktail-liquide-goutte-art.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787619/dyane-paris-sculpture-porcelaine-rouge-detail-noir.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787591/dyane-paris-maison-art-liquide-cocktail-editorial.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787561/dyane-paris-croquis-sculpture-porcelaine-creation.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788787528/dyane-paris-cocktail-pret-a-servir-service-coupe.png',
+    'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789774/dyane-paris-pressiat-collaboration-cocktail.png',
 ] as const
 
 /*
@@ -486,25 +486,49 @@ const journalIndexEntryConfigs: readonly JournalIndexEntryConfig[] = [
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443739/DSC00193_copie_1_ulvcvq.jpg',
         ],
     },
-    { filter: 'hospitality', columns: [0.91, 1.31, 0.78] },
-    { filter: 'hospitality', columns: [1.32, 0.83, 0.85] },
-    { filter: 'cocktails', columns: [1.58, 0.67, 0.75] },
+    {
+        filter: 'hospitality',
+        columns: [0.91, 1.31, 0.78],
+        sources: [
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792665186/dyane-paris-cocktail-bar-luxe.png', 'Cocktail Dyane Paris dans un bar', 'Dyane Paris cocktail in a bar'),
+            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792596483/dyane-paris-cocktail-signature-rouge.png', 'Cocktail signature rouge Dyane Paris', 'Dyane Paris red signature cocktail'),
+        ],
+    },
+    {
+        filter: 'hospitality',
+        columns: [1.32, 0.83, 0.85],
+        sources: [
+            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-sculpture-porcelaine-objet-decoration.png', 'Sculpture en porcelaine Dyane Paris dans un intérieur', 'Dyane Paris porcelain sculpture in an interior'),
+            null,
+        ],
+    },
+    {
+        filter: 'cocktails',
+        columns: [1.58, 0.67, 0.75],
+        sources: [
+            null,
+            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1791499960/dyane-paris-sculpture-porcelaine-argent-voile-rouge.png', 'Sculpture Dyane Paris argentée au voile rouge', 'Silver Dyane Paris sculpture with a red drape'),
+        ],
+    },
     {
         filter: 'cocktails',
         columns: [1.05, 0.9, 1.05],
         sources: [
             null,
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788793588/168666bfd1bea971d148c5340620d998_pxkk8l.jpg',
-            null,
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788793588/dyane-paris-ingredients-cocktail-gingembre.jpg',
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-argent-voile-vert-detail.png', 'Détail de la sculpture Dyane Paris argentée au voile vert', 'Detail of the silver Dyane Paris sculpture with a green drape'),
         ],
     },
     {
         filter: 'cocktails',
         columns: [1.32, 0.72, 0.92],
         sources: [
-            null,
-            null,
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789744/ChatGPT_Image_7_sept._2026_16_02_19_iodwz8.png',
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788679607/dyane-paris-cocktail-vert-citron-vue-dessus.jpg', 'Cocktail vert et citron vus de dessus', 'Green cocktail and citrus seen from above'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-collection-sculptures-rouge-verte.png', 'Duo de sculptures Dyane Paris rouge et verte', 'Red and green Dyane Paris sculpture duo'),
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789744/dyane-paris-sculpture-porcelaine-voile-orange-dos.png',
         ],
     },
     {
@@ -512,37 +536,84 @@ const journalIndexEntryConfigs: readonly JournalIndexEntryConfig[] = [
         columns: [1.15, 0.92, 0.92],
         sources: [
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1777455978/DSC00429_lpmymt.jpg',
-            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788644545/dyane-paris-art-de-recevoir-cocktails-vue-dessus.png', 'Cocktails Dyane Paris et art de recevoir vus de dessus', 'Dyane Paris cocktails and hosting seen from above'),
             null,
         ],
     },
-    { filter: 'craftsmanship', columns: [0.72, 1.4, 0.82] },
-    { filter: 'hospitality', columns: [1.16, 0.96, 0.88] },
-    { filter: 'art-collaborations', columns: [1.02, 1.02, 0.96] },
+    {
+        filter: 'craftsmanship',
+        columns: [0.72, 1.4, 0.82],
+        sources: [
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788644549/dyane-paris-atelier-sculpture-outils-artisan.png', 'Outils de sculpture dans l’atelier Dyane Paris', 'Sculpting tools in the Dyane Paris workshop'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788646558/dyane-paris-fabrication-porcelaine-matiere.png', 'Matière et fabrication de la porcelaine Dyane Paris', 'Porcelain material and making at Dyane Paris'),
+            null,
+        ],
+    },
+    {
+        filter: 'hospitality',
+        columns: [1.16, 0.96, 0.88],
+        sources: [
+            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788442898/dyane-paris-sculpture-verte-lumiere-ambree.png', 'Sculpture verte Dyane Paris dans une lumière ambrée', 'Green Dyane Paris sculpture in amber light'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1788508320/dyane-paris-cocktail-pret-a-servir-petit-verre.png', 'Cocktail Dyane Paris prêt à servir dans un petit verre', 'Ready-to-serve Dyane Paris cocktail in a small glass'),
+        ],
+    },
+    {
+        filter: 'art-collaborations',
+        columns: [1.02, 1.02, 0.96],
+        sources: [
+            null,
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1785915125/dyane-paris-sculpture-porcelaine-rouge-studio.png', 'Sculpture rouge Dyane Paris photographiée en studio', 'Red Dyane Paris sculpture photographed in a studio'),
+            null,
+        ],
+    },
     { filter: 'art-collaborations', columns: [1.32, 0.72, 0.92] },
     { filter: 'craftsmanship', columns: [0.72, 1.4, 0.82] },
     {
         filter: 'craftsmanship',
         columns: [1.65, 0.68, 0.68],
         sources: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789849/ea931d86529941da1842b89b9bbb74c5_pock1v.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789893/c03e347ebea92b958352a0e3fc47a429_msdsxb.jpg',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789847/63a46d7c72c438248fbcd7a07f7017b0_me7lst.jpg',
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1783102818/dyaneparis-fleurs-d%C3%A9coration-cocktail-luxe.png', 'Fleurs et décoration d’un cocktail Dyane Paris', 'Flowers and decoration of a Dyane Paris cocktail'),
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789893/dyane-paris-ingredients-cocktail-vanille.jpg',
+            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788789847/dyane-paris-ingredients-gingembre-artisanal.jpg',
         ],
     },
-    { filter: 'art-collaborations', columns: [1.32, 0.72, 0.92] },
+    {
+        filter: 'art-collaborations',
+        columns: [1.32, 0.72, 0.92],
+        sources: [
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792596559/dyane-paris-sculpture-porcelaine-detail-visage.png', 'Détail du visage de la sculpture en porcelaine Dyane Paris', 'Face detail of the Dyane Paris porcelain sculpture'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792664334/dyaneparis-details-drape-vert-dyaneno2.png', 'Détail du drapé vert de Dyane No.2', 'Detail of the green drape of Dyane No.2'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792664326/dyane-paris-cocktail-luxe-basilsmash-dyaneno2.png', 'Cocktail Basil Smash et Dyane No.2', 'Basil Smash cocktail and Dyane No.2'),
+        ],
+    },
     {
         filter: 'art-collaborations',
         columns: [1.65, 0.68, 0.68],
         order: [0, 2, 1],
         sources: [
             null,
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_2_whlyb1.png',
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792705861/dyaneparis-design-teokaykay.png', 'Création et dessin de Teo Kaykay pour Dyane Paris', 'Creation and design by Teo Kaykay for Dyane Paris'),
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1779713795/TEO_mcxbuu.png',
         ],
     },
-    { filter: 'craftsmanship', columns: [0.72, 1.4, 0.82] },
-    { filter: 'art-collaborations', columns: [1.32, 0.72, 0.92] },
+    {
+        filter: 'craftsmanship',
+        columns: [0.72, 1.4, 0.82],
+        sources: [
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1792664670/dyane-paris-fabrication-ustensiles-porcelaine.png', 'Ustensiles de fabrication de la porcelaine Dyane Paris', 'Tools for making Dyane Paris porcelain'),
+            image('https://res.cloudinary.com/dazhkrimv/image/upload/v1791499959/dyane-paris-fabrication-porcelaine-savoir-faire.png', 'Savoir-faire de fabrication de la porcelaine Dyane Paris', 'Dyane Paris porcelain-making craftsmanship'),
+            {
+                kind: 'video',
+                src: 'https://res.cloudinary.com/dazhkrimv/video/upload/eo_3.9/v1792664691/dyane-paris-fabrication-artisanale.mp4',
+                poster: 'https://res.cloudinary.com/dazhkrimv/video/upload/so_0/v1792664691/dyane-paris-fabrication-artisanale.jpg',
+                alt: t('Peinture artisanale de la sculpture en porcelaine Dyane Paris', 'Hand-painting the Dyane Paris porcelain sculpture'),
+                ratio: 'landscape',
+                autoplay: true,
+            },
+        ],
+    },
+    { filter: 'art-collaborations', columns: [1.32, 0.72, 0.92], order: [0, 2, 1] },
 ]
 
 const preserveImageTop = (media: JournalMedia): JournalMedia => media.kind === 'image'
@@ -566,6 +637,8 @@ const configuredJournalIndexStories: readonly JournalIndexStory[] = journalIndex
         const replacement = config.sources?.[mediaIndex]
 
         if (replacement) {
+            if (typeof replacement !== 'string') return preserveImageTop(replacement)
+
             return image(
                 replacement,
                 `Vue éditoriale ${mediaIndex + 1} — ${story.title.fr}`,

@@ -1,0 +1,21 @@
+.heroTitle {
+  margin: 0;
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.11em;
+  line-height: 1.2 !important;
+  bottom: max(clamp(48px, 8svh, 96px), calc(env(safe-area-inset-bottom) + 24px));
+}
+
+.editorialCopy {
+  composes: statement from '../../../components/editorial/EditorialStatement.module.css';
+}
+
+@media (max-width: 700px) {
+  .heroTitle {
+    font-size: 12px;
+    bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
+  }
+}
