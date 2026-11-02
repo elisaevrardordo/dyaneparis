@@ -60,6 +60,7 @@ function ProductCard({ product, locale, priority }: { product: Product; locale: 
           fill
           quality={85}
           priority={priority}
+          fetchPriority={priority ? 'high' : undefined}
           sizes="(max-width: 700px) calc(50vw - 26px), 40vw"
         />
         <video

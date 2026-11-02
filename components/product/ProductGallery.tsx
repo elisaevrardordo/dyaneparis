@@ -48,7 +48,7 @@ export default function ProductGallery({ items, name, locale, videoCaption }: {
           {item.type === 'image' ? (
             <EditorialImage key={item.src} src={item.src} alt={item.alt} fill
               sizes="(max-width: 768px) calc(100vw - 40px), (max-width: 1440px) 52vw, 900px"
-              quality={85} priority={index === 0} loading={index === 0 ? undefined : 'eager'}
+              quality={85} priority={index === 0} fetchPriority={index === 0 ? 'high' : undefined} loading={index === 0 ? undefined : 'eager'}
               className={`${styles.image}${index !== 0 ? ` ${styles.selectedImage}` : ''}`} />
           ) : <>
             <video key={item.src} ref={videoRef} className={styles.video} autoPlay muted loop playsInline controls
