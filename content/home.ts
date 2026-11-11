@@ -63,11 +63,11 @@ const sharedMedia = {
   },
   products: [
     {
-      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+      src: '/home/products/dyane-no1.webp',
       hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708147/Sans_titre_Publication_Instagram_4_5_pr3obf.mp4',
     },
     {
-      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
+      src: '/home/products/dyane-no2.webp',
       hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708474/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflora._zsisam.mp4',
     },
   ],

@@ -1,7 +1,7 @@
 export const heroImages: Record<string, string> = {
-    'dyane-paris-pornstar-martini-70-cl': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
-    'dyane-no2-moscow-mule': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
-    'bouteille-signee-teokaykay': 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777443904/img-38_htkd1z.jpg',
+    'dyane-paris-pornstar-martini-70-cl': '/dyane-no1.webp',
+    'dyane-no2-moscow-mule': '/dyane-no2.webp',
+    'bouteille-signee-teokaykay': '/dyane-teo.webp',
 }
 
 export const productVideos: Record<string, string> = {
@@ -26,7 +26,7 @@ export const produits: Record<string, ProductDetails> = {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE 96 % ÉLABORÉ EN FRANCE, INFUSÉ AUX GOUSSES DE VANILLE MADAGASCAR BOURBON GOLD. PURÉE DE FRUIT DE LA PASSION, SUBLIMÉE PAR UNE TOUCHE DE FRAMBOISE SAUVAGE. JUS DE CITRON BIOLOGIQUE. EMBOUTEILLÉ EN FRANCE, DANS LA RÉGION D\'AVIGNON.',
         images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+            '/dyane-no1.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687757/63_fimus0.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1788442898/Capture_d_e%CC%81cran_2026-09-03_a%CC%80_15.41.35_radfc7.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1785936020/2_ntzgqx.png',
@@ -41,7 +41,7 @@ export const produits: Record<string, ProductDetails> = {
         sousTitre: 'CONTACTER LA CONCIERGERIE',
         description: 'ALCOOL VINIQUE INFUSÉ AUX GRAINES DE GINGEMBRE. JUS DE CITRON FRAIS. EAU PURE. ÉLABORÉ ET EMBOUTEILLÉ EN FRANCE.',
         images: [
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
+            '/dyane-no2.webp',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687756/61_xv2x3w.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1788643897/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_2_qoe4v6.png',
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1781703609/Design_sans_titre_68_azlqdk.png',

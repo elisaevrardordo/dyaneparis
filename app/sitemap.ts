@@ -36,16 +36,11 @@ function articleImages(article: (typeof journalPublishedArticles)[number]) {
 
 // Curated, crawlable images per section so they can be discovered and ranked in
 // Google Images. Each image must actually appear on the corresponding page.
-const CLD = 'https://res.cloudinary.com/dazhkrimv/image/upload'
-
 const productImages = products.map((p) => abs(p.image))
 
 const routeImages: Record<string, string[]> = {
     '': [
         abs('/home/hero/hero-dyane-website-vdef-poster.jpg'),
-        `${CLD}/v1788728025/Ajouter_un_titre_1_yk7tmn.png`,
-        `${CLD}/v1788784346/Ajouter_un_titre_3_ebsgyz.png`,
-        `${CLD}/v1788691447/COCKTAIL_5_jox1dv.png`,
         ...productImages,
     ],
     '/la-maison': [
@@ -61,18 +56,9 @@ const routeImages: Record<string, string[]> = {
         abs(produits['bouteille-signee-teokaykay'].images[0]),
     ],
     '/experiences': [
-        `${CLD}/v1777445316/DSC00599_copie_2_o518xt.jpg`,
         '/editorial/experiences/ART%201.png',
         '/editorial/experiences/BAR%201.png',
         '/editorial/experiences/EVENT.png',
-    ],
-    '/distillation': [
-        `${CLD}/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg`,
-        `${CLD}/v1777444695/cefabcbb6ae0a2ac3de9836e7b0792a6_1_ttgppt.jpg`,
-        `${CLD}/v1777444782/12_nehhxv.png`,
-        `${CLD}/v1777444726/CREATION_m4wcwy.png`,
-        `${CLD}/v1777444763/36a06a6ada0367a421f5ea4daf6c4e17_1_rr14il.jpg`,
-        `${CLD}/v1777444815/Design_sans_titre_41_sens76.png`,
     ],
     '/fabrication': [
         '/editorial/fabrication/DESSIN.png',
@@ -86,8 +72,6 @@ const routeImages: Record<string, string[]> = {
         ...imagesFromMedia(article.indexSecondary),
         ...imagesFromMedia(article.indexTertiary),
     ]),
-    '/contact': [abs('/contact/rock2-poster.jpg')],
-    '/faq': [`${CLD}/v1777492634/DSC00107_copie_1_yps0ji.jpg`],
 }
 
 const productImagesBySlug: Record<string, string[]> = Object.fromEntries(
