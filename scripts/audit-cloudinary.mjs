@@ -7,9 +7,10 @@
  * node scripts/audit-cloudinary.mjs --fail
  */
 import { readdirSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs'
-import { extname, join, relative, resolve } from 'node:path'
+import { dirname, extname, join, relative, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const root = resolve(import.meta.dirname, '..')
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const skip = new Set(['.git', '.next', 'node_modules', 'dist', 'out', '.vercel'])
 const scanExt = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.md', '.css', '.html'])
 const pattern = /https?:\/\/res\.cloudinary\.com\/[^\s"'<>\x60]+/g
