@@ -23,7 +23,7 @@ export const seoImages = {
         description: 'Cocktails prêts à déguster présentés dans des sculptures en porcelaine peintes à la main.',
     },
     collection: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+        url: '/dyane-no1.webp',
         width: 1080,
         height: 1350,
         alt: 'Collection de cocktails Dyane Paris en sculptures de porcelaine peintes à la main',
@@ -31,7 +31,7 @@ export const seoImages = {
         description: 'Collection de cocktails signature Dyane Paris présentés dans des flacons sculpturaux en porcelaine.',
     },
     pornstarMartini: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
+        url: '/dyane-no1.webp',
         width: 1080,
         height: 1350,
         alt: 'Sculpture-bouteille Dyane No.1 contenant le cocktail Pornstar Martini',
@@ -39,7 +39,7 @@ export const seoImages = {
         description: 'Cocktail Pornstar Martini Dyane Paris présenté dans un flacon sculptural en porcelaine.',
     },
     moscowMule: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
+        url: '/dyane-no2.webp',
         width: 1080,
         height: 1350,
         alt: 'Sculpture-bouteille Dyane No.2 contenant le cocktail Moscow Mule',
