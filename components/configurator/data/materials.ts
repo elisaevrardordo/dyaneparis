@@ -110,9 +110,9 @@ export const defaultMaterialCalibration: MaterialCalibration = {
 }
 
 export const studioPreset = {
-  background: '#f8f6f2',
-  fog: '#f8f6f2',
-  floor: '#f8f6f2',
+  background: '#ffffff',
+  fog: '#ffffff',
+  floor: '#ffffff',
   ambientIntensity: 0.28,
   contactLightIntensity: 0.48,
   topLightIntensity: 0.16,

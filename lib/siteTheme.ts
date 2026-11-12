@@ -1,6 +1,6 @@
 export type SiteTheme = 'house' | 'experience' | 'journal' | 'archive'
 
-const EXPERIENCE_ROUTES = ['/experiences', '/contact']
+const EXPERIENCE_ROUTES = ['/experiences', '/contact', '/personnalisables', '/oeuvre-sur-commande', '/votre-cadeau-de-noel-reve']
 const JOURNAL_ROUTES = ['/le-journal', '/journal']
 
 function withoutLocale(pathname: string) {

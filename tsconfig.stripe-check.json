@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "next-env.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "i18n/**/*.ts",
+    "lib/**/*.ts",
+    "content/**/*.ts",
+    "middleware.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "apps",
+    "outputs",
+    "output",
+    "tmp",
+    "n9_recovery_20261012",
+    "n9_recovery_20261013"
+  ]
+}

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import * as THREE from 'three'
 import styles from './GlbComparison.module.css'
+import { ArrowLeftIcon } from '@/components/icons/EditorialIcons'
 import { glazePresets, porcelainPresets } from './data'
 
 type ComparisonMode = 'geometry' | 'studio'
@@ -163,7 +164,7 @@ function ComparisonScene({
 
   return (
     <>
-      <color attach="background" args={[mode === 'studio' ? '#f8f6f2' : '#d8d4cf']} />
+      <color attach="background" args={['#ffffff']} />
       <CameraCalibration />
       <ambientLight intensity={mode === 'studio' ? 0.28 : 0.72} color="#fff7eb" />
       <directionalLight
@@ -184,7 +185,7 @@ function ComparisonScene({
 
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.006, 0]}>
         <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color={mode === 'studio' ? '#f8f6f2' : '#d2ceca'} roughness={0.96} />
+        <meshStandardMaterial color="#ffffff" roughness={0.96} />
       </mesh>
 
       {mode === 'studio' ? (
@@ -214,10 +215,10 @@ export default function GlbComparison({ locale }: { locale: string }) {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link href={configuratorHref} className={styles.backLink}>
-          ← Retour au configurateur
+          <ArrowLeftIcon /> Retour au configurateur
         </Link>
         <div>
-          <p className={styles.eyebrow}>Audit technique — Preview uniquement</p>
+          <p className={styles.eyebrow}>Audit technique - Preview uniquement</p>
           <h1>{leftLabel} / {rightLabel}</h1>
         </div>
         <div className={styles.controls}>

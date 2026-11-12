@@ -1,10 +1,7 @@
 .slide {
   position: relative;
   width: 100%;
-  min-height: 100svh;
   overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .mediaSlide {
@@ -32,6 +29,7 @@
 .craftSlide {
   display: grid;
   place-items: center;
+  padding-bottom: clamp(44px, 6svh, 68px);
   color: #111;
   background: #fff;
 }
@@ -39,7 +37,7 @@
 .craftContent {
   display: flex;
   width: 100%;
-  padding: calc(var(--header-height) + clamp(18px, 3svh, 38px)) 5vw clamp(104px, 14svh, 156px);
+  padding: calc(var(--header-height) + clamp(18px, 3svh, 38px)) 5vw 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -47,6 +45,8 @@
 }
 
 .craftMedia {
+  display: block;
+  color: inherit;
   position: relative;
   width: clamp(483px, 48.3vw, 1035px);
   aspect-ratio: 4 / 3;
@@ -79,12 +79,11 @@
   }
 
   .craftContent {
-    padding: calc(var(--header-height) + 16px) 8vw max(104px, calc(env(safe-area-inset-bottom) + 82px));
+    padding: calc(var(--header-height) + 16px) 6vw 0;
   }
 
   .craftMedia {
     width: min(87.4vw, 598px);
-    margin-bottom: 24px;
   }
 
 }
@@ -94,7 +93,9 @@
     width: min(39.1vw, 598px);
   }
 
-  .craftContent {
-    padding-bottom: 24px;
-  }
+}
+
+.craftMedia:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
 }

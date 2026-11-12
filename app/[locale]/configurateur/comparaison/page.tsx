@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import GlbComparison from '@/components/configurator/GlbComparison'
 
 export const metadata: Metadata = {
-  title: 'Audit GLB — Dyane Web V2',
+  title: 'Audit GLB - Dyane Web V2',
   robots: { index: false, follow: false },
 }
 

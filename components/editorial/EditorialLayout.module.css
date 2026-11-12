@@ -10,7 +10,7 @@
   width: 100%;
   height: clamp(560px, 80svh, 920px);
   overflow: hidden;
-  background: #f6f6f4;
+  background: #ffffff;
 }
 
 .hero > img,
@@ -80,7 +80,7 @@
   position: relative;
   margin-block: 0;
   overflow: hidden;
-  background: #f6f6f4;
+  background: #ffffff;
 }
 
 .mediaContained {

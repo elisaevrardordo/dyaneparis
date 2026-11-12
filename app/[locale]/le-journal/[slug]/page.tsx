@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import JournalArticle from '@/components/journal/JournalArticle'
 import { journalArticleBySlug, journalArticles, journalIndexArticles, journalText } from '@/content/journal'
-import { journalIndexStoryByHref } from '@/content/journalIndex'
-import { absoluteUrl, breadcrumbJsonLd, localizedAlternates, localizedUrl, ORGANIZATION_ID, serializeJsonLd } from '@/lib/seo'
+import { articleImages as renderedArticleImages } from '@/content/journalImages'
+import { imageRightsMetadata } from '@/lib/imageRights'
+import { absoluteUrl, breadcrumbJsonLd, localizedAlternates, localizedUrl, ORGANIZATION_ID, serializeJsonLd, titleWithoutBrand } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params
@@ -13,13 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const title = journalText(article.seoTitle ?? article.title, locale)
     const description = journalText(article.seoDescription ?? article.excerpt, locale)
     const path = `/le-journal/${slug}`
-    const indexCover = journalIndexStoryByHref[path]?.images.find((media) => media.kind === 'image')
+    const indexCover = renderedArticleImages(article)[0]
     const image = indexCover?.kind === 'image' ? indexCover.src : article.cover.src
     const imageAlt = indexCover?.kind === 'image' ? indexCover.alt : article.cover.alt
     const pageUrl = localizedUrl(locale, path)
 
     return {
-        title,
+        title: titleWithoutBrand(title),
         description,
         robots: article.status === 'draft'
             ? { index: false, follow: true, googleBot: { index: false, follow: true } }
@@ -59,7 +60,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     const description = journalText(article.seoDescription ?? article.excerpt, locale)
     const path = `/le-journal/${slug}`
     const pageUrl = localizedUrl(locale, path)
-    const indexCover = journalIndexStoryByHref[path]?.images.find((media) => media.kind === 'image')
+    const indexCover = renderedArticleImages(article)[0]
     const representativeImage = indexCover?.kind === 'image' ? indexCover : article.cover
     const navigationIndex = journalIndexArticles.findIndex((entry) => entry.slug === slug)
     const jsonLd = {
@@ -82,9 +83,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     name: title,
                     caption: journalText(representativeImage.alt, locale),
                     description,
-                    creditText: 'Dyane Paris',
-                    creator: { '@id': ORGANIZATION_ID },
-                    copyrightNotice: 'Dyane Paris',
+                    ...imageRightsMetadata(representativeImage.src),
                     representativeOfPage: true,
                 }],
                 author: { '@id': ORGANIZATION_ID },

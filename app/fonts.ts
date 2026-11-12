@@ -1,18 +1,19 @@
-import { Bodoni_Moda, Playfair_Display } from 'next/font/google'
+import localFont from 'next/font/local'
 
-export const bodoni = Bodoni_Moda({
-    subsets: ['latin'],
-    weight: ['400', '500'],
-    style: ['normal', 'italic'],
+export const bodoni = localFont({
+    src: [
+        { path: './fonts/bodoni-moda-400-normal.ttf', weight: '400', style: 'normal' },
+        { path: './fonts/bodoni-moda-500-normal.ttf', weight: '500', style: 'normal' },
+        { path: './fonts/bodoni-moda-400-italic.ttf', weight: '400', style: 'italic' },
+        { path: './fonts/bodoni-moda-500-italic.ttf', weight: '500', style: 'italic' },
+    ],
     variable: '--font-bodoni',
     display: 'swap',
     adjustFontFallback: false,
 })
 
-export const playfair = Playfair_Display({
-    subsets: ['latin'],
-    weight: ['400'],
-    style: ['normal'],
+export const playfair = localFont({
+    src: [{ path: './fonts/playfair-display-400-normal.ttf', weight: '400', style: 'normal' }],
     variable: '--font-playfair',
     display: 'swap',
     adjustFontFallback: false,

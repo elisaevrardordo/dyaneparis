@@ -1,3 +1,9 @@
+# Sélection boutique du 2 novembre 2026
+
+Les nouveaux fichiers `shop/campaign.mp4`, `shop/service.mp4` et `shop/service-poster.jpg` sont des encodages/images de véritables films Dyane déjà présents dans le projet, et non les placeholders historiques du tableau ci-dessous. Sources, poids et mapping : `docs/STOREFRONT_REDESIGN.md` et `content/storefront.ts`. Les fichiers source sont conservés.
+
+---
+
 # Médias de la homepage
 
 Les fichiers présents dans ce dossier sont des **placeholders temporaires créés à partir des médias Dyane déjà présents dans le dépôt**. Ils doivent être remplacés avant la mise en production, en conservant exactement les mêmes noms afin de ne modifier aucun composant.

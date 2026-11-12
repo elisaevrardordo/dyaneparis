@@ -1,0 +1,13 @@
+.opening { width: min(790px, calc(100% - 64px)); margin: 0 auto; padding-bottom: 43.2px; text-align: center; }
+.opening h1 { margin: 0; color: #343638; font: 400 32px/1.3 var(--font-cart-serif), Georgia, serif; letter-spacing: .025em; text-transform: none; text-wrap: balance; }
+.eyebrow { margin: 0 0 16px; color: #757575; font: 300 11.5px/1.5 var(--font-cart-sans), Arial, sans-serif; letter-spacing: .04em; text-transform: none; }
+.hero { position: relative; width: min(1320px, 80%); aspect-ratio: 2.4/1; margin: 0 auto; overflow: hidden; background: #fff; }
+.hero[data-page-hero] { min-height: 0; }
+.media { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+@media (min-width: 1500px) { .opening { padding-bottom: 50.4px; } }
+@media (max-width: 760px) {
+  .opening { width: calc(100% - 48px); padding-bottom: 38.4px; }
+  .opening h1 { font-size: 27px; }
+  .hero { width: calc(100% - 48px); aspect-ratio: 4/3; }
+}
+@media (prefers-reduced-motion: reduce) { .video { display: none; } }

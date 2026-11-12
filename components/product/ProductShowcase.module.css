@@ -1,0 +1,147 @@
+.showcase{--stage-height:calc(100svh - var(--header-height,110px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;background:#fff;color:#171717;font-family:var(--font-cart-sans),sans-serif;font-weight:300}
+.gallery{grid-column:1/-1;grid-row:1;position:relative;min-width:0;height:var(--stage-height);min-height:620px;background:#fff}
+.viewport {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y pinch-zoom;
+  user-select: none;
+}
+.viewport::-webkit-scrollbar { display: none; }
+.viewport[data-dragging] { scroll-snap-type: none; }
+.track{height:100%;display:flex}
+.photo{position:relative;flex:0 0 calc(100% / 3);height:100%;border:0;border-right:3px solid #fff;padding:0;background:#f4f4f4;scroll-snap-align:start;cursor:grab}
+.viewport[data-dragging] .photo { cursor: grabbing; }
+.photo img{object-fit:cover;object-position:center}
+.video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.videoCaption {
+  position: absolute;
+  inset: auto 16px 20px;
+  color: #fff;
+  font: 500 clamp(11px, 1vw, 14px) / 1.35 var(--font-cart-sans), sans-serif;
+  text-align: left;
+  text-shadow: 0 1px 4px #000, 0 0 8px #000;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .videoCaption { bottom: 48px; }
+}
+.navigation{position:absolute;bottom:24px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:end;gap:16px;pointer-events:none}
+.thumbnails{display:flex;gap:4px;pointer-events:auto}
+.thumbnails button{position:relative;width:46px;height:60px;padding:0;border:0;border-bottom:3px solid transparent;background:#fff9;cursor:pointer}
+.thumbnails button[aria-pressed=true]{border-bottom-color:#111}
+.thumbnails img{object-fit:cover}
+.thumbnails span{position:absolute;inset:0;display:grid;place-items:center;color:white}
+.galleryEnd{flex:0 0 calc(100% / 3);background:#fff}
+.choiceColumn{grid-column:3;grid-row:1;pointer-events:none;position:relative;min-width:0;height:var(--stage-height);min-height:620px;padding:clamp(48px,14svh,160px) 24px 24px;display:flex;align-items:flex-start}
+.card{pointer-events:auto;position:relative;z-index:1;background:#fff;width:100%;max-height:100%;overflow-y:auto;overscroll-behavior:contain;padding:28px 24px;scrollbar-width:thin}
+.card h1{font:400 28px/1.1 var(--font-cart-serif),serif;letter-spacing:0;margin:0 0 8px;text-transform:none}
+.subtitle{font-size:12px;margin:0 0 22px;color:#626262}
+.description{font-size:12px;line-height:1.65;letter-spacing:.01em;margin:24px 0;text-transform:none}
+.actions{margin:0 0 20px!important;font:300 12px/1.5 var(--font-cart-sans),sans-serif!important}
+.actions>p:first-child{font:300 9px/1.4 var(--font-cart-sans),sans-serif;letter-spacing:.08em;margin:0 0 20px}
+.actions fieldset{flex-wrap:wrap;gap:8px}
+.actions legend{font:500 11px var(--font-cart-sans),sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.actions label{min-width:105px;padding:12px 8px;cursor:pointer}
+.actions input{width:14px;height:14px}
+.actions [data-selected-price]{font-size:22px;color:#171717;text-align:right;letter-spacing:0;margin:20px 0 12px}
+.actions [data-selected-price] small{font-size:10px}
+.actions>button{font:500 11px var(--font-cart-sans),sans-serif!important;min-height:46px;letter-spacing:.03em;padding:14px 10px}
+.actions>button+button{margin-top:8px}
+.privateOrder{display:block;text-align:center;font-size:11px;text-decoration:underline;text-underline-offset:4px;margin:20px 0 24px}
+.details{border-top:1px solid #ddd;padding:14px 0}
+.details:last-child{border-bottom:1px solid #ddd}
+.details summary{font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.details summary::-webkit-details-marker{display:none}
+.details summary::after{content:'+'}
+.details[open] summary::after{content:'−'}
+.details p{font-size:12px;line-height:1.65;white-space:pre-line;margin:14px 0 0}
+.showcase button:focus-visible,.card:focus-visible,.details summary:focus-visible,.privateOrder:focus-visible{outline:2px solid #222;outline-offset:-4px}
+@media(min-width:1600px){.card{padding:36px 32px}.choiceColumn{padding-right:32px;padding-left:32px}.card h1{font-size:32px}.thumbnails button{width:56px;height:72px}}
+@media(max-width:1100px) and (min-width:901px){.choiceColumn{padding:48px 14px 18px}.card{padding:24px 18px}.card h1{font-size:25px}.navigation{left:16px;right:16px}}
+@media(max-width:900px){.showcase{display:block}.gallery{height:70svh;min-height:420px;max-height:760px}.photo{flex-basis:100%;border:0}.galleryEnd{display:none}.photo img{object-fit:contain}.navigation{bottom:16px;left:16px;right:16px}.thumbnails button{width:38px;height:48px}.choiceColumn{height:auto;min-height:0;padding:0;background:#fff}.card{max-height:none;overflow:visible;padding:28px 24px 40px}.card h1{font-size:28px}.actions fieldset{max-width:100%}.actions>button{min-height:48px}.description{max-width:650px}}
+
+/* Page-level editorial rules must not override the compact choice card. */
+.showcase .card p{font-family:var(--font-cart-sans),sans-serif!important;font-weight:300;line-height:1.65!important}
+.showcase .card [data-selected-price]{line-height:1.3!important}
+@media(max-width:900px){
+  .gallery{height:auto;min-height:0;max-height:none;aspect-ratio:3/3.8}
+  .photo img{object-fit:cover}
+  .navigation{justify-content:center;bottom:12px}
+  .thumbnails{gap:0}
+  .thumbnails button{display:grid;place-items:center;width:28px;height:28px;border:0;background:transparent}
+  .thumbnails button::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#888}
+  .thumbnails button[aria-pressed=true]{border:0}
+  .thumbnails button[aria-pressed=true]::after{background:#111;outline:2px solid #fff}
+  .thumbnails img,.thumbnails span{display:none}
+  .card{padding-top:24px}
+  .subtitle{margin-bottom:14px}
+  .actions{display:flex;flex-direction:column}
+  .actions [data-selected-price]{order:-2;margin:0 0 12px;font-size:19px}
+  .actions>button:first-of-type{order:-1;margin-bottom:24px}
+  .actions fieldset{order:0}
+  .actions>button+button{order:1;margin-top:0}
+  .actions>p:first-child{order:2;margin:16px 0 0}
+}
+
+.composition {
+  display: grid;
+  gap: 8px;
+  margin-block: 16px;
+  font-size: 12px;
+}
+.composition select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 8px 10px;
+}
+.enquiry > p { text-align: right; }
+.card :is(.orderButton, .personalizeButton) {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 14px 10px;
+  border: 1px solid #101010;
+  font: 500 11px/1.5 var(--font-cart-sans), sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.card .orderButton { background: #101010; color: #fff; }
+.card .orderButton:disabled { opacity: .45; cursor: default; }
+.card .personalizeButton { margin-top: 8px; background: #fff; color: #171717; }
+.formatPurchase { display: grid; }
+.formatLinks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.card .formatLinks p {
+  grid-column: 1/-1;
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.card .formatLinks a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 1px solid #ddd;
+  font: 300 12px/1.5 var(--font-cart-sans), sans-serif;
+  text-decoration: none;
+}
+.formatLinks a small { color: #666; white-space: nowrap; }
+.card .formatLinks a[aria-current='page'] { border-color: #333; }
+.formatPrice { margin: 16px 0 12px; text-align: right; font-size: 22px; }
+.formatPrice small { font-size: 10px; }
+@media (max-width:900px) {
+  .formatPrice { order: -2; font-size: 19px; }
+  .formatPurchase > .orderButton { order: -1; margin-bottom: 24px; }
+  .formatPurchase > .personalizeButton { order: 1; }
+  .formatPurchase > p:first-child:not(.formatPrice) { order: 2; }
+}

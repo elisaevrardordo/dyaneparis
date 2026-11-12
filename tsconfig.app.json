@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "next-env.d.ts", "app/**/*.ts", "app/**/*.tsx", "components/**/*.ts", "components/**/*.tsx",
+    "i18n/**/*.ts", "lib/**/*.ts", "content/**/*.ts", "middleware.ts", ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "apps", "outputs", "output", "tmp", "n9_recovery_20261012", "n9_recovery_20261013"]
+}

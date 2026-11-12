@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 import JournalIndex from '@/components/journal/JournalIndex'
 import {
     breadcrumbJsonLd,
@@ -16,20 +15,23 @@ export async function generateMetadata({
     params: Promise<{ locale: string }>
 }): Promise<Metadata> {
     const { locale } = await params
-    const t = await getTranslations({ locale, namespace: 'seo.journal' })
+    const en = locale === 'en'
 
     return buildPageMetadata({
         locale,
         path: '/le-journal',
-        title: t('title'),
-        description: t('description'),
+        title: en ? 'The Journal - Art, cocktails and encounters | Dyane Paris' : 'Le Journal - Art, cocktails et rencontres | Dyane Paris',
+        description: en ? 'Encounters, craftsmanship and creations: the Dyane Paris Journal explores art, porcelain, signature cocktails and the art of hosting.' : 'Rencontres, savoir-faire et créations : le Journal de Dyane Paris explore l’art, la porcelaine, les cocktails d’auteur et l’art de recevoir.',
         image: seoImages.journal,
         absoluteTitle: true,
     })
 }
 
-export default async function LeJournalPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function LeJournalPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<{ rubrique?: string | string[]; page?: string | string[] }> }) {
     const { locale } = await params
+    const query = await searchParams
+    const category = typeof query.rubrique === 'string' ? query.rubrique : undefined
+    const requestedPage = typeof query.page === 'string' ? query.page : undefined
     const pageUrl = localizedUrl(locale, '/le-journal')
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -37,7 +39,7 @@ export default async function LeJournalPage({ params }: { params: Promise<{ loca
             {
                 '@type': 'CollectionPage',
                 '@id': `${pageUrl}#journal`,
-                name: locale === 'en' ? 'The Journal — Dyane Paris' : 'Le Journal — Dyane Paris',
+                name: locale === 'en' ? 'The Journal - Dyane Paris' : 'Le Journal - Dyane Paris',
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 primaryImageOfPage: imageObject(seoImages.journal, true),
@@ -53,7 +55,7 @@ export default async function LeJournalPage({ params }: { params: Promise<{ loca
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-            <JournalIndex locale={locale} />
+            <JournalIndex locale={locale} category={category} page={requestedPage} />
         </>
     )
 }

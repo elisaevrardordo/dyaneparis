@@ -1,4 +1,5 @@
 import { journalEditorialDrafts } from './journalEditorialDrafts'
+import { michelRothArticle } from './journalMichelRoth'
 
 export type JournalLocale = 'fr' | 'en'
 
@@ -125,7 +126,7 @@ const CLD = 'https://res.cloudinary.com/dazhkrimv/image/upload'
 const journalEstablishedArticles: readonly JournalArticle[] = [
     {
         slug: 'journal-de-bord-frivole',
-        title: t('Journal de bord — Frivole', 'Field notes — Frivole'),
+        title: t('Journal de bord, Frivole', 'Field notes - Frivole'),
         excerpt: t(
             "Certaines rencontres semblent écrites d'avance. Notre arrivée chez Frivole marque le début d'un nouveau chapitre dans l'histoire de Dyane.",
             'Some encounters feel written in advance. Our arrival at Frivole marks the beginning of a new chapter in the story of Dyane.',
@@ -322,7 +323,7 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
         category: t('Savoir-faire', 'Savoir-faire'),
         location: t('Vaucluse, France', 'Vaucluse, France'),
         datePublished: '2026-02-22',
-        cover: image(`${CLD}/v1788705759/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_32_cufevu.png`, 'Distillation artisanale Dyane Paris dans le Vaucluse', 'Dyane Paris craft distillation in the Vaucluse', 'wide'),
+        cover: image(`${CLD}/v1788705759/dyane-paris-sculpture-cocktail-reflets.png`, 'Distillation artisanale Dyane Paris dans le Vaucluse', 'Dyane Paris craft distillation in the Vaucluse', 'wide'),
         indexLayout: 'portrait-pair',
         indexSecondary: image(`${CLD}/v1779713794/DISTILLATION_yjwtvq.png`, 'Alambics de la distillerie', 'Stills at the distillery', 'portrait'),
         heroStyle: 'portrait-pair',
@@ -343,9 +344,9 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
             { kind: 'quote', text: t("« DERRIÈRE LA JEUNESSE D'ELISA, J'AI IMMÉDIATEMENT PERÇU UNE MATURITÉ RARE, UNE ÉNERGIE POSITIVE FOLLE ET CETTE INTUITION JUSTE QUI CARACTÉRISE LES GRANDS CRÉATEURS. »", '“BEYOND ELISA’S YOUTH, I IMMEDIATELY SAW A RARE MATURITY, AN EXTRAORDINARY POSITIVE ENERGY AND THE SURE INTUITION THAT DEFINES GREAT CREATORS.”') },
             { kind: 'text', paragraphs: [t("Au-delà de la maîtrise des procédés, cette rencontre traduit une vision commune du luxe français : un luxe fondé sur le temps, le détail et l'authenticité du geste. Chez Dyane, la création d'un cocktail s'apparente davantage au travail d'un parfumeur ou d'un artisan d'art qu'à une simple production de boissons.", 'Beyond mastery of the process, this encounter expresses a shared vision of French luxury: a luxury founded on time, detail and authenticity of gesture. At Dyane, creating a cocktail is closer to the work of a perfumer or art artisan than to simple beverage production.')] },
             { kind: 'quote', text: t("« ENSEMBLE, NOUS CRÉONS DES COCKTAILS QUI RACONTENT UNE HISTOIRE : CELLE D'UNE RENCONTRE, D'UNE PASSION COMMUNE ET D'UN ENGAGEMENT TOTAL POUR LA QUALITÉ. »", '“TOGETHER, WE CREATE COCKTAILS THAT TELL A STORY: OF AN ENCOUNTER, A SHARED PASSION AND A TOTAL COMMITMENT TO QUALITY.”') },
-            { kind: 'text', paragraphs: [t("Chaque création raconte ainsi une histoire singulière — celle d'une rencontre entre artisanat, création et passion — portée par une volonté absolue de qualité. Une approche où la distillation devient un langage, et où chaque note aromatique participe à la signature émotionnelle de la Maison.", 'Each creation thus tells a singular story—an encounter between craft, creation and passion—carried by an absolute dedication to quality. An approach in which distillation becomes a language and every aromatic note contributes to the emotional signature of the Maison.')] },
+            { kind: 'text', paragraphs: [t("Chaque création raconte ainsi une histoire singulière - celle d'une rencontre entre artisanat, création et passion - portée par une volonté absolue de qualité. Une approche où la distillation devient un langage, et où chaque note aromatique participe à la signature émotionnelle de la Maison.", 'Each creation thus tells a singular story-an encounter between craft, creation and passion-carried by an absolute dedication to quality. An approach in which distillation becomes a language and every aromatic note contributes to the emotional signature of the Maison.')] },
         ],
-        credits: [{ role: t('Distillation', 'Distillation'), name: 'Julien Ducruet — Esprit Distillation' }],
+        credits: [{ role: t('Distillation', 'Distillation'), name: 'Julien Ducruet - Esprit Distillation' }],
         relatedLinks: [
             { href: '/distillation', label: t('La mixologie selon Dyane Paris', 'Mixology according to Dyane Paris') },
             { href: '/oeuvres', label: t('Découvrir les œuvres', 'Discover the works') },
@@ -395,11 +396,11 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
         excerpt: t('Avec Dyane Paris, le cocktail quitte le verre pour entrer dans l’univers de la sculpture.', 'With Dyane Paris, the cocktail leaves the glass and enters the world of sculpture.'),
         category: t('Manifeste', 'Manifesto'),
         datePublished: '2026-01-31',
-        cover: image(`${CLD}/v1788644549/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_11_j654ix.png`, 'Cocktail Dyane Paris comme œuvre à collectionner', 'Dyane Paris cocktail as a collectible work', 'wide'),
+        cover: image(`${CLD}/v1788644549/dyane-paris-sculpture-porcelaine-visage-detail.png`, 'Cocktail Dyane Paris comme œuvre à collectionner', 'Dyane Paris cocktail as a collectible work', 'wide'),
         indexLayout: 'video-still',
-        indexSecondary: image(`${CLD}/v1788645239/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_25_hnwa5c.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible porcelain sculpture', 'portrait'),
+        indexSecondary: image(`${CLD}/v1788645239/dyane-paris-porcelaine-sculpture-matiere-detail.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible porcelain sculpture', 'portrait'),
         heroStyle: 'landscape-portrait',
-        heroSecondary: image(`${CLD}/v1788645239/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_25_hnwa5c.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible work', 'portrait'),
+        heroSecondary: image(`${CLD}/v1788645239/dyane-paris-porcelaine-sculpture-matiere-detail.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible work', 'portrait'),
         chapters: [
             { title: t("De la boisson à l'objet", 'From drink to object'), start: 1 },
             { title: t('Une nouvelle Maison française', 'A new French Maison'), start: 2 },
@@ -410,7 +411,7 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
                 t('Un cocktail à collectionner Dyane Paris associe une recette haut de gamme à une sculpture-flacon en porcelaine conçue pour demeurer après la dégustation. Le cocktail devient ainsi un objet d’art liquide : il se sert et se déguste, tandis que son contenant peint à la main peut être contemplé, conservé ou transmis.', 'A collectible Dyane Paris cocktail combines a high-end recipe with a porcelain bottle sculpture designed to remain after tasting. The cocktail becomes an object of liquid art: it is served and savoured, while its hand-painted vessel can be contemplated, kept or passed on.'),
                 t('Dans un paysage du luxe en pleine évolution, la Maison française propose une approche inédite : transformer la dégustation en expérience esthétique durable. Ce que Dyane appelle « Art Liquide » repose sur une vision précise : des cocktails signatures haut de gamme présentés dans des pièces en porcelaine conçues pour être conservées bien après l’instant de dégustation.', 'In an evolving luxury landscape, the French Maison proposes a new approach: transforming tasting into a lasting aesthetic experience. What Dyane calls “Liquid Art” rests on a precise vision: high-end signature cocktails presented in porcelain pieces designed to be kept long after the moment of tasting.'),
             ] },
-            { kind: 'media', media: image(`${CLD}/v1788645239/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflo_25_hnwa5c.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible porcelain sculpture', 'portrait'), size: 'portrait', align: 'right' },
+            { kind: 'media', media: image(`${CLD}/v1788645239/dyane-paris-porcelaine-sculpture-matiere-detail.png`, 'Cocktail Dyane Paris dans une sculpture de porcelaine à collectionner', 'Dyane Paris cocktail in a collectible porcelain sculpture', 'portrait'), size: 'portrait', align: 'right' },
             { kind: 'text', heading: t('Une nouvelle Maison française', 'A new French Maison'), paragraphs: [t("Loin des codes traditionnels du ready-to-drink, Dyane revendique un territoire plus rare : celui d'une Maison d'Art Liquide. Une expression qui emprunte à l'univers des grandes Maisons françaises leur rapport au temps, à la matière et à la création.", 'Far from the traditional codes of ready-to-drink, Dyane claims a rarer territory: that of a Maison of Liquid Art. An expression that borrows from the great French Maisons their relationship to time, material and creation.')] },
             { kind: 'text', heading: t('La bouteille devient sculpture', 'The bottle becomes sculpture'), paragraphs: [t("Inspirées librement de la Vénus de Milo, les silhouettes en porcelaine affirment une présence sculpturale forte, entre héritage classique et modernité contemporaine. Chaque courbe a été pensée pour donner à l'objet une identité visuelle singulière, capable d'exister pleinement même après avoir été dégusté.", 'Freely inspired by the Venus de Milo, the porcelain silhouettes assert a powerful sculptural presence between classical heritage and contemporary modernity. Every curve was conceived to give the object a singular visual identity, able to exist fully even after its contents have been tasted.')] },
             { kind: 'text', heading: t("L'objet après la dégustation", 'The object after tasting'), paragraphs: [
@@ -418,11 +419,11 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
                 t('Avec Dyane Paris, le cocktail ne se consomme plus uniquement : il se contemple, se collectionne et se transmet.', 'With Dyane Paris, the cocktail is no longer merely consumed: it is contemplated, collected and passed on.'),
             ] },
         ],
-        credits: [{ role: t('Texte', 'Text'), name: 'Bethszabée Garner — Oniriq' }],
+        credits: [{ role: t('Texte', 'Text'), name: 'Bethszabée Garner - Oniriq' }],
         relatedLinks: [
             { href: '/la-maison', label: t('Comprendre la Maison d’Art Liquide', 'Understand the House of Liquid Art') },
             { href: '/oeuvres', label: t('Découvrir les cocktails à collectionner', 'Discover collectible cocktails') },
-            { href: '/oeuvres/dyane-paris-pornstar-martini-70-cl', label: t('Découvrir Dyane No.1', 'Discover Dyane No.1') },
+            { href: '/oeuvres/dyane-no1-pornstar-martini', label: t('Découvrir Dyane No.1', 'Discover Dyane No.1') },
             { href: '/fabrication', label: t('Voir la fabrication de la sculpture', 'See how the sculpture is made') },
         ],
     },
@@ -460,7 +461,7 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
                 t("Entre sculpture, artisanat et création contemporaine, Teo for Dyane célèbre une vision du luxe plus artistique, plus émotionnelle et profondément incarnée. Une rencontre où l'objet devient mémoire visuelle autant qu'expérience sensorielle.", 'Between sculpture, craft and contemporary creation, Teo for Dyane celebrates a more artistic, more emotional and deeply embodied vision of luxury. An encounter in which the object becomes visual memory as much as sensory experience.'),
             ] },
         ],
-        credits: [{ role: t('Artiste', 'Artist'), name: 'Matteo Mengacci — Teo Kaykay' }],
+        credits: [{ role: t('Artiste', 'Artist'), name: 'Matteo Mengacci - Teo Kaykay' }],
         relatedLinks: [
             { href: '/oeuvres/bouteille-signee-teokaykay', label: t('Découvrir TEO FOR DYANE', 'Discover TEO FOR DYANE') },
             { href: '/oeuvres', label: t('Explorer les œuvres', 'Explore the works') },
@@ -472,11 +473,11 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
         excerpt: t("Chez Dyane Paris, la porcelaine n'est pas un simple contenant. Elle est pensée comme une œuvre habitée, façonnée pour traverser le temps bien au-delà de la dégustation.", 'At Dyane Paris, porcelain is not a simple container. It is conceived as an inhabited work, shaped to endure far beyond the tasting.'),
         category: t('Savoir-faire', 'Savoir-faire'),
         datePublished: '2026-01-05',
-        cover: image(`${CLD}/v1788442898/Capture_d_e%CC%81cran_2026-09-03_a%CC%80_15.41.35_radfc7.png`, 'Sculpture-bouteille Dyane Paris en porcelaine', 'Dyane Paris porcelain bottle sculpture', 'portrait'),
+        cover: image(`${CLD}/v1788442898/dyane-paris-sculpture-verte-lumiere-ambree.png`, 'Sculpture-bouteille Dyane Paris en porcelaine', 'Dyane Paris porcelain bottle sculpture', 'portrait'),
         indexLayout: 'portrait-triptych',
-        indexSecondary: image(`${CLD}/v1788706545/Capture_d_e%CC%81cran_2026-09-04_a%CC%80_15.28.55_kqbnp3.png`, 'Façonnage artisanal de la porcelaine', 'Artisanal shaping of porcelain', 'landscape'),
+        indexSecondary: image(`${CLD}/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png`, 'Façonnage artisanal de la porcelaine', 'Artisanal shaping of porcelain', 'landscape'),
         heroStyle: 'portrait-pair',
-        heroSecondary: image(`${CLD}/v1788706545/Capture_d_e%CC%81cran_2026-09-04_a%CC%80_15.28.55_kqbnp3.png`, 'Façonnage artisanal de la porcelaine', 'Artisanal shaping of porcelain', 'landscape'),
+        heroSecondary: image(`${CLD}/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png`, 'Façonnage artisanal de la porcelaine', 'Artisanal shaping of porcelain', 'landscape'),
         chapters: [
             { title: t('La matière', 'The material'), start: 1 },
             { title: t('La Vénus de Milo', 'The Venus de Milo'), start: 3 },
@@ -487,12 +488,12 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
                 t("Chez Dyane Paris, la porcelaine n'est pas un simple contenant. Elle est pensée comme une œuvre habitée, façonnée pour traverser le temps bien au-delà de la dégustation.", 'At Dyane Paris, porcelain is not a simple container. It is conceived as an inhabited work, shaped to endure far beyond the tasting.'),
                 t("Chaque pièce naît d'un processus exigeant mobilisant plus de soixante-dix mains artisanes et plusieurs mois de travail. La matière, élaborée à partir de feldspath, de quartz et de kaolin, est moulée, travaillée puis soumise à trois cuissons successives afin d'obtenir sa profondeur, sa résistance et son éclat final.", 'Each piece is born from a demanding process involving more than seventy artisan hands and several months of work. The material, made from feldspar, quartz and kaolin, is moulded, worked and then fired three successive times to achieve its depth, strength and final brilliance.'),
             ] },
-            { kind: 'media', media: image(`${CLD}/v1788706545/Capture_d_e%CC%81cran_2026-09-04_a%CC%80_15.28.55_kqbnp3.png`, "Façonnage artisanal d'une sculpture-bouteille Dyane Paris en porcelaine", 'Artisanal shaping of a Dyane Paris porcelain bottle sculpture', 'wide'), size: 'large', align: 'left' },
+            { kind: 'media', media: image(`${CLD}/v1788706545/dyane-paris-sculpture-porcelaine-argent-portrait.png`, "Façonnage artisanal d'une sculpture-bouteille Dyane Paris en porcelaine", 'Artisanal shaping of a Dyane Paris porcelain bottle sculpture', 'wide'), size: 'large', align: 'left' },
             { kind: 'text', heading: t('La Vénus de Milo comme référence', 'The Venus de Milo as reference'), paragraphs: [
                 t("La silhouette de la bouteille s'inspire librement de la Vénus de Milo, figure intemporelle de féminité, de beauté classique et de mystère. Chaque courbe, chaque proportion et chaque détail ont été pensés afin de donner à la pièce une présence sculpturale autonome.", 'The silhouette of the bottle is freely inspired by the Venus de Milo, a timeless figure of femininity, classical beauty and mystery. Every curve, proportion and detail was conceived to give the piece an autonomous sculptural presence.'),
                 t("Une fois vide, l'objet poursuit son existence. Il devient pièce décorative, souvenir d'un instant vécu, présence silencieuse dans un intérieur. Cette seconde vie fait partie intégrante de la philosophie de la Maison : créer des objets capables de conserver une mémoire émotionnelle.", 'Once empty, the object continues its existence. It becomes a decorative piece, the memory of a lived moment, a quiet presence in an interior. This second life is integral to the philosophy of the Maison: creating objects able to preserve an emotional memory.'),
             ], width: 'medium' },
-            { kind: 'media', media: image(`${CLD}/v1788442898/Capture_d_e%CC%81cran_2026-09-03_a%CC%80_15.41.35_radfc7.png`, "Détail d'une sculpture en porcelaine peinte à la main pour Dyane Paris", 'Detail of a hand-painted porcelain sculpture for Dyane Paris', 'portrait'), size: 'portrait', align: 'right' },
+            { kind: 'media', media: image(`${CLD}/v1788442898/dyane-paris-sculpture-verte-lumiere-ambree.png`, "Détail d'une sculpture en porcelaine peinte à la main pour Dyane Paris", 'Detail of a hand-painted porcelain sculpture for Dyane Paris', 'portrait'), size: 'portrait', align: 'right' },
             { kind: 'text', heading: t('Plus de 70 mains, deux mois de travail', 'More than 70 hands, two months of work'), paragraphs: [t("Le cycle complet de fabrication d'une création Dyane dépasse deux mois. De la préparation de la barbotine jusqu'aux finitions peintes à la main, chaque étape célèbre la précision du geste et la noblesse des savoir-faire artisanaux.", 'The complete production cycle of a Dyane creation exceeds two months. From preparing the slip to the hand-painted finishes, every stage celebrates precision of gesture and the nobility of artisanal savoir-faire.')] },
             { kind: 'quote', text: t("« UN OBJET QUI TRAVERSE LE TEMPS DOIT ÊTRE PENSÉ POUR LE TEMPS. C'EST POURQUOI CHAQUE PIÈCE DYANE EST CONÇUE AUTANT POUR ÊTRE REGARDÉE QUE POUR ÊTRE BUE. »", '“AN OBJECT THAT ENDURES THROUGH TIME MUST BE CONCEIVED FOR TIME. THIS IS WHY EVERY DYANE PIECE IS DESIGNED AS MUCH TO BE SEEN AS TO BE DRUNK.”') },
             { kind: 'text', paragraphs: [t("À travers cette approche, Dyane Paris affirme une vision du luxe fondée sur le temps, la matière et la transmission. Un luxe où l'objet conserve une âme longtemps après le dernier verre, et où chaque création devient le témoin durable d'un moment d'exception.", 'Through this approach, Dyane Paris asserts a vision of luxury founded on time, material and transmission. A luxury in which the object retains a soul long after the final glass, and every creation becomes the enduring witness to an exceptional moment.')] },
@@ -505,6 +506,7 @@ const journalEstablishedArticles: readonly JournalArticle[] = [
 ] as const
 
 export const journalArticles: readonly JournalArticle[] = [
+    michelRothArticle,
     ...journalEditorialDrafts,
     ...journalEstablishedArticles,
 ]

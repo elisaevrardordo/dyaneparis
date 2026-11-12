@@ -1,0 +1,103 @@
+.statement {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.standalone {
+  padding: clamp(72px, 7.2vw, 115.2px) 24px;
+  color: #111;
+  background: #fff;
+}
+
+.inner {
+  width: min(850px, 100%);
+  margin-inline: auto;
+}
+
+.standalone p { margin: 0; }
+.standalone p + p { margin-top: 16px; }
+.standalone h2,
+.standalone [data-editorial-label] { margin: 0 0 18px; }
+.standalone a {
+  display: inline-block;
+  margin-top: 24px;
+  color: inherit;
+  font-size: 10px;
+  letter-spacing: .14em;
+  line-height: 1.5;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+.statement.statement :is(h1, h2, h3) {
+  max-width: 100%;
+  color: rgba(17, 17, 17, .58) !important;
+  font-family: var(--font-editorial), Georgia, serif !important;
+  font-size: 11px !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  letter-spacing: .25em !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+}
+
+.statement.statement :is(p, blockquote) {
+  max-width: 760px;
+  margin-inline: auto;
+  color: rgba(17, 17, 17, .78);
+  font-family: var(--font-editorial), Georgia, serif !important;
+  font-size: 13px !important;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .04em !important;
+  line-height: 1.7 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+}
+
+.statement.statement [data-editorial-label] {
+  color: rgba(17, 17, 17, .58);
+  font-size: 11px !important;
+  letter-spacing: .25em !important;
+  line-height: 1.5 !important;
+}
+
+.statement.statement :is(h1, h2, h3) a {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.statement > :is(h1, h2, h3) + p {
+  margin-top: 18px;
+}
+
+.emblem {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 36px;
+  margin: 0 auto 28px;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+
+.emblemImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 58px !important;
+  height: 58px !important;
+  max-width: none !important;
+  object-fit: contain;
+  filter: contrast(1.15);
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+  .standalone { padding: 64.8px 20px; }
+  .emblem { margin-bottom: 24px; }
+}

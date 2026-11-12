@@ -1,0 +1,49 @@
+.overlay {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(255 255 255 / .89);
+  pointer-events: none;
+  animation: reveal .22s ease-out .16s both;
+}
+
+.initial {
+  animation: reveal .22s ease-out .16s both, dismiss .18s ease-in 2.4s forwards;
+}
+
+.emblem {
+  display: block;
+  width: clamp(42px, 5vw, 66px);
+  height: auto;
+}
+
+.drape {
+  fill: #701d2c;
+  animation: drape-color 2.1s ease-in-out infinite;
+}
+
+@keyframes reveal {
+  from { opacity: 0; visibility: hidden; }
+  to { opacity: 1; visibility: visible; }
+}
+
+@keyframes dismiss {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes drape-color {
+  0%, 100% { fill: #701d2c; }
+  34% { fill: #aa7843; }
+  68% { fill: #2c523a; }
+}
+
+@media (max-width: 1050px) {
+  .overlay { z-index: 999; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay { animation-duration: 0s, 0s; }
+  .drape { animation: none; }
+}

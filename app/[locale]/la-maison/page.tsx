@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getEditorialPage } from '@/content/editorialPages'
 import LaMaisonClient from './LaMaisonClient'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
+import { officialSeoImage } from '@/content/officialImages'
 import {
     breadcrumbJsonLd,
     buildPageMetadata,
     imageObject,
     localizedUrl,
-    seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
 
@@ -16,14 +17,14 @@ export async function generateMetadata({
     params: Promise<{ locale: string }>
 }): Promise<Metadata> {
     const { locale } = await params
-    const t = await getTranslations({ locale, namespace: 'seo.laMaison' })
+    const { seo } = getEditorialPage('la-maison', locale)
 
     return buildPageMetadata({
         locale,
         path: '/la-maison',
-        title: t('title'),
-        description: t('description'),
-        image: seoImages.maison,
+        title: seo.title,
+        description: seo.description,
+        image: officialSeoImage('maison', locale),
         absoluteTitle: true,
     })
 }
@@ -41,14 +42,12 @@ export default async function LaMaisonPage({
             {
                 '@type': 'AboutPage',
                 '@id': `${pageUrl}#about`,
-                name: locale === 'en' ? 'The Maison — Dyane Paris' : 'La Maison — Dyane Paris',
+                name: locale === 'en' ? 'The Maison - Dyane Paris' : 'La Maison - Dyane Paris',
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 about: { '@id': 'https://www.dyaneparis.com/#organization' },
-                primaryImageOfPage: imageObject(seoImages.maison, true),
-                description: locale === 'en'
-                    ? 'The story of Dyane Paris, its porcelain craftsmanship and French Liquid Art savoir-faire.'
-                    : "L'histoire de Dyane Paris, son artisanat de la porcelaine et son savoir-faire français d'Art Liquide.",
+                primaryImageOfPage: imageObject(officialSeoImage('maison', locale), true),
+                description: getEditorialPage('la-maison', locale).seo.description,
                 inLanguage: locale,
             },
             breadcrumbJsonLd(locale, [
@@ -65,6 +64,7 @@ export default async function LaMaisonPage({
                 dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
             <LaMaisonClient />
+            <DiscoveryLinks locale={locale} />
         </>
     )
 }

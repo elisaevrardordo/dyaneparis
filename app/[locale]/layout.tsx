@@ -3,10 +3,13 @@ import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import AgeGate from '@/components/AgeGate'
 import SiteThemeShell from '@/components/layout/SiteThemeShell'
+import { InitialSiteLoader } from '@/components/layout/SiteLoader'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { fontVariables } from '../fonts'
+import { AGE_GATE_BOOTSTRAP } from '@/lib/ageGate'
+import { shopMode } from '@/lib/stripe/config'
 import {
     buildPageMetadata,
     imageObject,
@@ -147,9 +150,11 @@ export async function generateMetadata({
 
 export default async function LocaleLayout({
     children,
+    legal,
     params
 }: {
     children: React.ReactNode
+    legal: React.ReactNode
     params: Promise<{ locale: string }>
 }) {
     const { locale } = await params
@@ -159,6 +164,8 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={fontVariables} suppressHydrationWarning>
             <head>
+                <script id="age-gate-session" dangerouslySetInnerHTML={{ __html: AGE_GATE_BOOTSTRAP }} />
+                <link rel="preconnect" href="https://res.cloudinary.com" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
@@ -167,7 +174,9 @@ export default async function LocaleLayout({
             <body>
                 <NextIntlClientProvider messages={messages}>
                     <AgeGate currentLocale={locale} />
-                    <SiteThemeShell>{children}</SiteThemeShell>
+                    <InitialSiteLoader />
+                    <SiteThemeShell catalogueOnly={shopMode() === 'closed'}>{children}</SiteThemeShell>
+                    {legal}
                 </NextIntlClientProvider>
                 {process.env.VERCEL === '1' ? <Analytics /> : null}
             </body>

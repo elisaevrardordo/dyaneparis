@@ -1,0 +1,8 @@
+.page{min-height:55vh;background:#fff;color:#343638;padding:180px 24px 80px}
+.content{max-width:680px;margin:0 auto}
+.content h1{margin:0 0 24px;font:400 25px/1.3 var(--font-cart-serif),Georgia,serif}
+.copy{font:300 13px/1.8 var(--font-cart-sans),Arial,sans-serif}
+.copy p{margin:0 0 16px}
+.contact{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;color:inherit;font:500 12px/1.6 var(--font-cart-sans),Arial,sans-serif;text-decoration:underline;text-underline-offset:4px}
+.contact:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+@media(max-width:760px){.page{padding:124px 24px 56px}.content h1{font-size:24px}}

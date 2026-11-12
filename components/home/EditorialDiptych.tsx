@@ -10,7 +10,7 @@ export default function EditorialDiptych({ images }: { images: Editorial }) {
       className={styles.diptych}
       data-scroll-section
       data-header-foreground="white"
-      aria-label="Dyane Paris — études sculpturales"
+      aria-label="Dyane Paris - études sculpturales"
     >
       {images.map((image, index) => (
         <figure className={styles.editorialPanel} key={`${image.src}-${index}`}>

@@ -1,0 +1,16 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 1px solid currentColor;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .09em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }

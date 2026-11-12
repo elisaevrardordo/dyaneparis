@@ -1,16 +1,19 @@
 'use client'
 
+import EditorialImage from './EditorialImage'
 import type { CSSProperties } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
 type ViewportVideoProps = {
   src: string
+  poster?: string
   label: string
   className?: string
   style?: CSSProperties
+  sizes?: string
 }
 
-export default function ViewportVideo({ src, label, className, style }: ViewportVideoProps) {
+export default function ViewportVideo({ src, poster, label, className, style, sizes = '50vw' }: ViewportVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const shouldPlayRef = useRef(false)
   const [shouldLoad, setShouldLoad] = useState(false)
@@ -28,7 +31,7 @@ export default function ViewportVideo({ src, label, className, style }: Viewport
       } else {
         video.pause()
       }
-    }, { rootMargin: '320px 0px', threshold: 0.01 })
+    }, { rootMargin: '640px 0px', threshold: 0.01 })
 
     observer.observe(video)
     return () => observer.disconnect()
@@ -43,17 +46,20 @@ export default function ViewportVideo({ src, label, className, style }: Viewport
   }, [shouldLoad])
 
   return (
+    <>
+    {poster ? <EditorialImage src={poster} alt="" fill sizes={sizes} quality={85} loading="lazy" className={className} style={style} /> : null}
     <video
       ref={videoRef}
       className={className}
-      style={style}
+      style={{ ...style, position: 'relative' }}
       muted
       loop
       playsInline
-      preload="none"
+      preload={shouldLoad ? 'metadata' : 'none'}
       aria-label={label}
     >
       {shouldLoad ? <source src={src} /> : null}
     </video>
+    </>
   )
 }

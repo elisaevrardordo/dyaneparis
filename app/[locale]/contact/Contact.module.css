@@ -1,16 +1,16 @@
 .page {
   min-height: 100svh;
-  overflow: clip;
+  overflow: visible;
   color: var(--foreground-experience);
   background: var(--background-experience);
 }
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(400px, 44%) minmax(420px, 38%);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
   align-items: start;
   justify-content: space-between;
-  gap: clamp(82px, 9vw, 156px);
+  gap: clamp(48px, 6vw, 96px);
   width: min(calc(100% - clamp(64px, 9vw, 144px)), 1450px);
   margin: 0 auto;
   padding: calc(var(--header-height) + clamp(48px, 5vw, 72px)) 0 clamp(82px, 7vw, 112px);
@@ -20,6 +20,10 @@
   min-width: 0;
   font-family: var(--font-editorial), Georgia, serif;
   font-weight: 400;
+}
+
+.intro {
+  composes: statement from '../../../components/editorial/EditorialStatement.module.css';
 }
 
 .intro,
@@ -401,7 +405,7 @@
 
 .visual {
   position: relative;
-  justify-self: end;
+  justify-self: start;
   width: min(100%, 560px);
   max-width: 560px;
   aspect-ratio: 1 / 1;
@@ -460,27 +464,18 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .layout {
-    min-height: calc(100svh + clamp(420px, 35vw, 560px));
-  }
-
-  .contentColumn {
-    position: sticky;
-    top: calc(var(--header-height) + clamp(48px, 5vw, 72px));
-    align-self: start;
-  }
-
+@media (min-width: 901px) {
   .visual {
     position: sticky;
-    top: calc(var(--header-height) + clamp(48px, 5vw, 72px));
+    top: calc(var(--header-height) + 24px);
     align-self: start;
+    max-height: calc(100svh - var(--header-height) - 48px);
   }
 }
 
 @media (max-width: 1100px) {
   .layout {
-    grid-template-columns: minmax(360px, 48%) minmax(380px, 42%);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(54px, 7vw, 84px);
   }
 
@@ -499,7 +494,8 @@
 
   .visual {
     width: min(100%, 560px);
-    margin: 58px auto 0;
+    margin: 0 auto 32px;
+    max-height: none;
   }
 
   .contentColumn {
@@ -591,3 +587,5 @@
     transition: none;
   }
 }
+
+.responseTime { display: inline-block; margin-top: 12px; }

@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import createMiddleware from 'next-intl/middleware'
 import { routing } from '@/i18n/routing'
+import { isProductionDeployment } from '@/lib/deployment'
 
 const intlMiddleware = createMiddleware(routing)
 
@@ -46,6 +47,7 @@ export default function middleware(request: NextRequest) {
         .split(':')[0]
         .toLowerCase()
     const protocol = request.headers.get('x-forwarded-proto') ?? url.protocol.replace(':', '')
+    const isNetlifyPreview = host.endsWith('.netlify.app')
     const isProductionHost = host === 'dyaneparis.com' || host === 'www.dyaneparis.com'
     let shouldRedirect = false
 
@@ -65,18 +67,21 @@ export default function middleware(request: NextRequest) {
         return NextResponse.redirect(url, 308)
     }
 
-    if (isPublicAsset(url.pathname)) {
-        return NextResponse.next()
+    const testPayment = /^\/(en\/|fr\/)?paiement-test\/?$/.exec(url.pathname)
+    if (testPayment && (isProductionHost || isNetlifyPreview || isProductionDeployment())) {
+        url.pathname = testPayment[1] === 'en/' ? '/en/contact' : '/contact'
+        url.search = ''
+        return NextResponse.redirect(url, 307)
     }
 
-    if (/^\/fr(?:\/|$)/.test(url.pathname) && internalLocale === 'fr') {
-        return NextResponse.next()
-    }
+    // Keep the locale header that next-intl sets during its internal rewrite.
+    const isInternalFrenchRoute = /^\/fr(?:\/|$)/.test(url.pathname) && internalLocale === 'fr'
+    const response = isPublicAsset(url.pathname) || isInternalFrenchRoute
+        ? NextResponse.next()
+        : intlMiddleware(request)
 
-    // Let next-intl perform the locale rewrite so the internal request carries
-    // the locale header expected by the App Router. A plain rewrite to `/fr`
-    // is normalized back to the prefix-free URL by Next.js and creates a loop.
-    return intlMiddleware(request)
+    if (isNetlifyPreview) response.headers.set('X-Robots-Tag', 'noindex')
+    return response
 }
 
 export const config = {

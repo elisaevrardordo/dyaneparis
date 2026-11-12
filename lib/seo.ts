@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { officialSeoImage } from '@/content/officialImages'
+import { imageRightsMetadata } from '@/lib/imageRights'
 
 export const SITE_URL = 'https://www.dyaneparis.com'
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`
@@ -14,62 +16,14 @@ export type SeoImage = {
 }
 
 export const seoImages = {
-    home: {
-        url: '/home/hero/hero-dyane-website-vdef-poster.jpg',
-        width: 1800,
-        height: 1350,
-        alt: 'Sculptures-bouteilles Dyane Paris contenant des cocktails prêts à déguster',
-        caption: "Dyane Paris, Maison française d'Art Liquide",
-        description: 'Cocktails prêts à déguster présentés dans des sculptures en porcelaine peintes à la main.',
-    },
-    collection: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
-        width: 1080,
-        height: 1350,
-        alt: 'Collection de cocktails Dyane Paris en sculptures de porcelaine peintes à la main',
-        caption: 'Collection des œuvres Dyane Paris',
-        description: 'Collection de cocktails signature Dyane Paris présentés dans des flacons sculpturaux en porcelaine.',
-    },
-    pornstarMartini: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
-        width: 1080,
-        height: 1350,
-        alt: 'Sculpture-bouteille Dyane No.1 contenant le cocktail Pornstar Martini',
-        caption: 'Dyane No.1 — Pornstar Martini',
-        description: 'Cocktail Pornstar Martini Dyane Paris présenté dans un flacon sculptural en porcelaine.',
-    },
-    moscowMule: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
-        width: 1080,
-        height: 1350,
-        alt: 'Sculpture-bouteille Dyane No.2 contenant le cocktail Moscow Mule',
-        caption: 'Dyane No.2 — Moscow Mule',
-        description: 'Cocktail Moscow Mule Dyane Paris présenté dans un flacon sculptural en porcelaine.',
-    },
-    teo: {
-        url: '/dyane-teo.webp',
-        width: 1080,
-        height: 1350,
-        alt: 'Bouteille-sculpture Teo for Dyane Paris peinte à la main',
-        caption: 'Teo for Dyane Paris',
-        description: 'Édition artistique Teo for Dyane Paris, peinte à la main en série confidentielle.',
-    },
-    maison: {
-        url: '/editorial/la-maison/STATUE%202.png',
-        width: 1080,
-        height: 1350,
-        alt: "Cocktail Dyane Paris présenté dans une sculpture en porcelaine peinte à la main",
-        caption: "La Maison Dyane Paris et son savoir-faire d'Art Liquide",
-        description: "Une création Dyane Paris réunissant sculpture en porcelaine, artisanat français et cocktail prêt à déguster.",
-    },
-    experiences: {
-        url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777445316/DSC00599_copie_2_o518xt.jpg',
-        width: 6000,
-        height: 4000,
-        alt: 'Création Dyane Paris présentée lors d’une expérience sur mesure',
-        caption: 'Expériences et collaborations Dyane Paris',
-        description: 'Expérience de dégustation et création sur mesure imaginée par la Maison Dyane Paris.',
-    },
+    // Metadata only: the opening film and its poster are intentionally untouched.
+    home: officialSeoImage('maison-campagne'),
+    collection: officialSeoImage('no1-catalogue'),
+    pornstarMartini: officialSeoImage('no1-portrait'),
+    basilSmash: officialSeoImage('no2-portrait'),
+    teo: officialSeoImage('teo'),
+    maison: officialSeoImage('maison'),
+    experiences: officialSeoImage('experiences'),
     distillation: {
         url: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1777444666/188493ca0dd368f1190e6b8c346f3658_1_wwlrse.jpg',
         width: 1200,
@@ -119,6 +73,11 @@ export function localizedAlternates(path = '') {
     }
 }
 
+// The locale layout appends the brand once. Source titles may already include it.
+export function titleWithoutBrand(title: string) {
+    return title.replace(/(?:\s*\|\s*Dyane Paris)+\s*$/i, '').trim()
+}
+
 export function buildPageMetadata({
     locale,
     path,
@@ -140,7 +99,7 @@ export function buildPageMetadata({
     const imageUrl = absoluteUrl(image.url)
 
     return {
-        title: absoluteTitle ? { absolute: title } : title,
+        title: absoluteTitle ? { absolute: title } : titleWithoutBrand(title),
         description,
         alternates: {
             canonical: pageUrl,
@@ -176,6 +135,7 @@ export function imageObject(image: SeoImage, representativeOfPage = false) {
 
     return {
         '@type': 'ImageObject',
+        '@id': `${contentUrl}#image`,
         contentUrl,
         url: contentUrl,
         name: image.caption,
@@ -183,9 +143,7 @@ export function imageObject(image: SeoImage, representativeOfPage = false) {
         description: image.description,
         ...(image.width ? { width: image.width } : {}),
         ...(image.height ? { height: image.height } : {}),
-        creditText: 'Dyane Paris',
-        creator: { '@id': ORGANIZATION_ID },
-        copyrightNotice: 'Dyane Paris',
+        ...imageRightsMetadata(contentUrl),
         ...(representativeOfPage ? { representativeOfPage: true } : {}),
     }
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import styles from './Configurator.module.css'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons/EditorialIcons'
 import ConfiguratorStage from './ConfiguratorStage'
 import {
   type ConfiguratorStep,
@@ -16,13 +17,13 @@ import {
 const copy = {
   fr: {
     atelier: 'Atelier de personnalisation',
-    stepFormat: 'Étape 1 — Le format',
+    stepFormat: 'Étape 1 - Le format',
     formatTitle: 'Choisissez les proportions de votre œuvre',
     startingAt: 'À partir de',
     onRequest: 'Prix sur demande',
     continue: 'Continuer',
     selected: 'Format sélectionné',
-    paletteStep: 'Étape 2 — La matière',
+    paletteStep: 'Étape 2 - La matière',
     paletteTitle: 'Interprétez le voile',
     paletteIntro: 'La couleur se dépose progressivement sur le voile, sans altérer la porcelaine.',
     shadeSelected: 'Teinte sélectionnée',
@@ -31,13 +32,13 @@ const copy = {
   },
   en: {
     atelier: 'Personalisation Atelier',
-    stepFormat: 'Step 1 — Format',
+    stepFormat: 'Step 1 - Format',
     formatTitle: 'Choose the proportions of your work',
     startingAt: 'Starting at',
     onRequest: 'Price on request',
     continue: 'Continue',
     selected: 'Selected format',
-    paletteStep: 'Step 2 — The material',
+    paletteStep: 'Step 2 - The material',
     paletteTitle: 'Interpret the veil',
     paletteIntro: 'Colour settles gradually on the veil while preserving the porcelain.',
     shadeSelected: 'Selected shade',
@@ -159,7 +160,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
 
             <div className={styles.continueRow}>
               <p className={styles.currentSelection} aria-live="polite">
-                {selectedFormat ? `${text.selected} — Dyane ${selectedFormat.label}` : text.stepFormat}
+                {selectedFormat ? `${text.selected} - Dyane ${selectedFormat.label}` : text.stepFormat}
               </p>
               <button
                 type="button"
@@ -168,7 +169,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
                 onClick={continueToPalette}
               >
                 {text.continue}
-                <span aria-hidden="true">→</span>
+                <ArrowRightIcon />
               </button>
             </div>
           </div>
@@ -176,7 +177,7 @@ export default function ConfiguratorShell({ locale }: { locale: string }) {
       ) : (
         <section className={styles.palettePanel} aria-labelledby="palette-title">
           <button type="button" className={styles.backButton} onClick={() => setActiveStep('format')}>
-            <span aria-hidden="true">←</span>
+            <ArrowLeftIcon />
             {text.back}
           </button>
           <p className={styles.stepLabel}>{text.paletteStep}</p>

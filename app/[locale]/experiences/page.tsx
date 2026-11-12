@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { experiencesHeroImage, getEditorialPage } from '@/content/editorialPages'
 import ExperiencesClient from './ExperiencesClient'
+import HauteMixologieSection from '../sur-mesure/HauteMixologieSection'
+import BespokePiecesSection from '../sur-mesure/BespokePiecesSection'
+import DiscoveryLinks from '@/components/discovery/DiscoveryLinks'
 import {
     breadcrumbJsonLd,
     buildPageMetadata,
     imageObject,
     localizedUrl,
-    seoImages,
     serializeJsonLd,
 } from '@/lib/seo'
 
@@ -16,36 +18,34 @@ export async function generateMetadata({
     params: Promise<{ locale: string }>
 }): Promise<Metadata> {
     const { locale } = await params
-    const t = await getTranslations({ locale, namespace: 'seo.experiences' })
+    const { seo } = getEditorialPage('experiences', locale)
 
     return buildPageMetadata({
         locale,
         path: '/experiences',
-        title: t('title'),
-        description: t('description'),
-        image: seoImages.experiences,
+        title: seo.title,
+        description: seo.description,
+        image: experiencesHeroImage(locale),
+        absoluteTitle: true,
     })
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     const pageUrl = localizedUrl(locale, '/experiences')
+    const page = getEditorialPage('experiences', locale)
     const jsonLd = {
         '@context': 'https://schema.org',
         '@graph': [
             {
                 '@type': 'WebPage',
                 '@id': `${pageUrl}#webpage`,
-                name: locale === 'en'
-                    ? 'Cocktails for luxury hotels and exceptional events'
-                    : 'Cocktails pour hôtels et événements d’exception',
-                description: locale === 'en'
-                    ? 'Dyane Paris creates premium ready-to-serve cocktails for hotel bars, minibars, room service and events, with bespoke recipes and formats.'
-                    : 'Dyane Paris conçoit des cocktails premium prêts à servir pour le bar, le minibar, le room service et les événements, avec recettes et formats sur mesure.',
+                name: page.title,
+                description: page.seo.description,
                 url: pageUrl,
                 isPartOf: { '@id': 'https://www.dyaneparis.com/#website' },
                 about: { '@id': 'https://www.dyaneparis.com/#organization' },
-                primaryImageOfPage: imageObject(seoImages.experiences, true),
+                primaryImageOfPage: imageObject(experiencesHeroImage(locale), true),
                 inLanguage: locale,
             },
             breadcrumbJsonLd(locale, [
@@ -58,7 +58,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-            <ExperiencesClient />
+            <ExperiencesClient bespokeSections={<>
+                <HauteMixologieSection locale={locale} />
+                <BespokePiecesSection locale={locale} />
+            </>} />
+            <DiscoveryLinks locale={locale} />
         </>
     )
 }

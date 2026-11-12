@@ -1,0 +1,23 @@
+{
+  "account": "acct_1UWul7JqLuPXMAFh",
+  "livemode": false,
+  "currency": "eur",
+  "products": [
+    {
+      "sku": "dyane-sculpture-25cl",
+      "label": "Sculpture Dyane Paris - 25 cl",
+      "productId": "prod_dyane_sculpture_25cl_sandbox",
+      "priceId": "price_1UXH22JqLuPXMAFhN4yVKzCm",
+      "unitAmount": 5500,
+      "taxBehavior": "inclusive"
+    },
+    {
+      "sku": "dyane-sculpture-150cl",
+      "label": "Sculpture Dyane Paris - 1,5 L",
+      "productId": "prod_dyane_sculpture_150cl_sandbox",
+      "priceId": "price_1UXH3OJqLuPXMAFhqjP8tNLv",
+      "unitAmount": 18500,
+      "taxBehavior": "inclusive"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { newsletterError, newsletterSuccess } from '@/lib/newsletter/messages'
 
 const font = { fontFamily: 'var(--font-editorial), serif' }
 
@@ -39,18 +40,26 @@ export default function NewsletterForm() {
     const [email, setEmail] = useState('')
     const [website, setWebsite] = useState('')
     const [status, setStatus] = useState<Status>('idle')
+    const [preview, setPreview] = useState(false)
+    const [errorCode, setErrorCode] = useState<string>()
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
         if (status === 'loading') return
         setStatus('loading')
+        setErrorCode(undefined)
         try {
             const res = await fetch('/api/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, website, locale, source: 'newsletter_section' }),
             })
-            if (!res.ok) throw new Error('request failed')
+            const result = await res.json()
+            if (!res.ok || result?.ok !== true) {
+                setErrorCode(typeof result?.code === 'string' ? result.code : undefined)
+                throw new Error('request failed')
+            }
+            setPreview(result.mode === 'preview')
             setStatus('success')
             setEmail('')
         } catch {
@@ -67,7 +76,7 @@ export default function NewsletterForm() {
                     {t.description}
                 </p>
                 {status === 'success' ? (
-                    <p style={{ ...font, fontSize: '13px', color: 'rgba(255,255,255,0.8)', letterSpacing: '0.1em' }}>{t.success}</p>
+                    <p role="status" style={{ ...font, fontSize: '13px', color: 'rgba(255,255,255,0.8)', letterSpacing: '0.1em' }}>{newsletterSuccess(locale, preview)}</p>
                 ) : (
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                         <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
@@ -86,6 +95,7 @@ export default function NewsletterForm() {
                                 type="email"
                                 placeholder={t.placeholder}
                                 required
+                                maxLength={180}
                                 value={email}
                                 onChange={e => { setEmail(e.target.value); if (status === 'error') setStatus('idle') }}
                                 className="newsletter-input"
@@ -100,7 +110,7 @@ export default function NewsletterForm() {
                             {status === 'loading' ? t.loading : t.submit}
                         </button>
                         {status === 'error' && (
-                            <p style={{ ...font, fontSize: '12px', color: '#e6a4a4', letterSpacing: '0.08em', marginTop: '20px' }}>{t.error}</p>
+                            <p role="alert" style={{ ...font, fontSize: '12px', color: '#e6a4a4', letterSpacing: '0.08em', marginTop: '20px' }}>{newsletterError(locale, errorCode)}</p>
                         )}
                     </form>
                 )}

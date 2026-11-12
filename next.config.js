@@ -6,6 +6,13 @@ const nextConfig = {
     devIndicators: false,
     poweredByHeader: false,
     outputFileTracingRoot: __dirname,
+    typescript: { tsconfigPath: './tsconfig.app.json' },
+    // Production builds must fit on development machines with limited disk space.
+    // This changes build caching only; generated pages and runtime behavior are unchanged.
+    webpack(config, { dev }) {
+        if (!dev) config.cache = false
+        return config
+    },
   images: {
     remotePatterns: [
       {
@@ -20,24 +27,31 @@ const nextConfig = {
       },
     ],
     formats: ['image/avif', 'image/webp'],
+    qualities: [75, 85],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
     async redirects() {
     return [
-      { source: '/products/dyane-paris-pornstar-martini-70-cl', destination: '/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/products/dyane-no-1', destination: '/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/products/dyane-no1-pornstar-martini', destination: '/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/products/dyane-no2-moscow-mule', destination: '/oeuvres/dyane-no2-moscow-mule', permanent: true },
-      { source: '/products/dyane-no-2', destination: '/oeuvres/dyane-no2-moscow-mule', permanent: true },
+      { source: '/oeuvres/dyane-paris-pornstar-martini-70-cl', destination: '/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/en/oeuvres/dyane-paris-pornstar-martini-70-cl', destination: '/en/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/fr/oeuvres/dyane-paris-pornstar-martini-70-cl', destination: '/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/oeuvres/dyane-no2-moscow-mule', destination: '/oeuvres/dyane-no2-basil-smash', permanent: true },
+      { source: '/en/oeuvres/dyane-no2-moscow-mule', destination: '/en/oeuvres/dyane-no2-basil-smash', permanent: true },
+      { source: '/fr/oeuvres/dyane-no2-moscow-mule', destination: '/oeuvres/dyane-no2-basil-smash', permanent: true },
+      { source: '/products/dyane-paris-pornstar-martini-70-cl', destination: '/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/products/dyane-no-1', destination: '/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/products/dyane-no1-pornstar-martini', destination: '/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/products/dyane-no2-moscow-mule', destination: '/oeuvres/dyane-no2-basil-smash', permanent: true },
+      { source: '/products/dyane-no-2', destination: '/oeuvres/dyane-no2-basil-smash', permanent: true },
       { source: '/products/bouteille-signee-teokaykay', destination: '/oeuvres/bouteille-signee-teokaykay', permanent: true },
       { source: '/pages/l-art-de-la-porcelaine-dyane-paris', destination: '/le-journal/art-de-la-porcelaine', permanent: true },
       { source: '/blogs/news/l-art-de-la-porcelaine-dyane-paris', destination: '/le-journal/art-de-la-porcelaine', permanent: true },
       { source: '/blogs/le-journal/l-art-de-la-porcelaine-dyane-paris', destination: '/le-journal/art-de-la-porcelaine', permanent: true },
-      { source: '/en/products/dyane-paris-pornstar-martini-70-cl', destination: '/en/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/en/products/dyane-no-1', destination: '/en/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/en/products/dyane-no1-pornstar-martini', destination: '/en/oeuvres/dyane-paris-pornstar-martini-70-cl', permanent: true },
-      { source: '/en/products/dyane-no2-moscow-mule', destination: '/en/oeuvres/dyane-no2-moscow-mule', permanent: true },
-      { source: '/en/products/dyane-no-2', destination: '/en/oeuvres/dyane-no2-moscow-mule', permanent: true },
+      { source: '/en/products/dyane-paris-pornstar-martini-70-cl', destination: '/en/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/en/products/dyane-no-1', destination: '/en/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/en/products/dyane-no1-pornstar-martini', destination: '/en/oeuvres/dyane-no1-pornstar-martini', statusCode: 301 },
+      { source: '/en/products/dyane-no2-moscow-mule', destination: '/en/oeuvres/dyane-no2-basil-smash', permanent: true },
+      { source: '/en/products/dyane-no-2', destination: '/en/oeuvres/dyane-no2-basil-smash', permanent: true },
       { source: '/en/products/bouteille-signee-teokaykay', destination: '/en/oeuvres/bouteille-signee-teokaykay', permanent: true },
       { source: '/en/pages/l-art-de-la-porcelaine-dyane-paris', destination: '/en/le-journal/art-de-la-porcelaine', permanent: true },
       { source: '/en/blogs/news/l-art-de-la-porcelaine-dyane-paris', destination: '/en/le-journal/art-de-la-porcelaine', permanent: true },
@@ -52,6 +66,10 @@ const nextConfig = {
       { source: '/pages/experiences', destination: '/experiences', permanent: true },
       { source: '/en/pages/la-maison', destination: '/en/la-maison', permanent: true },
       { source: '/en/pages/experiences', destination: '/en/experiences', permanent: true },
+      { source: '/sur-mesure/cocktails', destination: '/experiences#haute-mixologie', permanent: false },
+      { source: '/sur-mesure/pieces', destination: '/experiences#personnalisation-des-pieces', permanent: false },
+      { source: '/en/sur-mesure/cocktails', destination: '/en/experiences#haute-mixologie', permanent: false },
+      { source: '/en/sur-mesure/pieces', destination: '/en/experiences#personnalisation-des-pieces', permanent: false },
         ]
     },
     async headers() {

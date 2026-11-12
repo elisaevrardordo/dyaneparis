@@ -1,0 +1,50 @@
+.storyLinks {
+  display: flex;
+  margin-inline: var(--editorial-inset);
+  padding-block: 20px;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.storyLinks a {
+  color: inherit;
+  font-family: var(--font-editorial), serif;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-transform: uppercase;
+}
+
+.commissionInvitation {
+  composes: statement from '../editorial/EditorialStatement.module.css';
+  padding: 32px 24px 16px;
+  text-align: center;
+}
+
+.commissionInvitation h2 {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  line-height: 1.5 !important;
+}
+
+.commissionInvitation p {
+  max-width: 60ch;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 1.6 !important;
+}
+
+.commissionInvitation a {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-underline-offset: 5px;
+}
+
+@media (max-width: 768px) {
+  .commissionInvitation { padding: 28px 20px 16px; }
+}

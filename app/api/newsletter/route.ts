@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { savePreviewSubscription } from '@/lib/newsletter/previewStore'
+import { newsletterWelcomeEmail } from '@/lib/newsletter/welcomeEmail'
+import { subscribeToNewsletter } from '@/lib/newsletter/subscription'
+import { newsletterUnsubscribeUrl } from '@/lib/newsletter/unsubscribeLink'
 import {
     clientIp,
     createMemoryRateLimiter,
@@ -23,125 +27,112 @@ function asString(value: unknown, maxLength: number) {
 }
 
 function isEmail(value: string) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && !/[\u0000-\u001f\u007f]/.test(value)
 }
 
-function isAlreadyMember(error: { name?: string; message?: string } | null) {
-    if (!error) return false
-    const haystack = `${error.name || ''} ${error.message || ''}`.toLowerCase()
-    return haystack.includes('already') || haystack.includes('exist')
-}
-
-const copy = {
-    fr: {
-        subject: 'Bienvenue chez Dyane Paris',
-        heading: 'Merci de rejoindre la Maison.',
-        body: 'Vous faites désormais partie des premières personnes informées de nos nouvelles collections, batchs et expériences exclusives.',
-        signature: 'Dyane Paris — Maison d’Art Liquide',
-    },
-    en: {
-        subject: 'Welcome to Dyane Paris',
-        heading: 'Thank you for joining the Maison.',
-        body: 'You are now among the first to hear about our new collections, batches and exclusive experiences.',
-        signature: 'Dyane Paris — Liquid Art Maison',
-    },
-} as const
-
-function welcomeHtml(locale: 'fr' | 'en') {
-    const t = copy[locale]
-    return `
-        <div style="font-family: Georgia, serif; background: #0d0d0d; padding: 48px 24px; color: #f5f0e8;">
-            <div style="max-width: 560px; margin: 0 auto; background: #111; border: 1px solid #262626;">
-                <div style="padding: 40px 40px 28px; border-bottom: 1px solid #262626; text-align: center;">
-                    <p style="margin: 0 0 12px; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: #8a8176;">Newsletter</p>
-                    <h1 style="margin: 0; font-weight: 400; font-size: 26px; color: #fff;">${t.heading}</h1>
-                </div>
-                <div style="padding: 32px 40px 40px;">
-                    <p style="margin: 0 0 24px; font-size: 15px; line-height: 1.8; color: rgba(245,240,232,0.8);">${t.body}</p>
-                    <p style="margin: 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.45);">${t.signature}</p>
-                </div>
-            </div>
-        </div>
-    `
+function response(payload: Record<string, unknown>, status = 200, headers = {}) {
+    return NextResponse.json(payload, { status, headers: { 'Cache-Control': 'no-store', ...headers } })
 }
 
 export async function POST(request: Request) {
     if (!isTrustedSameOrigin(request)) {
-        return NextResponse.json({ error: 'Forbidden origin.' }, { status: 403 })
+        return response({ error: 'Forbidden origin.' }, 403)
     }
 
     if (requestBodyTooLarge(request, 4_000)) {
-        return NextResponse.json({ error: 'Request body too large.' }, { status: 413 })
+        return response({ error: 'Request body too large.' }, 413)
     }
 
     if (isRateLimited(clientIp(request))) {
-        return NextResponse.json(
-            { error: 'Too many requests.' },
-            { status: 429, headers: { 'Retry-After': '3600' } },
-        )
+        return response({ error: 'Too many requests.', code: 'rate_limited' }, 429, { 'Retry-After': '3600' })
     }
 
     let payload: NewsletterPayload
 
     try {
-        payload = await request.json()
+        const body = await request.text()
+        if (Buffer.byteLength(body, 'utf8') > 4_000) return response({ error: 'Request body too large.' }, 413)
+        payload = JSON.parse(body)
     } catch {
-        return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
+        return response({ error: 'Invalid request body.' }, 400)
     }
 
-    if (asString(payload.website, 200)) return NextResponse.json({ ok: true })
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)
+        || Object.keys(payload).some(key => !['email', 'firstName', 'locale', 'source', 'website'].includes(key))) {
+        return response({ error: 'Invalid request body.' }, 400)
+    }
+    if (asString(payload.website, 200)) return response({ ok: true })
+
+    if (typeof payload.email !== 'string' || payload.email.trim().length > 180
+        || (payload.firstName !== undefined && (typeof payload.firstName !== 'string' || payload.firstName.length > 120))
+        || (payload.locale !== undefined && (typeof payload.locale !== 'string' || !['fr', 'en'].includes(payload.locale)))
+        || (payload.source !== undefined && (typeof payload.source !== 'string' || !['footer', 'newsletter_section'].includes(payload.source)))) {
+        return response({ error: 'Invalid subscription.' }, 400)
+    }
 
     const email = asString(payload.email, 180).toLowerCase()
     const firstName = asString(payload.firstName, 120)
     const localeRaw = asString(payload.locale, 8)
     const locale: 'fr' | 'en' = localeRaw === 'en' ? 'en' : 'fr'
+    const source = asString(payload.source, 40) || 'footer'
 
     if (!isEmail(email)) {
-        return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 })
+        return response({ error: 'Invalid email address.' }, 400)
+    }
+
+    // Explicit loopback-only persistence: never invoke Resend in the local preview.
+    if (process.env.NEWSLETTER_MODE === 'preview') {
+        try {
+            await savePreviewSubscription(request, { email, locale, source })
+            return response({ ok: true, mode: 'preview' })
+        } catch {
+            console.error('Local newsletter storage unavailable')
+            return response({ error: 'Newsletter preview unavailable.', code: 'unavailable' }, 503)
+        }
     }
 
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
-        return NextResponse.json({ error: 'Newsletter service is not configured.' }, { status: 500 })
+        return response({ error: 'Newsletter service is not configured.', code: 'unavailable' }, 503)
     }
 
     const segmentId = process.env.RESEND_SEGMENT_ID || process.env.RESEND_AUDIENCE_ID
-    if (!segmentId) {
-        return NextResponse.json({ error: 'Newsletter segment is not configured.' }, { status: 500 })
+    const unsubscribeSecret = process.env.NEWSLETTER_UNSUBSCRIBE_SECRET
+    if (!segmentId || !unsubscribeSecret || unsubscribeSecret.length < 32) {
+        return response({ error: 'Newsletter service is not configured.', code: 'unavailable' }, 503)
     }
 
     const resend = new Resend(apiKey)
 
     try {
-        const { error } = await resend.contacts.create({
-            email,
-            firstName: firstName || undefined,
-            unsubscribed: false,
-            segments: [{ id: segmentId }],
-        })
-
-        if (error && !isAlreadyMember(error)) {
-            console.error('Resend newsletter contact error:', error)
-            return NextResponse.json({ error: 'Unable to subscribe.' }, { status: 502 })
+        const subscription = await subscribeToNewsletter(resend, { email, firstName, segmentId })
+        if (subscription.status === 'opted-out') {
+            return response({ error: 'Newsletter preferences must be updated before subscribing.', code: 'unavailable' }, 409)
         }
-    } catch (error) {
-        console.error('Newsletter subscription exception:', error)
-        return NextResponse.json({ error: 'Unable to subscribe.' }, { status: 500 })
+        if (subscription.status === 'subscribed') {
+            const unsubscribeUrl = newsletterUnsubscribeUrl(subscription.contactId, segmentId, locale, unsubscribeSecret)
+
+            // Keep confirmed subscriptions valid when the delivery provider is unavailable.
+            try {
+                const { data, error } = await resend.emails.send({
+                    from: process.env.NEWSLETTER_FROM || process.env.CONTACT_FORM_FROM || defaultFrom,
+                    to: [email],
+                    ...newsletterWelcomeEmail(locale, { firstName: subscription.firstName, unsubscribeUrl }),
+                    headers: {
+                        'List-Unsubscribe': `<${unsubscribeUrl}>`,
+                        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                    },
+                    tags: [{ name: 'source', value: 'newsletter' }],
+                }, { idempotencyKey: `newsletter-welcome/${segmentId}/${subscription.contactId}` })
+                if (error || !data?.id) console.error('Newsletter welcome email not accepted', error?.name)
+            } catch {
+                console.error('Newsletter welcome email unavailable')
+            }
+        }
+    } catch {
+        console.error('Newsletter subscription unavailable')
+        return response({ error: 'Unable to subscribe.', code: 'unavailable' }, 502)
     }
 
-    // Welcome email is best-effort: a failure here must not fail the subscription.
-    try {
-        await resend.emails.send({
-            from: process.env.NEWSLETTER_FROM || process.env.CONTACT_FORM_FROM || defaultFrom,
-            to: [email],
-            subject: copy[locale].subject,
-            html: welcomeHtml(locale),
-            text: `${copy[locale].heading}\n\n${copy[locale].body}\n\n${copy[locale].signature}`,
-            tags: [{ name: 'source', value: 'newsletter' }],
-        })
-    } catch (error) {
-        console.error('Newsletter welcome email exception:', error)
-    }
-
-    return NextResponse.json({ ok: true })
+    return response({ ok: true, mode: 'resend' })
 }

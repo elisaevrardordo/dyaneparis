@@ -1,6 +1,23 @@
 export type HomeLocale = 'fr' | 'en'
 export type HeaderTheme = 'light' | 'dark'
 
+export const homeUniverse = {
+  src: '/home/editorial/dyane-paris-cocktail-floral-univers.webp',
+  href: '/le-journal',
+  fr: {
+    title: 'L’UNIVERS DYANE',
+    description: 'Dyane Paris est une Maison française d’Art Liquide. Elle imagine des cocktails d’exception prêts à servir, présentés dans des sculptures en porcelaine peintes à la main. À la rencontre de la mixologie et des métiers d’art, chaque création devient une expérience de dégustation et un objet à collectionner.',
+    cta: 'DÉCOUVRIR',
+    alt: 'Coupe de cocktail avec une fleur rose sur fond noir',
+  },
+  en: {
+    title: 'THE DYANE UNIVERSE',
+    description: 'Dyane Paris is a French House of Liquid Art. It imagines exceptional ready-to-serve cocktails, presented in hand-painted porcelain sculptures. At the meeting point of mixology and fine craft, each creation becomes a tasting experience and a collectible object.',
+    cta: 'DISCOVER',
+    alt: 'Cocktail coupe with a pink flower against a black background',
+  },
+} as const
+
 export type HomeImage = {
   src: string
   alt: string
@@ -57,18 +74,18 @@ type HomeContent = {
 
 const sharedMedia = {
   hero: {
-    poster: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1920,so_0/v1785493082/0315_1_4_ndykz6.jpg',
-    desktopVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/0315_1_4_ndykz6.mp4',
-    mobileVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/0315_1_4_ndykz6.mp4',
+    poster: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_jpg,q_auto,w_1920,so_0/v1785493082/dyane-paris-sculpture-porcelaine-dyane-luxe.jpg',
+    desktopVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/dyane-paris-sculpture-porcelaine-dyane-luxe.mp4',
+    mobileVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/f_mp4,q_auto,vc_h264/v1785493082/dyane-paris-sculpture-porcelaine-dyane-luxe.mp4',
   },
   products: [
     {
-      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365386/38_r1fuec.png',
-      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708147/Sans_titre_Publication_Instagram_4_5_pr3obf.mp4',
+      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-argent-voile-rouge-detail.png',
+      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708147/dyane-paris-service-cocktail-rituel.mp4',
     },
     {
-      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1788365385/39_rzlpeg.png',
-      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708474/B_Fleur_de_la_Passion._Grande_fleur_solitaire_remarquable_par_sa_couronne_de_filaments_colore%CC%81s._Pe%CC%81tales_clairs_e%CC%81tamines_saillantes_et_pistil_proe%CC%81minent._Fleur_caracte%CC%81ristique_du_genre_Passiflora._zsisam.mp4',
+      src: 'https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-argent-voile-vert-detail.png',
+      hoverVideo: 'https://res.cloudinary.com/dazhkrimv/video/upload/v1788708474/dyane-paris-jeremy-bacquet-mixologie-bar.mp4',
     },
   ],
   presence: [
@@ -103,7 +120,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         title: 'DYANE No.1',
         subtitle: 'PORNSTAR MARTINI',
         cta: 'DÉCOUVRIR',
-        href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
+        href: '/oeuvres/dyane-no1-pornstar-martini',
         src: sharedMedia.products[0].src,
         hoverVideo: sharedMedia.products[0].hoverVideo,
         alt: 'Dyane No.1, flacon sculptural en porcelaine pour cocktail Pornstar Martini',
@@ -112,12 +129,12 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       },
       {
         title: 'DYANE No.2',
-        subtitle: 'MOSCOW MULE',
+        subtitle: 'BASIL SMASH',
         cta: 'DÉCOUVRIR',
-        href: '/oeuvres/dyane-no2-moscow-mule',
+        href: '/oeuvres/dyane-no2-basil-smash',
         src: sharedMedia.products[1].src,
         hoverVideo: sharedMedia.products[1].hoverVideo,
-        alt: 'Dyane No.2, flacon sculptural en porcelaine pour cocktail Moscow Mule',
+        alt: 'Dyane No.2, flacon sculptural en porcelaine pour cocktail Basil Smash',
         objectPosition: '50% 50%',
         theme: 'dark',
       },
@@ -201,7 +218,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         title: 'DYANE No.1',
         subtitle: 'PORNSTAR MARTINI',
         cta: 'DISCOVER',
-        href: '/oeuvres/dyane-paris-pornstar-martini-70-cl',
+        href: '/oeuvres/dyane-no1-pornstar-martini',
         src: sharedMedia.products[0].src,
         hoverVideo: sharedMedia.products[0].hoverVideo,
         alt: 'Dyane No.1 sculptural porcelain bottle for a Pornstar Martini cocktail',
@@ -210,12 +227,12 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       },
       {
         title: 'DYANE No.2',
-        subtitle: 'MOSCOW MULE',
+        subtitle: 'BASIL SMASH',
         cta: 'DISCOVER',
-        href: '/oeuvres/dyane-no2-moscow-mule',
+        href: '/oeuvres/dyane-no2-basil-smash',
         src: sharedMedia.products[1].src,
         hoverVideo: sharedMedia.products[1].hoverVideo,
-        alt: 'Dyane No.2 sculptural porcelain bottle for a Moscow Mule cocktail',
+        alt: 'Dyane No.2 sculptural porcelain bottle for a Basil Smash cocktail',
         objectPosition: '50% 50%',
         theme: 'dark',
       },

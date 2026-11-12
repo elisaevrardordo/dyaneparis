@@ -1,0 +1,97 @@
+.page {
+  padding: calc(var(--header-height) + clamp(20px, 2vw, 36px)) clamp(16px, 2vw, 40px) clamp(56px, 7vw, 112px);
+  color: #191919;
+  background: #fff;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+
+.intro {
+  padding-inline: clamp(12px, 4vw, 72px);
+}
+
+.intro h1,
+.recipe h2 {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.intro h1 {
+  font-size: clamp(28px, 3.4vw, 58px);
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+
+.intro p,
+.recipe p {
+  max-width: 47ch;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #211d1a;
+}
+
+.image img {
+  object-fit: cover;
+}
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 86px);
+  margin: clamp(36px, 6vw, 92px) auto 0;
+  width: min(1060px, 100%);
+}
+
+.recipe {
+  border-top: 1px solid #dedbd6;
+  padding-top: 24px;
+}
+
+.recipe h2 {
+  margin-top: 10px;
+  font-size: clamp(25px, 2.2vw, 38px);
+}
+
+.recipe .collaboration {
+  margin-top: 0;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.journalLink {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .hero,
+  .recipes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro {
+    padding: 12px 0 0;
+  }
+
+  .image {
+    aspect-ratio: 4 / 3;
+  }
+}

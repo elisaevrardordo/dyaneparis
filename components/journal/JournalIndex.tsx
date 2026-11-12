@@ -1,147 +1,65 @@
-'use client'
-
 import Link from 'next/link'
-import { useRef, useState, type CSSProperties } from 'react'
 import { journalText } from '@/content/journal'
-import { journalIndexStories, type JournalIndexCategory } from '@/content/journalIndex'
+import { journalArchives, journalCategory, journalFilters, journalFilterLabel, journalIndexTitle, journalSelection } from '@/content/journalPresentation'
 import { localizedPath } from '@/i18n/paths'
-import styles from './Journal.module.css'
-import JournalMediaView from './JournalMedia'
+import { cartFontVariables } from '@/components/cart/fonts'
+import JournalStoryMedia from './JournalStoryMedia'
+import styles from './JournalIndex.module.css'
 
-type Story = (typeof journalIndexStories)[number]
-type JournalMediaCellStyle = CSSProperties & { '--journal-overlap'?: string }
-type JournalFilter = 'all' | JournalIndexCategory
-
-const JOURNAL_FILTERS: readonly JournalFilter[] = [
-    'all',
-    'hospitality',
-    'cocktails',
-    'craftsmanship',
-    'art-collaborations',
-]
-
-const filterLabel = (filter: JournalFilter, isEnglish: boolean) => {
-    const labels: Record<JournalFilter, readonly [string, string]> = {
-        all: ['TOUS', 'ALL'],
-        hospitality: ['HOSPITALITÉ', 'HOSPITALITY'],
-        cocktails: ['COCKTAILS', 'COCKTAILS'],
-        craftsmanship: ['SAVOIR-FAIRE', 'CRAFTSMANSHIP'],
-        'art-collaborations': ['ART & COLLABORATIONS', 'ART & COLLABORATIONS'],
-    }
-
-    return labels[filter][isEnglish ? 1 : 0]
-}
-
-function JournalEditorialRow({ story, index, locale }: { story: Story; index: number; locale: string }) {
-    const isEnglish = locale === 'en'
-    const href = localizedPath(locale, story.href)
-    const columns = story.indexLayout?.columns ?? [1.42, 0.7, 0.88]
-    const compositionStyle: CSSProperties = {
-        gridTemplateColumns: columns
-            .map((column) => `minmax(0, ${column}fr)`)
-            .join(' '),
-    }
-
-    return (
-        <article className={styles.storyEntry} data-variant={story.variant}>
-            <div className={styles.storyCopy}>
-                <p className={styles.storyNumber}>{String(index + 1).padStart(2, '0')}</p>
-                <p className={styles.storyMeta}>
-                    {journalText(story.category, locale)}<br />
-                    {journalText(story.rubric, locale)}
-                </p>
-                <h2><Link href={href}>{journalText(story.title, locale)}</Link></h2>
-                {story.subtitle && <p className={styles.storySubtitle}>{journalText(story.subtitle, locale)}</p>}
-                <p className={styles.storyExcerpt}>{journalText(story.excerpt, locale)}</p>
-                <Link className={styles.readLink} href={href}>
-                    {isEnglish ? 'Read the story' : 'Lire le récit'} <span aria-hidden="true">↗</span>
-                </Link>
-            </div>
-
-            <Link
-                className={styles.indexComposition}
-                href={href}
-                aria-label={journalText(story.title, locale)}
-                data-media-count={story.images.length}
-                data-layout={story.variant}
-                style={compositionStyle}
-            >
-                {story.images.map((item, mediaIndex) => {
-                    const overlap = story.indexLayout?.overlap
-                    const hasRightOverlap = overlap?.image === mediaIndex + 1
-                    const mediaStyle = hasRightOverlap
-                        ? { '--journal-overlap': overlap.amount } as JournalMediaCellStyle
-                        : undefined
-
-                    return (
-                        <div
-                            className={styles.indexMediaCell}
-                            data-prominence={story.images.length === 3 && mediaIndex === 0 ? 'wide' : 'standard'}
-                            data-overlap={hasRightOverlap ? 'right' : undefined}
-                            style={mediaStyle}
-                            key={item.kind === 'placeholder' ? item.replacementKey : `${item.src}-${mediaIndex}`}
-                        >
-                            <JournalMediaView
-                                media={item}
-                                locale={locale}
-                                priority={index === 0 && mediaIndex === 0}
-                                sizes="(max-width: 800px) 100vw, 38vw"
-                            />
-                        </div>
-                    )
-                })}
-            </Link>
-        </article>
-    )
-}
-
-export default function JournalIndex({ locale }: { locale: string }) {
-    const isEnglish = locale === 'en'
-    const [activeFilter, setActiveFilter] = useState<JournalFilter>('all')
-    const archiveRef = useRef<HTMLElement>(null)
-
-    const selectFilter = (filter: JournalFilter) => {
-        setActiveFilter(filter)
-        window.requestAnimationFrame(() => {
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            archiveRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
-        })
-    }
-
-    return (
-        <main className={`theme-page ${styles.journalPage} ${styles.indexPage}`}>
-            <header className={styles.indexHeader}>
-                <h1>{isEnglish ? 'THE JOURNAL' : 'LE JOURNAL'}</h1>
-                <nav className={styles.indexFilters} aria-label={isEnglish ? 'Filter journal stories' : 'Filtrer les récits du Journal'}>
-                    {JOURNAL_FILTERS.map((filter) => (
-                        <button
-                            className={styles.indexFilter}
-                            type="button"
-                            aria-controls="journal-archive"
-                            aria-pressed={activeFilter === filter}
-                            data-active={activeFilter === filter}
-                            onClick={() => selectFilter(filter)}
-                            key={filter}
-                        >
-                            {filterLabel(filter, isEnglish)}
-                        </button>
-                    ))}
-                </nav>
-            </header>
-
-            <section
-                ref={archiveRef}
-                id="journal-archive"
-                className={styles.storyArchive}
-                data-filter={activeFilter}
-                aria-label={isEnglish ? 'Journal stories' : 'Récits du Journal'}
-            >
-                {journalIndexStories.map((story, index) => (
-                    (activeFilter === 'all' || story.filter === activeFilter)
-                        ? <JournalEditorialRow story={story} index={index} locale={locale} key={story.href} />
-                        : null
-                ))}
-            </section>
-        </main>
-    )
+export default function JournalIndex({ locale, category, page: requestedPage }: { locale: string; category?: string; page?: string }) {
+  const en = locale === 'en'
+  const selection = journalSelection(category, requestedPage)
+  const path = (href: string) => localizedPath(locale, href)
+  const indexUrl = (filter: string, page = 1) => {
+    const query = new URLSearchParams()
+    if (filter !== 'all') query.set('rubrique', filter)
+    if (page > 1) query.set('page', String(page))
+    return `${path('/le-journal')}${query.size ? `?${query}` : ''}`
+  }
+  const article = selection.featured && journalArchives.find(article => `/le-journal/${article.slug}` === selection.featured?.href)
+  const date = article?.datePublished
+  return <main className={`${styles.page} ${cartFontVariables}`} lang={locale}>
+    <header className={styles.opening}>
+      <p className={styles.eyebrow}>DYANE PARIS</p>
+      <h1>{en ? 'The Journal' : 'Le Journal'}</h1>
+      <p>{en ? 'Creations, craftsmanship, the art of hosting and encounters. The Journal explores the connections between art, porcelain and cocktails through the life of the House.' : 'Créations, savoir-faire, art de recevoir et rencontres. Le Journal explore les liens entre l’art, la porcelaine et le cocktail, au fil de la vie de la Maison.'}</p>
+    </header>
+    {selection.featured && <article className={styles.feature} data-featured-story={selection.featured.href}>
+      <JournalStoryMedia story={selection.featured} locale={locale} priority />
+      <div className={styles.featureCopy}>
+        <p className={styles.eyebrow}>{en ? 'IN FOCUS' : 'À LA UNE'} · {journalFilterLabel(journalCategory(selection.featured), locale)}</p>
+        <h2><Link href={path(selection.featured.href)}>{journalIndexTitle(selection.featured, locale)}</Link></h2>
+        <p>{journalText(selection.featured.excerpt, locale)}</p>
+        {date && <time dateTime={date}>{new Intl.DateTimeFormat(en ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))}</time>}
+        <Link className={styles.read} href={path(selection.featured.href)}>{en ? 'Read the story' : 'Lire le récit'}</Link>
+      </div>
+    </article>}
+    <section className={styles.selection} id="journal-selection" aria-label={en ? 'Editorial selection' : 'Sélection éditoriale'}>
+      <nav className={styles.filters} aria-label={en ? 'Journal categories' : 'Rubriques du Journal'}>
+        {journalFilters.map(filter => <Link key={filter} href={indexUrl(filter)} aria-current={selection.filter === filter ? 'page' : undefined}>{journalFilterLabel(filter, locale)}</Link>)}
+      </nav>
+      <p className={styles.count}>{selection.total} {en ? 'stories' : 'récits'} · {en ? 'Page' : 'Page'} {selection.page} / {selection.pageCount}</p>
+      <div className={styles.grid}>
+        {selection.entries.map(story => <article className={styles.entry} key={story.href} data-journal-story={story.href}>
+          <JournalStoryMedia story={story} locale={locale} />
+          <p className={styles.eyebrow}>{journalFilterLabel(journalCategory(story), locale)}</p>
+          <h2><Link href={path(story.href)}>{journalIndexTitle(story, locale)}</Link></h2>
+          <p className={styles.excerpt}>{journalText(story.excerpt, locale)}</p>
+          <Link className={styles.read} href={path(story.href)}>{en ? 'Read the story' : 'Lire le récit'}</Link>
+        </article>)}
+      </div>
+      {selection.pageCount > 1 && <nav className={styles.pagination} aria-label={en ? 'Journal pages' : 'Pages du Journal'}>
+        {selection.page > 1 && <Link href={indexUrl(selection.filter, selection.page - 1)} rel="prev">{en ? 'Previous' : 'Précédent'}</Link>}
+        {Array.from({ length: selection.pageCount }, (_, index) => <Link key={index} href={indexUrl(selection.filter, index + 1)} aria-current={selection.page === index + 1 ? 'page' : undefined}>{index + 1}</Link>)}
+        {selection.page < selection.pageCount && <Link href={indexUrl(selection.filter, selection.page + 1)} rel="next">{en ? 'Next' : 'Suivant'}</Link>}
+      </nav>}
+    </section>
+    <section className={styles.archives} aria-labelledby="journal-archives-title">
+      <h2 id="journal-archives-title">{en ? 'The archives' : 'Les archives'}</h2>
+      <details>
+        <summary>{en ? 'Explore every published story' : 'Retrouver tous les récits publiés'} <span>{journalArchives.length}</span></summary>
+        <ul>{journalArchives.map(article => <li key={article.slug}><Link href={path(`/le-journal/${article.slug}`)}>{journalText(article.title, locale)}</Link>{article.datePublished && <time dateTime={article.datePublished}>{new Intl.DateTimeFormat(en ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${article.datePublished}T12:00:00Z`))}</time>}</li>)}</ul>
+      </details>
+    </section>
+  </main>
 }

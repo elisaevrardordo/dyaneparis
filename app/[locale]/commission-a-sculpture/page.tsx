@@ -12,14 +12,14 @@ const copy = {
     fr: {
         title: 'Commander une sculpture en porcelaine | Dyane Paris',
         description: 'Commandez une sculpture en porcelaine Dyane Paris auprès de notre Conciergerie et découvrez les possibilités de personnalisation artistique.',
-        name: 'Commander une sculpture — Dyane Paris',
+        name: 'Commander une sculpture - Dyane Paris',
         home: 'Accueil',
         breadcrumb: 'Commander une sculpture',
     },
     en: {
         title: 'Commission a Sculpture | Dyane Paris',
         description: 'Commission a Dyane Paris porcelain sculpture through our Concierge, discover artistic personalization and arrange delivery in France or internationally.',
-        name: 'Commission a Sculpture — Dyane Paris',
+        name: 'Commission a Sculpture - Dyane Paris',
         home: 'Home',
         breadcrumb: 'Commission a Sculpture',
     },

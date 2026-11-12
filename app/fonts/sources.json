@@ -1,0 +1,51 @@
+{
+  "downloaded": "2026-11-02",
+  "provider": "Google Fonts",
+  "fonts": [
+    {
+      "file": "bodoni-moda-400-italic.ttf",
+      "family": "Bodoni Moda",
+      "style": "italic",
+      "weight": "400",
+      "source": "https://fonts.gstatic.com/s/bodonimoda/v28/aFT07PxzY382XsXX63LUYJSPUqb0pL6OQqxrZLnVbvZedvJtj-V7tIaZKMN4sQ.ttf",
+      "sha256": "04e9d8c1baad0a16a87663969fd26109c4a7796436264a71492c2477e9b76ff6",
+      "bytes": 47556
+    },
+    {
+      "file": "bodoni-moda-500-italic.ttf",
+      "family": "Bodoni Moda",
+      "style": "italic",
+      "weight": "500",
+      "source": "https://fonts.gstatic.com/s/bodonimoda/v28/aFT07PxzY382XsXX63LUYJSPUqb0pL6OQqxrZLnVbvZedvJtj-V7tIaZGsN4sQ.ttf",
+      "sha256": "6d96edce889d7c615f94aa14e94e76ad5dba0611a02ccd0a970efe91dabb0078",
+      "bytes": 47708
+    },
+    {
+      "file": "bodoni-moda-400-normal.ttf",
+      "family": "Bodoni Moda",
+      "style": "normal",
+      "weight": "400",
+      "source": "https://fonts.gstatic.com/s/bodonimoda/v28/aFT67PxzY382XsXX63LUYL6GYFcan6NJrKp-VPjfJMShrpsGFUt8oU7awIA.ttf",
+      "sha256": "7bf8604bdeb63fe00278935c1a7e8595de56dfc053ab43581ca848ffd5ad11ba",
+      "bytes": 44752
+    },
+    {
+      "file": "bodoni-moda-500-normal.ttf",
+      "family": "Bodoni Moda",
+      "style": "normal",
+      "weight": "500",
+      "source": "https://fonts.gstatic.com/s/bodonimoda/v28/aFT67PxzY382XsXX63LUYL6GYFcan6NJrKp-VPjfJMShrpsGFUt8oXzawIA.ttf",
+      "sha256": "69122757d51ca7707766ac549a6fdf59184d766a2fd006dfc4025832e946e546",
+      "bytes": 44844
+    },
+    {
+      "file": "playfair-display-400-normal.ttf",
+      "family": "Playfair Display",
+      "style": "normal",
+      "weight": "400",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.ttf",
+      "sha256": "1609a54fa3ad1abc8d0037132f73700333241ea0b65672079998e352f151dea7",
+      "bytes": 123240
+    }
+  ]
+}
