@@ -4,7 +4,7 @@ import ProduitClient from './ProduitClient'
 import { heroImages, produits } from '@/components/data/productDetails'
 import { officialImages, officialImagePath, officialSeoImage } from '@/content/officialImages'
 import { getPublicOffer, workDetails, workIdentity } from '@/lib/productStructuredData'
-import { shopMode } from '@/lib/stripe/config'
+import { configuredManualVat, shopMode } from '@/lib/stripe/config'
 import { imageRightsMetadata } from '@/lib/imageRights'
 import {
     absoluteUrl,
@@ -152,9 +152,11 @@ export default async function ProduitPage({
         }
     })
 
+    const mode = shopMode()
+    const conciergeArtwork = slug === 'bouteille-signee-teokaykay' && Boolean(configuredManualVat())
     const productUrl = localizedUrl(locale, `/oeuvres/${slug}`)
     // This exact offer is also rendered by ProduitClient; closed shop emits none.
-    const publicOffer = getPublicOffer(slug, locale)
+    const publicOffer = conciergeArtwork ? null : getPublicOffer(slug, locale)
     const identity = workIdentity(productUrl, publicOffer)
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -195,7 +197,7 @@ export default async function ProduitPage({
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
             />
-            <ProduitClient params={{ slug }} publicOffer={publicOffer} sandboxCartEnabled={shopMode() === 'sandbox'} liveCartEnabled={shopMode() === 'live'} />
+            <ProduitClient params={{ slug }} publicOffer={publicOffer} sandboxCartEnabled={!conciergeArtwork && mode === 'sandbox'} liveCartEnabled={!conciergeArtwork && mode === 'live'} />
         </>
     )
 }

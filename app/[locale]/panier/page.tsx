@@ -4,7 +4,7 @@ import BrandWordmark from '@/components/BrandWordmark'
 import CartPage from '@/components/cart/CartPage'
 import { cartFontVariables } from '@/components/cart/fonts'
 import { localizedPath } from '@/i18n/paths'
-import { shopMode } from '@/lib/stripe/config'
+import { configuredManualVat, shopMode } from '@/lib/stripe/config'
 import styles from '@/components/cart/CartPage.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: 'Mon panier', robots: { index: false,
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const en = locale === 'en'
-  if (shopMode() !== 'closed') return <CartPage locale={en ? 'en' : 'fr'} />
+  if (shopMode() !== 'closed') return <CartPage locale={en ? 'en' : 'fr'} manualVatEnabled={Boolean(configuredManualVat())} />
 
   return <div className={`${styles.page} ${cartFontVariables}`}>
     <header className={styles.header}>

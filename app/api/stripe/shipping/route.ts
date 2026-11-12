@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server'
 import { clientIp, createMemoryRateLimiter, requestBodyTooLarge } from '@/lib/requestSecurity'
 import { CheckoutError, commerceCheckoutConfig, stripeClient } from '@/lib/stripe/config'
 import { canAccessOrder, isOrderId } from '@/lib/stripe/order-access'
+import { isManualShippingLine, manualShippingLine, manualVatFromMetadata, verifyManualVatSession } from '@/lib/stripe/manualVat'
 import { shippingOption } from '@/lib/stripe/checkout'
 import { commerceIntegration } from '@/lib/orders/fulfillment'
-import { isDeliveryCountry, isDeliveryPostcode } from '@/lib/shipping'
+import { isDeliveryCountry, isDeliveryPostcode, shippingAmount } from '@/lib/shipping'
 import { transaction, type Order } from '@/lib/stripe/store'
 
 export const runtime = 'nodejs'
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
       line1: addressField(address.line1), line2: addressField(address.line2, false), state: addressField(address.state, false),
     } }
     const stripe = stripeClient(config.key)
-    await transaction(async db => {
+    const quote = await transaction(async db => {
       const { rows: [order] } = await db.query<Order>('SELECT * FROM dyane_checkout_orders WHERE id=$1 FOR UPDATE', [attemptId])
       if (!order || order.session_id !== sessionId || order.params.integration_identifier !== commerceIntegration
         || !['reserved', 'pending'].includes(order.status)) throw new CheckoutError('Order unavailable', 409)
@@ -53,12 +54,35 @@ export async function POST(request: Request) {
       const session = await stripe.checkout.sessions.retrieve(sessionId)
       if (session.livemode !== config.livemode || session.client_reference_id !== attemptId || session.status !== 'open'
         || session.permissions?.update_shipping_details !== 'server_only') throw new CheckoutError('Session unavailable', 409)
-      await stripe.checkout.sessions.update(sessionId, {
+      const rates = manualVatFromMetadata(order.params.metadata)
+      if (!rates) {
+        if (config.livemode) throw new CheckoutError('Manual VAT is required', 409)
+        await stripe.checkout.sessions.update(sessionId, {
+          collected_information: { shipping_details: details },
+          shipping_options: [shippingOption(subtotal, order.locale, country)],
+        })
+        return undefined
+      }
+      if (session.automatic_tax?.enabled !== false || session.shipping_options.length > 0) {
+        throw new CheckoutError('Tax configuration changed', 409)
+      }
+      const lines = await stripe.checkout.sessions.listLineItems(sessionId, { limit: 100 })
+      const products = lines.data.filter(line => !isManualShippingLine(line))
+      if (lines.has_more || !products.length || products.reduce((sum, line) => sum + line.amount_total, 0) !== subtotal) {
+        throw new CheckoutError('Order amount unavailable', 409)
+      }
+      const freight = manualShippingLine(subtotal, country, order.locale, rates[country])
+      const updated = await stripe.checkout.sessions.update(sessionId, {
         collected_information: { shipping_details: details },
-        shipping_options: [shippingOption(subtotal, order.locale, country)],
+        line_items: [...products.map(line => ({ id: line.id, tax_rates: [rates[country]] })), ...(freight ? [freight] : [])],
       })
+      const priced = await stripe.checkout.sessions.listLineItems(sessionId, { limit: 100, expand: ['data.taxes.rate'] })
+      if (!verifyManualVatSession({ ...updated, line_items: priced }, rates, subtotal)) {
+        throw new CheckoutError('Delivery tax could not be verified')
+      }
+      return { amount: shippingAmount(subtotal, country), vat: updated.total_details?.amount_tax }
     })
-    return NextResponse.json({ updated: true }, { headers: noStore })
+    return NextResponse.json({ updated: true, ...(quote ? { manualQuote: quote } : {}) }, { headers: noStore })
   } catch (error) {
     return NextResponse.json({ updated: false }, { status: error instanceof CheckoutError ? error.status : 503, headers: noStore })
   }

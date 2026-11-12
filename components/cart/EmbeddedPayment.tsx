@@ -81,6 +81,8 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [summary, setSummary] = useState<Session | null>(null)
+  const [manualQuote, setManualQuote] = useState<{ amount: number; vat: number } | null>(null)
+  const money = (cents: number) => new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(cents / 100)
   const addressMount = useRef<HTMLDivElement>(null)
   const paymentMount = useRef<HTMLDivElement>(null)
   const closeButton = useRef<HTMLButtonElement>(null)
@@ -165,6 +167,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         setError(en ? 'Please complete the delivery address.' : 'Veuillez compléter l’adresse de livraison.')
         return
       }
+      let quote: { amount: number; vat: number } | undefined
       const updated = await actions.runServerUpdate(async () => {
         const response = await fetch('/api/stripe/shipping', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, signal,
@@ -172,14 +175,22 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         })
         rejectedDestination = response.status === 422
         if (!response.ok) throw new Error('Shipping update failed')
+        quote = (await response.json()).manualQuote
       })
       if (rejectedDestination || updated.type !== 'success') throw new Error('Shipping update failed')
+      if (quote && Number.isSafeInteger(quote.amount) && Number.isSafeInteger(quote.vat)) {
+        if (!signal.aborted) {
+          setManualQuote(quote)
+          setSummary(updated.session)
+        }
+        return
+      }
       const [option] = updated.session.shippingOptions
       if (!option || updated.session.shippingOptions.length !== 1) throw new Error('No applicable shipping option')
       const selected = updated.session.shipping?.shippingOption.id === option.id
         ? updated : await actions.updateShippingOption(option.id)
       if (selected.type !== 'success') throw new Error('Shipping selection failed')
-      if (!signal.aborted) setSummary(selected.session)
+      if (!signal.aborted) { setManualQuote(null); setSummary(selected.session) }
     } catch {
       if (!signal.aborted) setError(rejectedDestination
         ? (en ? 'We deliver only to metropolitan France and Monaco. Please check your address.' : 'Nous livrons uniquement en France métropolitaine et à Monaco. Veuillez vérifier votre adresse.')
@@ -250,7 +261,8 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
           <form hidden={!summary || fatal} onSubmit={pay}>
             {summary && <>
               <dl className={styles.totals}>
-                <div><dt>{summary.shipping?.shippingOption.displayName ?? (en ? 'Shipping' : 'Livraison')}</dt><dd>{summary.total.shippingRate.minorUnitsAmount === 0 ? (en ? 'Complimentary' : 'Offerte') : summary.total.shippingRate.amount}</dd></div>
+                <div><dt>{summary.shipping?.shippingOption.displayName ?? (en ? 'Shipping' : 'Livraison')}</dt><dd>{(manualQuote?.amount ?? summary.total.shippingRate.minorUnitsAmount) === 0 ? (en ? 'Complimentary' : 'Offerte') : manualQuote ? money(manualQuote.amount) : summary.total.shippingRate.amount}</dd></div>
+                {manualQuote && <div><dt>{en ? 'VAT included (20%)' : 'Dont TVA (20 %)'}</dt><dd>{money(manualQuote.vat)}</dd></div>}
                 <div><dt>{en ? 'Total including tax' : 'Total TTC'}</dt><dd>{summary.total.total.amount}</dd></div>
               </dl>
               <button type="button" disabled={busy} className={styles.edit} onClick={() => {

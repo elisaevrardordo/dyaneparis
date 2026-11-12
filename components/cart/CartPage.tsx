@@ -84,7 +84,7 @@ function reconcilePaidCart(order: string, paidItems: CartItem[], fallback: CartI
   return next
 }
 
-export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
+export default function CartPage({ locale, manualVatEnabled = false }: { locale: 'fr' | 'en'; manualVatEnabled?: boolean }) {
   const en = locale === 'en'
   const t = (fr: string, english: string) => en ? english : fr
   const path = (value: string) => localizedPath(locale, value)
@@ -117,6 +117,8 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
   const returnedOrder = result === 'returned' && orderIdPattern.test(orderParameter) ? orderParameter.toLowerCase() : null
   const verifiedOrder = orderStatus?.order === returnedOrder ? orderStatus : null
   const groups = orderGroups(items)
+  const checkoutGroups = orderGroups(manualVatEnabled ? items.filter(item => item.sku !== TEO_ARTWORK_SKU) : items)
+  const conciergeArtwork = manualVatEnabled && items.some(item => item.sku === TEO_ARTWORK_SKU)
   const count = items.reduce((sum, item) => sum + item.quantity, 0)
   const fingerprint = JSON.stringify(items)
   const summaries = summaryState?.fingerprint === fingerprint ? summaryState.groups : {}
@@ -145,7 +147,9 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
     setRefreshing(true)
     const timer = window.setTimeout(async () => {
       const values: Partial<Record<Fulfillment, Summary>> = {}
-      await Promise.all(orderGroups(JSON.parse(fingerprint)).map(async group => {
+      const selection: CartItem[] = JSON.parse(fingerprint)
+      const payable = manualVatEnabled ? selection.filter(item => item.sku !== TEO_ARTWORK_SKU) : selection
+      await Promise.all(orderGroups(payable).map(async group => {
         try {
           const response = await fetch('/api/stripe/cart-summary', { method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ items: group.items, flow: 'commerce' }), signal: controller.signal })
@@ -158,7 +162,7 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
       }
     }, refresh > 0 ? 0 : 220)
     return () => { clearTimeout(timer); controller.abort() }
-  }, [fingerprint, loaded, items.length, refresh])
+  }, [fingerprint, loaded, items.length, manualVatEnabled, refresh])
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: The refresh button restarts polling for the same order.
   useEffect(() => {
@@ -287,7 +291,7 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
   const groupTitle = (fulfillment: Fulfillment) => fulfillment === 'preorder' ? t('Précommandes', 'Preorders') : t('Articles en stock', 'In-stock items')
   const groupTerms = (fulfillment: Fulfillment) => fulfillment === 'preorder' ? preorderTerms(locale) : shippingDeliveryDescription(locale, false)
   const estimateRange = (lower: number, upper: number) => lower === upper ? money(lower) : `${money(lower)} ${t('à', 'to')} ${money(upper)}`
-  const testMode = groups.some(group => summaries[group.fulfillment]?.mode === 'test')
+  const testMode = checkoutGroups.some(group => summaries[group.fulfillment]?.mode === 'test')
   const statusMessage = returnedOrder ? {
     pending: t('Votre paiement est en cours de vérification. Vous pouvez vérifier à nouveau dans quelques instants.', 'Your payment is being verified. You can check again in a moment.'),
     paid: t('Paiement confirmé. Merci pour votre commande.', 'Payment confirmed. Thank you for your order.'),
@@ -366,10 +370,15 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
       </section>
 
       <aside className={s.right} aria-label={t('Récapitulatif de commande', 'Order summary')}>
-        <div className={s.summary}><h2 className={s.summaryTitle}>{groups.length > 1 ? t('Vos commandes', 'Your orders') : t('Votre commande', 'Your order')}</h2>
-          {groups.length > 1 && <p className={s.splitNote}>{t('Les articles en stock et les précommandes se règlent séparément. La livraison est calculée pour chaque commande.', 'In-stock items and preorders are paid for separately. Shipping is calculated for each order.')}</p>}
-          {groups.length > 1 && giftOptions.isGift && <p className={s.splitNote}>{t('Vos options cadeau s’appliquent à chaque commande.', 'Your gift preferences apply to each order.')}</p>}
-          {groups.map(group => {
+        <div className={s.summary}><h2 className={s.summaryTitle}>{checkoutGroups.length > 1 ? t('Vos commandes', 'Your orders') : t('Votre commande', 'Your order')}</h2>
+          {checkoutGroups.length > 1 && <p className={s.splitNote}>{t('Les articles en stock et les précommandes se règlent séparément. La livraison est calculée pour chaque commande.', 'In-stock items and preorders are paid for separately. Shipping is calculated for each order.')}</p>}
+          {checkoutGroups.length > 1 && giftOptions.isGift && <p className={s.splitNote}>{t('Vos options cadeau s’appliquent à chaque commande.', 'Your gift preferences apply to each order.')}</p>}
+          {conciergeArtwork && <section className={s.orderGroup} aria-labelledby="order-teo">
+            <h3 id="order-teo">Teo for Dyane</h3>
+            <p className={s.taxNote}>{t('La Conciergerie vous accompagne pour cette édition.', 'The Concierge can help you order this edition.')}</p>
+            <Link href={path('/contact')} className={s.checkout}>{t('Contacter la Conciergerie', 'Contact the Concierge')}</Link>
+          </section>}
+          {checkoutGroups.map(group => {
             const { fulfillment } = group
             const summary = summaries[fulfillment]
             const subtotal = cartSubtotal(group.items)
@@ -378,7 +387,7 @@ export default function CartPage({ locale }: { locale: 'fr' | 'en' }) {
             const unavailable = group.items.some(item => limits[item.sku] !== undefined && limits[item.sku] < (totals.get(item.sku) ?? 0))
             const checkoutReady = summary?.checkoutAvailable === true && !unavailable
             const checkoutLabel = fulfillment === 'preorder' ? t('Régler la précommande', 'Pay for the preorder')
-              : groups.length > 1 ? t('Régler les articles en stock', 'Pay for in-stock items') : t('Procéder au paiement', 'Proceed to checkout')
+              : checkoutGroups.length > 1 ? t('Régler les articles en stock', 'Pay for in-stock items') : t('Procéder au paiement', 'Proceed to checkout')
 
             return <section key={fulfillment} className={s.orderGroup} aria-labelledby={`order-${fulfillment}`}>
               <h3 id={`order-${fulfillment}`}>{groupTitle(fulfillment)}</h3>

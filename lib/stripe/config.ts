@@ -1,5 +1,6 @@
 import 'server-only'
 import Stripe from 'stripe'
+import { manualVatRates, validManualVatRate, type ManualVatRates } from './manualVat'
 import { isProductionDeployment } from '../deployment'
 import { giftOptions, type GiftOptions } from '../gifts/options'
 import { normalizeGiftMessage, validGiftMessage } from '../gifts/message'
@@ -52,18 +53,36 @@ export function commerceCheckoutConfig(env = process.env) {
     || (config.livemode && !env.RESEND_API_KEY)) {
     throw new CheckoutError('Checkout services have not been configured for this environment')
   }
-  return { ...config, publishableKey }
+  const manualVat = configuredManualVat(env)
+  if ((config.livemode || env.STRIPE_MANUAL_VAT_FR || env.STRIPE_MANUAL_VAT_MC) && !manualVat) {
+    throw new CheckoutError('Manual VAT rates are required for France and Monaco')
+  }
+  return { ...config, publishableKey, manualVat }
+}
+
+export function configuredManualVat(env = process.env) {
+  return manualVatRates(env.STRIPE_MANUAL_VAT_FR, env.STRIPE_MANUAL_VAT_MC)
+}
+
+export async function assertManualVatReady(stripe: Stripe, rates: ManualVatRates, livemode: boolean) {
+  await Promise.all((['FR', 'MC'] as const).map(async country => {
+    const rate = await stripe.taxRates.retrieve(rates[country])
+    if (!validManualVatRate(rate, rates[country], country, livemode)) {
+      throw new CheckoutError('Manual VAT rate does not match the country, mode or inclusive rate')
+    }
+  }))
 }
 
 export function checkoutUsesAutomaticTax(livemode: boolean, commerce: boolean, env = process.env) {
   // Test checkout can exercise payment and fulfilment before Tax is configured.
-  // Production and the legacy sandbox flows always require Stripe Tax.
+  // Applies only to flows that have not selected validated manual VAT rates.
   return livemode || !commerce || env.STRIPE_SANDBOX_SKIP_AUTOMATIC_TAX !== 'true'
 }
 
 export async function assertCheckoutAccount(stripe: Stripe, account: string, livemode: boolean, automaticTax: boolean) {
-  if (livemode || automaticTax) return assertTaxReady(stripe, account, livemode)
-  if ((await stripe.accounts.retrieve(null)).id !== account) throw new CheckoutError('Stripe account mismatch')
+  if (automaticTax) return assertTaxReady(stripe, account, livemode)
+  const current = await stripe.accounts.retrieve(null)
+  if (current.id !== account || (livemode && !current.charges_enabled)) throw new CheckoutError('Stripe account unavailable')
 }
 
 export function shopMode(env = process.env): 'sandbox' | 'live' | 'closed' {

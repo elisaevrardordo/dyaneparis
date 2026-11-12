@@ -76,6 +76,8 @@ test('the live storefront requires matching public Stripe credentials and delive
   assert.equal(config.shopMode({ ...validEnv, DYANE_CART_PREVIEW: 'true' }), 'sandbox')
   assert.equal(config.shopMode(liveEnv), 'closed')
   const approved = { ...liveEnv, RESEND_API_KEY: 're_fixture', STRIPE_PUBLISHABLE_KEY: 'pk_live_fixture' }
+  assert.equal(config.shopMode(approved), 'closed')
+  Object.assign(approved, { STRIPE_MANUAL_VAT_FR: 'txr_frfixture', STRIPE_MANUAL_VAT_MC: 'txr_mcfixture' })
   assert.equal(config.shopMode(approved), 'live')
   assert.equal(config.shopMode({ ...approved, STRIPE_PUBLISHABLE_KEY: 'pk_test_fixture' }), 'closed')
   assert.equal(config.shopMode({ ...approved, STRIPE_CHECKOUT_ENABLED: 'false' }), 'closed')
@@ -471,4 +473,61 @@ test('Checkout route rejects missing/forged origins and invalid bodies before cr
   assert.equal(calls, 0)
   assert.equal((await route.POST(request(JSON.stringify({ ...input, adultConfirmed: true }), 'http://localhost:3000'))).status, 200)
   assert.equal(calls, 1)
+})
+
+test('manual VAT verifies the country, inclusive rate, activity and mode in Stripe', async () => {
+  const rates = { FR: 'txr_fr', MC: 'txr_mc' }
+  const fixture = { FR: { id: rates.FR, country: 'FR', inclusive: true, percentage: 20, livemode: true, active: true },
+    MC: { id: rates.MC, country: 'MC', inclusive: true, percentage: 20, livemode: true, active: true } }
+  const stripe = { taxRates: { retrieve: async id => id === rates.FR ? fixture.FR : fixture.MC } }
+  await config.assertManualVatReady(stripe, rates, true)
+  for (const change of [{ country: 'FR' }, { inclusive: false }, { percentage: 10 }, { livemode: false }, { active: false }]) {
+    const original = fixture.MC
+    fixture.MC = { ...original, ...change }
+    await assert.rejects(config.assertManualVatReady(stripe, rates, true))
+    fixture.MC = original
+  }
+})
+
+const vat = load('lib/stripe/manualVat.ts')
+const rates = { FR: 'txr_fr', MC: 'txr_mc' }
+function vatSession(country, subtotal, fee, tax) {
+  const rate = { id: rates[country], inclusive: true, percentage: 20, country, livemode: false }
+  const line = amount => ({ amount_total: amount, amount_discount: 0, quantity: 1, currency: 'eur',
+    price: { tax_behavior: 'inclusive' }, taxes: [{ rate }] })
+  return { livemode: false, automatic_tax: { enabled: false }, amount_total: subtotal + fee,
+    total_details: { amount_tax: tax, amount_shipping: 0, amount_discount: 0 }, shipping_cost: null,
+    collected_information: { shipping_details: { address: { country, postal_code: country === 'MC' ? '98000' : '75001' } } },
+    line_items: { has_more: false, data: [line(subtotal), ...(fee ? [{ ...line(fee), metadata: { dyane_line_role: 'shipping' } }] : [])] } }
+}
+
+test('the four cocktail SKUs can use the verified rate; the artwork and new SKUs stay outside it', () => {
+  for (const sku of ['dyane-sculpture-25cl', 'dyane-sculpture-150cl', 'dyane-no2-25cl', 'dyane-no2-150cl']) assert.ok(vat.isManualVatCocktail(sku))
+  for (const sku of ['teo-for-dyane', 'other-artwork']) assert.ok(!vat.isManualVatCocktail(sku))
+  assert.equal(vat.manualShippingLine(5500, 'FR', 'fr', rates.FR).price_data.unit_amount, 1500)
+  assert.equal(vat.manualShippingLine(5500, 'MC', 'fr', rates.MC).price_data.unit_amount, 2000)
+  assert.equal(vat.manualShippingLine(20000, 'MC', 'fr', rates.MC).price_data.unit_amount, 2000)
+  assert.equal(vat.manualShippingLine(20001, 'MC', 'fr', rates.MC), undefined)
+})
+
+test('manual VAT accepts either Stripe rounding policy without changing the price or shipping', () => {
+  assert.ok(vat.verifyManualVatSession(vatSession('FR', 5500, 1500, 1167), rates, 5500))
+  assert.ok(vat.verifyManualVatSession(vatSession('MC', 5500, 2000, 1250), rates, 5500))
+  assert.ok(vat.verifyManualVatSession(vatSession('MC', 18500, 2000, 3416), rates, 18500))
+  assert.ok(vat.verifyManualVatSession(vatSession('MC', 18500, 2000, 3417), rates, 18500))
+  assert.ok(vat.verifyManualVatSession(vatSession('MC', 22000, 0, 3667), rates, 22000))
+})
+
+test('manual VAT rejects an untaxed or duplicate fee, a wrong jurisdiction and an inflated total', () => {
+  const check = change => {
+    const session = vatSession('MC', 5500, 2000, 1250)
+    change(session)
+    assert.equal(vat.verifyManualVatSession(session, rates, 5500), false)
+  }
+  check(session => { session.line_items.data[1].taxes = [] })
+  check(session => { session.shipping_cost = { amount_total: 2000 } })
+  check(session => { session.line_items.data[0].taxes[0].rate = { id: rates.FR, country: 'FR', percentage: 20, inclusive: true, livemode: false } })
+  check(session => { session.amount_total += 1100 })
+  check(session => { session.collected_information.shipping_details.address.postal_code = '75001' })
+  check(session => { session.total_details.amount_tax = 917 })
 })

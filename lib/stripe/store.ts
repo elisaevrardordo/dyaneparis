@@ -6,6 +6,7 @@ import { CheckoutError, validateCartItems } from './config'
 import { cartLineKey, type CartItem, type Personalization } from '@/components/cart/catalog'
 import { normalizeGiftMessage, validGiftMessage } from '../gifts/message'
 import { commerceIntegration, isSingleFulfillment, type Fulfillment } from '../orders/fulfillment'
+import { isManualShippingLine, isManualVatCocktail, manualVatFromMetadata, verifyManualVatSession } from './manualVat'
 import { isDeliveryCountry, isDeliveryPostcode, shippingAmount } from '../shipping'
 
 let pool: Pool | undefined
@@ -138,7 +139,9 @@ export async function applySession(db: PoolClient, eventId: string, session: Str
   const items: CheckoutOrderItem[] = storedItems.rows.length ? storedItems.rows.map(({ composition, ...item }) => (
     composition ? { ...item, composition } : item
   )) : [{ sku: order.sku, quantity: order.quantity, price_id: order.price_id }]
+  const manualVat = manualVatFromMetadata(order.params.metadata)
   const lines = session.line_items
+  const productLines = manualVat ? lines?.data.filter(line => !isManualShippingLine(line)) : lines?.data
   // Stripe may coalesce equal-price lines; verify total quantities by price without losing our per-line options.
   const quantities = (entries: { price: string | undefined; quantity: number | null }[]) => {
     const totals = new Map<string, number>()
@@ -149,7 +152,7 @@ export async function applySession(db: PoolClient, eventId: string, session: Str
     return [...totals].sort(([a], [b]) => a.localeCompare(b)).map(([price, quantity]) => `${price}/${quantity}`).join('|')
   }
   const expected = quantities(items.map(i => ({ price: i.price_id, quantity: i.quantity })))
-  const received = quantities(lines?.data.map(i => ({ price: i.price?.id, quantity: i.quantity })) || [])
+  const received = quantities(productLines?.map(i => ({ price: i.price?.id, quantity: i.quantity })) || [])
   if (session.mode !== 'payment' || session.currency !== 'eur' || session.client_reference_id !== order.id
     || !lines || lines.has_more || !expected || expected !== received) throw new Error('Order contents mismatch')
   const commerce = order.params.integration_identifier === commerceIntegration
@@ -191,17 +194,20 @@ export async function applySession(db: PoolClient, eventId: string, session: Str
   }
   if (next === 'paid' && order.params.automatic_tax?.enabled && session.automatic_tax?.status !== 'complete') next = 'manual_review'
   const delivery = commerce ? session.collected_information?.shipping_details : undefined
+  const country = delivery?.address.country
+  const subtotal = Number(order.params.metadata?.dyane_subtotal)
   if (next === 'paid' && commerce) {
-    const country = delivery?.address.country
-    const subtotal = Number(order.params.metadata?.dyane_subtotal)
-    if (!isDeliveryCountry(country) || !isDeliveryPostcode(country, delivery?.address.postal_code)
+    if (manualVat) {
+      if (!items.every(item => isManualVatCocktail(item.sku)) || !verifyManualVatSession(session, manualVat, subtotal)) next = 'manual_review'
+    } else if (!isDeliveryCountry(country) || !isDeliveryPostcode(country, delivery?.address.postal_code)
       || !Number.isSafeInteger(subtotal) || subtotal <= 0
       || session.shipping_cost?.amount_total !== shippingAmount(subtotal, country)
       || session.amount_total !== subtotal + shippingAmount(subtotal, country)) next = 'manual_review'
   }
   const snapshot = {
-    currency: session.currency, amountSubtotal: session.amount_subtotal, amountTotal: session.amount_total,
-    amountTax: session.total_details?.amount_tax, amountShipping: session.total_details?.amount_shipping,
+    currency: session.currency, amountSubtotal: manualVat ? subtotal : session.amount_subtotal, amountTotal: session.amount_total,
+    amountTax: session.total_details?.amount_tax,
+    amountShipping: manualVat && isDeliveryCountry(country) ? shippingAmount(subtotal, country) : session.total_details?.amount_shipping,
     taxStatus: session.automatic_tax?.status, paymentStatus: session.payment_status,
     invoiceId, paymentIntentId, ...(delivery ? { delivery } : {}),
   }

@@ -2,7 +2,8 @@ import 'server-only'
 import { cartProducts, cartSubtotal, type CartItem } from '@/components/cart/catalog'
 import { shippingAmount } from '@/lib/shipping'
 import { orderPool } from './store'
-import { assertCheckoutAccount, checkoutUsesAutomaticTax, checkoutConfig, commerceCheckoutConfig, stripeClient } from './config'
+import { assertCheckoutAccount, assertManualVatReady, configuredManualVat, checkoutUsesAutomaticTax, checkoutConfig, commerceCheckoutConfig, stripeClient } from './config'
+import { isManualVatCocktail } from './manualVat'
 import { isProductionDeployment } from '../deployment'
 import { fulfillmentForSku, isSingleFulfillment } from '@/lib/orders/fulfillment'
 
@@ -15,7 +16,9 @@ export async function cartSummary(items: CartItem[], commerce = false) {
   }
   const fulfillment = commerce ? fulfillmentForSku(items[0].sku) : undefined
   if (commerce) result.mode = isProductionDeployment() ? 'live' : 'test'
+  const manualVat = commerce ? configuredManualVat() : undefined
   if (fulfillment && !isSingleFulfillment(items, fulfillment)) return result
+  if (manualVat && !items.every(item => isManualVatCocktail(item.sku))) return result
   if (process.env.STRIPE_DATABASE_URL) {
     try {
       const stock = await orderPool().query<{ sku: string; available: number; active: boolean; preorder_enabled?: boolean }>(
@@ -33,8 +36,9 @@ export async function cartSummary(items: CartItem[], commerce = false) {
     const config = commerce ? commerceCheckoutConfig() : checkoutConfig()
     if (config.livemode && !commerce) return result
     const stripe = stripeClient(config.key)
-    const automaticTax = checkoutUsesAutomaticTax(config.livemode, commerce)
+    const automaticTax = !manualVat && checkoutUsesAutomaticTax(config.livemode, commerce)
     await assertCheckoutAccount(stripe, config.account, config.livemode, automaticTax)
+    if (manualVat) await assertManualVatReady(stripe, manualVat, config.livemode)
     const inventory = await orderPool().query<{ sku: string; price_id: string }>(
       'SELECT sku,price_id FROM dyane_checkout_inventory WHERE sku=ANY($1::text[]) AND active', [items.map(i => i.sku)])
     for (const item of items) {
