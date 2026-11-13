@@ -41,13 +41,15 @@ function deploymentMode(env) {
 }
 
 function productionConnection(env) {
+  const connectionString = env.STRIPE_DATABASE_URL || env.NETLIFY_DB_URL
+  check(connectionString, 'Production database connection is missing from the Netlify build.')
   let url
-  try { url = new URL(env.NETLIFY_DB_URL) } catch { throw new ReadinessError('Netlify did not supply its production database connection.') }
+  try { url = new URL(connectionString) } catch { throw new ReadinessError('The production database connection is invalid.') }
   check(['postgresql:', 'postgres:'].includes(url.protocol) && url.username && url.password && url.pathname.length > 1
     && url.hostname.includes('.') && !/\.(?:local|localhost|internal)$/i.test(url.hostname), 'Expected the hosted Netlify Postgres database.')
   const parameters = Object.fromEntries(url.searchParams)
   check(!['disable', 'allow', 'prefer', 'no-verify'].includes(parameters.sslmode), 'Expected a verified TLS database connection.')
-  check(!env.STRIPE_DATABASE_URL || env.STRIPE_DATABASE_URL === env.NETLIFY_DB_URL,
+  check(!env.NETLIFY_DB_URL || !env.STRIPE_DATABASE_URL || env.STRIPE_DATABASE_URL === env.NETLIFY_DB_URL,
     'Remove the conflicting explicit production order database override.')
   url.searchParams.set('sslmode', 'verify-full')
   return url.toString()
@@ -150,15 +152,15 @@ async function prepareDatabase(db, apply, executeMigration = sql => db.query(sql
 async function main(env) {
   const mode = deploymentMode(env)
   if (!mode) return
-  const connectionString = productionConnection(env)
   await verifyStripe(env, mode.apply)
+  console.log('Production Stripe account, four prices and both VAT rates verified.')
+  const connectionString = productionConnection(env)
   const { Client } = require('pg')
   const db = new Client({ connectionString, connectionTimeoutMillis: 10000, statement_timeout: 20000 })
   await db.connect()
   try {
     const initialized = await prepareDatabase(db, mode.apply)
     console.log(initialized ? 'Production order database initialized and checked.' : 'Production order database checked without changes.')
-    console.log('Production Stripe account, four prices and both VAT rates verified.')
   } finally { await db.end() }
 }
 

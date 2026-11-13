@@ -21,6 +21,7 @@
     "test:storefront": "node --test tests/storefront.test.cjs tests/concierge-project.test.cjs tests/cart.test.cjs tests/commerce-premium.test.cjs tests/gift-message.test.cjs tests/personalized-cart.test.cjs tests/stripe-checkout.test.cjs tests/site-seo-guards.test.cjs tests/image-rights.test.cjs tests/newsletter.test.cjs"
   },
   "dependencies": {
+    "@netlify/database": "2.0.3",
     "@react-three/drei": "10.7.7",
     "@react-three/fiber": "9.6.1",
     "@vercel/analytics": "^2.0.1",
