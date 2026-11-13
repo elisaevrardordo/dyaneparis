@@ -80,10 +80,29 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     return success
   }
   const product = cartProducts.find(p => p.sku === added?.sku)
+  const confirmationImage = product?.sku === 'dyane-no2-150cl'
+    ? '/images/officielles/collections/dyane-no2-basil-smash-portrait-officiel.png'
+    : product?.image
   return <CartContext.Provider value={{ items, loaded, storageError, adding, setItems, add }}>{children}
     <PremiumLoader phase={loading.phase} label={en ? 'Preparing your selection' : 'Votre sélection se prépare'} onCancel={() => request.current?.abort('cancel')} />
-    {product && added && <CommerceDialog title={en ? 'Added to your bag' : 'Ajouté à votre panier'} kind="added" closeLabel={en ? 'Close added item' : 'Fermer la confirmation d’ajout'} onClose={() => setAdded(null)}>
-      <div className={s.addedBody}><div className={s.addedImage}><Image src={product.image} alt={`${product.name} - ${product.format}`} fill sizes="180px" /></div><div className={s.addedDescription}><h3>{product.name}</h3><p>{product.format} · {formatPrice(product.amount, locale)}</p>{added.composition && <p>{TEO_COMPOSITIONS[added.composition]}</p>}</div><Link className={s.primary} href={localizedPath(locale, '/panier')} onClick={() => setAdded(null)}>{en ? 'View my bag' : 'Voir mon panier'}</Link><button type="button" className={s.secondary} onClick={() => setAdded(null)}>{en ? 'Continue shopping' : 'Continuer mes achats'}</button><p className={s.addedNote}>{en ? 'Availability is checked again at checkout.' : 'La disponibilité est revérifiée au paiement.'}</p></div>
+    {product && added && confirmationImage && <CommerceDialog title={en ? 'Added to your bag' : 'Ajouté à votre panier'} kind="added" closeLabel={en ? 'Close added item' : 'Fermer la confirmation d’ajout'} onClose={() => setAdded(null)}>
+      <div className={s.addedBody}>
+        <div className={s.addedImage}>
+          <Image src={confirmationImage} alt={`${product.name} - ${product.format}`} fill sizes="(max-width: 760px) 144px, 160px" />
+        </div>
+        <div className={s.addedDescription}>
+          <h3>{product.name}</h3>
+          <p>{product.format} · {formatPrice(product.amount, locale)}</p>
+          {added.composition && <p>{TEO_COMPOSITIONS[added.composition]}</p>}
+        </div>
+        <Link className={s.primary} href={localizedPath(locale, '/panier')} onClick={() => setAdded(null)}>
+          {en ? 'View my bag' : 'Voir mon panier'}
+        </Link>
+        <button type="button" className={s.secondary} onClick={() => setAdded(null)}>
+          {en ? 'Continue shopping' : 'Continuer mes achats'}
+        </button>
+        <p className={s.addedNote}>{en ? 'Availability is checked again at checkout.' : 'La disponibilité est revérifiée au paiement.'}</p>
+      </div>
     </CommerceDialog>}
     {error && !adding && <CommerceDialog title={en ? 'Availability of this item' : 'Disponibilité de votre sélection'} onClose={() => setError('')} closeLabel={en ? 'Close availability' : 'Fermer la disponibilité'}><div className={s.noticeCopy}><p>{error}</p><Link href={localizedPath(locale, '/contact')}>{en ? 'Contact the Concierge' : 'Contacter la Conciergerie'}</Link></div></CommerceDialog>}
   </CartContext.Provider>

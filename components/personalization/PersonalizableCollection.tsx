@@ -30,7 +30,7 @@ export default function PersonalizableCollection({ locale, sandboxCartEnabled, l
         const preorder = fulfillmentForSku(product.sku) === 'preorder'
         return <article key={product.sku} className={s.product}>
           <Link href={path(`/personnalisables/${product.sku}`)} className={s.gridVisual} aria-label={`${product.name}, ${product.format}`}><SculpturePreview product={product} example={false} locale={locale} /></Link>
-          <div className={s.productHeading}><h2>{product.name} <span>{product.format}</span></h2><p>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money(product.amount)}{preorder && <small> {en ? 'incl. VAT' : 'TTC'}</small>}</p></div>
+          <div className={s.productHeading}><h2>{product.name} <span>{product.format}</span></h2><p>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money(product.amount)}</p></div>
           {preorder && <p className={s.description}>{preorderTerms(locale, canPurchase)}</p>}
           <p className={s.description}>{en ? 'Your initials, in the finish of your choice.' : 'Vos initiales, dans la finition de votre choix.'}</p>
           <div className={s.productActions}><PersonalizeButton sku={product.sku} locale={locale} showPreorderTerms={preorder} conciergeOnly={!canPurchase} /><Link href={path(`/personnalisables/${product.sku}`)}>{en ? 'DISCOVER' : 'DÉCOUVRIR'}</Link></div>

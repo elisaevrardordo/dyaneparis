@@ -2,9 +2,10 @@ import { finishLabel } from '@/lib/personalization/catalog'
 import 'server-only'
 import type { GiftOptions } from '../gifts/options'
 import type Stripe from 'stripe'
-import { assertCheckoutAccount, assertTaxReady, checkoutUsesAutomaticTax, CheckoutError, checkoutConfig, commerceCheckoutConfig, stripeClient } from './config'
+import { assertCheckoutAccount, assertManualVatReady, assertTaxReady, checkoutUsesAutomaticTax, CheckoutError, checkoutConfig, commerceCheckoutConfig, stripeClient } from './config'
 import { orderPool, reserveOrder, reserveCartOrder, transaction } from './store'
 import { TEO_ARTWORK_SKU, cartProducts, cartSubtotal, type CartItem } from '@/components/cart/catalog'
+import { isManualVatCocktail, manualVatMetadata, manualVatFromMetadata, type ManualVatRates } from './manualVat'
 import { shippingAmount, type DeliveryCountry } from '@/lib/shipping'
 import { commerceIntegration, fulfillmentForSku, isSingleFulfillment } from '@/lib/orders/fulfillment'
 
@@ -96,21 +97,28 @@ export async function createCommerceCheckout(input: CartInput, returningBuyer: b
   const config = commerceCheckoutConfig()
   const prefix = input.locale === 'en' ? '/en' : ''
   const returnPath = `${prefix}/panier?result=returned&order=${input.attemptId}`
-  const { session } = await reserveAndCreateCartSession(input, config, returnPath, returningBuyer)
+  const { session } = await reserveAndCreateCartSession(input, config, returnPath, returningBuyer, config.manualVat)
   if (!session.client_secret) throw new CheckoutError('Session unavailable', 409)
   return { clientSecret: session.client_secret, publishableKey: config.publishableKey, returnPath }
 }
 
-async function reserveAndCreateCartSession(input: CartInput, config: ReturnType<typeof checkoutConfig>, returnPath?: string, returningBuyer = false) {
+async function reserveAndCreateCartSession(input: CartInput, config: ReturnType<typeof checkoutConfig>, returnPath?: string, returningBuyer = false, manualVat?: ManualVatRates) {
   const fulfillment = returnPath ? fulfillmentForSku(input.items[0].sku) : undefined
   if (fulfillment && !isSingleFulfillment(input.items, fulfillment)) throw new CheckoutError('Fulfillment groups must be ordered separately', 400)
   const stripe = stripeClient(config.key)
-  const automaticTax = checkoutUsesAutomaticTax(config.livemode, Boolean(returnPath))
+  if (manualVat && !input.items.every(item => isManualVatCocktail(item.sku))) {
+    throw new CheckoutError('The selected piece is handled by the Concierge', 409)
+  }
+  const automaticTax = !manualVat && checkoutUsesAutomaticTax(config.livemode, Boolean(returnPath))
   await assertCheckoutAccount(stripe, config.account, config.livemode, automaticTax)
+  if (manualVat) await assertManualVatReady(stripe, manualVat, config.livemode)
   const existing = await orderPool().query<OrderForCart>('SELECT params,session_id FROM dyane_checkout_orders WHERE id=$1', [input.attemptId])
   if (returnPath && existing.rows[0]?.session_id && !returningBuyer) throw new CheckoutError('Attempt already used', 409)
   const frozen = existing.rows[0]?.params
   if (frozen && (frozen.integration_identifier === commerceIntegration) !== Boolean(returnPath)) throw new CheckoutError('Attempt already used', 409)
+  if (frozen && JSON.stringify(manualVatFromMetadata(frozen.metadata)) !== JSON.stringify(manualVat)) {
+    throw new CheckoutError('Tax configuration changed; start a new checkout', 409)
+  }
   const catalog = await orderPool().query<{ sku: string; price_id: string }>(
     'SELECT sku,price_id FROM dyane_checkout_inventory WHERE sku=ANY($1::text[]) AND active', [input.items.map(i => i.sku)])
   const ids = new Map(catalog.rows.map(i => [i.sku, i.price_id]))
@@ -132,7 +140,7 @@ async function reserveAndCreateCartSession(input: CartInput, config: ReturnType<
   const prefix = input.locale === 'en' ? '/en' : ''
   const order = await transaction(db => reserveCartOrder(db, { ...input, fulfillment }, reserved => {
     if (reserved.some(i => ids.get(i.sku) !== i.price_id)) throw new CheckoutError('Catalog changed', 409)
-    const metadata: Record<string, string> = { dyane_order_id: input.attemptId }
+    const metadata: Record<string, string> = { dyane_order_id: input.attemptId, ...(manualVat ? manualVatMetadata(manualVat) : {}) }
     if (fulfillment) {
       metadata.dyane_fulfillment = fulfillment
       metadata.dyane_subtotal = String(cartSubtotal(reserved))
@@ -153,7 +161,7 @@ async function reserveAndCreateCartSession(input: CartInput, config: ReturnType<
       mode: 'payment', locale: input.locale,
       client_reference_id: input.attemptId, metadata,
       payment_intent_data: { metadata },
-      customer_creation: 'always', tax_id_collection: { enabled: true },
+      customer_creation: 'always', ...(manualVat ? {} : { tax_id_collection: { enabled: true } }),
       line_items: reserved.map(i => ({ price: i.price_id, quantity: i.quantity })),
       automatic_tax: { enabled: automaticTax },
       invoice_creation: { enabled: true, invoice_data: { metadata } },
@@ -164,7 +172,7 @@ async function reserveAndCreateCartSession(input: CartInput, config: ReturnType<
       return_url: `${config.origin}${returnPath}`,
       permissions: { update_shipping_details: 'server_only' },
       shipping_address_collection: { allowed_countries: ['FR', 'MC'] },
-      shipping_options: [shippingOption(cartSubtotal(reserved), input.locale)],
+      ...(manualVat ? {} : { shipping_options: [shippingOption(cartSubtotal(reserved), input.locale)] }),
     }
     return {
       ...common, ui_mode: 'hosted_page', integration_identifier: 'dyane-cart-kmptxqaz',

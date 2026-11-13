@@ -123,3 +123,39 @@ test('shipping validates the destination and signed order cookie before updating
   assert.deepEqual(changes.map(change => change.shipping_options[0].shipping_rate_data.fixed_amount.amount), [1500, 2000, 0])
   assert.ok(changes.every(change => change.shipping_options[0].shipping_rate_data.tax_behavior === 'inclusive'))
 })
+
+test('manual VAT shipping stays out of stock and notifications only follow a verified order', async () => {
+  const { db, transact } = await testDatabase()
+  try {
+    for (const valid of [true, false]) {
+      const attemptId = randomUUID()
+      const input = { attemptId, items: [{ sku: 'dyane-sculpture-25cl', quantity: 1 }], locale: 'fr', fulfillment: 'preorder' }
+      const rateIds = { dyane_vat_fr: 'txr_fr', dyane_vat_mc: 'txr_mc' }
+      await transact(client => store.reserveCartOrder(client, input, items => {
+        const params = parameters(attemptId, 5500, items)
+        return { ...params, automatic_tax: { enabled: false }, metadata: { ...params.metadata, ...rateIds } }
+      }))
+      const rate = { id: 'txr_mc', country: 'MC', inclusive: true, percentage: 20, livemode: false }
+      const line = (priceId, total) => ({ quantity: 1, currency: 'eur', amount_total: total, amount_discount: 0,
+        price: { id: priceId, tax_behavior: 'inclusive' }, taxes: [{ rate }] })
+      const session = { id: 'cs_test_' + attemptId, livemode: false, client_reference_id: attemptId, mode: 'payment', currency: 'eur',
+        metadata: { dyane_order_id: attemptId, ...rateIds }, payment_status: 'paid', status: 'complete', amount_total: 7500,
+        total_details: { amount_tax: valid ? 1250 : 917, amount_shipping: 0, amount_discount: 0 },
+        automatic_tax: { enabled: false }, shipping_cost: null,
+        collected_information: { shipping_details: { address: { country: 'MC', postal_code: '98000' } } },
+        line_items: { has_more: false, data: [
+          line('price_no1_25', 5500),
+          { ...line('price_shipping', 2000), metadata: { dyane_line_role: 'shipping' }, taxes: valid ? [{ rate }] : [] },
+        ] },
+      }
+      const order = await transact(client => store.applySession(client, 'evt_paid_' + attemptId, session))
+      assert.equal(order?.items.length, valid ? 1 : undefined)
+      assert.equal(await transact(client => store.applySession(client, 'evt_replayed_' + attemptId, session)), undefined)
+      const { rows: [saved] } = await db.query('SELECT status,payment_snapshot FROM dyane_checkout_orders WHERE id=$1', [attemptId])
+      assert.equal(saved.status, valid ? 'paid' : 'manual_review')
+      assert.equal(saved.payment_snapshot.amountSubtotal, 5500)
+      assert.equal(saved.payment_snapshot.amountShipping, 2000)
+    }
+    assert.equal((await db.query("SELECT available FROM dyane_checkout_inventory WHERE sku='dyane-sculpture-25cl'")).rows[0].available, 0)
+  } finally { await db.close() }
+})

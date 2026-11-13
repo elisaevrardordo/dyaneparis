@@ -132,7 +132,7 @@ export default function PersonalizationDrawer({ product, locale, open, onClose, 
           <p className={s.error} role="alert">{error}</p>
           <button type="submit" className={s.addToBag} disabled={purchasable && (cart.adding || !cart.loaded)} aria-busy={purchasable && cart.adding}>
             <span>{purchasable && <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><path d="M5 8h14v13H5zM8 8V6a4 4 0 0 1 8 0v2" /></svg>}{conciergeOnly ? (en ? 'Contact the Concierge' : 'Contacter la Conciergerie') : !purchasable ? (en ? 'REQUEST THIS PERSONALISATION' : 'DEMANDER CETTE PERSONNALISATION') : (en ? 'ADD TO BAG' : 'AJOUTER AU PANIER')}</span>
-            <span>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money}{showPreorderTerms && (en ? ' incl. VAT' : ' TTC')}</span>
+            <span>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money}</span>
           </button>
           <p className={s.included}>{product.amount === null ? (en ? 'Feasibility and quotation confirmed with the Concierge.' : 'Faisabilité et devis confirmés avec la Conciergerie.') : (en ? 'Personalisation included' : 'Personnalisation offerte')}</p>
           <p className={s.conditions}>{personalizationNotice(locale)}</p>

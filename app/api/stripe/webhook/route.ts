@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type Stripe from 'stripe'
 import { stripeClient, stripeEnvironment } from '@/lib/stripe/config'
+import { manualVatFromMetadata } from '@/lib/stripe/manualVat'
 import { deliverProductionPurchaseEmails, enqueueProductionPurchaseEmails } from '@/lib/stripe/purchaseNotifications'
 import { applySession, orderPool, transaction } from '@/lib/stripe/store'
 import { captureTestPurchaseEmail } from '@/lib/stripe/testPurchaseEmail'
@@ -46,6 +47,9 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.retrieve(sessionId, { expand: ['line_items'] })
     if (session.livemode !== config.livemode || session.metadata?.dyane_order_id !== orderId) {
       throw new Error('Checkout session mode or binding mismatch')
+    }
+    if (manualVatFromMetadata(session.metadata)) {
+      session.line_items = await stripe.checkout.sessions.listLineItems(sessionId, { limit: 100, expand: ['data.taxes.rate'] })
     }
     if (event.type === 'invoice.paid') {
       const invoiceId = typeof session.invoice === 'string' ? session.invoice : session.invoice?.id

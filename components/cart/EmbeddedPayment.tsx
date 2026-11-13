@@ -19,14 +19,17 @@ type Actions = {
   getSession(): Session
   runServerUpdate(update: () => Promise<void>): Promise<Result<Session>>
   updateShippingOption(id: string): Promise<Result<Session>>
-  confirm(options: { email: string; returnUrl: string; redirect: 'always' }): Promise<Result<Session>>
+  confirm(options: { email: string }): Promise<Result<Session>>
 }
 type PaymentElement = { mount(element: HTMLElement): void; destroy(): void }
-type AddressElement = PaymentElement & { getValue(): Promise<{ complete: boolean; value: Address }> }
+type AddressElement = PaymentElement & { unmount(): void; getValue(): Promise<{ complete: boolean; value: Address }> }
 type StripeConstructor = (key: string, options: { locale: 'fr' | 'en' }) => {
   initCheckoutElementsSdk(options: {
     clientSecret: string
-    elementsOptions: { appearance: { variables: { borderRadius: string; colorPrimary: string } } }
+    elementsOptions: {
+      appearance: { variables: Record<string, string> }
+      fonts: { family: string; src: string; weight: string; display: 'swap' }[]
+    }
   }): {
     createShippingAddressElement(): AddressElement
     createPaymentElement(): PaymentElement
@@ -81,12 +84,15 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [summary, setSummary] = useState<Session | null>(null)
+  const [manualQuote, setManualQuote] = useState<{ amount: number; vat: number } | null>(null)
+  const money = (cents: number) => new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(cents / 100)
   const addressMount = useRef<HTMLDivElement>(null)
   const paymentMount = useRef<HTMLDivElement>(null)
   const closeButton = useRef<HTMLButtonElement>(null)
   const addressTitle = useRef<HTMLHeadingElement>(null)
   const emailInput = useRef<HTMLInputElement>(null)
   const sdk = useRef<{ actions: Actions; address: AddressElement; payment: PaymentElement } | null>(null)
+  const addressMounted = useRef(false)
   const paymentMounted = useRef(false)
   const actionPending = useRef(false)
   const cancellation = useRef<AbortController | null>(null)
@@ -115,14 +121,34 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         if (!/^pk_(test|live)_\S+$/.test(publishableKey)) throw new Error('Invalid Stripe public key')
         const stripe = await loadStripe()
         if (controller.signal.aborted) return
-        const checkout = stripe(publishableKey, { locale }).initCheckoutElementsSdk({ clientSecret,
-          elementsOptions: { appearance: { variables: { borderRadius: '0px', colorPrimary: '#202020' } } } })
+        const fontDirectory = new URL('/images/newsletter/fonts/', window.location.origin)
+        const checkout = stripe(publishableKey, { locale }).initCheckoutElementsSdk({
+          clientSecret,
+          elementsOptions: {
+            fonts: [
+              { family: 'Jost', src: `url(${new URL('jost-light.woff2', fontDirectory)}) format("woff2")`, weight: '300', display: 'swap' },
+              { family: 'Jost', src: `url(${new URL('jost-medium.woff2', fontDirectory)}) format("woff2")`, weight: '500', display: 'swap' },
+            ],
+            appearance: {
+              variables: {
+                borderRadius: '0px',
+                colorPrimary: '#202020',
+                colorText: '#202020',
+                fontFamily: 'Jost, sans-serif',
+                fontSizeBase: '16px',
+                fontWeightNormal: '300',
+                fontWeightMedium: '500',
+              },
+            },
+          },
+        })
         const loaded = await checkout.loadActions()
         if (controller.signal.aborted || !addressMount.current) return
         if (loaded.type !== 'success') throw new Error('Stripe Checkout unavailable')
         address = checkout.createShippingAddressElement()
         payment = checkout.createPaymentElement()
         address.mount(addressMount.current)
+        addressMounted.current = true
         sdk.current = { address, payment, actions: loaded.actions }
         setReady(true)
       } catch {
@@ -133,6 +159,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
     return () => {
       controller.abort()
       sdk.current = null
+      addressMounted.current = false
       paymentMounted.current = false
       address?.destroy()
       payment?.destroy()
@@ -140,8 +167,17 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   }, [clientSecret, locale, mounted, publishableKey])
 
   useEffect(() => {
-    if (!summary || !sdk.current || !paymentMount.current) return
+    if (!sdk.current) return
     try {
+      if (!summary) {
+        if (addressMount.current && !addressMounted.current) {
+          sdk.current.address.mount(addressMount.current)
+          addressMounted.current = true
+          addressTitle.current?.focus()
+        }
+        return
+      }
+      if (!paymentMount.current) return
       if (!paymentMounted.current) {
         sdk.current.payment.mount(paymentMount.current)
         paymentMounted.current = true
@@ -165,6 +201,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         setError(en ? 'Please complete the delivery address.' : 'Veuillez compléter l’adresse de livraison.')
         return
       }
+      let quote: { amount: number; vat: number } | undefined
       const updated = await actions.runServerUpdate(async () => {
         const response = await fetch('/api/stripe/shipping', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, signal,
@@ -172,14 +209,24 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         })
         rejectedDestination = response.status === 422
         if (!response.ok) throw new Error('Shipping update failed')
+        quote = (await response.json()).manualQuote
       })
       if (rejectedDestination || updated.type !== 'success') throw new Error('Shipping update failed')
-      const [option] = updated.session.shippingOptions
-      if (!option || updated.session.shippingOptions.length !== 1) throw new Error('No applicable shipping option')
-      const selected = updated.session.shipping?.shippingOption.id === option.id
-        ? updated : await actions.updateShippingOption(option.id)
-      if (selected.type !== 'success') throw new Error('Shipping selection failed')
-      if (!signal.aborted) setSummary(selected.session)
+      const manual = quote && Number.isSafeInteger(quote.amount) && Number.isSafeInteger(quote.vat) ? quote : null
+      if (!manual) {
+        const [option] = updated.session.shippingOptions
+        if (!option || updated.session.shippingOptions.length !== 1) throw new Error('No applicable shipping option')
+        const selected = updated.session.shipping?.shippingOption.id === option.id
+          ? updated : await actions.updateShippingOption(option.id)
+        if (selected.type !== 'success') throw new Error('Shipping selection failed')
+      }
+      if (!signal.aborted) {
+        // Stripe requires the shipping element to be unmounted when the server manages the address.
+        address.unmount()
+        addressMounted.current = false
+        setManualQuote(manual)
+        setSummary(actions.getSession())
+      }
     } catch {
       if (!signal.aborted) setError(rejectedDestination
         ? (en ? 'We deliver only to metropolitan France and Monaco. Please check your address.' : 'Nous livrons uniquement en France métropolitaine et à Monaco. Veuillez vérifier votre adresse.')
@@ -201,7 +248,8 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
       const path = returnPath.replace('{CHECKOUT_SESSION_ID}', encodeURIComponent(summary.id))
       const returnUrl = new URL(path, window.location.origin)
       if (!path.startsWith('/') || returnUrl.origin !== window.location.origin) throw new Error('Invalid checkout return URL')
-      const result = await sdk.current.actions.confirm({ email: emailInput.current.value.trim(), returnUrl: returnUrl.href, redirect: 'always' })
+      // The Checkout Session already supplies the return URL to Stripe.
+      const result = await sdk.current.actions.confirm({ email: emailInput.current.value.trim() })
       if (signal.aborted) return
       if (result.type === 'error') setError(result.error.message)
       else window.location.assign(returnUrl.href)
@@ -250,13 +298,13 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
           <form hidden={!summary || fatal} onSubmit={pay}>
             {summary && <>
               <dl className={styles.totals}>
-                <div><dt>{summary.shipping?.shippingOption.displayName ?? (en ? 'Shipping' : 'Livraison')}</dt><dd>{summary.total.shippingRate.minorUnitsAmount === 0 ? (en ? 'Complimentary' : 'Offerte') : summary.total.shippingRate.amount}</dd></div>
+                <div><dt>{summary.shipping?.shippingOption.displayName ?? (en ? 'Shipping' : 'Livraison')}</dt><dd>{(manualQuote?.amount ?? summary.total.shippingRate.minorUnitsAmount) === 0 ? (en ? 'Complimentary' : 'Offerte') : manualQuote ? money(manualQuote.amount) : summary.total.shippingRate.amount}</dd></div>
+                {manualQuote && <div><dt>{en ? 'VAT included (20%)' : 'Dont TVA (20 %)'}</dt><dd>{money(manualQuote.vat)}</dd></div>}
                 <div><dt>{en ? 'Total including tax' : 'Total TTC'}</dt><dd>{summary.total.total.amount}</dd></div>
               </dl>
               <button type="button" disabled={busy} className={styles.edit} onClick={() => {
                 setSummary(null)
                 setError('')
-                requestAnimationFrame(() => addressTitle.current?.focus())
               }}>{en ? 'Edit delivery address' : 'Modifier l’adresse de livraison'}</button>
               <h3>{en ? 'Payment details' : 'Informations de paiement'}</h3>
               <label className={styles.email}>{en ? 'Email address' : 'Adresse e-mail'}<input ref={emailInput} type="email" autoComplete="email" required /></label>
