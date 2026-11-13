@@ -31,6 +31,7 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
   const en = locale === 'en'
   const t = (fr: string, english: string) => en ? english : fr
   const path = (href: string) => localizedPath(locale, href)
+  const preorderLabel = t('Précommander', 'Preorder')
   const delivery = shopDeliveryTerms(locale, fulfillment, canPurchase)
   const stockStatus = limit === null
     ? t('Disponibilité à confirmer auprès de la Conciergerie.', 'Contact the Concierge to confirm availability.')
@@ -59,10 +60,10 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
         <p className={showcase.subtitle}>{no2 ? 'Basil Smash' : t('Inspiré du Pornstar Martini, 24 % vol.', 'Inspired by the Pornstar Martini, 24% vol.')} · {format}</p>
         <section className={showcase.formatPurchase} aria-label={t('Votre création', 'Your creation')}>
           {sandboxCartEnabled && <p className={s.notice}>{t('SANDBOX · AUCUN ACHAT RÉEL', 'SANDBOX · NO REAL PURCHASE')}</p>}
-          <p className={showcase.formatPrice}>{product ? formatPrice(product.amount, locale) : t('Sur demande', 'On request')}{preorder && <small className={s.priceTax}> {t('TTC', 'incl. VAT')}</small>}</p>
+          <p className={showcase.formatPrice}>{product ? formatPrice(product.amount, locale) : t('Sur demande', 'On request')}</p>
           {preorder && <p className={s.status}>{preorderTerms(locale, canPurchase)}</p>}
-          {canPurchase && product && <button type="button" className={showcase.orderButton} disabled={!cart.loaded || cart.adding || limit === 0} onClick={() => cart.add(product.sku)}>{cart.adding ? t('Ajout en cours…', 'Adding…') : t('Ajouter au panier', 'Add to bag')}</button>}
-          {(!canPurchase || !product) && <Link className={showcase.orderButton} href={path('/contact')}>{t('Contacter la Conciergerie', 'Contact the Concierge')}</Link>}
+          {canPurchase && product && <button type="button" className={showcase.orderButton} disabled={!cart.loaded || cart.adding || limit === 0} onClick={() => cart.add(product.sku)}>{cart.adding ? t('Ajout en cours…', 'Adding…') : preorder ? preorderLabel : t('Ajouter au panier', 'Add to bag')}</button>}
+          {(!canPurchase || !product) && <Link className={showcase.orderButton} href={path('/contact')}>{preorder ? preorderLabel : t('Contacter la Conciergerie', 'Contact the Concierge')}</Link>}
           <PersonalizeButton sku={sku || work.enquirySku || ''} locale={locale} className={showcase.personalizeButton} showPreorderTerms={preorder} conciergeOnly={!canPurchase} />
         </section>
         {canPurchase && product && <Link className={showcase.privateOrder} href={path('/contact')}>{t('Passer une commande privée', 'Place a private order')}</Link>}

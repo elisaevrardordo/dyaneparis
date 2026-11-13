@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { cartFontVariables } from '@/components/cart/fonts'
 import s from './Commerce.module.css'
 
 export default function CommerceDialog({ title, children, onClose, kind = 'notice', closeLabel = 'Fermer' }: {
@@ -21,7 +22,7 @@ export default function CommerceDialog({ title, children, onClose, kind = 'notic
     setLeaving(true)
     timer.current = setTimeout(onClose, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 180)
   }
-  return <dialog ref={ref} className={`${s.dialog} ${s[kind]} ${leaving ? s.leaving : ''}`} aria-labelledby={id}
+  return <dialog ref={ref} className={`${s.dialog} ${s[kind]} ${kind === 'added' ? cartFontVariables : ''} ${leaving ? s.leaving : ''}`} aria-labelledby={id}
     onCancel={event => { event.preventDefault(); close() }}
     onKeyDown={event => {
       if (event.key !== 'Tab') return

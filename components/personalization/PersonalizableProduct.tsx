@@ -19,7 +19,7 @@ export default function PersonalizableProduct({ product, locale, sandboxCartEnab
     <div className={s.detailInfo}>
       <Link className={s.breadcrumb} href={path('/personnalisables')}>{en ? 'THE PERSONALISABLES' : 'LES PERSONNALISABLES'}</Link>
       <h1>{product.name.toUpperCase()}</h1><p className={s.format}>{product.format}</p>
-      <p className={s.price}>{product.amount === null ? (en ? 'On request' : 'Sur demande') : formatPrice(product.amount, locale)}{preorder && <small> {en ? 'incl. VAT' : 'TTC'}</small>}</p>
+      <p className={s.price}>{product.amount === null ? (en ? 'On request' : 'Sur demande') : formatPrice(product.amount, locale)}</p>
       {preorder && <p className={s.detailNotice}>{preorderTerms(locale, canPurchase)}</p>}
       <p className={s.detailDescription}>{en ? 'The Dyane silhouette, with your signature. Choose up to three initials in the finish of your choice to make your porcelain sculpture a personal gift.' : 'La silhouette Dyane, votre signature. Jusqu’à trois initiales, dans la finition de votre choix, pour faire de votre sculpture en porcelaine une attention personnelle.'}</p>
       <PersonalizeButton sku={product.sku} locale={locale} showPreorderTerms={preorder} conciergeOnly={!canPurchase} />

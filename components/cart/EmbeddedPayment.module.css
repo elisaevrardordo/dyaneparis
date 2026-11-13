@@ -14,7 +14,7 @@
   overscroll-behavior: contain;
   background: #fff;
   color: #202020;
-  font: 400 16px/1.5 var(--font-cart-sans), sans-serif;
+  font: 300 16px/1.5 var(--font-cart-sans), sans-serif;
 }
 
 .header {
