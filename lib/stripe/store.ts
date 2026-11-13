@@ -3,6 +3,7 @@ import { giftOptions, type GiftOptions } from '../gifts/options'
 import { Pool, type PoolClient } from 'pg'
 import type Stripe from 'stripe'
 import { CheckoutError, validateCartItems } from './config'
+import { orderDatabaseUrl } from '../deployment'
 import { cartLineKey, type CartItem, type Personalization } from '@/components/cart/catalog'
 import { normalizeGiftMessage, validGiftMessage } from '../gifts/message'
 import { commerceIntegration, isSingleFulfillment, type Fulfillment } from '../orders/fulfillment'
@@ -11,8 +12,9 @@ import { isDeliveryCountry, isDeliveryPostcode, shippingAmount } from '../shippi
 
 let pool: Pool | undefined
 export function orderPool() {
-  if (!process.env.STRIPE_DATABASE_URL) throw new CheckoutError('Order database required')
-  pool ??= new Pool({ connectionString: process.env.STRIPE_DATABASE_URL, max: 5, connectionTimeoutMillis: 5000 })
+  const connectionString = orderDatabaseUrl()
+  if (!connectionString) throw new CheckoutError('Order database required')
+  pool ??= new Pool({ connectionString, max: 5, connectionTimeoutMillis: 5000 })
   return pool
 }
 

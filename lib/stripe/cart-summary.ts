@@ -4,7 +4,7 @@ import { shippingAmount } from '@/lib/shipping'
 import { orderPool } from './store'
 import { assertCheckoutAccount, assertManualVatReady, configuredManualVat, checkoutUsesAutomaticTax, checkoutConfig, commerceCheckoutConfig, stripeClient } from './config'
 import { isManualVatCocktail } from './manualVat'
-import { isProductionDeployment } from '../deployment'
+import { isProductionDeployment, orderDatabaseUrl } from '../deployment'
 import { fulfillmentForSku, isSingleFulfillment } from '@/lib/orders/fulfillment'
 
 export async function cartSummary(items: CartItem[], commerce = false) {
@@ -19,7 +19,7 @@ export async function cartSummary(items: CartItem[], commerce = false) {
   const manualVat = commerce ? configuredManualVat() : undefined
   if (fulfillment && !isSingleFulfillment(items, fulfillment)) return result
   if (manualVat && !items.every(item => isManualVatCocktail(item.sku))) return result
-  if (process.env.STRIPE_DATABASE_URL) {
+  if (orderDatabaseUrl()) {
     try {
       const stock = await orderPool().query<{ sku: string; available: number; active: boolean; preorder_enabled?: boolean }>(
         fulfillment === 'preorder'

@@ -5,5 +5,11 @@
 [build.environment]
   NODE_VERSION = "24"
 
+[context.production]
+  command = "node scripts/netlify-order-readiness.cjs && npm run build"
+
+[context.production.environment]
+  DYANE_DEPLOYMENT_ENV = "production"
+
 [context.deploy-preview.environment]
   DYANE_DEPLOYMENT_ENV = "preview"

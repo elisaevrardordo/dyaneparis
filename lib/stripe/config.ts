@@ -1,7 +1,7 @@
 import 'server-only'
 import Stripe from 'stripe'
 import { manualVatRates, validManualVatRate, type ManualVatRates } from './manualVat'
-import { isProductionDeployment } from '../deployment'
+import { isProductionDeployment, orderDatabaseUrl } from '../deployment'
 import { giftOptions, type GiftOptions } from '../gifts/options'
 import { normalizeGiftMessage, validGiftMessage } from '../gifts/message'
 import { cartLineKey, cartProducts, MAX_CART_QUANTITY_PER_SKU, validateComposition, validatePersonalization, type CartItem } from '@/components/cart/catalog'
@@ -37,7 +37,7 @@ export function stripeEnvironment(env = process.env) {
 
 export function checkoutConfig(env = process.env) {
   if (env.STRIPE_CHECKOUT_ENABLED !== 'true') throw new CheckoutError('Checkout disabled')
-  if (!env.STRIPE_DATABASE_URL) throw new CheckoutError('Order database required')
+  if (!orderDatabaseUrl(env)) throw new CheckoutError('Order database required')
   const config = stripeEnvironment(env)
   if (config.livemode && (env.STRIPE_LIVE_READY !== 'true' || !/^whsec_\S+$/.test(env.STRIPE_WEBHOOK_SECRET ?? ''))) {
     throw new CheckoutError('Live checkout has not been configured for opening')
