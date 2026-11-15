@@ -269,4 +269,8 @@ a:focus-visible {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
     }
+
+    iframe#nl-badge-frame {
+    display: none !important;
+}
 }
