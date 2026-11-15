@@ -258,6 +258,7 @@ a:focus-visible {
     outline-offset: 4px;
 }
 
+
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 
@@ -269,8 +270,8 @@ a:focus-visible {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
     }
-
-    iframe#nl-badge-frame {
-    display: none !important;
 }
+
+iframe#nl-badge-frame {
+    display: none !important;
 }
