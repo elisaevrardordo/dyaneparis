@@ -35,7 +35,11 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
   const delivery = shopDeliveryTerms(locale, fulfillment, canPurchase)
   const stockStatus = limit === null
     ? t('Disponibilité à confirmer auprès de la Conciergerie.', 'Contact the Concierge to confirm availability.')
-    : limit > 0 ? t('Disponible.', 'Available.') : t('Indisponible.', 'Unavailable.')
+    : limit > 0 ? null : t('Indisponible.', 'Unavailable.')
+  const availabilityNotice = canPurchase ? stockStatus : t(
+    'Disponible auprès de la Conciergerie. Livraison sous 5 jours ouvrés en France métropolitaine et à Monaco.',
+    'Available through the Concierge. Delivery within 5 business days in metropolitan France and Monaco.',
+  )
   useEffect(() => {
     if (!canPurchase || !sku) return
     const controller = new AbortController()
@@ -62,12 +66,23 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
           {sandboxCartEnabled && <p className={s.notice}>{t('SANDBOX · AUCUN ACHAT RÉEL', 'SANDBOX · NO REAL PURCHASE')}</p>}
           <p className={showcase.formatPrice}>{product ? formatPrice(product.amount, locale) : t('Sur demande', 'On request')}</p>
           {preorder && <p className={s.status}>{preorderTerms(locale, canPurchase)}</p>}
-          {canPurchase && product && <button type="button" className={showcase.orderButton} disabled={!cart.loaded || cart.adding || limit === 0} onClick={() => cart.add(product.sku)}>{cart.adding ? t('Ajout en cours…', 'Adding…') : preorder ? preorderLabel : t('Ajouter au panier', 'Add to bag')}</button>}
+          {canPurchase && product && (
+            <button type="button" className={showcase.orderButton} disabled={!cart.loaded || cart.adding || limit === 0} onClick={() => cart.add(product.sku)}>
+              {cart.adding ? t('Ajout en cours…', 'Adding…') : preorder ? preorderLabel : t('AJOUTER AU PANIER', 'ADD TO BAG')}
+            </button>
+          )}
           {(!canPurchase || !product) && <Link className={showcase.orderButton} href={path('/contact')}>{preorder ? preorderLabel : t('Contacter la Conciergerie', 'Contact the Concierge')}</Link>}
-          <PersonalizeButton sku={sku || work.enquirySku || ''} locale={locale} className={showcase.personalizeButton} showPreorderTerms={preorder} conciergeOnly={!canPurchase} />
+          <PersonalizeButton
+            sku={sku || work.enquirySku || ''}
+            locale={locale}
+            className={showcase.personalizeButton}
+            label={t('personnaliser', 'personalise')}
+            showPreorderTerms={preorder}
+            conciergeOnly={!canPurchase}
+          />
         </section>
         {canPurchase && product && <Link className={showcase.privateOrder} href={path('/contact')}>{t('Passer une commande privée', 'Place a private order')}</Link>}
-        {!preorder && <p className={s.status}>{canPurchase ? stockStatus : t('Disponible auprès de la Conciergerie. Livraison sous 5 jours ouvrés en France métropolitaine et à Monaco.', 'Available through the Concierge. Delivery within 5 business days in metropolitan France and Monaco.')}</p>}
+        {!preorder && availabilityNotice && <p className={s.status}>{availabilityNotice}</p>}
         {sandboxCartEnabled && <p className={s.notice}>{t('Aperçu de test. Aucun paiement réel. Les informations réglementaires du format seront confirmées avant l’ouverture des ventes.', 'Test preview. No real payment. Regulatory information for this size will be confirmed before sales open.')}</p>}
         <section className={s.personalization}><h2>{t('PERSONNALISER VOTRE DYANE', 'PERSONALISE YOUR DYANE')}</h2><p>{no2 ? t('Vos initiales, jusqu’à trois lettres. Finition dorée ou verte, sans supplément.', 'Your initials, up to three letters. Gold or green finish, included.') : t('Vos initiales, jusqu’à trois lettres. Finition dorée ou rouge, sans supplément.', 'Your initials, up to three letters. Gold or red finish, included.')}</p><p>{personalizationNotice(locale)}</p></section>
         <div className={s.intro}><strong>{t('UNE CRÉATION À DÉGUSTER. UNE SCULPTURE À CONSERVER.', 'A CREATION TO TASTE. A SCULPTURE TO KEEP.')}</strong><p>{t('Chaque œuvre liquide associe une composition de mixologie à une sculpture en porcelaine peinte à la main. Une rencontre entre le geste, la matière et le goût.', 'Each liquid work brings together a mixology composition and a hand-painted porcelain sculpture. A meeting of gesture, material and taste.')}</p></div>
