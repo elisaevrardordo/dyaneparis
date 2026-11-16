@@ -7,7 +7,7 @@ import styles from './EmbeddedPayment.module.css'
 
 type Address = { name: string; address: { country: string; line1: string; line2: string | null; city: string; postal_code: string; state: string } }
 type Amount = { amount: string; minorUnitsAmount: number }
-type ShippingOption = { id: string; displayName: string | null }
+type ShippingOption = { id: string }
 type Session = {
   id: string
   shippingOptions: ShippingOption[]
@@ -31,7 +31,7 @@ type StripeConstructor = (key: string, options: { locale: 'fr' | 'en' }) => {
       fonts: { family: string; src: string; weight: string; display: 'swap' }[]
     }
   }): {
-    createShippingAddressElement(): AddressElement
+    createShippingAddressElement(options: { autocomplete: { mode: 'disabled' } }): AddressElement
     createPaymentElement(): PaymentElement
     loadActions(): Promise<{ type: 'success'; actions: Actions } | { type: 'error' }>
   }
@@ -84,7 +84,8 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [summary, setSummary] = useState<Session | null>(null)
-  const [manualQuote, setManualQuote] = useState<{ amount: number; vat: number } | null>(null)
+  const [manualDelivery, setManualDelivery] = useState<number | null>(null)
+  const delivery = summary ? manualDelivery ?? summary.total.shippingRate.minorUnitsAmount : 0
   const money = (cents: number) => new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(cents / 100)
   const addressMount = useRef<HTMLDivElement>(null)
   const paymentMount = useRef<HTMLDivElement>(null)
@@ -145,7 +146,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         const loaded = await checkout.loadActions()
         if (controller.signal.aborted || !addressMount.current) return
         if (loaded.type !== 'success') throw new Error('Stripe Checkout unavailable')
-        address = checkout.createShippingAddressElement()
+        address = checkout.createShippingAddressElement({ autocomplete: { mode: 'disabled' } })
         payment = checkout.createPaymentElement()
         address.mount(addressMount.current)
         addressMounted.current = true
@@ -212,8 +213,8 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         quote = (await response.json()).manualQuote
       })
       if (rejectedDestination || updated.type !== 'success') throw new Error('Shipping update failed')
-      const manual = quote && Number.isSafeInteger(quote.amount) && Number.isSafeInteger(quote.vat) ? quote : null
-      if (!manual) {
+      const manual = quote && Number.isSafeInteger(quote.amount) && Number.isSafeInteger(quote.vat) ? quote.amount : null
+      if (manual === null) {
         const [option] = updated.session.shippingOptions
         if (!option || updated.session.shippingOptions.length !== 1) throw new Error('No applicable shipping option')
         const selected = updated.session.shipping?.shippingOption.id === option.id
@@ -224,7 +225,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         // Stripe requires the shipping element to be unmounted when the server manages the address.
         address.unmount()
         addressMounted.current = false
-        setManualQuote(manual)
+        setManualDelivery(manual)
         setSummary(actions.getSession())
       }
     } catch {
@@ -267,7 +268,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
       onClose()
     }
     if (event.key !== 'Tab') return
-    const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), iframe'))
+    const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), summary, iframe'))
       .filter(control => control.getClientRects().length > 0)
     const first = controls[0], last = controls[controls.length - 1]
     if ((event.shiftKey && event.target === first) || (!event.shiftKey && event.target === last)) {
@@ -297,11 +298,25 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
           </form>
           <form hidden={!summary || fatal} onSubmit={pay}>
             {summary && <>
-              <dl className={styles.totals}>
-                <div><dt>{summary.shipping?.shippingOption.displayName ?? (en ? 'Shipping' : 'Livraison')}</dt><dd>{(manualQuote?.amount ?? summary.total.shippingRate.minorUnitsAmount) === 0 ? (en ? 'Complimentary' : 'Offerte') : manualQuote ? money(manualQuote.amount) : summary.total.shippingRate.amount}</dd></div>
-                {manualQuote && <div><dt>{en ? 'VAT included (20%)' : 'Dont TVA (20 %)'}</dt><dd>{money(manualQuote.vat)}</dd></div>}
-                <div><dt>{en ? 'Total including tax' : 'Total TTC'}</dt><dd>{summary.total.total.amount}</dd></div>
-              </dl>
+              <details className={styles.orderSummary}>
+                <summary>
+                  <span className={styles.totalLabel}>Total</span>
+                  <span className={styles.totalAmount}>
+                    {summary.total.total.amount}
+                    <span className={styles.chevron} aria-hidden="true" />
+                  </span>
+                </summary>
+                <dl className={styles.totals}>
+                  <div>
+                    <dt>{en ? 'Your selection' : 'Votre sélection'}</dt>
+                    <dd>{money(summary.total.total.minorUnitsAmount - delivery)}</dd>
+                  </div>
+                  <div>
+                    <dt>{en ? 'Delivery' : 'Livraison'}</dt>
+                    <dd>{delivery === 0 ? (en ? 'Complimentary' : 'Offerte') : money(delivery)}</dd>
+                  </div>
+                </dl>
+              </details>
               <button type="button" disabled={busy} className={styles.edit} onClick={() => {
                 setSummary(null)
                 setError('')
@@ -310,7 +325,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
               <label className={styles.email}>{en ? 'Email address' : 'Adresse e-mail'}<input ref={emailInput} type="email" autoComplete="email" required /></label>
             </>}
             <div ref={paymentMount} />
-            {summary && <button type="submit" className={styles.primary} disabled={busy}>{busy ? (en ? 'Confirming…' : 'Confirmation…') : (en ? `Pay ${summary.total.total.amount}` : `Payer ${summary.total.total.amount}`)}</button>}
+            {summary && <button type="submit" className={styles.primary} disabled={busy}>{busy ? (en ? 'Confirming…' : 'Règlement en cours…') : (en ? `Pay ${summary.total.total.amount}` : `Régler ${summary.total.total.amount}`)}</button>}
           </form>
           {error && <p role="alert" className={styles.error}>{error}</p>}
         </div>
