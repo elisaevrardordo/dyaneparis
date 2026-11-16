@@ -28,16 +28,24 @@ async function verifyLaunch(stripe, env, price, check) {
   check(/^[a-f0-9]{40}$/.test(env.COMMIT_REF || ''), 'Missing Git commit for the launch verification.')
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
-    payment_method_types: ['card'],
+    ui_mode: 'elements',
+    integration_identifier: 'dyane-commerce-v1',
+    locale: 'fr',
+    customer_creation: 'always',
+    automatic_tax: { enabled: false },
+    invoice_creation: { enabled: true },
+    shipping_address_collection: { allowed_countries: ['FR', 'MC'] },
+    permissions: { update_shipping_details: 'server_only' },
     line_items: [{ price, quantity: 1 }],
-    success_url: `${origin}/panier`,
-    cancel_url: `${origin}/panier`,
+    return_url: `${origin}/panier`,
     client_reference_id: probe,
   }, { idempotencyKey: probe }).catch(error => {
-    check(false, `Could not create the unpaid Stripe Live verification session (HTTP ${error.statusCode || 'unknown'}).`)
+    const parameter = /^[a-z_]+$/.test(error.param || '') ? `, parameter ${error.param}` : ''
+    const code = /^[a-z_]+$/.test(error.code || '') ? `, code ${error.code}` : ''
+    check(false, `Could not create the unpaid Stripe Live verification session (HTTP ${error.statusCode || 'unknown'}${parameter}${code}).`)
   })
   const current = await stripe.checkout.sessions.retrieve(session.id)
-  check(current.livemode && current.payment_status === 'unpaid' && current.client_reference_id === probe
+  check(session.client_secret && current.livemode && current.payment_status === 'unpaid' && current.client_reference_id === probe
     && !current.metadata?.dyane_order_id && ['open', 'expired'].includes(current.status),
   'The Stripe Live verification session does not match the expected unpaid probe.')
   if (current.status === 'open') await stripe.checkout.sessions.expire(current.id)
