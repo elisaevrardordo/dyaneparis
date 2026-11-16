@@ -27,7 +27,10 @@ type StripeConstructor = (key: string, options: { locale: 'fr' | 'en' }) => {
   initCheckoutElementsSdk(options: {
     clientSecret: string
     elementsOptions: {
-      appearance: { variables: Record<string, string> }
+      appearance: {
+        variables: Record<string, string>
+        rules: Record<string, Record<string, string>>
+      }
       fonts: { family: string; src: string; weight: string; display: 'swap' }[]
     }
   }): {
@@ -77,12 +80,15 @@ function loadStripe() {
 
 export default function EmbeddedPayment({ locale, clientSecret, publishableKey, attemptId, returnPath, fulfillmentNote, onClose }: Props) {
   const titleId = useId()
+  const emailId = useId()
+  const emailErrorId = emailId + '-error'
   const en = locale === 'en'
   const [mounted, setMounted] = useState(false)
   const [ready, setReady] = useState(false)
   const [fatal, setFatal] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [emailInvalid, setEmailInvalid] = useState(false)
   const [summary, setSummary] = useState<Session | null>(null)
   const [manualDelivery, setManualDelivery] = useState<number | null>(null)
   const delivery = summary ? manualDelivery ?? summary.total.shippingRate.minorUnitsAmount : 0
@@ -135,10 +141,19 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
                 borderRadius: '0px',
                 colorPrimary: '#202020',
                 colorText: '#202020',
+                colorDanger: '#882e20',
                 fontFamily: 'Jost, sans-serif',
                 fontSizeBase: '16px',
                 fontWeightNormal: '300',
                 fontWeightMedium: '500',
+              },
+              rules: {
+                '.Input--invalid, .Input--invalid:focus': {
+                  borderColor: 'transparent transparent var(--colorDanger)',
+                  boxShadow: 'none',
+                },
+                '.Input--invalid:focus': { boxShadow: '0 1px 0 var(--colorDanger)' },
+                '.Error': { fontSize: '14px', lineHeight: '1.4', marginTop: '6px' },
               },
             },
           },
@@ -241,16 +256,23 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   async function pay(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const signal = cancellation.current?.signal
-    if (!sdk.current || !summary || !emailInput.current || actionPending.current || !signal || signal.aborted) return
+    const email = emailInput.current
+    if (!sdk.current || !summary || !email || actionPending.current || !signal || signal.aborted) return
+    setError('')
+    if (!email.validity.valid) {
+      setEmailInvalid(true)
+      email.focus()
+      return
+    }
+    setEmailInvalid(false)
     actionPending.current = true
     setBusy(true)
-    setError('')
     try {
       const path = returnPath.replace('{CHECKOUT_SESSION_ID}', encodeURIComponent(summary.id))
       const returnUrl = new URL(path, window.location.origin)
       if (!path.startsWith('/') || returnUrl.origin !== window.location.origin) throw new Error('Invalid checkout return URL')
       // The Checkout Session already supplies the return URL to Stripe.
-      const result = await sdk.current.actions.confirm({ email: emailInput.current.value.trim() })
+      const result = await sdk.current.actions.confirm({ email: email.value.trim() })
       if (signal.aborted) return
       if (result.type === 'error') setError(result.error.message)
       else window.location.assign(returnUrl.href)
@@ -279,6 +301,7 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
   }
 
   if (!mounted) return null
+  const formError = error && !fatal ? <p role="alert" className={styles.error}>{error}</p> : null
   return createPortal(
     <div className={`${styles.overlay} ${cartFontVariables}`}>
       <div role="dialog" aria-modal="true" aria-labelledby={titleId} className={styles.panel} onKeyDown={navigateDialog}>
@@ -290,13 +313,13 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
         <div className={styles.content}>
           {fulfillmentNote && <p className={styles.note}>{fulfillmentNote}</p>}
           {fatal && <p role="alert" className={styles.error}>{en ? 'Payment is temporarily unavailable. Your bag is saved.' : 'Le paiement est momentanément indisponible. Votre panier est conservé.'}</p>}
-          {!ready && !fatal && <p role="status" className={styles.note}>{en ? 'Opening Stripe…' : 'Ouverture de Stripe…'}</p>}
-          <form hidden={!!summary || fatal} onSubmit={confirmShipping}>
+          <form hidden={!!summary || fatal} aria-busy={!ready} onSubmit={confirmShipping}>
             <h3 ref={addressTitle} tabIndex={-1}>{en ? 'Delivery address' : 'Adresse de livraison'}</h3>
             <div ref={addressMount} />
+            {!summary && formError}
             {ready && <button type="submit" className={styles.primary} disabled={busy}>{busy ? (en ? 'Checking…' : 'Vérification…') : (en ? 'Confirm delivery address' : 'Confirmer l’adresse de livraison')}</button>}
           </form>
-          <form hidden={!summary || fatal} onSubmit={pay}>
+          <form hidden={!summary || fatal} onSubmit={pay} noValidate>
             {summary && <>
               <details className={styles.orderSummary}>
                 <summary>
@@ -320,14 +343,32 @@ export default function EmbeddedPayment({ locale, clientSecret, publishableKey, 
               <button type="button" disabled={busy} className={styles.edit} onClick={() => {
                 setSummary(null)
                 setError('')
+                setEmailInvalid(false)
               }}>{en ? 'Edit delivery address' : 'Modifier l’adresse de livraison'}</button>
               <h3>{en ? 'Payment details' : 'Informations de paiement'}</h3>
-              <label className={styles.email}>{en ? 'Email address' : 'Adresse e-mail'}<input ref={emailInput} type="email" autoComplete="email" required /></label>
+              <div className={styles.email}>
+                <label htmlFor={emailId}><span aria-hidden="true">* </span>{en ? 'Email address' : 'Adresse e-mail'}</label>
+                <input
+                  id={emailId}
+                  ref={emailInput}
+                  type="email"
+                  autoComplete="email"
+                  required
+                  aria-invalid={emailInvalid}
+                  aria-describedby={emailInvalid ? emailErrorId : undefined}
+                  onChange={event => {
+                    if (emailInvalid && event.currentTarget.validity.valid) setEmailInvalid(false)
+                  }}
+                />
+                {emailInvalid && <p id={emailErrorId} className={styles.fieldError} role="alert">
+                  {en ? 'Please check your email address.' : 'Veuillez vérifier votre adresse e-mail.'}
+                </p>}
+              </div>
             </>}
             <div ref={paymentMount} />
+            {summary && formError}
             {summary && <button type="submit" className={styles.primary} disabled={busy}>{busy ? (en ? 'Confirming…' : 'Règlement en cours…') : (en ? `Pay ${summary.total.total.amount}` : `Régler ${summary.total.total.amount}`)}</button>}
           </form>
-          {error && <p role="alert" className={styles.error}>{error}</p>}
         </div>
       </div>
     </div>, document.body,

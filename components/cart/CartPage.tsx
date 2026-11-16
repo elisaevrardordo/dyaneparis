@@ -408,7 +408,7 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
           })}
           {error && <p ref={errorRef} tabIndex={-1} role="alert" className={s.error}>{error} <Link href={path('/contact')}>{t('Nous contacter', 'Contact us')}</Link></p>}
           <Link href={path('/oeuvres')} className={s.continue}>{t('Continuer mes achats', 'Continue shopping')}</Link>
-          <p className={s.secure}><Icon name="lock" size={13} />{t('Paiement sécurisé par Stripe', 'Secure payment by Stripe')}</p>
+          <p className={s.secure}><Icon name="lock" size={13} />{t('Paiement sécurisé', 'Secure payment')}</p>
         </div>
         <div className={s.services}><h2>{t('Aide & services', 'Help & services')}</h2>
           <details><summary><Icon name="card" /><span><strong>{t('Paiement sécurisé', 'Secure payment')}</strong><small>{t('Vos informations restent protégées', 'Your information stays protected')}</small></span><Icon name="arrow" size={18} /></summary><p>{t('Le paiement est sécurisé par Stripe. Les moyens disponibles sont proposés lors du paiement. Dyane Paris ne conserve pas vos coordonnées bancaires.', 'Payment is secured by Stripe. Available payment methods are shown at checkout. Dyane Paris does not store your card details.')}</p></details>
