@@ -87,7 +87,6 @@ async function verifyStripe(env, apply) {
     check(tax.id === rate && tax.livemode === true && tax.active && tax.inclusive && tax.percentage === 20 && tax.country === country,
       `Unexpected Stripe VAT rate for ${country}.`)
   }
-  return stripe
 }
 
 function migrations() {
@@ -153,10 +152,7 @@ async function prepareDatabase(db, apply, executeMigration = sql => db.query(sql
 async function main(env) {
   const mode = deploymentMode(env)
   if (!mode) return
-  check(!mode.apply && env.DYANE_NETLIFY_ORDER_BOOTSTRAP === 'verify'
-    && env.STRIPE_CHECKOUT_ENABLED === 'false' && env.STRIPE_LIVE_READY === 'false',
-  'Keep live checkout closed during the Stripe launch verification.')
-  const stripe = await verifyStripe(env, mode.apply)
+  await verifyStripe(env, mode.apply)
   console.log('Production Stripe account, four prices and both VAT rates verified.')
   const connectionString = productionConnection(env)
   const { Client } = require('pg')
@@ -166,7 +162,6 @@ async function main(env) {
     const initialized = await prepareDatabase(db, mode.apply)
     console.log(initialized ? 'Production order database initialized and checked.' : 'Production order database checked without changes.')
   } finally { await db.end() }
-  await require('./netlify-checkout-launch.cjs')(stripe, env, catalog[0].price, check)
 }
 
 if (require.main === module) {
