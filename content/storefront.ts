@@ -69,7 +69,7 @@ export const featuredWorks: FeaturedWork[] = [
 
 export const storefront = {
   // Change media, order and crop here. No binary placeholders or third-party brand assets.
-  sections: ['hero', 'chapters', 'products', 'universe', 'story', 'triptych', 'craft', 'film'] as const,
+  sections: ['hero', 'products', 'chapters', 'universe', 'story', 'triptych', 'craft', 'film'] as const,
   hero: {
     foreground: 'white' as const,
     images: [
