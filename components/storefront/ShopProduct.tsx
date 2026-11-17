@@ -68,7 +68,7 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
           {sandboxCartEnabled && <p className={s.notice}>{t('SANDBOX · AUCUN ACHAT RÉEL', 'SANDBOX · NO REAL PURCHASE')}</p>}
           {product && largeFormat ? <div className={s.purchaseDetails}>
             <p className={`${showcase.formatPrice} ${s.largePrice}`}>
-              {formatPrice(product.amount, locale, 'symbol')} <small>{t('TTC', 'Incl. VAT')}</small>
+              {formatPrice(product.amount, locale)} <small>{t('TTC', 'Incl. VAT')}</small>
             </p>
             <p>{t('Cocktail prêt à servir. Sculpture en porcelaine peinte à la main.', 'Ready-to-serve cocktail in a hand-painted porcelain sculpture.')}</p>
             <p>{t('Personnalisation offerte.', 'Personalisation included.')} {shippingDeliveryDescription(locale, preorder)}</p>
