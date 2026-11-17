@@ -143,5 +143,6 @@
   .formatPrice { order: -2; font-size: 19px; }
   .formatPurchase > .orderButton { order: -1; margin-bottom: 24px; }
   .formatPurchase > .personalizeButton { order: 1; }
+  .formatPurchase > .personalizeButton:lang(fr) { text-transform: capitalize; }
   .formatPurchase > p:first-child:not(.formatPrice) { order: 2; }
 }

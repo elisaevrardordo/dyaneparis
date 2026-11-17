@@ -142,7 +142,7 @@ export async function generateMetadata({
                 { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
             ],
             shortcut: '/favicon.ico',
-            apple: '/apple-icon.png',
+            apple: [{ url: '/apple-icon.png', sizes: '192x192', type: 'image/png' }],
         },
         manifest: '/site.webmanifest',
     }

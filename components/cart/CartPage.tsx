@@ -372,7 +372,7 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
               </div>
             </li>
           })}</ul>
-        </section>) : <div className={s.empty}><Icon name="bag" size={34} /><h2>{t('Votre panier attend sa première œuvre.', 'Your bag awaits its first creation.')}</h2><p>{t('Deux formats, une même rencontre entre l’art et la mixologie.', 'Two formats, one encounter between art and mixology.')}</p><Link href={path('/oeuvres')}>{t('Découvrir les créations', 'Discover the collection')} <span aria-hidden="true">↗</span></Link></div>}
+        </section>) : <div className={s.empty}><Icon name="bag" size={34} /><h2>{t('Votre panier attend sa première œuvre.', 'Your bag awaits its first creation.')}</h2><p>{t('Deux formats, une même rencontre entre l’art et la mixologie.', 'Two formats, one encounter between art and mixology.')}</p><Link href={path('/oeuvres')}>{t('Découvrir les créations', 'Discover the collection')}</Link></div>}
 
         {loaded && <section className={`${s.additions} ${items.length ? s.afterGifting : ''}`} aria-label={t('Choisir un format', 'Choose a size')}>
           <p>{t(items.length ? 'Compléter votre sélection' : 'Choisir votre format', items.length ? 'Complete your selection' : 'Choose your size')}</p>
