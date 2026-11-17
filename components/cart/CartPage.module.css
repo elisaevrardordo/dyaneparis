@@ -41,3 +41,5 @@
   .itemGroupHeading h2 { font-size: 19px; }
   .chooseComposition { gap: 14px; font-size: 10px; }
 }
+
+.unitPrice { margin: 4px 0 0; font-size: 12px; color: #555; }

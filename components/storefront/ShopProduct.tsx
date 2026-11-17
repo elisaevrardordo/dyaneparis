@@ -3,6 +3,7 @@ import { formatPrice } from '@/lib/formatPrice'
 import { fulfillmentForSku, preorderTerms, shopDeliveryTerms } from '@/lib/orders/fulfillment'
 
 import { personalizationNotice } from '@/lib/personalization/catalog'
+import { shippingDeliveryDescription } from '@/lib/shipping'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ProductPageClosing from '@/components/product/ProductPageClosing'
@@ -25,6 +26,7 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
   const fulfillment = sku ? fulfillmentForSku(sku) : 'stock'
   const preorder = fulfillment === 'preorder'
   const format = work.format || product?.format || ''
+  const largeFormat = product?.format === '1,5 L'
   const no2 = work.collection === 'no2'
   const cart = useCart()
   const [limit, setLimit] = useState<number | null>(null)
@@ -37,8 +39,8 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
     ? t('Disponibilité à confirmer auprès de la Conciergerie.', 'Contact the Concierge to confirm availability.')
     : limit > 0 ? null : t('Indisponible.', 'Unavailable.')
   const availabilityNotice = canPurchase ? stockStatus : t(
-    'Disponible auprès de la Conciergerie. Livraison sous 5 jours ouvrés en France métropolitaine et à Monaco.',
-    'Available through the Concierge. Delivery within 5 business days in metropolitan France and Monaco.',
+    'Notre Conciergerie vous accompagne pour commander cette création.',
+    'Our Concierge can help you order this creation.',
   )
   useEffect(() => {
     if (!canPurchase || !sku) return
@@ -64,7 +66,13 @@ export default function ShopProduct({ work, locale, sandboxCartEnabled, liveCart
         <p className={showcase.subtitle}>{no2 ? 'Basil Smash' : t('Inspiré du Pornstar Martini, 24 % vol.', 'Inspired by the Pornstar Martini, 24% vol.')} · {format}</p>
         <section className={showcase.formatPurchase} aria-label={t('Votre création', 'Your creation')}>
           {sandboxCartEnabled && <p className={s.notice}>{t('SANDBOX · AUCUN ACHAT RÉEL', 'SANDBOX · NO REAL PURCHASE')}</p>}
-          <p className={showcase.formatPrice}>{product ? formatPrice(product.amount, locale) : t('Sur demande', 'On request')}</p>
+          {product && largeFormat ? <div className={s.purchaseDetails}>
+            <p className={`${showcase.formatPrice} ${s.largePrice}`}>
+              {formatPrice(product.amount, locale, 'symbol')} <small>{t('TTC', 'Incl. VAT')}</small>
+            </p>
+            <p>{t('Cocktail prêt à servir. Sculpture en porcelaine peinte à la main.', 'Ready-to-serve cocktail in a hand-painted porcelain sculpture.')}</p>
+            <p>{t('Personnalisation offerte.', 'Personalisation included.')} {shippingDeliveryDescription(locale, preorder)}</p>
+          </div> : <p className={showcase.formatPrice}>{product ? formatPrice(product.amount, locale) : t('Sur demande', 'On request')}</p>}
           {preorder && <p className={s.status}>{preorderTerms(locale, canPurchase)}</p>}
           {canPurchase && product && (
             <button type="button" className={showcase.orderButton} disabled={!cart.loaded || cart.adding || limit === 0} onClick={() => cart.add(product.sku)}>

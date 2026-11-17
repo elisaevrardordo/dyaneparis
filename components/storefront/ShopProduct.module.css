@@ -3,3 +3,31 @@
 @media(min-width:1800px){.info{padding-top:60px}.galleryImage{height:80svh}}
 
 .showcasePage{padding-top:var(--header-height,112px);background:#fff;color:#202020}
+
+.purchaseDetails {
+  margin-bottom: 16px;
+}
+
+.purchaseDetails .largePrice {
+  font-size: clamp(30px, 2.2vw, 34px);
+}
+
+.purchaseDetails .largePrice small {
+  white-space: nowrap;
+}
+
+.purchaseDetails p:not(.largePrice) {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #555;
+}
+
+@media (max-width: 900px) {
+  .purchaseDetails {
+    order: -2;
+  }
+
+  .purchaseDetails .largePrice {
+    font-size: clamp(28px, 4.5vw, 30px);
+  }
+}

@@ -5,7 +5,7 @@ import EditorialImage from '@/components/editorial/EditorialImage'
 import Link from 'next/link'
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
-import { cartProducts, normalizeInitials, type Personalization } from '@/components/cart/catalog'
+import { cartProducts, normalizeInitials, validatePersonalization, type Personalization } from '@/components/cart/catalog'
 import { cartFontVariables } from '@/components/cart/fonts'
 import { useCart } from '@/components/commerce/CartProvider'
 import { personalizableWorks, finishLabel, personalizationNotice, type PersonalizableWork } from '@/lib/personalization/catalog'
@@ -44,8 +44,9 @@ export function SculpturePreview({ product, initials = '', finish = 'gold', exam
   </div>
 }
 
-export default function PersonalizationDrawer({ product, locale, open, onClose, showPreorderTerms, conciergeOnly }: {
+export default function PersonalizationDrawer({ product, locale, open, onClose, showPreorderTerms, conciergeOnly, editing }: {
   product: PersonalizableProduct; locale: 'fr' | 'en'; open: boolean; onClose: () => void; showPreorderTerms: boolean; conciergeOnly: boolean
+  editing?: { value: Personalization; save: (value: Personalization) => void }
 }) {
   const cart = useCart()
   const trigger = useRef<HTMLElement | null>(null)
@@ -53,24 +54,31 @@ export default function PersonalizationDrawer({ product, locale, open, onClose, 
   const close = useRef<HTMLButtonElement>(null)
   const initialsInput = useRef<HTMLInputElement>(null)
   const [mounted, setMounted] = useState(false)
-  const [initials, setInitials] = useState('')
-  const [finish, setFinish] = useState<Personalization['finish']>(product.personalization.finishes[0])
+  const [initials, setInitials] = useState(editing?.value.initials ?? '')
+  const [finish, setFinish] = useState<Personalization['finish']>(editing?.value.finish ?? product.personalization.finishes[0])
   const [error, setError] = useState('')
   const [added, setAdded] = useState(false)
   const [enquiry, setEnquiry] = useState(false)
   const [draftLoaded, setDraftLoaded] = useState(false)
   const en = locale === 'en'
+  const isEditing = Boolean(editing)
   const purchasable = !conciergeOnly && cartProducts.some(item => item.sku === product.sku)
   const money = formatPrice((product.amount || 0) + product.personalization.surcharge, locale)
+  let submitLabel = en ? 'ADD TO BAG' : 'AJOUTER AU PANIER'
+  if (editing) submitLabel = en ? 'Save personalisation' : 'Enregistrer la personnalisation'
+  else if (conciergeOnly) submitLabel = en ? 'Contact the Concierge' : 'Contacter la Conciergerie'
+  else if (!purchasable) submitLabel = en ? 'REQUEST THIS PERSONALISATION' : 'DEMANDER CETTE PERSONNALISATION'
+
   useEffect(() => setMounted(true), [])
   useEffect(() => {
+    if (isEditing) return
     try {
       const saved = JSON.parse(localStorage.getItem(`dyane-personalization-${product.sku}`) || 'null')
       if (saved && typeof saved.initials === 'string') setInitials(normalizeInitials(saved.initials))
       if (saved && product.personalization.finishes.includes(saved.finish)) setFinish(saved.finish)
     } catch { /* Storage may be unavailable. */ }
     setDraftLoaded(true)
-  }, [product.sku, product.personalization.finishes])
+  }, [isEditing, product.sku, product.personalization.finishes])
   useEffect(() => {
     if (!draftLoaded) return
     try { localStorage.setItem(`dyane-personalization-${product.sku}`, JSON.stringify({ initials, finish })) } catch { /* Keep the current form usable. */ }
@@ -95,8 +103,18 @@ export default function PersonalizationDrawer({ product, locale, open, onClose, 
       setError(en ? 'Enter one to three letters, A to Z.' : 'Saisissez une à trois lettres, de A à Z.')
       initialsInput.current?.focus(); return
     }
+    const personalization = { initials, finish }
+    if (editing) {
+      if (!validatePersonalization(product.sku, personalization)) {
+        setError(en ? 'Choose an available finish.' : 'Choisissez une finition proposée.')
+        return
+      }
+      editing.save(personalization)
+      onClose()
+      return
+    }
     if (!purchasable) { setEnquiry(true); return }
-    const success = await cart.add(product.sku, { initials, finish }, false)
+    const success = await cart.add(product.sku, personalization, false)
     if (success) { setAdded(true); setError('') }
     else setError(en ? 'Availability could not be confirmed. Check your bag (five pieces per format maximum) and try again.' : 'Disponibilité non confirmée. Vérifiez votre panier (cinq pièces par format maximum) puis réessayez.')
   }
@@ -108,8 +126,8 @@ export default function PersonalizationDrawer({ product, locale, open, onClose, 
         <h2 id={`personalization-${product.sku}`}>{en ? 'PERSONALISE' : 'PERSONNALISER'}</h2>
         <button ref={close} type="button" className={s.close} onClick={onClose} aria-label={en ? 'Close personalisation' : 'Fermer la personnalisation'}><span /></button>
       </header>
-      <form onSubmit={addToBag} className={s.drawerForm}>
-        <SculpturePreview product={product} initials={initials} finish={finish} locale={locale} />
+      <form noValidate onSubmit={addToBag} className={s.drawerForm}>
+        <SculpturePreview product={product} initials={initials} finish={finish} example={!initials} locale={locale} />
         {showPreorderTerms && <p className={s.conditions}>{preorderTerms(locale, !conciergeOnly)}</p>}
         {added ? <div className={s.added}>
           <p role="status">{en ? 'Your personalised sculpture has been added to your bag.' : 'Votre sculpture personnalisée a été ajoutée au panier.'}</p>
@@ -126,13 +144,13 @@ export default function PersonalizationDrawer({ product, locale, open, onClose, 
           </fieldset>
           <div className={s.initialsField}>
             <label htmlFor={`initials-${product.sku}`}>{en ? 'Your initials*' : 'Vos initiales*'}</label>
-            <input ref={initialsInput} id={`initials-${product.sku}`} value={initials} onChange={event => { setInitials(normalizeInitials(event.target.value)); setError('') }} maxLength={3} required pattern="[A-Z]{1,3}" autoComplete="off" autoCapitalize="characters" spellCheck={false} aria-describedby={`initials-help-${product.sku}`} />
+            <input ref={initialsInput} id={`initials-${product.sku}`} value={initials} onChange={event => { setInitials(normalizeInitials(event.target.value)); setError('') }} maxLength={3} required pattern="[A-Z]{1,3}" autoComplete="off" autoCapitalize="characters" spellCheck={false} aria-describedby={`initials-help-${product.sku}`} aria-invalid={Boolean(error && !/^[A-Z]{1,3}$/.test(initials))} />
             <p id={`initials-help-${product.sku}`}>{en ? 'Max. 3 letters' : 'Max. 3 lettres'}</p>
           </div>
           <p className={s.error} role="alert">{error}</p>
           <button type="submit" className={s.addToBag} disabled={purchasable && (cart.adding || !cart.loaded)} aria-busy={purchasable && cart.adding}>
-            <span>{purchasable && <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><path d="M5 8h14v13H5zM8 8V6a4 4 0 0 1 8 0v2" /></svg>}{conciergeOnly ? (en ? 'Contact the Concierge' : 'Contacter la Conciergerie') : !purchasable ? (en ? 'REQUEST THIS PERSONALISATION' : 'DEMANDER CETTE PERSONNALISATION') : (en ? 'ADD TO BAG' : 'AJOUTER AU PANIER')}</span>
-            <span>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money}</span>
+            <span>{purchasable && !editing && <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><path d="M5 8h14v13H5zM8 8V6a4 4 0 0 1 8 0v2" /></svg>}{submitLabel}</span>
+            {!editing && <span>{product.amount === null ? (en ? 'On request' : 'Sur demande') : money}</span>}
           </button>
           <p className={s.included}>{product.amount === null ? (en ? 'Feasibility and quotation confirmed with the Concierge.' : 'Faisabilité et devis confirmés avec la Conciergerie.') : (en ? 'Personalisation included' : 'Personnalisation offerte')}</p>
           <p className={s.conditions}>{personalizationNotice(locale)}</p>

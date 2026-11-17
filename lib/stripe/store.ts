@@ -4,7 +4,7 @@ import { Pool, type PoolClient } from 'pg'
 import type Stripe from 'stripe'
 import { CheckoutError, validateCartItems } from './config'
 import { orderDatabaseUrl } from '../deployment'
-import { cartLineKey, type CartItem, type Personalization } from '@/components/cart/catalog'
+import { cartLineKey, validatePersonalization, type CartItem, type Personalization } from '@/components/cart/catalog'
 import { normalizeGiftMessage, validGiftMessage } from '../gifts/message'
 import { commerceIntegration, isSingleFulfillment, type Fulfillment } from '../orders/fulfillment'
 import { isManualShippingLine, isManualVatCocktail, manualVatFromMetadata, verifyManualVatSession } from './manualVat'
@@ -125,7 +125,7 @@ export async function reserveCartOrder(db: PoolClient, input: {
   return result.rows[0]
 }
 
-type CheckoutOrderItem = Pick<ReservedCartItem, 'sku' | 'quantity' | 'price_id' | 'composition'>
+type CheckoutOrderItem = Pick<ReservedCartItem, 'sku' | 'quantity' | 'price_id' | 'composition' | 'personalization'>
 export type PaidCheckoutOrder = { id: string; items: CheckoutOrderItem[]; fulfillment?: Fulfillment }
 
 // All state changes and event deduplication commit together. Never ship from a redirect.
@@ -135,12 +135,14 @@ export async function applySession(db: PoolClient, eventId: string, session: Str
   const order = result.rows[0]
   if (!order) throw new Error('Unknown Dyane order')
   if (order.session_id && order.session_id !== session.id) throw new Error('Session mismatch')
-  const storedItems = await db.query<CheckoutOrderItem>(
-    `SELECT sku,quantity,price_id,to_jsonb(item)->>'composition' AS composition
+  const storedItems = await db.query<Omit<CheckoutOrderItem, 'personalization'> & { personalization: unknown }>(
+    `SELECT sku,quantity,price_id,personalization,to_jsonb(item)->>'composition' AS composition
      FROM dyane_checkout_order_items item WHERE order_id=$1 ORDER BY sku,line_key`, [order.id])
-  const items: CheckoutOrderItem[] = storedItems.rows.length ? storedItems.rows.map(({ composition, ...item }) => (
-    composition ? { ...item, composition } : item
-  )) : [{ sku: order.sku, quantity: order.quantity, price_id: order.price_id }]
+  const items: CheckoutOrderItem[] = storedItems.rows.length ? storedItems.rows.map(({ composition, personalization, ...item }) => ({
+    ...item,
+    ...(composition ? { composition } : {}),
+    ...(validatePersonalization(item.sku, personalization) ? { personalization } : {}),
+  })) : [{ sku: order.sku, quantity: order.quantity, price_id: order.price_id }]
   const manualVat = manualVatFromMetadata(order.params.metadata)
   const lines = session.line_items
   const productLines = manualVat ? lines?.data.filter(line => !isManualShippingLine(line)) : lines?.data

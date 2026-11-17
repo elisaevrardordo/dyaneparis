@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const bespoke = value.source === 'bespoke'
   const project = validateProject(value.project, { bespoke })
   if (!project) return NextResponse.json({ error: 'Invalid project.' }, { status: 400 })
-  const key = process.env.RESEND_API_KEY
+  const key = process.env.DYANE_DEPLOYMENT_ENV === 'preview' ? undefined : process.env.RESEND_API_KEY
   if (!key) return NextResponse.json({ error: 'Email service unavailable.' }, { status: 503 })
   const locale = value.locale === 'en' ? 'en' : 'fr'
   const title = bespoke ? 'Votre œuvre sur commande' : 'Votre cadeau de Noël rêvé'

@@ -3,14 +3,15 @@ import { formatPrice } from '@/lib/formatPrice'
 import { shippingAmount, shippingDescription, shippingDeliveryDescription } from '@/lib/shipping'
 import { fulfillmentForSku, preorderTerms, type Fulfillment } from '@/lib/orders/fulfillment'
 
-import { finishLabel } from '@/lib/personalization/catalog'
+import { finishLabel, personalizableWorks } from '@/lib/personalization/catalog'
+import dynamic from 'next/dynamic'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { localizedPath } from '@/i18n/paths'
-import { CART_STORAGE_KEY, TEO_ARTWORK_SKU, TEO_COMPOSITIONS, cartProducts, cartSubtotal, cleanCart, cartLineKey, type CartItem } from './catalog'
+import { CART_STORAGE_KEY, TEO_ARTWORK_SKU, TEO_COMPOSITIONS, cartProducts, cartSubtotal, cleanCart, cartLineKey, type CartItem, type Personalization } from './catalog'
 import s from './CartPage.module.css'
 import Footer from '@/components/Footer'
 import BrandWordmark from '@/components/BrandWordmark'
@@ -23,6 +24,8 @@ import PackagingSection from './PackagingSection'
 import { giftOptions as validateGiftOptions, GIFT_OPTIONS_STORAGE_KEY, type GiftOptions } from '@/lib/gifts/options'
 import { GIFT_STORAGE_KEY, normalizeGiftMessage, restoreGiftMessage } from '@/lib/gifts/message'
 import EmbeddedPayment from './EmbeddedPayment'
+
+const PersonalizationDrawer = dynamic(() => import('@/components/personalization/PersonalizationDrawer'), { ssr: false })
 
 function Icon({ name, size = 22 }: { name: string; size?: number }) {
   const paths: Record<string, React.ReactNode> = {
@@ -94,6 +97,7 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
   const [giftMessage, setGiftMessage] = useState('')
   const [giftOptions, setGiftOptions] = useState<GiftOptions>({ isGift: false })
   const [detailsSku, setDetailsSku] = useState<string | null>(null)
+  const [editingKey, setEditingKey] = useState<string | null>(null)
   const [availabilitySku, setAvailabilitySku] = useState<string | null>(null)
   const [refresh, setRefresh] = useState(0)
   const [refreshing, setRefreshing] = useState(false)
@@ -124,6 +128,8 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
   const summaries = summaryState?.fingerprint === fingerprint ? summaryState.groups : {}
   const limits = { ...summaries.stock?.limits, ...summaries.preorder?.limits }
   const locked = Boolean(busy || payment)
+  const editingItem = editingKey ? items.find(item => cartLineKey(item) === editingKey) : undefined
+  const editingProduct = editingItem && personalizableWorks.find(product => product.sku === editingItem.sku)
 
   useEffect(() => {
     try {
@@ -233,6 +239,12 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
     setItems(next)
     setAnnouncement(quantity <= 0 ? t('Article retiré du panier.', 'Item removed from your bag.') : t('Quantité mise à jour.', 'Quantity updated.'))
   }
+  function savePersonalization(personalization: Personalization) {
+    if (locked || adding || !loaded || !editingItem) return
+    setItems(items.map(item => cartLineKey(item) === editingKey ? { ...item, personalization } : item))
+    setAnnouncement(t('La personnalisation a été mise à jour.', 'Personalisation updated.'))
+  }
+
   function statusBlocksCheckout(fulfillment: Fulfillment) {
     if (!returnedOrder || (verifiedOrder?.fulfillment && verifiedOrder.fulfillment !== fulfillment)) return false
     if (verifiedOrder?.status === 'paid') return reconciledOrder !== returnedOrder
@@ -341,9 +353,14 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
                   {item.composition && <div><dt>{t('Composition', 'Cocktail')} :</dt><dd>{TEO_COMPOSITIONS[item.composition]}</dd></div>}
                   {item.personalization && <><div><dt>{t('Initiales', 'Initials')} :</dt><dd>{item.personalization.initials}</dd></div><div><dt>{t('Finition', 'Finish')} :</dt><dd>{finishLabel(item.personalization.finish, locale)} · {t('offerte', 'included')}</dd></div></>}
                 </dl>
+                {item.personalization && <button type="button" className={s.detailLink} disabled={locked || adding} onClick={() => setEditingKey(cartLineKey(item))} aria-haspopup="dialog">{t('Modifier la personnalisation', 'Edit personalisation')}</button>}
                 <button type="button" className={s.availabilityLink} onClick={() => setAvailabilitySku(product.sku)} aria-haspopup="dialog">{t('Disponibilité', 'Availability')}</button>
                 {limit < item.quantity && <p className={s.stockError}>{t('Quantité indisponible', 'Quantity unavailable')}</p>}
-                <div className={s.productBottom}><p className={s.price}>{money(product.amount * item.quantity)}</p>
+                <div className={s.productBottom}>
+                  <div>
+                    <p className={s.price}>{money(product.amount * item.quantity)}</p>
+                    {item.quantity > 1 && <p className={s.unitPrice}>{money(product.amount)} {t('par pièce', 'per piece')}</p>}
+                  </div>
                   <div className={s.controls}>
                     <fieldset className={s.quantity}><legend className={s.srOnly}>{t(`Quantité - ${product.format}`, `Quantity - ${product.format}`)}</legend>
                       <button type="button" disabled={locked || adding} onClick={() => change(item, item.quantity - 1)} aria-label={item.quantity === 1 ? t(`Supprimer ${product.name} ${product.format}`, `Remove ${product.name} ${product.format}`) : t(`Diminuer la quantité ${product.format}`, `Decrease ${product.format} quantity`)}><Icon name={item.quantity === 1 ? "trash" : "minus"} size={17} /></button>
@@ -406,6 +423,7 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
                   : t('Le paiement est momentanément indisponible.', 'Checkout is temporarily unavailable.')}</p>}
             </section>
           })}
+          {checkoutGroups.length > 0 && <p className={s.taxNote}>{t('Pour toute demande de livraison internationale, notre Conciergerie se tient à votre disposition.', 'For international delivery enquiries, please contact our Concierge.')} <Link href={path('/contact')}>{t('Nous contacter', 'Contact us')}</Link></p>}
           {error && <p ref={errorRef} tabIndex={-1} role="alert" className={s.error}>{error} <Link href={path('/contact')}>{t('Nous contacter', 'Contact us')}</Link></p>}
           <Link href={path('/oeuvres')} className={s.continue}>{t('Continuer mes achats', 'Continue shopping')}</Link>
           <p className={s.secure}><Icon name="lock" size={13} />{t('Paiement sécurisé', 'Secure payment')}</p>
@@ -423,6 +441,9 @@ export default function CartPage({ locale, manualVatEnabled = false }: { locale:
       if (message) setGiftOptions({ isGift: true })
       setGiftConfirmation(message ? t('Votre message cadeau a été ajouté à votre commande, sans supplément.', 'Your gift message has been added to your order at no extra cost.') : t('Le message cadeau a été supprimé.', 'Your gift message has been removed.'))
     }} />}
+    {editingProduct && editingItem?.personalization && <PersonalizationDrawer key={editingKey} product={editingProduct}
+      locale={locale} open onClose={() => setEditingKey(null)} showPreorderTerms={false} conciergeOnly={false}
+      editing={{ value: editingItem.personalization, save: savePersonalization }} />}
     {detailsSku && <ProductDetailsModal sku={detailsSku} locale={locale} onClose={() => setDetailsSku(null)} />}
     {availabilitySku && <AvailabilityModal locale={locale} fulfillment={fulfillmentForSku(availabilitySku)} verified={summaries[fulfillmentForSku(availabilitySku)]?.stockVerified === true} limit={limits[availabilitySku]} refreshing={refreshing} onRefresh={() => setRefresh(value => value + 1)} onClose={() => setAvailabilitySku(null)} />}
     {payment && <EmbeddedPayment key={payment.attemptId} locale={locale} clientSecret={payment.clientSecret} publishableKey={payment.publishableKey}

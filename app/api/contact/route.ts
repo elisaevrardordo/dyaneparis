@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = process.env.DYANE_DEPLOYMENT_ENV === 'preview' ? undefined : process.env.RESEND_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'Email service is not configured.' }, { status: 503 })
   }

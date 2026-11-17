@@ -91,7 +91,7 @@ export async function POST(request: Request) {
         }
     }
 
-    const apiKey = process.env.RESEND_API_KEY
+    const apiKey = process.env.DYANE_DEPLOYMENT_ENV === 'preview' ? undefined : process.env.RESEND_API_KEY
     if (!apiKey) {
         return response({ error: 'Newsletter service is not configured.', code: 'unavailable' }, 503)
     }

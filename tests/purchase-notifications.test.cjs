@@ -7,7 +7,7 @@ const { TEO_ARTWORK_SKU } = load('components/cart/catalog.ts')
 
 const order = {
   id: '00000000-0000-4000-8000-000000000001', fulfillment: 'preorder',
-  items: [{ sku: 'dyane-sculpture-25cl', price_id: 'price_fixture', quantity: 1 }],
+  items: [{ sku: 'dyane-sculpture-25cl', price_id: 'price_fixture', quantity: 1, personalization: { initials: 'ED', finish: 'gold' } }],
 }
 const session = {
   livemode: true, payment_status: 'paid', client_reference_id: order.id,
@@ -69,6 +69,8 @@ test('only webhook-confirmed live payments queue customer and House emails', asy
   assert.equal(customer.payload.to[0], 'buyer@example.test')
   assert.equal(house.payload.to[0], 'contact@dyaneparis.com')
   assert.match(customer.payload.html, /lang="en"/)
+  assert.match(customer.payload.html, /Dyane No\.1 · 25 cl · ED · Gold/)
+  assert.match(house.payload.text, /Dyane No\.1 · 25 cl · ED · Doré/)
   assert.match(customer.payload.html, /Hello &lt;Alicia&gt;/)
   assert.match(customer.payload.text, /Delivery expected in early January 2027\./)
   assert.match(customer.payload.html, /Payment was taken when you placed your preorder\./)

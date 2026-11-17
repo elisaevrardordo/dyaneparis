@@ -20,10 +20,10 @@ export default function GiftMessageModal({ message, locale, onSave, onClose }: P
     if (!valid || !draft.trim()) return
     onSave(normalizeGiftMessage(draft).trim()); onClose()
   }
-  return <CommerceDialog title={t('Ajouter un message cadeau', 'Include a gift message')} kind="gift" closeLabel={t('Fermer le message cadeau', 'Close gift message')} onClose={onClose}>
+  return <CommerceDialog title={message ? t('Modifier le message personnel', 'Edit personal message') : t('Ajouter un message personnel', 'Add a personal message')} kind="gift" closeLabel={t('Fermer le message cadeau', 'Close gift message')} onClose={onClose}>
     <div className={s.giftBody}><figure className={s.giftVisual}><div><Image src="https://res.cloudinary.com/dazhkrimv/image/upload/v1793745808/dyane-paris-carte-personnalis%C3%A9e.png" alt={t('La carte personnalisée Dyane Paris', 'The personalised Dyane Paris card')} fill sizes="(max-width: 760px) 100vw, 464px" style={{ objectFit: 'contain', objectPosition: 'center' }} priority /></div></figure>
       <form onSubmit={save}><p className={s.giftHandwriting}>{t('Votre carte sera manuscrite avec soin pour vos proches par Dyane Paris.', 'Your card will be handwritten with care for your loved ones by Dyane Paris.')}</p>
-        <label className={s.giftLabel} htmlFor="gift-message">{t('Votre message personnalisé', 'Your personalized message.')}</label>
+        <label className={s.giftLabel} htmlFor="gift-message">{t('Votre message personnalisé', 'Your personal message')}</label>
         <textarea id="gift-message" className={s.giftTextarea} value={draft} onChange={event => {
           const next = normalizeGiftMessage(event.target.value)
           const nextStats = giftMessageStats(next)

@@ -6,6 +6,7 @@ import { TEO_COMPOSITIONS, cartProducts } from '@/components/cart/catalog'
 import { contactEmail } from '@/lib/email/dyaneEmail'
 import { purchaseThankYouEmail } from '@/lib/email/purchaseThankYouEmail'
 import { shippingDeliveryDescription } from '@/lib/shipping'
+import { finishLabel } from '@/lib/personalization/catalog'
 import { type PaidCheckoutOrder, orderPool } from './store'
 
 type Purpose = 'customer' | 'house'
@@ -42,7 +43,8 @@ export async function enqueueProductionPurchaseEmails(db: PoolClient, order: Pai
     const description = session.line_items?.data.find(line => line.price?.id === item.price_id)?.description?.trim()
     const recipe = item.composition ? TEO_COMPOSITIONS[item.composition] : null
     const name = product ? `${product.name} · ${recipe ?? product.format}` : description || item.sku
-    return { name, quantity: item.quantity }
+    const personalization = item.personalization
+    return { name, quantity: item.quantity, personalization }
   })
   const formatTotal = (language: string) => new Intl.NumberFormat(language, { style: 'currency', currency: 'EUR' }).format(total / 100)
   const preorder = order.fulfillment === 'preorder'
@@ -50,7 +52,10 @@ export async function enqueueProductionPurchaseEmails(db: PoolClient, order: Pai
     locale,
     firstName: session.customer_details?.name?.trim().split(/\s+/, 1)[0],
     orderNumber: order.id,
-    items,
+    items: items.map(({ name, quantity, personalization }) => ({
+      name: personalization ? `${name} · ${personalization.initials} · ${finishLabel(personalization.finish, locale)}` : name,
+      quantity,
+    })),
     paidTotal: formatTotal(locale),
     dispatchMessage: order.fulfillment ? shippingDeliveryDescription(locale, preorder) : undefined,
     paymentMessage: preorder ? (locale === 'en' ? 'Payment was taken when you placed your preorder.' : 'Le paiement a été effectué lors de votre précommande.') : undefined,
@@ -62,7 +67,9 @@ export async function enqueueProductionPurchaseEmails(db: PoolClient, order: Pai
     from, to: [contactEmail], subject: `Nouvelle commande réglée - Dyane Paris - ${order.id}`,
     text: [
       `Commande réglée n° ${order.id}`,
-      ...items.map(item => `${item.quantity} × ${item.name}`),
+      ...items.map(({ name, quantity, personalization }) =>
+        `${quantity} × ${name}${personalization ? ` · ${personalization.initials} · ${finishLabel(personalization.finish, 'fr')}` : ''}`
+      ),
       `Total réglé · ${formatTotal('fr')}`,
       ...(order.fulfillment ? [shippingDeliveryDescription('fr', preorder)] : []),
       ...(recipient ? [] : ['Adresse e-mail du client indisponible. Vérifiez la commande avant de le contacter.']),

@@ -48,7 +48,7 @@ function GalleryVideo({ src }: { src: string }) {
 
   return <video ref={video} className={s.video} src={ageConfirmed ? cloudinaryVideo(src, 1000) : undefined}
     poster={cloudinaryVideoPoster(src)} autoPlay={ageConfirmed && visible} muted loop playsInline
-    preload="auto" controls={false} tabIndex={-1} aria-hidden="true" />
+    preload="none" controls={false} tabIndex={-1} aria-hidden="true" />
 }
 
 /** The first photograph stays first, matching the representative SEO image. */

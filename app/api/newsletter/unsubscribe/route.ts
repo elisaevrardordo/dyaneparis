@@ -53,7 +53,7 @@ export async function POST(request: Request) {
         return unsubscribePage(locale, en ? 'This unsubscribe link is invalid.' : 'Ce lien de désinscription est invalide.', 400)
     }
 
-    const apiKey = process.env.RESEND_API_KEY
+    const apiKey = process.env.DYANE_DEPLOYMENT_ENV === 'preview' ? undefined : process.env.RESEND_API_KEY
     if (apiKey && process.env.NEWSLETTER_MODE !== 'preview') {
         try {
             const resend = new Resend(apiKey)
