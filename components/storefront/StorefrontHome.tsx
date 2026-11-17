@@ -2,7 +2,7 @@ import Link from 'next/link'
 import CollectionChapters from '@/components/collection/CollectionChapters'
 import EditorialImage from '@/components/editorial/EditorialImage'
 import EditorialEmblem from '@/components/editorial/EditorialEmblem'
-import { sculpturePages, storefront } from '@/content/storefront'
+import { homeSculptureCards, storefront } from '@/content/storefront'
 import { localizedPath } from '@/i18n/paths'
 import LuxuryProductCard from './LuxuryProductCard'
 import CampaignVideo from './CampaignVideo'
@@ -36,7 +36,7 @@ export default function StorefrontHome({ locale }: { locale: 'fr' | 'en' }) {
     ),
     products: (
       <section className={s.grid} data-scroll-section data-header-foreground="black" aria-label={en ? 'Works from the House' : 'Les œuvres de la Maison'}>
-        {sculpturePages.map(work => <LuxuryProductCard work={work} locale={locale} key={work.id} />)}
+        {homeSculptureCards.map(work => <LuxuryProductCard work={work} locale={locale} key={work.id} />)}
       </section>
     ),
     universe: (

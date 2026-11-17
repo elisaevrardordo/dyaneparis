@@ -1,5 +1,5 @@
 import { cartProducts, TEO_ARTWORK_AMOUNT } from '@/components/cart/catalog'
-import { no1CocktailPhoto, no2CocktailPhoto } from '@/content/productGalleryPhotos'
+import { no1CocktailPhoto, no1SculptureAndCocktailPhoto, no2CocktailPhoto } from '@/content/productGalleryPhotos'
 import { homeUniverse } from '@/content/home'
 
 export type StorefrontImage = { src: string; alt: string; position: string }
@@ -106,3 +106,15 @@ export function featuredPrice(work: FeaturedWork): number | null {
   return cartProducts.find(product => product.sku === work.sku)?.amount ?? work.amount ?? null
 }
 export const sculpturePages = featuredWorks.filter(work => work.href.startsWith('/sculptures/'))
+
+export const homeSculptureCards: FeaturedWork[] = sculpturePages.map(work => {
+  if (work.id !== 'no1-150cl') return work
+
+  return {
+    ...work,
+    images: [
+      { ...image(no1SculptureAndCocktailPhoto, 'Sculpture Dyane No.1 1,5 L et son cocktail sur une table en marbre'), labelTone: 'light' },
+      ...work.images,
+    ],
+  }
+})

@@ -1,5 +1,5 @@
 import { officialImageUrl } from '@/content/officialImages'
-import { no1CocktailPhoto, no2CocktailPhoto } from '@/content/productGalleryPhotos'
+import { no1CocktailPhoto, no1SculptureAndCocktailPhoto, no2CocktailPhoto } from '@/content/productGalleryPhotos'
 import { shippingDescription } from '@/lib/shipping'
 
 export const heroImages: Record<string, string> = {
@@ -37,7 +37,7 @@ export const produits: Record<string, ProductDetails> = {
         description: 'VODKA ARTISANALE FRANÇAISE, INFUSÉE AUX GOUSSES DE VANILLE MADAGASCAR BOURBON GOLD. PURÉE DE FRUIT DE LA PASSION, SUBLIMÉE PAR UNE TOUCHE DE FRAMBOISE SAUVAGE. JUS DE CITRON BIOLOGIQUE. EMBOUTEILLÉE EN FRANCE, DANS LA RÉGION D\'AVIGNON. ŒUVRE PRINCIPALE : 1,5 L.',
         images: [
             'https://res.cloudinary.com/dazhkrimv/image/upload/v1791496575/dyane-paris-sculpture-porcelaine-voile-rouge.png',
-            'https://res.cloudinary.com/dazhkrimv/image/upload/v1791499964/dyane-paris-sculpture-porcelaine-rouge-cocktail.jpg',
+            no1SculptureAndCocktailPhoto,
             no1CocktailPhoto,
         ],
         plusInfos: 'VANILLE & PASSION\nSOLAIRE. CHARNELLE. UNE INTERPRÉTATION INTENSE DU FRUIT DE LA PASSION, INFUSÉE DANS UNE VODKA ARTISANALE FRANÇAISE. L\'ACIDITÉ SE TEND, LA DOUCEUR S\'ÉQUILIBRE. LA VANILLE MADAGASCAR BOURBON GOLD APPORTE UNE RONDEUR SOYEUSE.\nDENSE. LUMINEUSE. UNE ŒUVRE LIQUIDE.\n-\nPROFIL SENSORIEL\nROBE - OR AMBRÉ\nNEZ - PASSION FRAÎCHE, VANILLE CHAUDE\nBOUCHE - PULPEUSE, ÉQUILIBRÉE\nFINALE - LONGUE, SOLAIRE.',
@@ -74,7 +74,7 @@ export const produits: Record<string, ProductDetails> = {
 }
 
 export const productMediaDimensions: Record<string, { width: number; height: number }> = {
-    'https://res.cloudinary.com/dazhkrimv/image/upload/v1791499964/dyane-paris-sculpture-porcelaine-rouge-cocktail.jpg': { width: 3228, height: 5176 },
+    [no1SculptureAndCocktailPhoto]: { width: 3228, height: 5176 },
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1792700959/dyane-paris-dyaneno2-statue-luxe-cocktail-prestige.png': { width: 992, height: 1585 },
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687757/dyane-paris-sculpture-porcelaine-voile-rouge-interieur.png': { width: 1080, height: 1350 },
     'https://res.cloudinary.com/dazhkrimv/image/upload/v1788687756/dyane-paris-sculpture-porcelaine-voile-vert-interieur.png': { width: 1080, height: 1350 },
