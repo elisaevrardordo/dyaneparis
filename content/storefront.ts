@@ -81,6 +81,8 @@ export const storefront = {
         boutique: {
           ...image('/home/shop/dyane-paris-dyane-no2-cocktail-haute-mixologie.webp', 'Gros plan du cocktail Dyane No.2 garni de fleurs'),
           altEn: 'Close-up of the Dyane No.2 cocktail garnished with flowers',
+          description: 'La haute mixologie réinventée à travers des créations d’auteur, élaborées sur mesure avec exigence et précision. Une expression singulière du raffinement et de l’art de vivre à la française.',
+          descriptionEn: 'Fine mixology reimagined through bespoke signature creations, crafted with exacting care and precision. A distinctive expression of refinement and the French art of living.',
         },
       },
       {
@@ -91,6 +93,8 @@ export const storefront = {
         boutique: {
           ...image('/home/shop/dyane-paris-dyane-no1-visage-sculpture-porcelaine.webp', 'Gros plan du visage de la sculpture en porcelaine Dyane No.1'),
           altEn: 'Close-up of the face of the Dyane No.1 porcelain sculpture',
+          description: 'Chaque sculpture est façonnée et peinte à la main, perpétuant un savoir-faire artisanal d’exception. Une rencontre entre création contemporaine, élégance intemporelle et excellence française.',
+          descriptionEn: 'Each sculpture is shaped and painted by hand, carrying forward exceptional artisanal craftsmanship. A meeting of contemporary creation, timeless elegance and French excellence.',
         },
       },
     ],

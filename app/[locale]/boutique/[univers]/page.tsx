@@ -65,6 +65,7 @@ export default async function BoutiquePage({ params }: BoutiqueProps) {
           <p className={styles.boutiqueLabel}>{en ? 'Shop' : 'Boutique'}</p>
           <h1 className={styles.boutiqueTitle} id="boutique-title">{en ? photo.titleEn : photo.title}</h1>
           <p className={styles.boutiqueSubtitle}>{en ? photo.subtitleEn : photo.subtitle}</p>
+          <p className={styles.boutiqueDescription}>{en ? photo.boutique.descriptionEn : photo.boutique.description}</p>
         </header>
       </section>
       <section id="boutique-products" className={styles.grid} aria-label={en ? 'Shop the collection' : 'Les œuvres de la boutique'}>

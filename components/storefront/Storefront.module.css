@@ -146,13 +146,13 @@
 .boutiqueMedia {
   position: relative;
   margin-block-start: 8px;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 20 / 9;
   background: #000;
 }
 
 .boutiqueMedia[data-universe='composition'] {
   box-sizing: content-box;
-  padding-block-end: 2cm;
+  padding-block-end: 1.6cm;
 }
 
 .boutiqueImage {
@@ -186,6 +186,14 @@
   line-height: 1.5;
 }
 
+.boutiqueDescription {
+  max-width: 38ch;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
 .boutique .grid {
   margin-top: clamp(18px, 2.7vw, 48px);
   scroll-margin-top: calc(var(--header-height) + 12px);
@@ -194,7 +202,7 @@
 @media (max-width: 768px) {
   .universe { height: auto; aspect-ratio: 4 / 5; }
   .boutiqueHero { grid-template-columns: minmax(0, 1fr); }
-  .boutiqueMedia { aspect-ratio: 4 / 5; }
+  .boutiqueMedia { aspect-ratio: 1; }
   .boutiqueImage { object-position: center; }
   .boutiqueCopy { grid-row: 1; padding: 20px 0; }
   .boutiqueTitle { margin-top: 10px; }
