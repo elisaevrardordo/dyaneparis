@@ -84,7 +84,13 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     ? '/images/officielles/collections/dyane-no2-basil-smash-portrait-officiel.png'
     : product?.image
   return <CartContext.Provider value={{ items, loaded, storageError, adding, setItems, add }}>{children}
-    <PremiumLoader phase={loading.phase} label={en ? 'Preparing your selection' : 'Votre sélection se prépare'} onCancel={() => request.current?.abort('cancel')} />
+    <PremiumLoader
+      phase={loading.phase}
+      appearance="site"
+      label={en ? 'Preparing your selection' : 'Votre sélection se prépare'}
+      onCancel={() => request.current?.abort('cancel')}
+      cancelLabel={en ? 'Cancel' : 'Annuler'}
+    />
     {product && added && confirmationImage && <CommerceDialog title={en ? 'Added to your bag' : 'Ajouté à votre panier'} kind="added" closeLabel={en ? 'Close added item' : 'Fermer la confirmation d’ajout'} onClose={() => setAdded(null)}>
       <div className={s.addedBody}>
         <div className={s.addedImage}>

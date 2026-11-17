@@ -1,6 +1,8 @@
 'use client'
 import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { SiteLoadingEmblem } from '@/components/layout/SiteLoader'
+import site from '@/components/layout/SiteLoader.module.css'
 import { createLoadingGate } from './loadingGate'
 import s from './Commerce.module.css'
 
@@ -10,7 +12,13 @@ export function useLoadingGate() {
   useEffect(() => () => gate.cancel(), [gate])
   return { phase, ...gate }
 }
-export default function PremiumLoader({ phase, label, onCancel, cancelLabel = 'Annuler' }: { phase: 'hidden' | 'visible' | 'leaving'; label: string; onCancel?: () => void; cancelLabel?: string }) {
+export default function PremiumLoader({ phase, label, onCancel, cancelLabel = 'Annuler', appearance = 'commerce' }: {
+  phase: 'hidden' | 'visible' | 'leaving'
+  label: string
+  onCancel?: () => void
+  cancelLabel?: string
+  appearance?: 'commerce' | 'site'
+}) {
   const dialog = useRef<HTMLDialogElement>(null)
   const active = phase !== 'hidden'
   useEffect(() => {
@@ -22,5 +30,19 @@ export default function PremiumLoader({ phase, label, onCancel, cancelLabel = 'A
     return () => { element?.close(); document.body.style.overflow = overflow; if (previous?.isConnected) previous.focus() }
   }, [active])
   if (!active) return null
-  return <dialog ref={dialog} className={`${s.loader} ${phase === 'leaving' ? s.loaderLeaving : ''}`} aria-label={label} onCancel={event => { event.preventDefault(); onCancel?.() }}><div role="status" aria-live="polite"><Image src="/icon.png" alt="" width={62} height={62} unoptimized className={s.loaderIcon} /><p>{label}</p>{onCancel && <button type="button" onClick={onCancel}>{cancelLabel}</button>}</div></dialog>
+  const siteTransition = appearance === 'site'
+  return (
+    <dialog
+      ref={dialog}
+      className={`${s.loader} ${siteTransition ? site.surface : s.commerceLoader}${phase === 'leaving' ? ` ${s.loaderLeaving}` : ''}`}
+      aria-label={label}
+      onCancel={event => { event.preventDefault(); onCancel?.() }}
+    >
+      <div role="status" aria-live="polite">
+        {siteTransition ? <SiteLoadingEmblem /> : <Image src="/icon.png" alt="" width={62} height={62} unoptimized className={s.loaderIcon} />}
+        <p>{label}</p>
+        {onCancel && <button type="button" onClick={onCancel}>{cancelLabel}</button>}
+      </div>
+    </dialog>
+  )
 }

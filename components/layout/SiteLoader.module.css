@@ -4,8 +4,11 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgb(255 255 255 / .89);
   pointer-events: none;
+}
+
+.surface {
+  background: rgb(255 255 255 / .89);
   animation: reveal .22s ease-out .16s both;
 }
 

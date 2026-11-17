@@ -4,25 +4,35 @@ import { useEffect, useId, useState } from 'react'
 import { useLocale } from 'next-intl'
 import styles from './SiteLoader.module.css'
 
-export default function SiteLoader({ initial = false }: { initial?: boolean } = {}) {
+export function SiteLoadingEmblem() {
   const id = useId()
+  return (
+    <svg className={styles.emblem} viewBox="451 237 395 782" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id={`${id}-ink`} colorInterpolationFilters="sRGB">
+          <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -.6378 -2.1456 -.2166 0 2.76" />
+        </filter>
+        <mask id={`${id}-emblem`} maskUnits="userSpaceOnUse" x="451" y="237" width="395" height="782">
+          <image href="/images/brand/dyane-loading-emblem.webp" width="1254" height="1254" filter={`url(#${id}-ink)`} />
+        </mask>
+      </defs>
+      <g mask={`url(#${id}-emblem)`}>
+        <rect x="451" y="237" width="395" height="782" fill="#242120" />
+        <path className={styles.drape} d="M451 735 Q595 718 846 715 V1019 H451 Z" />
+      </g>
+    </svg>
+  )
+}
+
+export default function SiteLoader({ initial = false }: { initial?: boolean } = {}) {
   const locale = useLocale()
   return (
-    <div className={`${styles.overlay}${initial ? ` ${styles.initial}` : ''}`} role="status" aria-label={locale === 'en' ? 'Loading Dyane Paris' : 'Chargement de Dyane Paris'}>
-      <svg className={styles.emblem} viewBox="451 237 395 782" aria-hidden="true" focusable="false">
-        <defs>
-          <filter id={`${id}-ink`} colorInterpolationFilters="sRGB">
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -.6378 -2.1456 -.2166 0 2.76" />
-          </filter>
-          <mask id={`${id}-emblem`} maskUnits="userSpaceOnUse" x="451" y="237" width="395" height="782">
-            <image href="/images/brand/dyane-loading-emblem.webp" width="1254" height="1254" filter={`url(#${id}-ink)`} />
-          </mask>
-        </defs>
-        <g mask={`url(#${id}-emblem)`}>
-          <rect x="451" y="237" width="395" height="782" fill="#242120" />
-          <path className={styles.drape} d="M451 735 Q595 718 846 715 V1019 H451 Z" />
-        </g>
-      </svg>
+    <div
+      className={`${styles.overlay} ${styles.surface}${initial ? ` ${styles.initial}` : ''}`}
+      role="status"
+      aria-label={locale === 'en' ? 'Loading Dyane Paris' : 'Chargement de Dyane Paris'}
+    >
+      <SiteLoadingEmblem />
     </div>
   )
 }

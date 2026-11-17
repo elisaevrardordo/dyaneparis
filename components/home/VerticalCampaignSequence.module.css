@@ -37,7 +37,7 @@
 .craftContent {
   display: flex;
   width: 100%;
-  padding: calc(var(--header-height) + clamp(18px, 3svh, 38px)) 5vw 0;
+  padding: calc((var(--header-height) + clamp(18px, 3svh, 38px)) * var(--story-craft-spacing-scale, 1)) 5vw 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -79,7 +79,7 @@
   }
 
   .craftContent {
-    padding: calc(var(--header-height) + 16px) 6vw 0;
+    padding: calc((var(--header-height) + 16px) * var(--story-craft-spacing-scale, 1)) 6vw 0;
   }
 
   .craftMedia {
