@@ -9,7 +9,7 @@ export default function BrandWordmark() {
     >
       <title>Dyane Paris</title>
       {/* Frame the original PNG's transparent canvas without altering the asset. */}
-      <image href="/images/brand/dyane-paris-horizontal-v2.png" width="1080" height="1350" />
+      <image href="/images/brand/dyane-paris-horizontal-v2.webp" width="1080" height="1350" />
     </svg>
   )
 }

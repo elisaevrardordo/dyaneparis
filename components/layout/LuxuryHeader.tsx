@@ -413,7 +413,7 @@ export default function LuxuryHeader({ catalogueOnly = false }: { catalogueOnly?
               </filter>
               <mask id={`${emblemId}-mask`} maskUnits="userSpaceOnUse" x="449" y="455" width="182" height="397">
                 {/* The supplied black-on-white artwork defines the emblem's opacity. */}
-                <image href="/images/brand/dyane-mobile-emblem.png" width="1080" height="1350" filter={`url(#${emblemId}-ink)`} />
+                <image href="/images/brand/dyane-mobile-emblem.webp" width="1080" height="1350" filter={`url(#${emblemId}-ink)`} />
               </mask>
             </defs>
             <rect x="449" y="455" width="182" height="397" fill="currentColor" mask={`url(#${emblemId}-mask)`} />

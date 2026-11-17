@@ -36,7 +36,7 @@ export default function EditorialFilm({ src, poster, label, width, height, prior
   }, [load, confirmed, reduced, visible])
   return <div className={styles.frame} style={{ aspectRatio: `${width}/${height}` }}>
     {poster && <EditorialImage src={poster} alt="" fill sizes="(max-width:760px) 90vw, 60vw" priority={priority} className={styles.poster} />}
-    <video ref={video} src={load && confirmed ? src : undefined} poster={poster} aria-label={label}
+    <video ref={video} src={load && confirmed ? src : undefined} aria-label={label}
       className={styles.video} muted loop playsInline controls={reduced} autoPlay={confirmed && visible && !reduced}
       preload={load && confirmed ? 'metadata' : 'none'} />
   </div>

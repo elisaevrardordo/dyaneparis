@@ -21,26 +21,38 @@ export default function CampaignVideo({ src, poster, position, locale, label, cl
     const element = video.current
     if (!element || !ageConfirmed || failed) return
     let active = true
+    let inView = false
     const play = () => {
-      if (!active || !element.paused) return
+      if (!active || !inView || document.hidden) {
+        element.pause()
+        return
+      }
+      if (!element.paused) return
       void element.play().catch(() => { if (active) setPlaying(false) })
     }
-    play()
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting
+      play()
+    }, { rootMargin: '520px 0px', threshold: .01 })
+    observer.observe(element)
     // A normal page interaction can unlock autoplay when the browser initially blocks it.
     window.addEventListener('pointerdown', play, { passive: true })
     window.addEventListener('keydown', play)
     window.addEventListener('pageshow', play)
+    document.addEventListener('visibilitychange', play)
     return () => {
       active = false
       window.removeEventListener('pointerdown', play)
       window.removeEventListener('keydown', play)
       window.removeEventListener('pageshow', play)
+      document.removeEventListener('visibilitychange', play)
+      observer.disconnect()
       element.pause()
     }
   }, [ageConfirmed, failed])
   return <section className={`${s.videoPanel} ${className}`} style={{ '--film-ratio': ratio } as CSSProperties} data-playing={playing} aria-label={label}>
     <Image src={poster} alt={label} fill sizes={ratio ? '100vw' : '(max-width: 600px) 100vw, 33vw'} style={{ objectPosition: position }} />
-    <video tabIndex={-1} aria-hidden="true" ref={video} src={ageConfirmed ? src : undefined} poster={poster} autoPlay={ageConfirmed} muted loop playsInline preload="none" controls={false} aria-label={label} style={{ objectPosition: position }} onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => { setFailed(true); setPlaying(false) }} />
+    <video tabIndex={-1} aria-hidden="true" ref={video} src={ageConfirmed ? src : undefined} muted loop playsInline preload="none" controls={false} aria-label={label} style={{ objectPosition: position }} onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => { setFailed(true); setPlaying(false) }} />
     {failed && <span className={s.videoUnavailable} role="status">{en ? 'Film unavailable. The campaign photograph remains visible.' : 'Film indisponible. La photographie de campagne reste visible.'}</span>}
     {children}
   </section>

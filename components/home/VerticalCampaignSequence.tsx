@@ -135,6 +135,15 @@ export function CraftVideoSlide({ locale }: { locale: string }) {
     >
       <div className={styles.craftContent}>
         <Link className={styles.craftMedia} href={localizedPath(locale, '/fabrication')} aria-label={isEnglish ? 'Discover French savoir-faire' : 'Découvrir le savoir-faire français'}>
+          <Image
+            src={fabricationFilm.poster}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(max-width: 700px) 87.4vw, (max-height: 640px) 39.1vw, 48.3vw"
+            quality={85}
+            style={{ objectFit: 'cover' }}
+          />
           <video
             ref={craftVideoRef}
             className={styles.craftVideo}
@@ -142,7 +151,6 @@ export function CraftVideoSlide({ locale }: { locale: string }) {
             loop
             playsInline
             preload="none"
-            poster={fabricationFilm.poster}
             aria-label={isEnglish ? 'Dyane Paris craftsmanship film' : 'Film du savoir-faire Dyane Paris'}
           >
             <source src={fabricationFilm.src} type="video/mp4" />

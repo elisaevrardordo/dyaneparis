@@ -46,9 +46,12 @@ function GalleryVideo({ src }: { src: string }) {
     }
   }, [ageConfirmed, visible])
 
-  return <video ref={video} className={s.video} src={ageConfirmed ? cloudinaryVideo(src, 1000) : undefined}
-    poster={cloudinaryVideoPoster(src)} autoPlay={ageConfirmed && visible} muted loop playsInline
-    preload="none" controls={false} tabIndex={-1} aria-hidden="true" />
+  return <>
+    <EditorialImage src={cloudinaryVideoPoster(src)} alt="" fill sizes="(max-width: 900px) 100vw, 34vw" quality={85} />
+    <video ref={video} className={s.video} src={ageConfirmed ? cloudinaryVideo(src, 1000) : undefined}
+      autoPlay={ageConfirmed && visible} muted loop playsInline
+      preload="none" controls={false} tabIndex={-1} aria-hidden="true" />
+  </>
 }
 
 /** The first photograph stays first, matching the representative SEO image. */
@@ -151,7 +154,7 @@ export default function ProductShowcase({ items, locale, title, children }: {
               aria-describedby={id}
               aria-label={`${en ? 'Enlarge' : 'Agrandir'} : ${item.alt}`}>
               {item.type === 'video' ? <GalleryVideo src={item.src} /> : <EditorialImage draggable={false} src={item.src}
-                alt={item.alt} fill priority={index < 2} sizes="(max-width: 900px) 100vw, 34vw" quality={85} />}
+                alt={item.alt} fill priority={index < 2} fetchPriority={index === 0 ? 'high' : undefined} sizes="(max-width: 900px) 100vw, 34vw" quality={85} />}
               {caption && <span className={s.videoCaption} id={id}>{caption}</span>}
             </button>
           })}
