@@ -18,3 +18,9 @@ __pycache__/
 .next
 .vercel
 .stripe-local/
+
+# Cloudflare generated output and local secrets
+.cloudflare/
+.vinext/
+.dev.vars
+.dev.vars.*
