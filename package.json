@@ -2,6 +2,7 @@
   "name": "dyaneparis",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@11.11.0",
   "engines": {
     "node": ">=20.9.0"
   },
